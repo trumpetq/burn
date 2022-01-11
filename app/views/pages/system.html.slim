@@ -1,0 +1,37 @@
+- page_title('System Information')
+
+.container
+  .row
+    .col-lg-6
+      .card
+        .card-body
+          h4.card-title System Information
+          p.card-text A quick look at the application.
+        .card-table
+          table.table.table-striped.table-sm
+            tbody
+              tr
+                th Hostname
+                td = Socket.gethostname
+              tr
+                th Ruby
+                td = RUBY_VERSION
+              tr
+                th Rails
+                td = Rails.version
+              tr
+                th PostgreSQL
+                td = ActiveRecord::Base.connection.select_value('SELECT version()')
+              tr
+                th Redis
+                td = Redis.new(url: Settings.redis.url).info['redis_version']
+              tr
+                th Environment
+                td = Rails.env
+              tr
+                th Heroku Release
+                td = ENV['HEROKU_RELEASE_VERSION'] || na_label
+              tr
+                th GitHub
+                td
+                  code = link_to(git_commit_hash, "#{Settings.github.url}/commit/#{git_commit_hash}", target: '_blank')

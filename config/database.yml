@@ -1,0 +1,20 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  host: localhost
+  pool: <%= ENV.fetch('DB_MAX_POOL', 7) %>
+  username: postgres
+  password:
+
+development:
+  <<: *default
+  database: burn_development
+
+test:
+  <<: *default
+  database: burn_test
+
+production:
+  <<: *default
+  url: <%= ENV['DATABASE_URL'] %>
+  pool: <%= ENV.fetch('DB_MAX_POOL', 10) %>

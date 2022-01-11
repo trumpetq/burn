@@ -1,0 +1,7 @@
+#flash
+  .container
+    - flash.delete(:timedout).each do |type, message|
+      div.alert.alert-dismissible class=bootstrap_flash_class(type)
+        = sanitize(message)
+        button type="button" class="close" data-dismiss="alert"
+          span &times;

@@ -12,6 +12,11 @@
 !/tmp/pids/
 !/tmp/pids/.keep
 
+# Ignore local config files.
+config/settings.local.yml
+config/settings/*.local.yml
+config/environments/*.local.yml
+
 # Ignore uploaded files in development.
 /storage/*
 !/storage/.keep
@@ -26,3 +31,5 @@
 
 # Ignore OS files.
 .DS_Store
+
+

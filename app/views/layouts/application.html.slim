@@ -8,7 +8,8 @@ html
     title = content_for?(:title) ? yield(:title) : raise(ArgumentError.new('title is missing'))
 
     = stylesheet_link_tag "application", "data-turbo-track": "reload"
-    = javascript_importmap_tags
+    -#= javascript_include_tag "application", "data-turbo-track": "reload", defer: true
+    -#= javascript_importmap_tags
   body
     = render 'shared/nav/main'
     = render 'shared/flash'

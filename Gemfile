@@ -5,22 +5,26 @@ ruby "3.1.0"
 
 gem "aasm"
 gem "bootsnap", require: false
+
+gem "cssbundling-rails"
 gem "config"
 gem "devise"
 gem "image_processing"
-gem "importmap-rails"
+# gem "importmap-rails" # Remove code
 gem "jbuilder"
+gem "jsbundling-rails"
 gem "money-rails"
 gem "pagy"
 gem "pg"
 gem "phony_rails"
+gem "pundit"
 gem "puma"
 gem "rails"
 gem "redis"
 gem "sassc-rails"
 gem "simple_form"
 gem "slim-rails"
-gem "sprockets-rails"
+#gem "sprockets-rails"
 gem "stimulus-rails"
 gem "turbo-rails"
 
@@ -34,9 +38,8 @@ group :development do
   gem "annotate", github: "dabit/annotate_models", branch: "rails-7"
   gem "brakeman"
   gem "bullet"
-  gem "rack-mini-profiler"
+  # gem "rack-mini-profiler"
   gem "rubocop"
-  gem "spring"
   gem "web-console"
 end
 

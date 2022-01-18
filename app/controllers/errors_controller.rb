@@ -1,4 +1,6 @@
 class ErrorsController < ApplicationController
+  before_action :handle_authorization
+
   def forbidden
     render status: :forbidden
   end
@@ -21,5 +23,11 @@ class ErrorsController < ApplicationController
 
   def unprocessable_entity
     render status: :unprocessable_entity
+  end
+
+  private
+
+  def handle_authorization
+    authorize(:error)
   end
 end

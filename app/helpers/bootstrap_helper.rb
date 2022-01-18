@@ -8,4 +8,8 @@ module BootstrapHelper
     else "alert-dark"
     end
   end
+
+  def bootstrap_icon(name)
+    tag.i(class: "bi-#{name}")
+  end
 end

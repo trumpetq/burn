@@ -18,17 +18,4 @@ module LabelHelper
       tag.span(label_text.presence || "No", class: "badge bg-danger")
     end
   end
-
-  def rails_environment_label
-    css_class =
-      case Rails.env.to_sym
-      when :development then "badge bg-success"
-      when :production then "badge bg-danger"
-      when :staging then "badge bg-warning text-dark"
-      else
-        "badge bg-dark"
-      end
-
-    tag.span(Rails.env.titleize, class: css_class)
-  end
 end

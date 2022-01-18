@@ -10,10 +10,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_01_11_123133) do
+ActiveRecord::Schema.define(version: 2022_01_18_060649) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "steps", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "short_description"
+    t.integer "state_enum", default: 0, null: false
+    t.bigint "user_id"
+    t.datetime "completed_at"
+    t.string "stepable_type"
+    t.bigint "stepable_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["stepable_type", "stepable_id"], name: "index_steps_on_stepable"
+    t.index ["user_id"], name: "index_steps_on_user_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false

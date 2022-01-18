@@ -44,12 +44,18 @@ class ApplicationPolicy
   def camper?
     return false unless user?
 
-    user.camper? || leader? || mayor?
+    user.camper? || leader?
   end
 
   def member?
     return false unless user?
 
-    user.member? || camper? || leader? || mayor?
+    user.member? || camper?
+  end
+
+  def guest?
+    return false unless user?
+
+    user.guest? || member?
   end
 end

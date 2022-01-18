@@ -32,7 +32,16 @@
 #  index_users_on_unlock_token          (unlock_token) UNIQUE
 #
 class User < ApplicationRecord
+  include Roleable
+  extend Enumerize
+
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :validatable, :trackable, :lockable
+
+  enumerize :role_enum, in: {guest: 0, member: 1, camper: 2, leader: 5, mayor: 10}, default: :guest, predicates: true, scope: true
+
+  validates :name, presence: true
+
+  after_create :set_role
 
   def to_s
     name
@@ -44,5 +53,11 @@ class User < ApplicationRecord
 
   def preferred_name(user)
     name
+  end
+
+  private
+
+  def set_role
+    update(role_enum: :member) if guest?
   end
 end

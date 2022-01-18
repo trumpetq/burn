@@ -1,12 +1,10 @@
+// Required
+@import "bootstrap/scss/functions";
+
+@import "bootstrap/variables";
+
 @import "bootstrap/scss/bootstrap";
 @import "bootstrap-icons/font/bootstrap-icons";
 
 
-
-
-#main {
-  background-color: white !important;
-
-}
-
-
+@import "bootstrap/navbar"

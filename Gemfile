@@ -9,6 +9,7 @@ gem "bootsnap", require: false
 gem "cssbundling-rails"
 gem "config"
 gem "devise"
+gem "enumerize"
 gem "image_processing"
 # gem "importmap-rails" # Remove code
 gem "jbuilder"

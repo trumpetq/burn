@@ -1,25 +1,25 @@
 class ErrorPolicy < ApplicationPolicy
   def forbidden?
-    true
+    everyone?
   end
 
   def internal_server_error?
-    true
+    everyone?
   end
 
   def not_acceptable?
-    true
+    everyone?
   end
 
   def not_found?
-    true
+    everyone?
   end
 
   def unauthorized?
-    true
+    everyone?
   end
 
   def unprocessable_entity?
-    true
+    everyone?
   end
 end

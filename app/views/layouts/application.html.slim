@@ -5,6 +5,8 @@ html
     = csrf_meta_tags
     = csp_meta_tag
 
+    = favicon_link_tag
+
     title = content_for?(:title) ? yield(:title) : raise(ArgumentError.new('title is missing'))
 
     = stylesheet_link_tag "application", "data-turbo-track": "reload"

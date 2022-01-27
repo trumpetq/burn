@@ -1,6 +1,6 @@
-- page_title(@uesr.preferred_name(current_user))
+- page_title(@user.preferred_name(current_user))
 
-p#notice = notice
+p = @user.email
 
 => link_to 'Edit', edit_user_path(@user)
 '|

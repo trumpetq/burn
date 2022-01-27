@@ -1,9 +1,9 @@
 class PagePolicy < ApplicationPolicy
   def home?
-    true
+    everyone?
   end
 
   def system?
-    true
+    mayor? || leader?
   end
 end

@@ -6,7 +6,7 @@ class UsersController < ApplicationController
     @users = User.all
   end
 
-  # GET /users/1
+  # GET /users/:id
   def show
   end
 
@@ -15,7 +15,7 @@ class UsersController < ApplicationController
     @user = User.new
   end
 
-  # GET /users/1/edit
+  # GET /users/:id/edit
   def edit
   end
 
@@ -32,7 +32,7 @@ class UsersController < ApplicationController
     end
   end
 
-  # PATCH /users/1
+  # PATCH /users/:id
   def update
     respond_to do |format|
       if @user.update(user_params)
@@ -43,7 +43,7 @@ class UsersController < ApplicationController
     end
   end
 
-  # DELETE /users/1
+  # DELETE /users/:id
   def destroy
     @user.destroy
 
@@ -53,10 +53,7 @@ class UsersController < ApplicationController
   private
 
   def set_user
-    @user = User.find(params[:id])
-  end
-
-  def user_params
-    params.fetch(:user, {})
+    @user = ::User.find(params[:id])
+    authorize(@user)
   end
 end

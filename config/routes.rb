@@ -6,6 +6,13 @@ Rails.application.routes.draw do
   get "422", to: "errors#unprocessable_entity", as: :unprocessable_entity_error
   get "500", to: "errors#internal_server_error", as: :internal_server_error_error
 
+  resource :guides, only: [:show] do
+    collection do
+      get :power
+      get :shipping_container
+    end
+  end
+
   resource :pages, only: [] do
     collection do
       get :system

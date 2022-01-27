@@ -58,4 +58,8 @@ class ApplicationPolicy
 
     user.guest? || member?
   end
+
+  def everyone?
+    true
+  end
 end

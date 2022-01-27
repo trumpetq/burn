@@ -1,6 +1,10 @@
 class UserPolicy < ApplicationPolicy
-  def show?
+  def index?
     member?
+  end
+
+  def show?
+    member? || me?
   end
 
   def me?
@@ -8,6 +12,6 @@ class UserPolicy < ApplicationPolicy
   end
 
   def devise?
-    true
+    everyone?
   end
 end

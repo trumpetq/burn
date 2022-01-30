@@ -18,6 +18,9 @@ nav#navbar-main.navbar.navbar-expand-md.navbar-light
             li.nav-item.dropdown
               = link_to("Admin", "#", class: "nav-link dropdown-toggle", data: { bs_toggle: "dropdown" })
               .dropdown-menu.dropdown-menu-end
+                - if policy(:user).new?
+                  = link_to("New user", new_user_path, class: "dropdown-item")
+                  .dropdown-divider
                 - if policy([:admin, :page]).system?
                   = link_to("System", system_admin_pages_path, class: "dropdown-item")
           li.nav-item.dropdown

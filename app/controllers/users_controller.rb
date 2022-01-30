@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: %i[show edit update destroy]
+  before_action :set_user, only: [:show, :edit, :update, :destroy]
 
   # GET /users
   def index
@@ -14,6 +14,7 @@ class UsersController < ApplicationController
   # GET /users/new
   def new
     @user = User.new
+    authorize(@user)
   end
 
   # GET /users/:id/edit
@@ -23,6 +24,7 @@ class UsersController < ApplicationController
   # POST /users
   def create
     @user = User.new(permitted_attributes[:user])
+    authorize(@user)
 
     respond_to do |format|
       if @user.save

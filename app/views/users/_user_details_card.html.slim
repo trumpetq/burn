@@ -1,0 +1,32 @@
+.card
+  .card-header
+    span User details
+    = link_to "Edit", edit_user_path(@user), class: "float-end btn btn-header btn-outline-primary"
+  .card-table
+    table.table
+      tbody
+        tr
+          th ID
+          td = user.id
+        tr
+          th Email
+          td = user.email
+        tr
+          th Name
+          td = user.name
+        tr
+          th Playa name
+          td = user.playa_name.presence || na_badge
+        tr
+          th Phone number
+          td = link_to_phone(user.phone_number)
+        tr
+          th Time zone
+          td = user.time_zone.presence || na_badge
+        tr
+          th Role
+          td = user_role_badge(user)
+        tr
+          th Status
+          td = user_status_badge(user)
+

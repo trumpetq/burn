@@ -1,8 +1,12 @@
 #footer.footer
   .container-fluid.py-3
-    ul.nav
+    ul.nav.justify-content-center
       li.nav-item
-        = link_to("Home", root_path, class: "nav-link text-secondary")
+        = link_to_policy(policy(:page).home?, "Home", root_path, class: "nav-link text-secondary")
       li.nav-item
-        = link_to(bootstrap_icon("facebook"), Settings.facebook.url, class: "nav-link")
+        = link_to(bootstrap_icon("facebook"), Settings.facebook.url, class: "nav-link text-secondary")
+      li.nav-item
+        = link_to(bootstrap_icon("github"), Settings.github.url, class: "nav-link text-secondary")
+      li.nav-item
+        = link_to_policy(policy(:page).contact?, "Contact", contact_pages_path, class: "nav-link text-secondary")
     p.mt-2.pl-3.text-center &copy; #{Time.current.year} 8-bit Bunny.

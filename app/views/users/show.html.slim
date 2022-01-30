@@ -1,7 +1,11 @@
-- page_title(@user.preferred_name(current_user))
+- page_title(@user.display_name)
 
-p = @user.email
+.row
+  .col-md-6
+    p something
 
-=> link_to 'Edit', edit_user_path(@user)
-'|
-=< link_to 'Back', users_path
+  .col-md-4
+    = render 'user_details_card', user: @user
+    - if current_user.leader_or_above?
+      .mt-3
+      = render 'security_card', user: @user

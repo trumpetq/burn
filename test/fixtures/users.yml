@@ -17,9 +17,9 @@
 #  remember_created_at    :datetime
 #  reset_password_sent_at :datetime
 #  reset_password_token   :string
-#  role_enum              :integer          default(0), not null
+#  role_enum              :integer          default("guest"), not null
 #  sign_in_count          :integer          default(0), not null
-#  state_enum             :integer          default(0), not null
+#  status_enum            :integer          default(0), not null
 #  time_zone              :string           default("Pacific Time (US & Canada)"), not null
 #  unlock_token           :string
 #  created_at             :datetime         not null

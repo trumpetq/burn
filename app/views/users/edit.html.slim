@@ -1,7 +1,17 @@
-h1 Editing user
+- page_title("Edit - #{@user.display_name}")
 
-== render 'form'
-
-=> link_to 'Show', @user
-'|
-=< link_to 'Back', users_path
+.row
+  .col-md-6
+    .card
+      .card-form
+        = simple_form_for(@user) do |f|
+          .form-inputs
+            = f.input :name
+            = f.input :playa_name
+            = f.input :phone_number
+            = f.input :time_zone
+            - if current_user.mayor?
+              = f.input :role_enum
+              = f.input :status_enum, include_blank: false
+          .form-actions
+            = f.button :submit

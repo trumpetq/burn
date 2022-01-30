@@ -1,9 +1,9 @@
 class PagePolicy < ApplicationPolicy
-  def home?
+  def contact?
     everyone?
   end
 
-  def system?
-    mayor? || leader?
+  def home?
+    everyone?
   end
 end

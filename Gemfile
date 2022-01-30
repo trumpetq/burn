@@ -5,7 +5,6 @@ ruby "3.1.0"
 
 gem "aasm"
 gem "bootsnap", require: false
-
 gem "cssbundling-rails"
 gem "config"
 gem "devise"
@@ -14,6 +13,7 @@ gem "image_processing"
 # gem "importmap-rails" # Remove code
 gem "jbuilder"
 gem "jsbundling-rails"
+gem "mailcatcher"
 gem "money-rails"
 gem "pagy"
 gem "pg"
@@ -26,7 +26,7 @@ gem "redis"
 gem "sassc-rails"
 gem "simple_form"
 gem "slim-rails"
-#gem "sprockets-rails"
+# gem "sprockets-rails"
 gem "stimulus-rails"
 gem "turbo-rails"
 

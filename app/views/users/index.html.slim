@@ -1,28 +1,15 @@
 - page_title("Users")
 
-h1 Listing users
-
-table
-  thead
-    tr
-      th
-      th
-      th
-
-  tbody
-    - @users.each do |user|
-      tr
-        td = link_to 'Show', user
-        td = link_to 'Edit', edit_user_path(user)
-        td = link_to 'Destroy', user, data: { confirm: 'Are you sure?' }, method: :delete
-
-br
-
-= link_to 'New User', new_user_path
-
-
-i class="bi-alarm"
-
-== bootstrap_icon("rss")
-
-p moo
+.card
+  .card-header Users
+  .card-table
+    table.table
+      thead
+        tr
+          th ID
+          th Name
+      tbody
+        - @users.each do |user|
+          tr
+            td = link_to_policy(policy(user).show?, user.id, user)
+            td = link_to_policy(policy(user).show?, user.display_name, user)

@@ -3,6 +3,7 @@ class UsersController < ApplicationController
 
   # GET /users
   def index
+    authorize(:user)
     @users = User.all
   end
 
@@ -21,7 +22,7 @@ class UsersController < ApplicationController
 
   # POST /users
   def create
-    @user = User.new(user_params)
+    @user = User.new(permitted_attributes[:user])
 
     respond_to do |format|
       if @user.save
@@ -34,12 +35,10 @@ class UsersController < ApplicationController
 
   # PATCH /users/:id
   def update
-    respond_to do |format|
-      if @user.update(user_params)
-        redirect_to user_url(@user), notice: "User was successfully updated."
-      else
-        render :edit, status: :unprocessable_entity
-      end
+    if @user.update(permitted_attributes(@user))
+      redirect_to user_url(@user), notice: "User was successfully updated."
+    else
+      render :edit, status: :unprocessable_entity
     end
   end
 

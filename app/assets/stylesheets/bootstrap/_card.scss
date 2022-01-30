@@ -1,0 +1,13 @@
+.card {
+  .card-form {
+    @extend .card-body;
+  }
+
+  .card-table {
+    @extend .card-body;
+    padding: 0;
+    table {
+      margin-bottom: 0;
+    }
+  }
+}

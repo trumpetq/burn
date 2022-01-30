@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_01_18_060649) do
+ActiveRecord::Schema.define(version: 2022_01_30_052055) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,7 +36,7 @@ ActiveRecord::Schema.define(version: 2022_01_18_060649) do
     t.string "name", null: false
     t.string "playa_name"
     t.integer "role_enum", default: 0, null: false
-    t.integer "state_enum", default: 0, null: false
+    t.integer "status_enum", default: 0, null: false
     t.string "time_zone", default: "Pacific Time (US & Canada)", null: false
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at", precision: 6

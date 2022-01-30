@@ -1,12 +1,12 @@
 class PagesController < ApplicationController
   before_action :handle_authorization
 
-  # GET /
-  def home
+  # GET /contact
+  def contact
   end
 
-  # GET /system
-  def system
+  # GET /
+  def home
   end
 
   private

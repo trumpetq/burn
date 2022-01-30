@@ -17,9 +17,9 @@
 #  remember_created_at    :datetime
 #  reset_password_sent_at :datetime
 #  reset_password_token   :string
-#  role_enum              :integer          default(0), not null
+#  role_enum              :integer          default("guest"), not null
 #  sign_in_count          :integer          default(0), not null
-#  state_enum             :integer          default(0), not null
+#  status_enum            :integer          default(0), not null
 #  time_zone              :string           default("Pacific Time (US & Canada)"), not null
 #  unlock_token           :string
 #  created_at             :datetime         not null
@@ -37,9 +37,15 @@ class User < ApplicationRecord
 
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :validatable, :trackable, :lockable
 
+  phony_normalize :phone_number, default_country_code: "US"
+
   enumerize :role_enum, in: {guest: 0, member: 1, camper: 2, leader: 5, mayor: 10}, default: :guest, predicates: true, scope: true
+  enumerize :status_enum, in: {active: 0, confirmed: 1, banned: 10}, default: :active, predicates: true, scope: true
 
   validates :name, presence: true
+  validates :phone_number, phony_plausible: true
+
+  scope :for_phone_number, ->(phone_number) { where(phone_numer: PhonyRails.normalize_number(phone_number)) }
 
   after_create :set_role
 
@@ -51,8 +57,19 @@ class User < ApplicationRecord
     "User id=#{id} email=#{email}"
   end
 
-  def preferred_name(user)
-    name
+  def display_name
+    return playa_name if playa_name.present?
+    return name if name.present?
+    return "User ##{id}" if id.present?
+    "Guest"
+  end
+
+  def leader_or_above?
+    leader? || mayor?
+  end
+
+  def member_or_above?
+    member || leader? || mayor?
   end
 
   private

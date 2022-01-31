@@ -1,5 +1,7 @@
 date:
   current_year: 2022
+email:
+  contact: david@8bitbunny.com
 
 facebook:
   url: https://www.facebook.com/groups/8bitbunny
@@ -7,4 +9,7 @@ github:
   url: https://github.com/ramaboo/burn
 redis:
   url: <%= ENV.fetch("REDIS_URL", "redis://127.0.0.1:6379") %>
-
+slack:
+  name: 8bitbunny.slack.com
+  url: https://8bitbunny.slack.com/
+  invite_url: https://join.slack.com/t/8bitbunny/shared_invite/zt-7fjbe3ye-ceKnFmkJvt5p0q0raRuJcg

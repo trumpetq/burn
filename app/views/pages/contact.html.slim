@@ -1,5 +1,25 @@
 - page_title("Contact")
 
-.container
-  .row
-    .col-md-6
+.row
+  .col-md-8
+    .card
+      .card-header Contact
+      .card-table
+        table.table
+          tbody
+            tr
+              th Email
+              td = mail_to(Settings.email.contact)
+            tr
+              th Facebook
+              td = link_to(Settings.facebook.url, target: "_blank")
+            tr
+              th Phone
+              td = link_to_phone("+15179805017")
+            tr
+              th Slack
+              td
+                => link_to(Settings.slack.name, Settings.slack.url, target: "_blank")
+                = link_to("Request invite", Settings.slack.invite_url, class: "ms-3 btn btn-xs btn-outline-secondary", target: "_blank")
+
+

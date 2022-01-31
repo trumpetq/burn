@@ -6,6 +6,8 @@ class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
   after_action :verify_authorized, unless: :devise_controller?
 
+  add_flash_types :success, :warning
+
   protected
 
   def configure_permitted_parameters

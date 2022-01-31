@@ -28,7 +28,7 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.save
-        redirect_to user_url(@user), notice: "User was successfully created."
+        redirect_to user_url(@user), success: "User was successfully created."
       else
         render :new, status: :unprocessable_entity
       end
@@ -38,7 +38,7 @@ class UsersController < ApplicationController
   # PATCH /users/:id
   def update
     if @user.update(permitted_attributes(@user))
-      redirect_to user_url(@user), notice: "User was successfully updated."
+      redirect_to user_url(@user), success: "User was successfully updated."
     else
       render :edit, status: :unprocessable_entity
     end

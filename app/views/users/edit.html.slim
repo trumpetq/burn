@@ -1,18 +1,27 @@
 - page_title("Edit - #{@user.display_name}")
 
 .row
-  .col-md-6
+  .col-md-12.col-lg-8
     .card
       .card-header Edit user
       .card-form
         = simple_form_for(@user) do |f|
-          .form-inputs
-            = f.input :name
-            = f.input :playa_name
-            = f.input :phone_number
-            = f.input :time_zone, include_blank: false
-            - if current_user.mayor?
-              = f.input :role_enum, include_blank: false, label: "Role"
-              = f.input :status_enum, include_blank: false, label: "Status"
-          .form-actions
-            = f.button :submit, "Edit"
+          .row
+            .col-md-6.col-sm-12.mb-3
+              = f.input :name
+            .col-md-6.col-sm-12.mb-3
+              = f.input :playa_name
+          .row
+            .col-md-6.col-sm-12.mb-3
+              = f.input :phone_number
+            .col-md-6.col-sm-12.mb-3
+              = f.input :time_zone, include_blank: false
+          - if current_user.mayor?
+            .row
+              .col-md-6.col-sm-12.mb-3
+                = f.input :role_enum, include_blank: false, label: "Role"
+              .col-md-6.col-sm-12.mb-3
+                = f.input :status_enum, include_blank: false, label: "Status"
+          .row
+            .col
+              = f.button :submit, "Edit"

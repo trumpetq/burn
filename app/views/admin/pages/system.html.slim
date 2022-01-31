@@ -19,17 +19,17 @@
               td = Rails.version
             tr
               th PostgreSQL
-              td = ActiveRecord::Base.connection.select_value('SELECT version()')
+              td = ActiveRecord::Base.connection.select_value("SELECT version()")
             tr
               th Redis
-              td = Redis.new(url: Settings.redis.url).info['redis_version']
+              td = Redis.new(url: Settings.redis.url).info["redis_version"]
             tr
               th Environment
               td = Rails.env
             tr
               th Heroku release
-              td = ENV['HEROKU_RELEASE_VERSION'].presence || na_badge
+              td = ENV["HEROKU_RELEASE_VERSION"].presence || na_badge
             tr
               th GitHub
               td
-                code = link_to(git_commit_hash, "#{Settings.github.url}/commit/#{git_commit_hash}", target: '_blank')
+                code = link_to(git_commit_hash, "#{Settings.github.url}/commit/#{git_commit_hash}", target: "_blank")

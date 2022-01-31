@@ -36,8 +36,8 @@ class UserPolicy < ApplicationPolicy
   end
 
   def permitted_attributes
-    [:name, :playa_name, :phone_number, :time_zome]
-
-
+    attrs = [:name, :playa_name, :phone_number, :time_zone]
+    attrs += [:role_enum, :status_enum] if user.mayor?
+    attrs
   end
 end

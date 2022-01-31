@@ -42,7 +42,7 @@ class User < ApplicationRecord
   enumerize :role_enum, in: {guest: 0, member: 1, camper: 2, leader: 5, mayor: 10}, default: :guest, predicates: true, scope: true
   enumerize :status_enum, in: {active: 0, confirmed: 1, banned: 10}, default: :active, predicates: true, scope: true
 
-  validates :name, presence: true
+  validates :name, :role_enum, :status_enum, :time_zone, presence: true
   validates :phone_number, phony_plausible: true
 
   scope :for_phone_number, ->(phone_number) { where(phone_numer: PhonyRails.normalize_number(phone_number)) }
@@ -54,7 +54,7 @@ class User < ApplicationRecord
   end
 
   def to_log
-    "User id=#{id} email=#{email}"
+    "User id=#{id}, email=#{email}"
   end
 
   def display_name

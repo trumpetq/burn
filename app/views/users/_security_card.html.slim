@@ -2,9 +2,7 @@
   .card-header
     span Security
     - if current_user.mayor?
-      = link_to('Delete user', user, data: { confirm: "Are you sure?", method: :delete }, class: "float-end btn btn-header btn-danger")
-
-
+      = link_to("Delete user", user, data: {confirm: "Are you sure?", method: :delete}, class: "float-end btn btn-header btn-danger")
   .card-table
     table.table
       tbody

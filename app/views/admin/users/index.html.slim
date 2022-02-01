@@ -1,0 +1,15 @@
+- page_title("Users")
+
+.card
+  .card-header Users
+  .card-table
+    table.table
+      thead
+        tr
+          th ID
+          th Name
+      tbody
+        - @users.each do |user|
+          tr
+            td = link_to_policy(policy([:admin, user]).show?, user.id, user)
+            td = link_to_policy(policy([:admin, user]).show?, user.display_name, user)

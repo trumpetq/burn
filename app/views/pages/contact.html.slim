@@ -1,7 +1,8 @@
 - page_title("Contact")
 
 .row
-  .col-md-8
+  .col-md-3
+  .col-md-6
     .card
       .card-header Contact
       .card-table
@@ -21,5 +22,5 @@
               td
                 => link_to(Settings.slack.name, Settings.slack.url, target: "_blank")
                 = link_to("Request invite", Settings.slack.invite_url, class: "ms-3 btn btn-xs btn-outline-secondary", target: "_blank")
-
+  .col-md-3
 

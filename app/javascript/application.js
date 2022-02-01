@@ -4,4 +4,4 @@ import "@hotwired/turbo-rails"
 import * as bootstrap from "bootstrap"
 
 //import 'bootstrap-icons/font/bootstrap-icons.css'
-console.debug('he222re')
+console.debug('application.js')

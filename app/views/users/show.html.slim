@@ -1,11 +1,14 @@
 - page_title(@user.display_name)
 
 .row
+  .col-md-3
   .col-md-6
-    p something
+      .card
+        .card-body
+          h4.card-title = @user.display_name
+          h6.card-subtitle.mb-2.text-muted = @user.title
+          p.card-text
+            = @user.description.presence || "This user has not set a description yet."
 
-  .col-md-4
-    = render "user_details_card", user: @user
-    - if current_user.leader_or_above?
-      .mt-3
-      = render "security_card", user: @user
+  .col-md-3
+r

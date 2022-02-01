@@ -2,7 +2,7 @@ class GuidesController < ApplicationController
   before_action :handle_authorization
 
   # GET /guides
-  def show
+  def index
   end
 
   # GET /guides/power

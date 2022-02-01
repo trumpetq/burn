@@ -7,31 +7,40 @@ Rails.application.routes.draw do
   get "500", to: "errors#internal_server_error", as: :internal_server_error_error
 
   namespace :admin do
-    resource :pages, only: [] do
+    resources :pages, only: [] do
       collection do
         get :system
       end
     end
 
+    resources :users
+
     root to: "pages#home"
   end
 
-  resource :guides, only: [:show] do
+  resources :guides, only: [:index] do
     collection do
       get :power
       get :shipping_container
     end
   end
 
-  resource :pages, only: [] do
+  resources :pages, only: [] do
     collection do
       get :contact
     end
   end
 
-  devise_for :users
+  devise_for :users, controllers: {
+    confirmations: "users/confirmations",
+    omniauth_calbacks: "users/omniauth_callbacks",
+    passwords: "users/passwords",
+    registrations: "users/registrations",
+    sessions: "users/sessions",
+    unlocks: "users/unlocks"
+  }
 
-  resources :users
+  resources :users, only: [:index, :show]
 
   root to: "pages#home"
 end

@@ -18,8 +18,8 @@ nav#navbar-main.navbar.navbar-expand-md.navbar-light.mb-3
             li.nav-item.dropdown
               = link_to("Admin", "#", class: "nav-link dropdown-toggle", data: {bs_toggle: "dropdown"})
               .dropdown-menu.dropdown-menu-end
-                - if policy(:user).new?
-                  = link_to("New user", new_user_path, class: "dropdown-item")
+                - if policy([:admin, :user]).new?
+                  = link_to("New user", new_admin_user_path, class: "dropdown-item")
                   .dropdown-divider
                 - if policy([:admin, :page]).system?
                   = link_to("System", system_admin_pages_path, class: "dropdown-item")
@@ -28,11 +28,11 @@ nav#navbar-main.navbar.navbar-expand-md.navbar-light.mb-3
             .dropdown-menu.dropdown-menu-end
               - if policy(current_user).show?
                 = link_to("Profile", current_user, class: "dropdown-item")
-              - if policy(current_user).edit?
-                = link_to("Edit user", edit_user_path(current_user), class: "dropdown-item")
+              - if policy(current_user).devise?
+                = link_to("Settings", edit_user_registration_path, class: "dropdown-item")
               .dropdown-divider
               - if policy(current_user).devise?
-                = link_to('Sign out', destroy_user_session_path, data: {method: :delete}, class: "dropdown-item")
+                = link_to('Sign out', destroy_user_session_path, data: {turbo_method: :delete}, class: "dropdown-item")
       - else
         ul.navbar-nav.ms-auto
           li.nav-item

@@ -1,0 +1,23 @@
+- page_title("Sign in")
+
+.row
+  .col-md-3
+  .col-md-6
+    .card
+      .card-header Sign in
+      .card-form
+        = simple_form_for(resource, as: resource_name, url: session_path(resource_name), data: {turbo: false}) do |f|
+          .row
+            .col-md-12.mb-3
+              = f.input :email, required: true, autofocus: true, input_html: {autocomplete: "email"}
+          .row
+            .col-md-12.mb-3
+              = f.input :password, required: true, input_html: {autocomplete: "current-password"}
+          .row
+            .col-md-12.mb-3
+              = f.input :remember_me, as: :boolean
+          .row
+            .col.d-grid
+              = f.button :submit, "Sign in"
+      .card-footer
+        = link_to "Forgot your password?", new_password_path(resource_name)

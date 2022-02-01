@@ -1,0 +1,25 @@
+- page_title("Sign up")
+
+.row
+  .col-md-3
+  .col-md-6
+    .card
+      .card-header Sign up
+      .card-form
+        = render "shared/error_messages", resource: resource
+        = simple_form_for(resource, as: resource_name, url: registration_path(resource_name), data: {turbo: false}) do |f|
+          .row
+            .col-md-12.mb-3
+              = f.input :email, required: true, autofocus: true, input_html: {autocomplete: "email"}
+          .row
+            .col-md-12.mb-3
+              = f.input :name, required: true, input_html: {autocomplete: "name"}
+          .row
+            .col-md-12.mb-3
+              = f.input :password, required: true, hint: "keep it safe", input_html: {autocomplete: "new-password"}
+          .row
+            .col.d-grid
+              = f.button :submit, "Sign up"
+      .card-footer
+        = link_to "Forgot your password?", new_password_path(resource_name)
+  .col-md-3

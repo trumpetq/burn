@@ -10,47 +10,6 @@ class UsersController < ApplicationController
   # GET /users/:id
   def show
   end
-
-  # GET /users/new
-  def new
-    @user = User.new
-    authorize(@user)
-  end
-
-  # GET /users/:id/edit
-  def edit
-  end
-
-  # POST /users
-  def create
-    @user = User.new(permitted_attributes[:user])
-    authorize(@user)
-
-    respond_to do |format|
-      if @user.save
-        redirect_to user_url(@user), success: "User was successfully created."
-      else
-        render :new, status: :unprocessable_entity
-      end
-    end
-  end
-
-  # PATCH /users/:id
-  def update
-    if @user.update(permitted_attributes(@user))
-      redirect_to user_url(@user), success: "User was successfully updated."
-    else
-      render :edit, status: :unprocessable_entity
-    end
-  end
-
-  # DELETE /users/:id
-  def destroy
-    @user.destroy
-
-    redirect_to users_url, notice: "User was successfully destroyed."
-  end
-
   private
 
   def set_user

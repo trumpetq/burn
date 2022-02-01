@@ -1,0 +1,27 @@
+- page_title("Edit - #{resource.display_name}")
+
+.row
+  .col-md-3
+  .col-md-6
+    .card
+      .card-header Change Password
+      .card-form
+        = render "shared/error_messages", resource: resource
+        = simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: {method: :put}, data: {turbo: false}) do |f|
+          .row
+            .col-md-12.mb-3
+              = f.input :email, required: true, autofocus: true, input_html: {autocomplete: "email"}
+          .row
+            .col-md-12.mb-3
+              = f.input :password, hint: "leave it blank if you don't want to change it", required: false, input_html: {autocomplete: "new-password"}
+          .row
+            .col-md-12.mb-3
+              = f.input :password_confirmation, required: false, input_html: {autocomplete: "new-password"}
+          .row
+            .col-md-12.mb-3
+              = f.input :current_password, hint: "we need your current password to confirm your changes", required: true, input_html: {autocomplete: "current-password"}
+          .row
+            .col.d-grid
+              = f.button :submit, "Update"
+  .col-md-3
+    = render "cancel_card", resource: resource

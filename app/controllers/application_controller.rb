@@ -11,13 +11,13 @@ class ApplicationController < ActionController::Base
   protected
 
   def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:name])
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :play_name])
   end
 
   private
 
   def user_not_authorized(e)
-    #raise e if Rails.env.development?
+    raise e if Rails.env.development?
 
     flash.now[:alert] = "Sorry, you don't have permission for that!"
     render "errors/forbidden", status: :forbidden

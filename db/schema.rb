@@ -10,23 +10,34 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_02_01_020227) do
+ActiveRecord::Schema.define(version: 2022_02_02_035005) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "steps", force: :cascade do |t|
     t.string "name", null: false
-    t.string "short_description"
-    t.integer "state_enum", default: 0, null: false
+    t.string "title", null: false
+    t.text "description"
+    t.integer "status", default: 0, null: false
+    t.datetime "available_at", precision: 6
+    t.datetime "closed_at", precision: 6
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "user_steps", force: :cascade do |t|
     t.bigint "user_id"
+    t.bigint "step_id"
+    t.integer "status", default: 0, null: false
     t.datetime "completed_at"
     t.string "stepable_type"
     t.bigint "stepable_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["stepable_type", "stepable_id"], name: "index_steps_on_stepable"
-    t.index ["user_id"], name: "index_steps_on_user_id"
+    t.index ["step_id"], name: "index_user_steps_on_step_id"
+    t.index ["stepable_type", "stepable_id"], name: "index_user_steps_on_stepable"
+    t.index ["user_id"], name: "index_user_steps_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -35,8 +46,8 @@ ActiveRecord::Schema.define(version: 2022_02_01_020227) do
     t.string "phone_number"
     t.string "name", null: false
     t.string "playa_name"
-    t.integer "role_enum", default: 0, null: false
-    t.integer "status_enum", default: 0, null: false
+    t.integer "role", default: 0, null: false
+    t.integer "status", default: 0, null: false
     t.string "time_zone", default: "Pacific Time (US & Canada)", null: false
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at", precision: 6

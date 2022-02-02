@@ -13,6 +13,10 @@ Rails.application.routes.draw do
       end
     end
 
+    resources :steps
+
+    resources :user_steps
+
     resources :users
 
     root to: "pages#home"
@@ -30,6 +34,10 @@ Rails.application.routes.draw do
       get :contact
     end
   end
+
+  resources :steps, only: [:index, :show]
+
+  resources :user_steps, only: [:index, :show, :edit, :update]
 
   devise_for :users, controllers: {
     confirmations: "users/confirmations",

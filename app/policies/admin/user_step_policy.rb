@@ -1,5 +1,5 @@
 module Admin
-  class UserPolicy < ApplicationPolicy
+  class UserStepPolicy < ApplicationPolicy
     def index?
       leader?
     end
@@ -28,13 +28,9 @@ module Admin
       mayor?
     end
 
-    def me?
-      record == user
-    end
-
     def permitted_attributes
-      attrs = [:name, :playa_name, :email, :password, :phone_number, :time_zone, :title, :description, :previous_years]
-      attrs += [:role, :status] if user.mayor?
+      attrs = [:completed_at, :status]
+      attrs += [:stepable_type :step_id, :stepable_id, :user_id] if user.major?
       attrs
     end
   end

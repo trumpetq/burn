@@ -19,9 +19,9 @@
 #  remember_created_at    :datetime
 #  reset_password_sent_at :datetime
 #  reset_password_token   :string
-#  role_enum              :integer          default("guest"), not null
+#  role                   :integer          default(0), not null
 #  sign_in_count          :integer          default(0), not null
-#  status_enum            :integer          default("active"), not null
+#  status                 :integer          default(0), not null
 #  time_zone              :string           default("Pacific Time (US & Canada)"), not null
 #  title                  :string
 #  unlock_token           :string
@@ -42,10 +42,10 @@ class User < ApplicationRecord
 
   phony_normalize :phone_number, default_country_code: "US"
 
-  enumerize :role_enum, in: {guest: 0, member: 1, camper: 2, leader: 5, mayor: 10}, default: :guest, predicates: true, scope: true
-  enumerize :status_enum, in: {active: 0, confirmed: 1, banned: 10}, default: :active, predicates: true, scope: true
+  enumerize :role, in: {guest: 0, member: 1, camper: 2, leader: 5, mayor: 10}, default: :guest, predicates: true, scope: true
+  enumerize :status, in: {active: 0, confirmed: 1, banned: 10}, default: :active, predicates: true, scope: true
 
-  validates :name, :role_enum, :status_enum, :time_zone, presence: true
+  validates :name, :role, :status, :time_zone, presence: true
   validates :phone_number, phony_plausible: true
 
   scope :for_phone_number, ->(phone_number) { where(phone_numer: PhonyRails.normalize_number(phone_number)) }
@@ -78,6 +78,6 @@ class User < ApplicationRecord
   private
 
   def set_role
-    update(role_enum: :member) if guest?
+    update(role: :member) if guest?
   end
 end

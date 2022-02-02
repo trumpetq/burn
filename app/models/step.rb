@@ -2,26 +2,25 @@
 #
 # Table name: steps
 #
-#  id                :bigint           not null, primary key
-#  completed_at      :datetime
-#  name              :string           not null
-#  short_description :string
-#  state_enum        :integer          default(0), not null
-#  stepable_type     :string
-#  created_at        :datetime         not null
-#  updated_at        :datetime         not null
-#  stepable_id       :bigint
-#  user_id           :bigint
-#
-# Indexes
-#
-#  index_steps_on_stepable  (stepable_type,stepable_id)
-#  index_steps_on_user_id   (user_id)
+#  id           :bigint           not null, primary key
+#  available_at :datetime
+#  closed_at    :datetime
+#  description  :text
+#  name         :string           not null
+#  status       :integer          default(0), not null
+#  title        :string           not null
+#  created_at   :datetime         not null
+#  updated_at   :datetime         not null
 #
 class Step < ApplicationRecord
+  extend Enumerize
+
+  enumerize :status, in: {unavailable: 0, active: 1, completed: 10}, default: :unavailable, predicates: true, scope: true
+
+  validates :name, :short_description, presence: true
 
   belongs_to :user
-
+  belongs_to :stepable, polymorphic: true
 
   def to_s
     name

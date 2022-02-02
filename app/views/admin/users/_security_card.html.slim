@@ -1,8 +1,8 @@
 .card
   .card-header
     span Security
-    - if current_user.mayor?
-      = link_to("Delete user", admin_users_path, data: {confirm: "Are you sure?", turbo_method: :delete}, class: "float-end btn btn-xs btn-outline-danger")
+    - if policy([:admin, user]).destroy?
+      = link_to("Delete user", admin_user_path(user), data: {confirm: "Are you sure?", turbo_method: :delete}, class: "float-end btn btn-xs btn-outline-danger")
   .card-table
     table.table
       tbody

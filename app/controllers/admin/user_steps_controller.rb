@@ -1,11 +1,11 @@
 module Admin
-  class UsersController < ApplicationController
+  class UserStepsController < ApplicationController
     before_action :set_user, only: [:show, :edit, :update, :destroy]
 
     # GET /admin/users
     def index
       authorize(:user)
-      @users = ::User.all
+      @users = User.all
     end
 
     # GET /admin/users/:id

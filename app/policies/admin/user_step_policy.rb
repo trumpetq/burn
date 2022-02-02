@@ -30,7 +30,7 @@ module Admin
 
     def permitted_attributes
       attrs = [:completed_at, :status]
-      attrs += [:stepable_type :step_id, :stepable_id, :user_id] if user.major?
+      attrs += [:stepable_type, :step_id, :stepable_id, :user_id] if user.major?
       attrs
     end
   end

@@ -54,7 +54,7 @@ class User < ApplicationRecord
 
   scope :for_phone_number, ->(phone_number) { where(phone_numer: PhonyRails.normalize_number(phone_number)) }
 
-  after_create :set_role
+  after_create :set_role, :generate_steps
 
   def to_s
     display_name

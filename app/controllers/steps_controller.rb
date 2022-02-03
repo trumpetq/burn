@@ -1,20 +1,20 @@
 class StepsController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :set_step, only: [:show, :edit, :update, :destroy]
 
-  # GET /admin/users
+  # GET /admin/steps
   def index
-    authorize(:user)
-    @users = User.all
+    authorize(:step)
+    @steps = ::Step.all
   end
 
-  # GET /admin/users/:id
+  # GET /admin/steps/:id
   def show
   end
 
   private
 
-  def set_user
-    @user = ::User.find(params[:id])
-    authorize([:admin, @user])
+  def set_step
+    @step = ::Step.find(params[:id])
+    authorize([:admin, @step])
   end
 end

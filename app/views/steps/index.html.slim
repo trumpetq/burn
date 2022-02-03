@@ -1,0 +1,23 @@
+- page_title("Steps")
+
+.card
+  .card-header Steps
+  .card-table
+    table.table
+      thead
+        tr
+          th ID
+          th Name
+          th Title
+          th Status
+          th Available
+          th Closed
+      tbody
+        - @steps.each do |step|
+          tr
+            td = link_to_policy(policy(step).show?, step.id, step_path(step))
+            td = link_to_policy(policy(step).show?, step.name, step_path(step))
+            td = link_to_policy(policy(step).show?, step.title, step_path(step))
+            td = step_status_badge(step)
+            td = admin_time(step.available_at)
+            td = admin_time(step.closed_at)

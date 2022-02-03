@@ -1,0 +1,37 @@
+- page_title("New step")
+
+.row
+  .col-md-3
+  .col-md-6
+    .card
+      .card-header New step
+      .card-form
+        = render "shared/error_messages", resource: @step
+        = simple_form_for([:admin, @step]) do |f|
+          .row
+            .col-md-6.col-sm-12.mb-3
+              = f.input :name, dissabled: true
+            .col-md-6.col-sm-12.mb-3
+              = f.input :title
+          .row
+            .col-md-6.col-sm-12.mb-3
+              = f.input :status, include_blank: false
+          .row
+            .col-md-12.mb-3
+              = f.input :description
+          .row
+            .col-md-12.mb-3
+              = f.input :available_at, include_blank: true, hint: "step will be available after", label: "Available"
+          .row
+            .col-md-12.mb-3
+              = f.input :closed_at, include_blank: true, hint: "step can not be completed after", label: "Closed"
+          - if current_user.mayor?
+            .row
+              .col-md-6.col-sm-12.mb-3
+                = f.input :step_type
+              .col-md-6.col-sm-12.mb-3
+                = f.input :position
+          .row
+            .col.d-grid
+              = f.button :submit, "Create"
+  .col-md-3

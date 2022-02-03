@@ -1,59 +1,72 @@
 module Admin
   class StepsController < ApplicationController
-    before_action :set_user, only: [:show, :edit, :update, :destroy]
+    before_action :set_step, only: [:show, :edit, :update, :destroy, :move_higher, :move_lower]
 
-    # GET /admin/users
+    # GET /admin/steps
     def index
-      authorize(:user)
-      @users = User.all
+      authorize(:step)
+      @steps = ::Step.all.order(position: :asc)
     end
 
-    # GET /admin/users/:id
+    # GET /admin/steps/:id
     def show
     end
 
-    # GET /admin/users/new
+    # GET /admin/steps/new
     def new
-      @user = User.new
-      authorize([:admin, @user])
+      @step = ::Step.new
+      authorize([:admin, @step])
     end
 
-    # POST /admin/users
+    # POST /admin/steps
     def create
-      @user = ::User.new(permitted_attributes([:admin, ::User]))
-      authorize([:admin, @user])
-      if @user.save
-        redirect_to user_url(@user), success: "User was successfully created."
+      @step = ::Step.new(permitted_attributes([:admin, ::Step]))
+      authorize([:admin, @step])
+
+      if @step.save
+        redirect_to admin_step_url(@step), success: "Step was successfully created."
       else
         render :new, status: :unprocessable_entity
       end
     end
 
-    # GET /admin/users/:id/edit
+    # GET /admin/steps/:id/edit
     def edit
     end
 
-    # PATCH /admin/users/:id
+    # PATCH /admin/steps/:id
     def update
-      if @user.update(permitted_attributes([:admin, @user]))
-        redirect_to user_url(@user), success: "User was successfully updated."
+      if @step.update(permitted_attributes([:admin, @step]))
+        redirect_to admin_step_url(@step), success: "Step was successfully updated."
       else
         render :edit, status: :unprocessable_entity
       end
     end
 
-    # DELETE /admin/users/:id
+    # DELETE /admin/steps/:id
     def destroy
-      @user.destroy
+      @step.destroy
 
-      redirect_to users_url, notice: "User was successfully destroyed."
+      redirect_to admin_steps_url, notice: "Step was successfully destroyed."
+    end
+
+    # PATCH /admin/steps/:id/move_higher
+    def move_higher
+      @step.move_higher
+      redirect_to admin_steps_url
+    end
+
+    # PATCH /admin/steps/:id/move_lower
+    def move_lower
+      @step.move_lower
+      redirect_to admin_steps_url
     end
 
     private
 
-    def set_user
-      @user = ::User.find(params[:id])
-      authorize([:admin, @user])
+    def set_step
+      @step = ::Step.find(params[:id])
+      authorize([:admin, @step])
     end
   end
 end

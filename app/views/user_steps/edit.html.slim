@@ -1,0 +1,24 @@
+- page_title("Edit - #{@user_step}")
+
+.row
+  .col-md-3
+    = render "users/user_steps_card", user_steps: current_user.user_steps
+  .col-md-6
+    .card
+      .card-header = @user_step
+      .card-form
+        = render "shared/error_messages", resource: @user_step
+        = simple_form_for(@user_step, url: user_step_path(@user_step)) do |f|
+          .row
+            .col-md-12.mb-3
+              = f.input :who_are_you, hint: "tell us about yourself"
+          .row
+            .col-md-12.mb-3
+              = f.input :what_excites_you, label: "What excites you about camping with us", hint: "share your goals for 2022"
+          .row
+            .col-md-12.mb-3
+              = f.input :referral_name, label: "Referral", hint: "did someone refer you to us"
+          .row
+            .col.d-grid
+              = f.button :submit, "Save"
+  .col-md-3

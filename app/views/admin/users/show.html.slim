@@ -1,8 +1,15 @@
-- page_title(@user.display_name)
+- page_title(@user)
 
 .row
-  .col-md-6
-    p something
+  .col-md-8
+    .card
+      .card-body
+        h4.card-title = @user
+        h6.card-subtitle.mb-2.text-muted = @user.title
+        p.card-text
+          = @user.description.presence || na_badge
+    .mt-3
+    = render "user_steps_card", user_steps: @user.user_steps
 
   .col-md-4
     = render "user_details_card", user: @user

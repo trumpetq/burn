@@ -5,6 +5,7 @@ module LinkHelper
   end
 
   def link_to_policy(policy, name, options = nil, html_options = {})
+    return na_badge if name.blank?
     policy ? link_to(name, options, html_options) : name
   end
 end

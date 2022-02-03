@@ -1,0 +1,39 @@
+- page_title("New user step")
+
+.row
+  .col-md-3
+  .col-md-6
+    .card
+      .card-header New user step
+      .card-form
+        = render "shared/error_messages", resource: @user_step
+        = simple_form_for([:admin, @user_step]) do |f|
+          .row
+            .col-md-6.col-sm-12.mb-3
+              = f.input :user_id, label: "User ID"
+          .row
+            .col-md-6.col-sm-12.mb-3
+              = f.input :status, include_blank: false
+            .col-md-6.col-sm-12.mb-3
+              = f.input :step_id, label: "Step ID"
+          .row
+            .col-md-12.mb-3
+              = f.input :completed_at, include_blank: true, label: "Completed"
+          .row
+            .col-md-12.mb-3
+              = f.input :applied_at, include_blank: true, label: "Applied"
+
+          .row
+            .col-md-6.col-sm-12.mb-3
+              = f.input :stepable_type
+            .col-md-6.col-sm-12.mb-3
+              = f.input :stepable_id, label: "Stepable ID"
+          .row
+            .col-md-6.col-sm-12.mb-3
+              = f.input :type
+            .col-md-6.col-sm-12.mb-3
+              = f.input :position
+          .row
+            .col.d-grid
+              = f.button :submit, "Create"
+  .col-md-3

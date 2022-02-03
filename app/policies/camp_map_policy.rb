@@ -1,0 +1,2 @@
+class CampMapPolicy < UserStepPolicy
+end

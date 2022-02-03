@@ -1,13 +1,20 @@
-- page_title(@user.display_name)
+- page_title(@user)
 
 .row
   .col-md-3
+    = render "user_steps_card", user_steps: @user.user_steps
   .col-md-6
-      .card
-        .card-body
-          h4.card-title = @user.display_name
-          h6.card-subtitle.mb-2.text-muted = @user.title
-          p.card-text
-            = @user.description.presence || "This user has not set a description yet."
+    .card
+      .card-body
+        h4.card-title = @user
+        h6.card-subtitle.mb-2.text-muted = @user.title
+        p.card-text
+          = @user.description.presence || "This user has not set a description yet."
+        - if @user.country_code.present?
+          p.card-text <b>Country</b> #{@user.country_name}
+        - if @user.postal_code.present?
+          p.card-text <b>Postal code</b> #{@user.postal_code}
+        - if policy(@user).me?
+          = link_to("Edit profile", edit_user_registration_path, class: "btn btn-primary")
   .col-md-3
-r
+    = render "admin_card", user: @user

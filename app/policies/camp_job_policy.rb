@@ -1,0 +1,2 @@
+class CampJobPolicy < UserStepPolicy
+end

@@ -8,8 +8,10 @@
         tr
           th ID
           th Name
+          th Title
       tbody
         - @users.each do |user|
           tr
             td = link_to_policy(policy(user).show?, user.id, user)
-            td = link_to_policy(policy(user).show?, user.display_name, user)
+            td = link_to_policy(policy(user).show?, user, user)
+            td = user.title.presence || na_badge

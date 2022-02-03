@@ -22,12 +22,17 @@
           th Phone number
           td = link_to_phone(user.phone_number)
         tr
-          th Time zone
-          td = user.time_zone.presence || na_badge
-        tr
           th Role
           td = user_role_badge(user)
         tr
           th Status
           td = user_status_badge(user)
-
+        tr
+          th Time zone
+          td = user.time_zone.presence || na_badge
+        tr
+          th Country
+          td = user.country_name.presence || na_badge
+        tr
+          th Postal code
+          td = user.postal_code.presence || na_badge

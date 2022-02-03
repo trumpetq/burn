@@ -1,0 +1,2 @@
+class CampRefundPolicy < UserStepPolicy
+end

@@ -11,7 +11,7 @@
           td = admin_time(user.current_sign_in_at)
         tr
           th Current IP
-          td = user.current_sign_in_ip
+          td = user.current_sign_in_ip.presence || na_badge
         tr
           th Last sign in
           td = admin_time(user.last_sign_in_at)

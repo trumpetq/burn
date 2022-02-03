@@ -4,9 +4,11 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby "3.1.0"
 
 gem "aasm"
+gem "acts_as_list"
 gem "bootsnap", require: false
 gem "cssbundling-rails"
 gem "config"
+gem "country_select"
 gem "devise"
 gem "enumerize"
 gem "image_processing"

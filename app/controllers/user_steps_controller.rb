@@ -1,24 +1,26 @@
 class UserStepsController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :set_user_step, only: [:show, :edit, :update, :destroy]
 
-  # GET /admin/users
+  # GET /admin/user_steps
   def index
-    authorize(:user)
-    @users = User.all
+    authorize(:user_step)
+    @user_steps = current_user.user_steps.all
   end
 
-  # GET /admin/users/:id
+  # GET /admin/user_steps/:id
   def show
   end
 
-  # GET /admin/users/:id/edit
+  # GET /admin/user_steps/:id/edit
   def edit
   end
 
-  # PATCH /admin/users/:id
+  # PATCH /admin/user_steps/:id
   def update
-    if @user.update(permitted_attributes(@user))
-      redirect_to user_url(@user), success: "User was successfully updated."
+    @user_step.applied_at = Time.current
+    @user_step.status = :completed
+    if @user_step.update(permitted_attributes(@user_step))
+      redirect_to user_step_url(@user_step), success: "Step was successfully updated."
     else
       render :edit, status: :unprocessable_entity
     end
@@ -26,8 +28,8 @@ class UserStepsController < ApplicationController
 
   private
 
-  def set_user
-    @user = ::User.find(params[:id])
-    authorize([:admin, @user])
+  def set_user_step
+    @user_step = ::UserStep.find(params[:id])
+    authorize([:admin, @user_step])
   end
 end

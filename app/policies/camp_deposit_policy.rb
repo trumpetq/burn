@@ -1,0 +1,2 @@
+class CampDepositPolicy < UserStepPolicy
+end

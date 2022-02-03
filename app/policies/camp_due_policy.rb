@@ -1,0 +1,2 @@
+class CampDuePolicy < UserStepPolicy
+end

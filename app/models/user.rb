@@ -3,6 +3,7 @@
 # Table name: users
 #
 #  id                     :bigint           not null, primary key
+#  country_code           :string
 #  current_sign_in_at     :datetime
 #  current_sign_in_ip     :string
 #  description            :text
@@ -15,13 +16,14 @@
 #  name                   :string           not null
 #  phone_number           :string
 #  playa_name             :string
+#  postal_code            :string
 #  previous_years         :jsonb            not null
 #  remember_created_at    :datetime
 #  reset_password_sent_at :datetime
 #  reset_password_token   :string
-#  role                   :integer          default(0), not null
+#  role                   :integer          default("guest"), not null
 #  sign_in_count          :integer          default(0), not null
-#  status                 :integer          default(0), not null
+#  status                 :integer          default("active"), not null
 #  time_zone              :string           default("Pacific Time (US & Canada)"), not null
 #  title                  :string
 #  unlock_token           :string
@@ -48,12 +50,14 @@ class User < ApplicationRecord
   validates :name, :role, :status, :time_zone, presence: true
   validates :phone_number, phony_plausible: true
 
+  has_many :user_steps, -> { order(position: :asc) }
+
   scope :for_phone_number, ->(phone_number) { where(phone_numer: PhonyRails.normalize_number(phone_number)) }
 
   after_create :set_role
 
   def to_s
-    name
+    display_name
   end
 
   def to_log
@@ -67,12 +71,21 @@ class User < ApplicationRecord
     "Guest"
   end
 
-  def leader_or_above?
-    leader? || mayor?
+  def country_name
+    country = ISO3166::Country[country_code]
+    country.translations[I18n.locale.to_s] || country.iso_short_name
   end
 
-  def member_or_above?
-    member || leader? || mayor?
+  def generate_steps
+    ::Step.all.each do
+      ::UserStep.create!(
+        user: self,
+        step: _1,
+        type: _1.step_type,
+        position: _1.position,
+        status: _1.status
+      )
+    end
   end
 
   private

@@ -1,7 +1,8 @@
 - page_title("System information")
 
 .row
-  .col-lg-6
+  .col-md-3
+  .col-md-6
     .card
       .card-header
         card-header System information
@@ -33,3 +34,4 @@
               th GitHub
               td
                 code = link_to(git_commit_hash, "#{Settings.github.url}/commit/#{git_commit_hash}", target: "_blank")
+  .col-md-3

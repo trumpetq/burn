@@ -1,0 +1,26 @@
+- page_title("Steps")
+
+.card
+  .card-header Steps
+  .card-table
+    table.table
+      thead
+        tr
+          th ID
+          th Step
+          th Status
+          th Applied
+          th Completed
+          th
+      tbody
+        - @user_steps.each do |user_step|
+          tr
+            td = link_to_policy(policy(user_step).show?, user_step.id, user_step_path(user_step))
+            td = link_to_policy(policy(user_step.step).show?, user_step.step, step_path(user_step.step))
+            td = user_step_status_badge(user_step)
+            td = admin_time(user_step.applied_at)
+            td = admin_time(user_step.completed_at)
+            td.text-end
+              - if policy(user_step).edit?
+                = link_to(bootstrap_icon("pencil"), edit_user_step_path(user_step))
+

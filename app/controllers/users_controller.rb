@@ -3,7 +3,7 @@ class UsersController < ApplicationController
 
   # GET /users
   def index
-    authorize(::User)
+    authorize(:user)
     @users = ::User.with_status(:active)
   end
 

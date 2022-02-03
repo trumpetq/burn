@@ -1,0 +1,33 @@
+- page_title("User steps")
+
+.card
+  .card-header
+    span User steps
+    - if policy([:admin, :user_step]).new?
+      = link_to "New user step", new_admin_user_step_path, class: "float-end btn btn-xs btn-outline-primary"
+  .card-table
+    table.table
+      thead
+        tr
+          th ID
+          th Step
+          th User
+          th Status
+          th Stepable
+          th Applied
+          th Completed
+          th
+      tbody
+        - @user_steps.each do |user_step|
+          tr
+            td = link_to_policy(policy([:admin, user_step]).show?, user_step.id, admin_user_step_path(user_step))
+            td = link_to_policy(policy([:admin, user_step.step]).show?, user_step.step, admin_step_path(user_step.step))
+            td = link_to_policy(policy([:admin, user_step.user]).show?, user_step.user, admin_user_path(user_step.user))
+            td = user_step_status_badge(user_step)
+            td = link_to_policy(policy([:admin, user_step.stepable]).show?, user_step.stepable, [:admin, user_step.stepable])
+            td = admin_time(user_step.applied_at)
+            td = admin_time(user_step.completed_at)
+            td.text-end
+              - if policy([:admin, user_step]).edit?
+                = link_to(bootstrap_icon("pencil"), edit_admin_user_step_path(user_step))
+

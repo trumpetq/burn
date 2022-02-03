@@ -28,9 +28,17 @@ module Admin
       mayor?
     end
 
+    def move_higher?
+      mayor?
+    end
+
+    def move_lower?
+      mayor?
+    end
+
     def permitted_attributes
-      attrs = [:available_at, :closed_at, :description, :status, :title]
-      attrs += [:name] if user.mayor?
+      attrs = [:available_at, :closed_at, :description, :status, :title, :position]
+      attrs += [:name, :step_type] if user.mayor?
       attrs
     end
   end

@@ -13,9 +13,19 @@ Rails.application.routes.draw do
       end
     end
 
-    resources :steps
+    resources :steps do
+      member do
+        patch :move_higher
+        patch :move_lower
+      end
+    end
 
-    resources :user_steps
+    resources :user_steps do
+      member do
+        patch :move_higher
+        patch :move_lower
+      end
+    end
 
     resources :users
 
@@ -32,6 +42,7 @@ Rails.application.routes.draw do
   resources :pages, only: [] do
     collection do
       get :contact
+      get :history
     end
   end
 

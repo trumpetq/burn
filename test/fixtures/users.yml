@@ -3,6 +3,7 @@
 # Table name: users
 #
 #  id                     :bigint           not null, primary key
+#  country_code           :string
 #  current_sign_in_at     :datetime
 #  current_sign_in_ip     :string
 #  description            :text
@@ -15,13 +16,14 @@
 #  name                   :string           not null
 #  phone_number           :string
 #  playa_name             :string
+#  postal_code            :string
 #  previous_years         :jsonb            not null
 #  remember_created_at    :datetime
 #  reset_password_sent_at :datetime
 #  reset_password_token   :string
-#  role                   :integer          default(0), not null
+#  role                   :integer          default("guest"), not null
 #  sign_in_count          :integer          default(0), not null
-#  status                 :integer          default(0), not null
+#  status                 :integer          default("active"), not null
 #  time_zone              :string           default("Pacific Time (US & Canada)"), not null
 #  title                  :string
 #  unlock_token           :string

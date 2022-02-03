@@ -6,25 +6,30 @@ nav#navbar-main.navbar.navbar-expand-md.navbar-light.mb-3
     #navbar-main-collapse.collapse.navbar-collapse
       - if current_user
         ul.navbar-nav.me-auto
+          - if policy(:guide).index?
+            li.nav-item
+              = link_to("Guide", guides_path, class: "nav-link")
           - if policy(:user).index?
             li.nav-item
               = link_to("Campers", users_path, class: "nav-link")
-          - if policy(:guide).index?
+          - if policy(:page).history?
             li.nav-item
-              = link_to("Guides", guides_path, class: "nav-link")
-
+              = link_to("History", history_pages_path, class: "nav-link")
         ul.navbar-nav
           - if policy([:admin, :page]).home?
             li.nav-item.dropdown
               = link_to("Admin", "#", class: "nav-link dropdown-toggle", data: {bs_toggle: "dropdown"})
               .dropdown-menu.dropdown-menu-end
+                - if policy([:admin, :step]).index?
+                  = link_to("Steps", admin_steps_path, class: "dropdown-item")
+                  .dropdown-divider
                 - if policy([:admin, :user]).index?
                   = link_to("Users", admin_users_path, class: "dropdown-item")
                   .dropdown-divider
                 - if policy([:admin, :page]).system?
                   = link_to("System", system_admin_pages_path, class: "dropdown-item")
           li.nav-item.dropdown
-            = link_to(current_user.display_name, "#", class: "nav-link dropdown-toggle", data: {bs_toggle: "dropdown"})
+            = link_to(current_user, "#", class: "nav-link dropdown-toggle", data: {bs_toggle: "dropdown"})
             .dropdown-menu.dropdown-menu-end
               - if policy(current_user).show?
                 = link_to("Profile", current_user, class: "dropdown-item")

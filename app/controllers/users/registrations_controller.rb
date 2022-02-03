@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class Users::RegistrationsController < Devise::RegistrationsController
   # before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
@@ -15,14 +13,22 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   # GET /resource/edit
-  # def edit
-  #   super
-  # end
+  def edit
+    super
+  end
 
   # PUT /resource
-  # def update
-  #   super
-  # end
+  def update
+    if params.dig(:user, :action) == "edit"
+      if resource.update(permitted_attributes(@user))
+        redirect_to user_url(resource), success: "Your profile has been updated."
+      else
+        render :edit, status: :unprocessable_entity
+      end
+    else
+      super
+    end
+  end
 
   # DELETE /resource
   # def destroy

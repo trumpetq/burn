@@ -1,6 +1,10 @@
 #flash
   .container-fluid
-    - flash.delete(:timedout).each do |type, message|
-      div.alert.alert-dismissible.fade.show class=bootstrap_flash_class(type)
-        = sanitize(message)
-        button type="button" class="btn-close" data-bs-dismiss="alert"
+    .row
+      .col-md-3
+      .col-md-6
+        - flash.delete(:timedout).each do |type, message|
+          div.alert.alert-dismissible.fade.show class=bootstrap_flash_class(type)
+            = sanitize(message)
+            button type="button" class="btn-close" data-bs-dismiss="alert"
+      .col-md-3

@@ -8,7 +8,7 @@ class UserStepPolicy < ApplicationPolicy
   end
 
   def edit?
-    member && me?
+    member? && me?
   end
 
   def update?
@@ -20,6 +20,6 @@ class UserStepPolicy < ApplicationPolicy
   end
 
   def permitted_attributes
-    []
+    [:who_are_you, :what_excites_you, :referral_name]
   end
 end

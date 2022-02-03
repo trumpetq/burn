@@ -7,7 +7,9 @@
 #  closed_at    :datetime
 #  description  :text
 #  name         :string           not null
-#  status       :integer          default(0), not null
+#  position     :integer
+#  status       :integer          default("unavailable"), not null
+#  step_type    :string
 #  title        :string           not null
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
@@ -15,12 +17,11 @@
 class Step < ApplicationRecord
   extend Enumerize
 
-  enumerize :status, in: {unavailable: 0, active: 1, completed: 10}, default: :unavailable, predicates: true, scope: true
+  acts_as_list
 
-  validates :name, :short_description, presence: true
+  enumerize :status, in: {unavailable: 0, active: 1, closed: 10}, default: :unavailable, predicates: true, scope: true
 
-  belongs_to :user
-  belongs_to :stepable, polymorphic: true
+  validates :name, :title, presence: true
 
   def to_s
     name

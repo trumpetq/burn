@@ -1,4 +1,4 @@
-.card
+.card.mb-3
   .card-header
     span User
     - if policy([:admin, @user]).edit?
@@ -43,3 +43,7 @@
           td
             = user.postal_code.presence || na_badge
             =< user_postal_code_badge(user)
+        tr
+          th Social media
+          td = user_social_media_icons(user) || na_badge
+

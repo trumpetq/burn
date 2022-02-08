@@ -6,6 +6,7 @@
     .card.mb-3
       .card-header Edit profile
       .card-form
+        = render "shared/error_messages", resource: resource
         = simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: {method: :put}, data: {turbo: false}) do |f|
           = f.input :action, input_html: {value: "edit"}, as: :hidden
           .row
@@ -35,12 +36,19 @@
             .col-md-6.col-sm-12.mb-3
               = f.input :postal_code
           .row
+            .col-md-6.col-sm-12.mb-3
+              = f.input :facebook_url, as: :string, label: "Facebook", hint: "https://www.facebook.com/<b>you</b>".html_safe
+            .col-md-6.col-sm-12.mb-3
+              = f.input :instagram_url, as: :string, label: "Instagram", hint: "https://www.instagram.com/<b>you</b>".html_safe
+          .row
+            .col-md-6.col-sm-12.mb-3
+              = f.input :twitter_url, as: :string, label: "Twitter", hint: "https://twitter.com/<b>you</b>".html_safe
+          .row
             .col.d-grid
               = f.button :submit, "Update"
-    .card
+    .card.mb-3
       .card-header Change password
       .card-form
-        = render "shared/error_messages", resource: resource
         = simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: {method: :put}, data: {turbo: false}) do |f|
           .row
             .col-md-12.mb-3
@@ -53,6 +61,6 @@
               = f.input :current_password, hint: "we need your current password to confirm your changes", required: true, input_html: {autocomplete: "current-password"}
           .row
             .col.d-grid
-              = f.button :submit, "Update"
+              = f.button :submit, "Change"
   .col-md-3
     = render "cancel_card", resource: resource

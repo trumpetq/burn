@@ -33,6 +33,7 @@ module Campable
     @resource = controller_name.classify.constantize.new(permitted_attributes(controller_name.classify.constantize))
     @resource.user = current_user
     @resource.applied_at = Time.current
+    @resource.status = :active
 
     authorize(@resource)
     if @resource.save

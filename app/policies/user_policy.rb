@@ -24,6 +24,6 @@ class UserPolicy < ApplicationPolicy
   end
 
   def permitted_attributes
-    [:name, :playa_name, :email, :password, :phone_number, :time_zone, :title, :description, :previous_years, :country_code, :postal_code, :pronouns]
+    [:name, :playa_name, :email, :password, :phone_number, :time_zone, :title, :description, :previous_years, :country_code, :postal_code, :pronouns, :facebook_url, :instagram_url, :twitter_url]
   end
 end

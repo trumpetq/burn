@@ -56,6 +56,7 @@ class User < ApplicationRecord
 
   validates :name, :role, :status, :time_zone, presence: true
   validates :phone_number, phony_plausible: true
+  validates :facebook_url, :twitter_url, :instagram_url, url: { allow_blank: true }
 
   has_many :user_steps, -> { order(position: :asc) }
 
@@ -63,6 +64,7 @@ class User < ApplicationRecord
   scope :for_email, ->(email) { where(email: email&.downcase) }
   scope :in_bay_area, -> { where(postal_code: Settings.postal_code.bay_area) }
 
+  before_validation :set_urls
   after_create :set_role
 
   def to_s
@@ -81,6 +83,7 @@ class User < ApplicationRecord
   end
 
   def country_name
+    return if country_code.blank?
     country = ISO3166::Country[country_code]
     country.translations[I18n.locale.to_s] || country.iso_short_name
   end
@@ -106,9 +109,41 @@ class User < ApplicationRecord
     Settings.postal_code.bay_area.include?(postal_code)
   end
 
+  def social_media?
+    facebook_url.present? || instagram_url.present? || twitter_url.present?
+  end
+
   private
 
   def set_role
     update(role: :member) if guest?
+  end
+
+  def set_urls
+    set_facebook_url
+    set_instagram_url
+    set_twitter_url
+  end
+
+  def set_facebook_url
+    return if facebook_url.blank?
+    return if facebook_url.match?(/\Ahttps?:\/\//)
+    return if instagram_url.match?(/facebook\.com/)
+    self.facebook_url = "https://www.facebook.com/#{facebook_url}"
+  end
+
+  def set_instagram_url
+    return if instagram_url.blank?
+    return if instagram_url.match?(/\Ahttps?:\/\//)
+    return if instagram_url.match?(/instagram\.com/)
+    self.instagram_url = "https://www.instagram.com/#{instagram_url}"
+  end
+
+  def set_twitter_url
+    return if twitter_url.blank?
+    return if twitter_url.match?(/\Ahttps?:\/\//)
+    return if instagram_url.match?(/twitter\.com/)
+    twitter_url.sub!("@", "")
+    self.twitter_url = "https://twitter.com/#{twitter_url}"
   end
 end

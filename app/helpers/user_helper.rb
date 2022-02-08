@@ -50,4 +50,14 @@ module UserHelper
 
     tag.span("Bay area", class: "badge bg-info")
   end
+
+  def user_social_media_icons(user)
+    if user.social_media?
+      capture do
+        concat link_to(bootstrap_icon("facebook"), user.facebook_url, target: "_blank", class: "me-2") if user.facebook_url.present?
+        concat link_to(bootstrap_icon("instagram"), user.instagram_url, target: "_blank", class: "me-2") if user.instagram_url.present?
+        concat link_to(bootstrap_icon("twitter"), user.twitter_url, target: "_blank", class: "me-2") if user.twitter_url.present?
+      end
+    end
+  end
 end

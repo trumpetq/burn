@@ -32,7 +32,7 @@ class CampApplication < ApplicationRecord
 
   enumerize :vaccine_status, in: {unvaccinated: 0, vaccinated: 1, vaccinated_and_bosted: 2}, predicates: true, scope: true
 
-  validates :plan_to_contribute, :what_excites_you, :who_are_you, :vaccine_status, :burning_man_year_count, presence: true
+  validates :plan_to_contribute, :what_excites_you, :who_are_you, :vaccine_status, :burning_man_year_count, :arrival_on, :departure_on, presence: true
 
   validates :burning_man_year_count, numericality: {only_integer: true, in: 0..(Settings.date.current_year - 1986)}
 end

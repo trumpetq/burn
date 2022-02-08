@@ -30,6 +30,14 @@
       = f.input :country_code, priority: ["US", "CA"], include_blank: true, label: "Country"
     .col-md-6.col-sm-12.mb-3
       = f.input :postal_code
+  .row
+    .col-md-6.col-sm-12.mb-3
+      = f.input :facebook_url, as: :string, label: "Facebook", hint: "https://www.facebook.com/<b>you</b>".html_safe
+    .col-md-6.col-sm-12.mb-3
+      = f.input :instagram_url, as: :string, label: "Instagram", hint: "https://www.instagram.com/<b>you</b>".html_safe
+  .row
+    .col-md-6.col-sm-12.mb-3
+      = f.input :twitter_url, as: :string, label: "Twitter", hint: "https://twitter.com/<b>you</b>".html_safe
   - if current_user.mayor?
     .row
       .col-md-6.col-sm-12.mb-3

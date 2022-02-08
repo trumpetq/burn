@@ -1,0 +1,10 @@
+- page_title("Edit - #{@resource}")
+
+.row
+  .col-md-3
+  .col-md-6
+    .card
+      .card-header = @resource.class.name.humanize
+      .card-form
+        = render "form", resource: @resource
+  .col-md-3

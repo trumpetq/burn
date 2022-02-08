@@ -1,2 +1,2 @@
-class CampGuidePolicy < UserStepPolicy
+class CampGuidePolicy < CampPolicy
 end

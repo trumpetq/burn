@@ -24,6 +24,5 @@
 #  index_user_steps_on_stepable  (stepable_type,stepable_id)
 #  index_user_steps_on_user_id   (user_id)
 #
-class CampDeposit < UserStep
-
+class CampDeposit < ApplicationRecord
 end

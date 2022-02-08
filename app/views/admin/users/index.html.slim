@@ -21,9 +21,9 @@
       tbody
         - @users.each do |user|
           tr
-            td = link_to_policy(policy([:admin, user]).show?, user.id, user)
-            td = link_to_policy(policy([:admin, user]).show?, user.name, user)
-            td = link_to_policy(policy([:admin, user]).show?, user.playa_name.presence || na_badge, user)
+            td = link_to_policy(policy([:admin, user]).show?, user.id, admin_user_path(user))
+            td = link_to_policy(policy([:admin, user]).show?, user.name, user_path(user))
+            td = link_to_policy(policy([:admin, user]).show?, user.playa_name.presence || na_badge, user_path(user))
             td = mail_to(user.email)
             td = link_to_phone(user.phone_number)
             td = user_status_badge(user)

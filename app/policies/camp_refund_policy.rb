@@ -1,2 +1,2 @@
-class CampRefundPolicy < UserStepPolicy
+class CampRefundPolicy < CampPolicy
 end

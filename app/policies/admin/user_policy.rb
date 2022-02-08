@@ -33,7 +33,7 @@ module Admin
     end
 
     def permitted_attributes
-      attrs = [:name, :playa_name, :email, :password, :phone_number, :time_zone, :title, :description, :previous_years, :country_code, :postal_code]
+      attrs = [:name, :playa_name, :email, :password, :phone_number, :time_zone, :title, :description, :previous_years, :country_code, :postal_code, :pronouns]
       attrs += [:role, :status] if user.mayor?
       attrs
     end

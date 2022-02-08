@@ -1,2 +1,2 @@
-class CampTicketPolicy < UserStepPolicy
+class CampTicketPolicy < CampPolicy
 end

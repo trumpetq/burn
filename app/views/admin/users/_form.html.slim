@@ -1,0 +1,41 @@
+= render "shared/error_messages", resource: resource
+= simple_form_for([:admin, resource]) do |f|
+  .row
+    .col-md-6.col-sm-12.mb-3
+      = f.input :name
+    .col-md-6.col-sm-12.mb-3
+      = f.input :playa_name
+  .row
+    .col-md-6.col-sm-12.mb-3
+      = f.input :pronouns, label_method: -> { _1[0]&.sub(" ", "/") }
+  .row
+    .col-md-6.col-sm-12.mb-3
+      = f.input :email, required: true
+    - if resource.new_record?
+      .col-md-6.col-sm-12.mb-3
+        = f.input :password, required: true
+  .row
+    .col-md-6.col-sm-12.mb-3
+      = f.input :phone_number
+    .col-md-6.col-sm-12.mb-3
+      = f.input :time_zone, include_blank: false
+  .row
+    .col-md-6.col-sm-12.mb-3
+      = f.input :title
+  .row
+    .col-md-12.mb-3
+      = f.input :description
+  .row
+    .col-md-6.col-sm-12.mb-3
+      = f.input :country_code, priority: ["US", "CA"], include_blank: true, label: "Country"
+    .col-md-6.col-sm-12.mb-3
+      = f.input :postal_code
+  - if current_user.mayor?
+    .row
+      .col-md-6.col-sm-12.mb-3
+        = f.input :role, include_blank: false
+      .col-md-6.col-sm-12.mb-3
+        = f.input :status, include_blank: false
+  .row
+    .col.d-grid
+      = f.button :submit, submit_button_text(resource)

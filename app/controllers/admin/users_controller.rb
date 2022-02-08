@@ -4,7 +4,7 @@ module Admin
 
     # GET /admin/users
     def index
-      authorize(:user)
+      authorize([:admin, :user])
       @users = ::User.all
     end
 

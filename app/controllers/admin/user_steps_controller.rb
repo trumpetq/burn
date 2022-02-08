@@ -4,7 +4,7 @@ module Admin
 
     # GET /admin/user_steps
     def index
-      authorize(:user_step)
+      authorize([:admin, :user_step])
       @user_steps = ::UserStep.order(updated_at: :desc)
     end
 

@@ -1,2 +1,2 @@
-class CampEventPolicy < UserStepPolicy
+class CampEventPolicy < CampPolicy
 end

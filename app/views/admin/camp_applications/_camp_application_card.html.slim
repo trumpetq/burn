@@ -1,0 +1,59 @@
+.card
+  .card-header
+    span Camp application
+    - if policy([:admin, resource]).edit?
+      = link_to "Edit", edit_admin_camp_application_path(resource), class: "float-end btn btn-xs btn-outline-primary"
+  .card-table
+    table.table
+      tbody
+        tr
+          th ID
+          td = resource.id
+        tr
+          th User
+          td = link_to_policy(policy([:admin, resource.user]).show?, resource.user, admin_user_path(resource.user))
+        tr
+          th Status
+          td = camp_status_badge(resource)
+        tr
+          th Who
+          td = resource.who_are_you.presence || na_badge
+        tr
+          th Excites
+          td = resource.what_excites_you.presence || na_badge
+        tr
+          th Contribuition
+          td = resource.plan_to_contribute.presence || na_badge
+        tr
+          th Years
+          td = resource.burning_man_year_count
+        tr
+          th Arrival
+          td = event_date(resource.arrival_on)
+        tr
+          th Departure
+          td = event_date(resource.departure_on)
+        tr
+          th Referral
+          td = resource.referral_name.presence || na_badge
+        tr
+          th Vaccine status
+          td = camp_vaccine_status_badge(resource)
+        tr
+          th COVID-19 protocol
+          td = resource.covid_protocol.presence || na_badge
+        tr
+          th Food allergies
+          td = resource.food_allergies.presence || na_badge
+        tr
+          th Applied
+          td = admin_time(resource.applied_at)
+        tr
+          th Completed
+          td = admin_time(resource.completed_at)
+        tr
+          th Created
+          td = admin_time(resource.created_at)
+        tr
+          th Updated
+          td = admin_time(resource.updated_at)

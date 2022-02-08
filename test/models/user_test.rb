@@ -9,7 +9,9 @@
 #  description            :text
 #  email                  :string           default(""), not null
 #  encrypted_password     :string           default(""), not null
+#  facebook_url           :text
 #  failed_attempts        :integer          default(0), not null
+#  instagram_url          :text
 #  last_sign_in_at        :datetime
 #  last_sign_in_ip        :string
 #  locked_at              :datetime
@@ -18,6 +20,7 @@
 #  playa_name             :string
 #  postal_code            :string
 #  previous_years         :jsonb            not null
+#  pronouns               :integer
 #  remember_created_at    :datetime
 #  reset_password_sent_at :datetime
 #  reset_password_token   :string
@@ -26,6 +29,7 @@
 #  status                 :integer          default("active"), not null
 #  time_zone              :string           default("Pacific Time (US & Canada)"), not null
 #  title                  :string
+#  twitter_url            :text
 #  unlock_token           :string
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null

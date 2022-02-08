@@ -9,7 +9,9 @@
 #  description            :text
 #  email                  :string           default(""), not null
 #  encrypted_password     :string           default(""), not null
+#  facebook_url           :text
 #  failed_attempts        :integer          default(0), not null
+#  instagram_url          :text
 #  last_sign_in_at        :datetime
 #  last_sign_in_ip        :string
 #  locked_at              :datetime
@@ -18,6 +20,7 @@
 #  playa_name             :string
 #  postal_code            :string
 #  previous_years         :jsonb            not null
+#  pronouns               :integer
 #  remember_created_at    :datetime
 #  reset_password_sent_at :datetime
 #  reset_password_token   :string
@@ -26,6 +29,7 @@
 #  status                 :integer          default("active"), not null
 #  time_zone              :string           default("Pacific Time (US & Canada)"), not null
 #  title                  :string
+#  twitter_url            :text
 #  unlock_token           :string
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
@@ -40,12 +44,15 @@ class User < ApplicationRecord
   include Roleable
   extend Enumerize
 
+  COMPLETE_PROFILE_FIELDS = [:country_code, :description, :name, :phone_number, :postal_code, :pronouns, :time_zone]
+
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :validatable, :trackable, :lockable
 
   phony_normalize :phone_number, default_country_code: "US"
 
   enumerize :role, in: {guest: 0, member: 1, camper: 2, leader: 5, mayor: 10}, default: :guest, predicates: true, scope: true
   enumerize :status, in: {active: 0, confirmed: 1, banned: 10}, default: :active, predicates: true, scope: true
+  enumerize :pronouns, in: {he_him: 1, she_her: 2, they_them: 3}, predicates: true, scope: true
 
   validates :name, :role, :status, :time_zone, presence: true
   validates :phone_number, phony_plausible: true
@@ -53,8 +60,10 @@ class User < ApplicationRecord
   has_many :user_steps, -> { order(position: :asc) }
 
   scope :for_phone_number, ->(phone_number) { where(phone_numer: PhonyRails.normalize_number(phone_number)) }
+  scope :for_email, ->(email) { where(email: email&.downcase) }
+  scope :in_bay_area, -> { where(postal_code: Settings.postal_code.bay_area) }
 
-  after_create :set_role, :generate_steps
+  after_create :set_role
 
   def to_s
     display_name
@@ -76,16 +85,25 @@ class User < ApplicationRecord
     country.translations[I18n.locale.to_s] || country.iso_short_name
   end
 
-  def generate_steps
-    ::Step.all.each do
-      ::UserStep.create!(
-        user: self,
-        step: _1,
-        type: _1.step_type,
-        position: _1.position,
-        status: _1.status
-      )
-    end
+  def camp_application
+    ::CampApplication.for_user(self).take
+  end
+
+  def complete_profile?
+    missing_fields.empty?
+  end
+
+  def incomplete_profile?
+    !complete_profile?
+  end
+
+  def missing_fields
+    COMPLETE_PROFILE_FIELDS.filter { !send(_1).present? }
+  end
+
+  def in_bay_area?
+    return false unless postal_code.present? && country_code == "US"
+    Settings.postal_code.bay_area.include?(postal_code)
   end
 
   private

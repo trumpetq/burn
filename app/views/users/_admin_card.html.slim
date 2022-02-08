@@ -1,6 +1,6 @@
 - if policy(user).admin?
-.card
-  .card-header Admin
-  .card-body
-    - if policy([:admin, user]).edit?
-      = link_to("Edit user", edit_admin_user_path(user), class: "btn btn-danger")
+  .card
+    .card-header Admin
+    .card-body
+      - if policy([:admin, user]).edit?
+        = link_to("Edit user", edit_admin_user_path(user), class: "btn btn-danger")

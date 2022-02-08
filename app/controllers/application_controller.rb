@@ -17,7 +17,7 @@ class ApplicationController < ActionController::Base
   private
 
   def user_not_authorized(e)
-    raise e if Rails.env.development?
+    # raise e if Rails.env.development?
 
     flash.now[:alert] = "Sorry, you don't have permission for that!"
     render "errors/forbidden", status: :forbidden

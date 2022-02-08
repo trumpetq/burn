@@ -1,0 +1,9 @@
+ul.navbar-nav.ms-auto
+  li.nav-item
+  - if policy(:user).devise?
+    li.nav-item
+      = link_to("Sign up", new_user_registration_path, class: "ms-2 btn btn-primary")
+  - if policy(:user).devise?
+    li.nav-item
+      = link_to("Sign in", new_user_session_path, class: "ms-2 btn btn-secondary")
+

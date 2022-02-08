@@ -1,0 +1,8 @@
+li.nav-item.dropdown
+  = link_to("Admin", "#", class: "nav-link dropdown-toggle", data: {bs_toggle: "dropdown"})
+  .dropdown-menu.dropdown-menu-end
+    - if policy([:admin, :user]).index?
+      = link_to("Users", admin_users_path, class: "dropdown-item")
+      .dropdown-divider
+    - if policy([:admin, :page]).system?
+      = link_to("System", system_admin_pages_path, class: "dropdown-item")

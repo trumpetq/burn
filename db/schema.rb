@@ -10,42 +10,29 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_02_03_133621) do
+ActiveRecord::Schema.define(version: 2022_02_08_070815) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "steps", force: :cascade do |t|
-    t.string "name", null: false
-    t.string "title", null: false
-    t.text "description"
-    t.integer "status", default: 0, null: false
-    t.datetime "available_at", precision: 6
-    t.datetime "closed_at", precision: 6
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.string "step_type"
-    t.integer "position"
-  end
-
-  create_table "user_steps", force: :cascade do |t|
-    t.bigint "user_id"
-    t.bigint "step_id"
-    t.integer "status", default: 0, null: false
-    t.datetime "completed_at"
-    t.string "stepable_type"
-    t.bigint "stepable_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.string "type"
+  create_table "camp_applications", force: :cascade do |t|
     t.datetime "applied_at", precision: 6
-    t.integer "position"
-    t.text "who_are_you"
-    t.text "what_excites_you"
+    t.datetime "completed_at", precision: 6
     t.string "referral_name"
-    t.index ["step_id"], name: "index_user_steps_on_step_id"
-    t.index ["stepable_type", "stepable_id"], name: "index_user_steps_on_stepable"
-    t.index ["user_id"], name: "index_user_steps_on_user_id"
+    t.integer "status", default: 0, null: false
+    t.text "what_excites_you"
+    t.text "who_are_you"
+    t.text "plan_to_contribute"
+    t.integer "vaccine_status"
+    t.text "food_allergies"
+    t.date "arrival_on"
+    t.date "departure_on"
+    t.bigint "user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.text "covid_protocol"
+    t.integer "burning_man_year_count"
+    t.index ["user_id"], name: "index_camp_applications_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -75,6 +62,10 @@ ActiveRecord::Schema.define(version: 2022_02_03_133621) do
     t.jsonb "previous_years", default: [], null: false
     t.string "country_code"
     t.string "postal_code"
+    t.text "facebook_url"
+    t.text "instagram_url"
+    t.text "twitter_url"
+    t.integer "pronouns"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["unlock_token"], name: "index_users_on_unlock_token", unique: true

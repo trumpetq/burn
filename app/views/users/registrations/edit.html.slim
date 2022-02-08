@@ -17,13 +17,15 @@
             .col-md-6.col-sm-12.mb-3
               = f.input :playa_name, hint: "if you have one"
           .row
+            .col-md-12.mb-3
+              = f.input :title, hint: "tell us your role in camp"
+            .col-md-6.col-sm-12.mb-3
+              = f.input :pronouns, label_method: -> { _1[0]&.sub(" ", "/") }
+          .row
             .col-md-6.col-sm-12.mb-3
               = f.input :phone_number
             .col-md-6.col-sm-12.mb-3
               = f.input :time_zone, include_blank: false
-          .row
-            .col-md-12.mb-3
-              = f.input :title, hint: "tell us your role in camp"
           .row
             .col-md-12.mb-3
               = f.input :description, hint: "share something interesting about yourself"

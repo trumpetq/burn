@@ -8,10 +8,8 @@
         h6.card-subtitle.mb-2.text-muted = @user.title
         p.card-text
           = @user.description.presence || na_badge
-    .mt-3
-    = render "user_steps_card", user_steps: @user.user_steps
 
   .col-md-4
-    = render "user_details_card", user: @user
+    = render "user_card", user: @user
     .mt-3
     = render "security_card", user: @user

@@ -1,2 +1,2 @@
-class CampFeedbackPolicy < UserStepPolicy
+class CampFeedbackPolicy < CampPolicy
 end

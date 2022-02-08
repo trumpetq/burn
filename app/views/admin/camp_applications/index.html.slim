@@ -1,0 +1,29 @@
+- page_title("Camp applications")
+
+.card
+  .card-header
+    span Camp applications
+    - if policy([:admin, :camp_application]).new?
+      = link_to "New camp application", new_admin_camp_application_path, class: "float-end btn btn-xs btn-outline-primary"
+  .card-table
+    table.table
+      thead
+        tr
+          th ID
+          th User
+          th Status
+          th Applied
+          th Completed
+          th
+      tbody
+        - @resources.each do |resource|
+          tr
+            td = link_to_policy(policy([:admin, resource]).show?, resource.id, admin_camp_application_path(resource))
+            td = link_to_policy(policy([:admin, resource.user]).show?, resource.user, admin_user_path(resource.user))
+            td = camp_status_badge(resource)
+            td = admin_time(resource.applied_at)
+            td = admin_time(resource.completed_at)
+            td.text-end
+              - if policy([:admin, resource]).edit?
+                = link_to(bootstrap_icon("pencil"), edit_admin_camp_application_path(resource))
+

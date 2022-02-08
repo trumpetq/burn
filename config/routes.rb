@@ -7,23 +7,11 @@ Rails.application.routes.draw do
   get "500", to: "errors#internal_server_error", as: :internal_server_error_error
 
   namespace :admin do
+    resources :camp_applications
+
     resources :pages, only: [] do
       collection do
         get :system
-      end
-    end
-
-    resources :steps do
-      member do
-        patch :move_higher
-        patch :move_lower
-      end
-    end
-
-    resources :user_steps do
-      member do
-        patch :move_higher
-        patch :move_lower
       end
     end
 
@@ -31,6 +19,8 @@ Rails.application.routes.draw do
 
     root to: "pages#home"
   end
+
+  resources :camp_applications, except: [:destroy]
 
   resources :guides, only: [:index] do
     collection do
@@ -45,10 +35,6 @@ Rails.application.routes.draw do
       get :history
     end
   end
-
-  resources :steps, only: [:index, :show]
-
-  resources :user_steps, only: [:index, :show, :edit, :update]
 
   devise_for :users, controllers: {
     confirmations: "users/confirmations",

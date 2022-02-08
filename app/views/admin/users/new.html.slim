@@ -6,41 +6,5 @@
     .card
       .card-header New user
       .card-form
-        = render "shared/error_messages", resource: @user
-        = simple_form_for([:admin, @user]) do |f|
-          .row
-            .col-md-6.col-sm-12.mb-3
-              = f.input :name
-            .col-md-6.col-sm-12.mb-3
-              = f.input :playa_name
-          .row
-            .col-md-6.col-sm-12.mb-3
-              = f.input :email, required: true
-            .col-md-6.col-sm-12.mb-3
-              = f.input :password, required: true
-          .row
-            .col-md-6.col-sm-12.mb-3
-              = f.input :phone_number
-            .col-md-6.col-sm-12.mb-3
-              = f.input :time_zone, include_blank: false
-          .row
-            .col-md-6.col-sm-12.mb-3
-              = f.input :title
-          .row
-            .col-md-12.mb-3
-              = f.input :description
-          .row
-            .col-md-6.col-sm-12.mb-3
-              = f.input :country_code, priority: ["US", "CA"], include_blank: true, label: "Country"
-            .col-md-6.col-sm-12.mb-3
-              = f.input :postal_code
-          - if current_user.mayor?
-            .row
-              .col-md-6.col-sm-12.mb-3
-                = f.input :role, include_blank: false
-              .col-md-6.col-sm-12.mb-3
-                = f.input :status, include_blank: false
-          .row
-            .col.d-grid
-              = f.button :submit, "Create"
+        = render "form", resource: @user
   .col-md-3

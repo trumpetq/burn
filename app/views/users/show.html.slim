@@ -2,7 +2,8 @@
 
 .row
   .col-md-3
-    = render "user_steps_card", user_steps: @user.user_steps
+    - if policy(@user).me?
+      = render "steps_card", user: @user
   .col-md-6
     .card
       .card-body
@@ -10,11 +11,16 @@
         h6.card-subtitle.mb-2.text-muted = @user.title
         p.card-text
           = @user.description.presence || "This user has not set a description yet."
+        - if @user.pronouns.present?
+          p.card-text <b>Pronouns</b> #{user_pronouns_badge(@user)}
         - if @user.country_code.present?
           p.card-text <b>Country</b> #{@user.country_name}
         - if @user.postal_code.present?
-          p.card-text <b>Postal code</b> #{@user.postal_code}
+          p.card-text
+            <b>Postal code</b> #{@user.postal_code}
+            =< user_postal_code_badge(@user)
         - if policy(@user).me?
           = link_to("Edit profile", edit_user_registration_path, class: "btn btn-primary")
   .col-md-3
+    = render "incomplete_profile_card", user: @user
     = render "admin_card", user: @user

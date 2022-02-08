@@ -4,7 +4,7 @@ module Admin
 
     # GET /admin/steps
     def index
-      authorize(:step)
+      authorize([:admin, :step])
       @steps = ::Step.all.order(position: :asc)
     end
 

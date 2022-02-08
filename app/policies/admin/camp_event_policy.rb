@@ -1,4 +1,4 @@
 module Admin
-  class CampEventPolicy < UserStepPolicy
+  class CampEventPolicy < Admin::CampPolicy
   end
 end

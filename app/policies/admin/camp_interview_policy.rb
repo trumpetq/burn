@@ -1,4 +1,4 @@
 module Admin
-  class CampInterviewPolicy < UserStepPolicy
+  class CampInterviewPolicy < Admin::CampPolicy
   end
 end

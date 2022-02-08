@@ -1,4 +1,4 @@
 module Admin
-  class CampFeedbackPolicy < UserStepPolicy
+  class CampFeedbackPolicy < Admin::CampPolicy
   end
 end

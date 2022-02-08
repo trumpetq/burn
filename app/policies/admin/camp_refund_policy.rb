@@ -1,4 +1,4 @@
 module Admin
-  class CampRefundPolicy < UserStepPolicy
+  class CampRefundPolicy < Admin::CampPolicy
   end
 end

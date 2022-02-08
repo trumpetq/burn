@@ -27,11 +27,5 @@ module Admin
     def destory?
       mayor?
     end
-
-    def permitted_attributes
-      attrs = [:completed_at, :status]
-      attrs += [:user_id] if user.mayor?
-      attrs
-    end
   end
 end

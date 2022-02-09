@@ -20,7 +20,7 @@
             - @resources.each do |resource|
               tr
                 td = link_to_policy(policy([:admin, resource]).show?, resource.id, admin_camp_application_path(resource))
-                td = link_to_policy(policy([:admin, resource.user]).show?, resource.user, admin_user_path(resource.user))
+                td = resource.user.present? ? link_to_policy(policy([:admin, resource.user]).show?, resource.user, admin_user_path(resource.user)) : na_badge
                 td = camp_status_badge(resource)
                 td = admin_time(resource.applied_at)
                 td = admin_time(resource.completed_at)

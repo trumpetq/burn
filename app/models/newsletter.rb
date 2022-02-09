@@ -1,0 +1,46 @@
+# == Schema Information
+#
+# Table name: newsletters
+#
+#  id                :bigint           not null, primary key
+#  email             :string
+#  list              :integer          default("unsubscribed"), not null
+#  unsubscribe_token :string           not null
+#  unsubscribed_at   :datetime
+#  created_at        :datetime         not null
+#  updated_at        :datetime         not null
+#  user_id           :bigint
+#
+# Indexes
+#
+#  index_newsletters_on_email              (email) UNIQUE
+#  index_newsletters_on_unsubscribe_token  (unsubscribe_token) UNIQUE
+#  index_newsletters_on_user_id            (user_id) UNIQUE
+#
+class Newsletter < ApplicationRecord
+  extend Enumerize
+  has_secure_token :unsubscribe_token, length: 36
+
+  validates :email, presence: true
+  validates :email, :unsubscribe_token, uniqueness: true
+  validates :user_id, uniqueness: true, allow_blank: true
+
+  enumerize :list, in: {unsubscribed: 0, general: 1, campers_only: 2}, default: :general, predicates: true, scope: true
+
+  belongs_to :user, optional: true
+
+  scope :for_email, ->(email) { where(email: email&.downcase) }
+  scope :for_user, ->(user) { where(user: user) }
+
+  def unsubscribe!
+    update!(list: :unsubscribed, unsubscribed_at: Time.current)
+  end
+
+  def to_s
+    email
+  end
+
+  def to_log
+    "Newsletter id=#{id}, email=#{email}"
+  end
+end

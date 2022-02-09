@@ -1,0 +1,10 @@
+- page_title("Edit - #{@newsletter}")
+
+.row
+  .col-md-3
+  .col-md-6
+    .card.mb-3
+      .card-header Edit newsletter
+      .card-form
+        = render "form", resource: @newsletter
+  .col-md-3

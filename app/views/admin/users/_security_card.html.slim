@@ -2,7 +2,7 @@
   .card-header
     span Security
     - if policy([:admin, user]).destroy?
-      = link_to("Delete user", admin_user_path(user), data: {confirm: "Are you sure?", turbo_method: :delete}, class: "float-end btn btn-xs btn-outline-danger")
+      = link_to("Delete user", admin_user_path(user), data: {turbo_confirm: "Are you sure?", turbo_method: :delete}, class: "float-end btn btn-xs btn-outline-danger")
   .card-table
     table.table
       tbody

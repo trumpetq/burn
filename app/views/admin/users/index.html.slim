@@ -1,34 +1,36 @@
 - page_title("Users")
 
-.card.mb-3
-  .card-header
-    span Users
-    - if policy([:admin, :user]).new?
-      = link_to "New user", new_admin_user_path, class: "float-end btn btn-xs btn-outline-primary"
+.row
+  .col-md-12
+    .card.mb-3
+      .card-header
+        span Users
+        - if policy([:admin, :user]).new?
+          = link_to "New user", new_admin_user_path, class: "float-end btn btn-xs btn-outline-primary"
 
-  .card-table
-    table.table
-      thead
-        tr
-          th ID
-          th Name
-          th Playa name
-          th Email
-          th Phone
-          th Status
-          th Role
-          th
-      tbody
-        - @users.each do |user|
-          tr
-            td = link_to_policy(policy([:admin, user]).show?, user.id, admin_user_path(user))
-            td = link_to_policy(policy([:admin, user]).show?, user.name, user_path(user))
-            td = link_to_policy(policy([:admin, user]).show?, user.playa_name.presence || na_badge, user_path(user))
-            td = mail_to(user.email)
-            td = link_to_phone(user.phone_number)
-            td = user_status_badge(user)
-            td = user_role_badge(user)
-            td.text-end
-              - if policy([:admin, user]).edit?
-                = link_to(bootstrap_icon("pencil"), edit_admin_user_path(user))
+      .card-table
+        table.table
+          thead
+            tr
+              th ID
+              th Name
+              th Playa name
+              th Email
+              th Phone
+              th Status
+              th Role
+              th
+          tbody
+            - @users.each do |user|
+              tr
+                td = link_to_policy(policy([:admin, user]).show?, user.id, admin_user_path(user))
+                td = link_to_policy(policy([:admin, user]).show?, user.name, user_path(user))
+                td = link_to_policy(policy([:admin, user]).show?, user.playa_name.presence || na_badge, user_path(user))
+                td = mail_to(user.email)
+                td = link_to_phone(user.phone_number)
+                td = user_status_badge(user)
+                td = user_role_badge(user)
+                td.text-end
+                  - if policy([:admin, user]).edit?
+                    = link_to(bootstrap_icon("pencil"), edit_admin_user_path(user))
 

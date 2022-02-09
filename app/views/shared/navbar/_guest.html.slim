@@ -1,4 +1,6 @@
-ul.navbar-nav.ms-auto
+ul.navbar-nav.me-auto
+  = render "shared/navbar/main"
+ul.navbar-nav
   li.nav-item
   - if policy(:user).devise?
     li.nav-item

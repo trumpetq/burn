@@ -1,0 +1,6 @@
+.card.mb-3
+  .card-header Actions
+  .card-body
+    .btn-collection
+      - if policy([:admin, :newsletter]).export?
+        = link_to("Export", export_admin_newsletters_path, class: "btn btn-warning")

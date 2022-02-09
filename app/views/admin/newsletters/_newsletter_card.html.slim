@@ -1,0 +1,26 @@
+.card.mb-3
+  .card-header
+    span Subscriber
+    - if policy([:admin, @newsletter]).edit?
+      = link_to "Edit", edit_admin_newsletter_path(@newsletter), class: "float-end btn btn-xs btn-outline-primary"
+  .card-table
+    table.table
+      tbody
+        tr
+          th ID
+          td = @newsletter.id
+        tr
+          th User
+          td = @newsletter.user.present? ? link_to_policy(policy([:admin, @newsletter.user]).show?, @newsletter.user, admin_user_path(@newsletter.user)) : na_badge
+        tr
+          th List
+          td = newsletter_list_badge(@newsletter)
+        tr
+          th Unsubscribed
+          td = admin_time(@newsletter.unsubscribed_at)
+        tr
+          th Created
+          td = admin_time(@newsletter.created_at)
+        tr
+          th Updated
+          td = admin_time(@newsletter.updated_at)

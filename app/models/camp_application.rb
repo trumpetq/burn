@@ -4,6 +4,7 @@
 #
 #  id                     :bigint           not null, primary key
 #  applied_at             :datetime
+#  approved_at            :datetime
 #  arrival_on             :date
 #  burning_man_year_count :integer
 #  completed_at           :datetime
@@ -18,6 +19,7 @@
 #  who_are_you            :text
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
+#  approved_by_id         :bigint
 #  user_id                :bigint
 #
 # Indexes

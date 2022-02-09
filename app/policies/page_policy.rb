@@ -3,6 +3,10 @@ class PagePolicy < ApplicationPolicy
     everyone?
   end
 
+  def events?
+    everyone?
+  end
+
   def history?
     everyone?
   end

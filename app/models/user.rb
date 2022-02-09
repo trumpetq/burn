@@ -55,11 +55,11 @@ class User < ApplicationRecord
 
   enumerize :role, in: {guest: 0, member: 1, camper: 2, leader: 5, mayor: 10}, default: :guest, predicates: true, scope: true
   enumerize :status, in: {active: 0, confirmed: 1, banned: 10}, default: :active, predicates: true, scope: true
-  enumerize :pronouns, in: {he_him: 1, she_her: 2, they_them: 3}, predicates: true, scope: true
+  enumerize :pronouns, in: {he_him: 1, she_her: 2, they_them: 3, she_they: 4, he_they: 5, all: 10}, predicates: true, scope: true
 
   validates :name, :role, :status, :time_zone, presence: true
   validates :phone_number, phony_plausible: true
-  validates :facebook_url, :twitter_url, :instagram_url, url: { allow_blank: true }
+  validates :facebook_url, :twitter_url, :instagram_url, url: {allow_blank: true}
 
   has_one :camp_application
 

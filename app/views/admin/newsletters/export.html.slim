@@ -1,0 +1,19 @@
+- page_title("Export")
+
+.row
+  .col-md-4
+    .card.mb-3
+      .card-header General list
+      .card-body
+        textarea.form-control.text rows="10" = @general_list
+  .col-md-4
+    .card.mb-3
+      .card-header Campers only list
+      .card-body
+        textarea.form-control.text rows="10" = @campers_only_list
+  .col-md-4
+    .card.bg-info.bg-opacity-25.mb-3
+      .card-header #{bootstrap_icon("info-circle")} Info
+      .card-body
+        p.card-text Remember to <b>BCC</b> everyone!
+

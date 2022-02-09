@@ -11,10 +11,10 @@
           = f.input :reset_password_token, as: :hidden
           = f.full_error :reset_password_token
           .row
-            .col-md-6.col-sm-12.mb-3
+            .col-md-6.mb-3
               = f.input :password, label: "New password", required: true, autofocus: true, hint: "keep it safe", input_html: {autocomplete: "new-password"}
           .row
-            .col-md-6.col-sm-12.mb-3
+            .col-md-6.mb-3
               = f.input :password_confirmation, label: "Confirm your new password", required: true, input_html: {autocomplete: "new-password"}
           .row
             .col.d-grid

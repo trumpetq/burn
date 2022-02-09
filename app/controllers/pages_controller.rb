@@ -5,6 +5,11 @@ class PagesController < ApplicationController
   def contact
   end
 
+  # GET /events
+  def events
+    @david = ::User.find(Settings.user.david)
+  end
+
   # GET /
   def home
   end

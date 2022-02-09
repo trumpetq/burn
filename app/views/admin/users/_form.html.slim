@@ -1,51 +1,51 @@
 = render "shared/error_messages", resource: resource
 = simple_form_for([:admin, resource]) do |f|
   .row
-    .col-md-6.col-sm-12.mb-3
+    .col-md-6.mb-3
       = f.input :name
-    .col-md-6.col-sm-12.mb-3
+    .col-md-6.mb-3
       = f.input :playa_name
   .row
-    .col-md-6.col-sm-12.mb-3
+    .col-md-6.mb-3
       = f.input :pronouns, label_method: -> { _1[0]&.sub(" ", "/") }
   .row
-    .col-md-6.col-sm-12.mb-3
+    .col-md-6.mb-3
       = f.input :email, required: true
     - if resource.new_record?
-      .col-md-6.col-sm-12.mb-3
+      .col-md-6.mb-3
         = f.input :password, required: true
   .row
-    .col-md-6.col-sm-12.mb-3
+    .col-md-6.mb-3
       = f.input :phone_number
-    .col-md-6.col-sm-12.mb-3
+    .col-md-6.mb-3
       = f.input :time_zone, include_blank: false
   .row
-    .col-md-6.col-sm-12.mb-3
+    .col-md-6.mb-3
       = f.input :title
   .row
     .col-md-12.mb-3
       = f.input :description
   .row
-    .col-md-6.col-sm-12.mb-3
+    .col-md-6.mb-3
       = f.input :country_code, priority: ["US", "CA"], include_blank: true, label: "Country"
-    .col-md-6.col-sm-12.mb-3
+    .col-md-6.mb-3
       = f.input :postal_code
   .row
-    .col-md-6.col-sm-12.mb-3
+    .col-md-6.mb-3
       = f.input :facebook_url, as: :string, label: "Facebook", hint: "https://www.facebook.com/<b>you</b>".html_safe
-    .col-md-6.col-sm-12.mb-3
+    .col-md-6.mb-3
       = f.input :instagram_url, as: :string, label: "Instagram", hint: "https://www.instagram.com/<b>you</b>".html_safe
   .row
-    .col-md-6.col-sm-12.mb-3
+    .col-md-6.mb-3
       = f.input :twitter_url, as: :string, label: "Twitter", hint: "https://twitter.com/<b>you</b>".html_safe
   .row
-    .col-sm-12.mb-3
+    .mb-3
       = f.input :previous_years, collection: ::User::PREVIOUS_YEARS, as: :check_boxes, label: "Previous years at 8-bit Bunny"
   - if current_user.mayor?
     .row
-      .col-md-6.col-sm-12.mb-3
+      .col-md-6.mb-3
         = f.input :role, include_blank: false
-      .col-md-6.col-sm-12.mb-3
+      .col-md-6.mb-3
         = f.input :status, include_blank: false
   .row
     .col.d-grid

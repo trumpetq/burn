@@ -38,6 +38,9 @@ module UserHelper
       when :he_him then "badge bg-danger"
       when :she_her then "badge bg-primary"
       when :they_them then "badge bg-secondary"
+      when :she_they then "badge bg-secondary"
+      when :he_they then "badge bg-secondary"
+      when :all then "badge bg-success"
       else
         "badge bg-dark"
       end

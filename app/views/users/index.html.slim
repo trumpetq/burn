@@ -1,17 +1,19 @@
 - page_title("Users")
 
-.card.mb-3
-  .card-header Users
-  .card-table
-    table.table
-      thead
-        tr
-          th ID
-          th Name
-          th Title
-      tbody
-        - @users.each do |user|
-          tr
-            td = link_to_policy(policy(user).show?, user.id, user)
-            td = link_to_policy(policy(user).show?, user, user)
-            td = user.title.presence || na_badge
+.row
+  .col-md-12
+    .card.mb-3
+      .card-header Users
+      .card-table
+        table.table
+          thead
+            tr
+              th ID
+              th Name
+              th Title
+          tbody
+            - @users.each do |user|
+              tr
+                td = link_to_policy(policy(user).show?, user.id, user_path(user))
+                td = link_to_policy(policy(user).show?, user, user_path(user))
+                td = user.title.presence || na_badge

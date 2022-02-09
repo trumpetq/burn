@@ -13,38 +13,38 @@
             .col-md-12.mb-3
               = f.input :email, required: true, input_html: {autocomplete: "email"}
           .row
-            .col-md-6.col-sm-12.mb-3
+            .col-md-6.mb-3
               = f.input :name, required: true, input_html: {autocomplete: "name"}, hint: "legal name"
-            .col-md-6.col-sm-12.mb-3
+            .col-md-6.mb-3
               = f.input :playa_name, hint: "if you have one"
           .row
             .col-md-12.mb-3
               = f.input :title, hint: "tell us your role in camp"
-            .col-md-6.col-sm-12.mb-3
+            .col-md-6.mb-3
               = f.input :pronouns, label_method: -> { _1[0]&.sub(" ", "/") }
           .row
-            .col-md-6.col-sm-12.mb-3
+            .col-md-6.mb-3
               = f.input :phone_number
-            .col-md-6.col-sm-12.mb-3
+            .col-md-6.mb-3
               = f.input :time_zone, include_blank: false
           .row
             .col-md-12.mb-3
               = f.input :description, hint: "share something interesting about yourself"
           .row
-            .col-md-6.col-sm-12.mb-3
+            .col-md-6.mb-3
               = f.input :country_code, hint: "where you call home", priority: ["US", "CA"], include_blank: true, label: "Country"
-            .col-md-6.col-sm-12.mb-3
+            .col-md-6.mb-3
               = f.input :postal_code
           .row
-            .col-md-6.col-sm-12.mb-3
+            .col-md-6.mb-3
               = f.input :facebook_url, as: :string, label: "Facebook", hint: "https://www.facebook.com/<b>you</b>".html_safe
-            .col-md-6.col-sm-12.mb-3
+            .col-md-6.mb-3
               = f.input :instagram_url, as: :string, label: "Instagram", hint: "https://www.instagram.com/<b>you</b>".html_safe
           .row
-            .col-md-6.col-sm-12.mb-3
+            .col-md-6.mb-3
               = f.input :twitter_url, as: :string, label: "Twitter", hint: "https://twitter.com/<b>you</b>".html_safe
           .row
-            .col-sm-12.mb-3
+            .col-md-12.mb-3
               = f.input :previous_years, collection: ::User::PREVIOUS_YEARS, as: :check_boxes, label: "Previous years at 8-bit Bunny"
           .row
             .col.d-grid

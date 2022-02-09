@@ -1,0 +1,35 @@
+- page_title("Subscribers")
+.row
+  .col-md-8
+    = render "search_card"
+  .col-md-4
+    = render "actions_card"
+.row
+  .col-md-12
+    .card.mb-3
+      .card-header
+        span Subscribers
+        - if policy([:admin, :newsletter]).new?
+          = link_to "New subscriber", new_admin_newsletter_path, class: "float-end btn btn-xs btn-outline-primary"
+
+      .card-table
+        table.table
+          thead
+            tr
+              th ID
+              th Email
+              th User
+              th List
+              th
+          tbody
+            - @newsletters.each do |newsletter|
+              tr
+                td = link_to_policy(policy([:admin, newsletter]).show?, newsletter.id, admin_newsletter_path(newsletter))
+                td = mail_to(newsletter.email)
+                td = newsletter.user.present? ? link_to_policy(policy([:admin, newsletter.user]).show?, newsletter.user, admin_user_path(newsletter.user)) : na_badge
+                td = newsletter_list_badge(newsletter)
+                td.text-end
+                  - if policy([:admin, newsletter]).edit?
+                    = link_to(bootstrap_icon("pencil"), edit_admin_newsletter_path(newsletter))
+
+      .card-footer == pagy_bootstrap_nav(@pagy)

@@ -9,6 +9,16 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :camp_applications
 
+    resources :newsletters do
+      collection do
+        get :export
+      end
+
+      member do
+        post :unsubscribe
+      end
+    end
+
     resources :pages, only: [] do
       collection do
         get :system
@@ -29,9 +39,20 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :newsletters do
+    collection do
+      get :unsubscribe
+    end
+
+    member do
+      post :unsubscribe
+    end
+  end
+
   resources :pages, only: [] do
     collection do
       get :contact
+      get :events
       get :history
     end
   end

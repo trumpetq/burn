@@ -2,10 +2,10 @@
 = simple_form_for([:admin, resource]) do |f|
   - if current_user.mayor?
     .row
-      .col-md-6.col-sm-12.mb-3
+      .col-md-6.mb-3
         = f.input :user_id, label: "User ID"
   .row
-    .col-md-6.col-sm-12.mb-3
+    .col-md-6.mb-3
       = f.input :status, include_blank: false
   .row
     .col-md-12.mb-3
@@ -17,20 +17,20 @@
     .col-md-12.mb-3
       = f.input :plan_to_contribute, hint: "how will you make camp better"
   .row
-    .col-md-6.col-sm-12.mb-3
+    .col-md-6.mb-3
       = f.input :referral_name, label: "Referral", hint: "did someone refer you to us"
-    .col-md-6.col-sm-12.mb-3
+    .col-md-6.mb-3
       = f.input :burning_man_year_count, label: "How many burns", hint: "put 0 if it's your first itme"
   .row
-    .col-md-6.col-sm-12.mb-3
+    .col-md-6.mb-3
       = f.input :arrival_on, collection: Settings.date.full_event, include_blank: true, label: "Arrival", hint: "when do you plan to arrive"
-    .col-md-6.col-sm-12.mb-3
+    .col-md-6.mb-3
       = f.input :departure_on, collection: Settings.date.full_event, include_blank: true, label: "Departure", hint: "when do you plan to leave"
   .row
     .col-md-12.mb-3
       = f.input :food_allergies, hint: "are you allergic to anything"
   .row
-    .col-md-6.col-sm-12.mb-3
+    .col-md-6.mb-3
       = f.input :vaccine_status
   .row
     .col-md-12.mb-3

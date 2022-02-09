@@ -1,0 +1,12 @@
+.card.mb-3
+  .card-header Search
+  .card-form
+    = simple_form_for(:search, url: admin_newsletters_path, method: :get) do |f|
+      .row
+        .col-md-6.mb-3
+           = f.input :email, input_html: { value: params.dig(:search, :email) }, label: "Email", required: false
+        .col-md-6.mb-3
+           = f.input :user_id, input_html: { value: params.dig(:search, :user_id) }, label: "User ID", required: false
+      .row
+        .col.d-grid
+          = f.button :button, "Search"

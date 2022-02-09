@@ -30,6 +30,7 @@ gem "simple_form"
 gem "slim-rails"
 # gem "sprockets-rails"
 gem "stimulus-rails"
+gem "strip_attributes"
 gem "turbo-rails"
 gem "validate_url"
 
@@ -40,7 +41,7 @@ group :development, :test do
 end
 
 group :development do
-  gem "annotate", github: "dabit/annotate_models", branch: "rails-7"
+  gem "annotate", github: "dabit/annotate_models", branch: "rails-7" # Update when version > 3.1.1 is released.
   gem "brakeman"
   gem "bullet"
   gem "letter_opener"

@@ -3,9 +3,9 @@ module TimeHelper
     return na_badge if time.blank?
 
     if current_user
-      time.in_time_zone(current_user.time_zone).to_s(:admin)
+      time.in_time_zone(current_user.time_zone).to_fs(:admin)
     else
-      time.to_s(:admin)
+      time.to_fs(:admin)
     end
   end
 

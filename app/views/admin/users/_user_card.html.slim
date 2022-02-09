@@ -44,6 +44,9 @@
             = user.postal_code.presence || na_badge
             =< user_postal_code_badge(user)
         tr
+          th Previous years
+          td = user.previous_years&.join(", ").presence || na_badge
+        tr
           th Social media
           td = user_social_media_icons(user) || na_badge
 

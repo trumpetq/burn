@@ -19,6 +19,8 @@
           p.card-text
             <b>Postal code</b> #{@user.postal_code}
             =< user_postal_code_badge(@user)
+        - if @user.previous_years.present?
+          p.card-text <b>Previous years</b> #{@user.previous_years.join(", ")}
         - if @user.social_media?
           p.card-text
             = user_social_media_icons(@user)

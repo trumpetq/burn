@@ -38,6 +38,9 @@
   .row
     .col-md-6.col-sm-12.mb-3
       = f.input :twitter_url, as: :string, label: "Twitter", hint: "https://twitter.com/<b>you</b>".html_safe
+  .row
+    .col-sm-12.mb-3
+      = f.input :previous_years, collection: ::User::PREVIOUS_YEARS, as: :check_boxes, label: "Previous years at 8-bit Bunny"
   - if current_user.mayor?
     .row
       .col-md-6.col-sm-12.mb-3

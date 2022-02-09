@@ -36,6 +36,7 @@ module Admin
 
     # PATCH /admin/users/:id
     def update
+      d params
       if @user.update(permitted_attributes([:admin, @user]))
         redirect_to admin_user_url(@user), success: "User was successfully updated."
       else

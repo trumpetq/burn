@@ -4,3 +4,5 @@ li.nav-item.dropdown
     - if policy([:admin, :camp_application]).index?
       = link_to("Camp applications", admin_camp_applications_path, class: "dropdown-item")
       .dropdown-divider
+    - if policy([:admin, :camp]).show?
+      = link_to("Dashboard", admin_camp_path, class: "dropdown-item")

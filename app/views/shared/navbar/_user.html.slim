@@ -7,4 +7,4 @@ li.nav-item.dropdown
       = link_to("Settings", edit_user_registration_path, class: "dropdown-item")
     .dropdown-divider
     - if policy(current_user).devise?
-      = link_to('Sign out', destroy_user_session_path, data: {turbo_method: :delete}, class: "dropdown-item")
+      = link_to("Sign out", destroy_user_session_path, data: {turbo_method: :delete}, class: "dropdown-item")

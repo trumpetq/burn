@@ -7,6 +7,8 @@ Rails.application.routes.draw do
   get "500", to: "errors#internal_server_error", as: :internal_server_error_error
 
   namespace :admin do
+    resource :camp, only: [:show]
+
     resources :camp_applications
 
     resources :newsletters do

@@ -62,6 +62,7 @@ class User < ApplicationRecord
   validates :facebook_url, :twitter_url, :instagram_url, url: {allow_blank: true}
 
   has_one :camp_application
+  has_one :newsletter
 
   scope :for_phone_number, ->(phone_number) { where(phone_numer: PhonyRails.normalize_number(phone_number)) }
   scope :for_email, ->(email) { where(email: email&.downcase) }
@@ -69,7 +70,7 @@ class User < ApplicationRecord
 
   before_validation :set_urls
   before_validation :scrub_previous_years
-  after_create :set_role
+  after_create :set_role, :create_newsletter
 
   def to_s
     display_name
@@ -121,6 +122,16 @@ class User < ApplicationRecord
 
   def set_role
     update(role: :member) if guest?
+  end
+
+  def create_newsletter
+    nl = ::Newsletter.for_email(email).take
+
+    if nl.present?
+      nl.update(user: self, list: :general)
+    else
+      ::Newsletter.create(email: email, user: self, list: :general)
+    end
   end
 
   def set_urls

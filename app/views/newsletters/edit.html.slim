@@ -1,5 +1,4 @@
 - page_title("Edit - #{@newsletter}")
-
 .row
   .col-md-3
   .col-md-6
@@ -8,3 +7,4 @@
       .card-form
         = render "form", resource: @newsletter
   .col-md-3
+    = render "unsubscribe_card", resource: @newsletter

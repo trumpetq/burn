@@ -29,3 +29,5 @@
   .col-md-3
     = render "incomplete_profile_card", user: @user
     = render "admin_card", user: @user
+    - if @user.newsletter&.unsubscribed?
+      = render "newsletter_card", user: @user

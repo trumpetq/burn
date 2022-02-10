@@ -1,4 +1,4 @@
-- if user.incomplete_profile?
+- if user.incomplete_profile? && policy(user).me?
   .card.bg-warning.bg-opacity-75.mb-3
     .card-header #{bootstrap_icon("exclamation-triangle")} Incomplete profile
     .card-body

@@ -8,6 +8,7 @@ class PagesController < ApplicationController
   # GET /events
   def events
     @david = ::User.find(Settings.user.david)
+    @mirabelle = ::User.find(Settings.user.mirabelle)
   end
 
   # GET /

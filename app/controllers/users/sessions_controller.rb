@@ -32,4 +32,16 @@ class Users::SessionsController < Devise::SessionsController
   # def configure_sign_in_params
   #   devise_parameter_sanitizer.permit(:sign_in, keys: [:attribute])
   # end
+
+  private
+
+  # HACK: Remove after https://github.com/heartcombo/devise/pull/5410
+  def respond_to_on_destroy
+    # We actually need to hardcode this as Rails default responder doesn't
+    # support returning empty response on GET request
+    respond_to do |format|
+      format.all { head :no_content }
+      format.any(*navigational_formats) { redirect_to after_sign_out_path_for(resource_name), status: :see_other }
+    end
+  end
 end

@@ -1,0 +1,17 @@
+.card.mb-3
+  .card-header
+    span Subscription
+    - if policy(@newsletter).edit?
+      = link_to "Edit", edit_newsletter_path(@newsletter), class: "float-end btn btn-xs btn-outline-primary"
+  .card-table
+    table.table
+      tbody
+        tr
+          th Email
+          td = mail_to(@newsletter.email)
+        tr
+          th List
+          td = newsletter_list_badge(@newsletter)
+        tr
+          th Created
+          td = admin_time(@newsletter.created_at)

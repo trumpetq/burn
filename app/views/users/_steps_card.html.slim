@@ -9,7 +9,7 @@
           .badge.badge-secondary Done
         - else
           - if policy(user.camp_application).edit?
-            = link_to("Edit", edit_camp_application_path(@user.camp_application), class: "btn btn-primary")
+            = link_to("Edit", edit_camp_application_path(user.camp_application), class: "btn btn-primary")
       - else
         - if policy(:camp_application).new?
           = link_to("Start", new_camp_application_path, class: "btn btn-primary")

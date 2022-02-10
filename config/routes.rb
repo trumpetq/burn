@@ -42,10 +42,6 @@ Rails.application.routes.draw do
   end
 
   resources :newsletters do
-    collection do
-      get :unsubscribe
-    end
-
     member do
       post :unsubscribe
     end

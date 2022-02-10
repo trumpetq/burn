@@ -1,6 +1,6 @@
 .card.mb-3
   .card-header
-    span Subscriber
+    span Subscription
     - if policy([:admin, @newsletter]).edit?
       = link_to "Edit", edit_admin_newsletter_path(@newsletter), class: "float-end btn btn-xs btn-outline-primary"
   .card-table

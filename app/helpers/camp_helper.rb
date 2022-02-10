@@ -23,7 +23,7 @@ module CampHelper
       case camp.vaccine_status.to_sym
       when :unvaccinated then "badge bg-danger"
       when :vaccinated then "badge bg-primary"
-      when :vaccinated_and_bosted then "badge bg-success"
+      when :vaccinated_and_boosted then "badge bg-success"
       else
         "badge bg-dark"
       end

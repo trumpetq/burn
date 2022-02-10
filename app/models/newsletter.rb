@@ -25,16 +25,14 @@ class Newsletter < ApplicationRecord
   validates :email, :unsubscribe_token, uniqueness: true
   validates :user_id, uniqueness: true, allow_blank: true
 
-  enumerize :list, in: {unsubscribed: 0, general: 1, campers_only: 2}, default: :general, predicates: true, scope: true
+  enumerize :list, in: {unsubscribed: 0, general: 1, campers_only: 2}, default: :unsubscribed, predicates: true, scope: true
 
   belongs_to :user, optional: true
 
   scope :for_email, ->(email) { where(email: email&.downcase) }
   scope :for_user, ->(user) { where(user: user) }
 
-  def unsubscribe!
-    update!(list: :unsubscribed, unsubscribed_at: Time.current)
-  end
+  before_validation :set_unsubscribed_at
 
   def to_s
     email
@@ -42,5 +40,20 @@ class Newsletter < ApplicationRecord
 
   def to_log
     "Newsletter id=#{id}, email=#{email}"
+  end
+
+  def unsubscribe!
+    update!(list: :unsubscribed, unsubscribed_at: Time.current)
+  end
+
+  def subscribed?
+    !unsubscribed?
+  end
+
+  private
+
+  def set_unsubscribed_at
+    self.unsubscribed_at = nil if list != :unsubscribed
+    self.unsubscribed_at = Time.current if list == :unsubscribed && unsubscribed_at.blank?
   end
 end

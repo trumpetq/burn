@@ -9,7 +9,7 @@ gem "bootsnap", require: false
 gem "cssbundling-rails"
 gem "config"
 gem "country_select"
-gem "devise"
+gem "devise" # FIX: Users::SessionsController when > 4.8.1
 gem "enumerize"
 gem "image_processing"
 # gem "importmap-rails" # Remove code

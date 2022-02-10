@@ -10,10 +10,10 @@ module Stepable
   end
 
   def to_s
-    "Camp application ##{id}"
+    "#{self.class.name.underscore.humanize} ##{id}"
   end
 
   def to_log
-    "Camp application id=#{id}, user_id=#{user_id}"
+    "#{self.class.name.underscore.humanize} id=#{id}, user_id=#{user_id}"
   end
 end

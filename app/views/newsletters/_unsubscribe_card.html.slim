@@ -1,0 +1,7 @@
+- if resource&.subscribed?
+  .card.mb-3
+    .card-header Unsubscribe
+    .card-body
+      p.card-text
+        - if policy(resource).unsubscribe?
+          = link_to("Unsubscribe", unsubscribe_newsletter_path(resource), class: "btn btn-danger", data: {turbo_confirm: "Are you sure?", turbo_method: :post})

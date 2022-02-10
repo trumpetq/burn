@@ -50,7 +50,7 @@ module Admin
     def destroy
       @resource.destroy
 
-      redirect_to admin_root_path, notice: "#{controller_name.humanize} was successfully destroyed."
+      redirect_to admin_root_path, notice: "#{controller_name.humanize} was successfully destroyed.", status: :see_other
     end
 
     private

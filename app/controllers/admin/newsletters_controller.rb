@@ -51,7 +51,7 @@ module Admin
     def destroy
       @newsletter.destroy
 
-      redirect_to admin_newsletters_url, notice: "Newsletter was successfully destroyed."
+      redirect_to admin_newsletters_url, notice: "Newsletter was successfully destroyed.", status: :see_other
     end
 
     # GET /admin/newsletters/export
@@ -59,7 +59,6 @@ module Admin
       authorize([:admin, :newsletter])
       @general_list = ::Newsletter.with_list(:general).order(email: :asc).join(",\n")
       @campers_only_list = ::Newsletter.with_list(:campers_only).order(email: :asc).join(",\n")
-
     end
 
     # POST /admin/newsletters/:id/unsubscribe

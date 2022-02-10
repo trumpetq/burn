@@ -48,7 +48,7 @@ module Admin
     def destroy
       @user.destroy
 
-      redirect_to admin_users_url, notice: "User was successfully destroyed."
+      redirect_to admin_users_url, notice: "User was successfully destroyed.", status: :see_other
     end
 
     private

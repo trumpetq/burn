@@ -1,13 +1,17 @@
-h2
-  | Resend unlock instructions
-= simple_form_for(resource, as: resource_name, url: unlock_path(resource_name), html: { method: :post }) do |f|
-  = f.error_notification
-  = f.full_error :unlock_token
-  .form-inputs
-    = f.input :email,
-    -                 required: true,
-    -                 autofocus: true,
-    -                 input_html: { autocomplete: "email" }
-  .form-actions
-    = f.button :submit, "Resend unlock instructions"
-= render "devise/shared/links"
+- page_title("Unlock")
+
+.row
+  .col-md-3
+  .col-md-6
+    .card.mb-3
+      = icon_card_header("unlock", "Unlock")
+      .card-form
+        = render "shared/error_messages", resource: resource
+        = simple_form_for(resource, as: resource_name, url: unlock_path(resource_name), html: {method: :post}) do |f|
+          .row
+            .col-md-12.mb-3
+              = f.input :email, required: true, autofocus: true, input_html: {autocomplete: "email"}
+          .row
+            .col.d-grid
+              = f.button :submit, "Resend"
+  .col-md-3s

@@ -1,0 +1,27 @@
+tr
+  th Applied
+  td = admin_time(resource.applied_at)
+tr
+  th Approved
+  td
+    = admin_time(resource.approved_at)
+    - if resource.approved_by.present?
+      =< admin_user_badge(resource.approved_by)
+tr
+  th Completed
+  td
+    = admin_time(resource.completed_at)
+    - if resource.completed_by.present?
+      =< admin_user_badge(resource.completed_by)
+tr
+  th Rejected
+  td
+    = admin_time(resource.rejected_at)
+    - if resource.rejected_by.present?
+      =< admin_user_badge(resource.rejected_by)
+tr
+  th Created
+  td = admin_time(resource.created_at)
+tr
+  th Updated
+  td = admin_time(resource.updated_at)

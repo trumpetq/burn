@@ -4,7 +4,7 @@
   .col-md-3
   .col-md-6
     .card.mb-3
-      .card-header Event
+      = icon_card_header("calendar-date", "Event")
       .card-body
         h4.card-title.text-muted Official Monday Make-out Party
         p.card-text
@@ -13,7 +13,7 @@
           <b class="ms-3">Lead</b> #{link_to(@david, user_path(@david))}
         p.card-text It's make-out Monday! Start the week off right. Play spin-the-bottle, or volunteer at our kissing booth. Minty drinks provided.
     .card.mb-3
-      .card-header Event
+      = icon_card_header("calendar-date", "Event")
       .card-body
         h4.card-title.text-muted Steam Bath Experience
         p.card-text
@@ -22,7 +22,7 @@
           <b class="ms-3">Lead</b> <span class="badge bg-danger">Available</span>
         p.card-text Sauna party description... <mark>Help us write this!</mark>
     .card.mb-3
-      .card-header Event
+      = icon_card_header("calendar-date", "Event")
       .card-body
         h4.card-title.text-muted Päntsdrunk
         p.card-text
@@ -31,7 +31,7 @@
           <b class="ms-3">Lead</b> #{link_to(@david, user_path(@mirabelle))}
         p.card-text Päntsdrunk or kalsarikännit is the Finnish tradition of getting drunk at home alone in one's underpants with no desire to do anything else (especially not to go out into the world). It is not merely an activity but a state of mind (and pants!). This year we are bringing päntsdrunk to the playa. Everyone is welcome to free cocktails from our bar (bring your own cup) and various places to sit around in your skivvies doing nothing. Tunes by Commodore 256.
     .card.mb-3
-      .card-header Event
+      = icon_card_header("calendar-date", "Event")
       .card-body
         h4.card-title.text-muted Sandwitch House
         p.card-text

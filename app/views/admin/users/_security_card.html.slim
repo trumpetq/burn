@@ -1,6 +1,7 @@
 .card.mb-3
   .card-header
-    span Security
+    => bootstrap_icon("shield-lock")
+    | Security
     - if policy([:admin, user]).destroy?
       = link_to("Delete user", admin_user_path(user), data: {turbo_confirm: "Are you sure?", turbo_method: :delete}, class: "float-end btn btn-xs btn-outline-danger")
   .card-table
@@ -20,13 +21,13 @@
           td = admin_time(user.reset_password_sent_at)
         tr
           th Failed attempts
-          td = user.failed_attempts
+          td = number_with_delimiter(user.failed_attempts)
         tr
           th Locked
           td = admin_time(user.locked_at)
         tr
           th Sign in count
-          td = user.sign_in_count
+          td = number_with_delimiter(user.sign_in_count)
         tr
           th Created
           td = admin_time(user.created_at)

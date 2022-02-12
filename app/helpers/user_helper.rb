@@ -1,6 +1,6 @@
 module UserHelper
   def user_role_badge(user)
-    return na_badge if user.blank?
+    return na_badge unless user.present?
 
     css_class =
       case user.role.to_sym
@@ -12,11 +12,11 @@ module UserHelper
         "badge bg-dark"
       end
 
-    tag.span(user.role&.to_s.humanize, class: css_class)
+    tag.span(user.role&.to_s&.humanize, class: css_class)
   end
 
   def user_status_badge(user)
-    return na_badge if user.blank?
+    return na_badge unless user.present?
 
     css_class =
       case user.status.to_sym
@@ -27,11 +27,11 @@ module UserHelper
         "badge bg-dark"
       end
 
-    tag.span(user.status&.to_s.humanize, class: css_class)
+    tag.span(user.status&.to_s&.humanize, class: css_class)
   end
 
   def user_pronouns_badge(user)
-    return na_badge if user.pronouns.blank?
+    return na_badge unless user&.pronouns.present?
 
     css_class =
       case user.pronouns.to_sym
@@ -45,11 +45,11 @@ module UserHelper
         "badge bg-dark"
       end
 
-    tag.span(user.pronouns&.to_s.humanize.sub(" ", "/"), class: css_class)
+    tag.span(user.pronouns&.to_s&.humanize&.sub(" ", "/"), class: css_class)
   end
 
   def user_postal_code_badge(user)
-    return unless user.in_bay_area?
+    return unless user&.in_bay_area?
 
     tag.span("Bay area", class: "badge bg-info")
   end
@@ -62,5 +62,10 @@ module UserHelper
         concat link_to(bootstrap_icon("twitter"), user.twitter_url, target: "_blank", class: "me-2") if user.twitter_url.present?
       end
     end
+  end
+
+  def admin_user_badge(user)
+    return na_badge if user.blank?
+    tag.span(link_to_policy(policy([:admin, user]).show?, user, admin_user_path(user)), class: "badge bg-light")
   end
 end

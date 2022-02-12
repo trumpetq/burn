@@ -3,7 +3,7 @@ module Admin
     extend ActiveSupport::Concern
 
     included do
-      before_action :set_resource, only: [:show, :edit, :update, :destroy]
+      before_action :set_resource, only: [:show, :edit, :update, :destroy, :approve, :complete, :reject]
     end
 
     # GET /admin/resources
@@ -53,7 +53,51 @@ module Admin
       redirect_to admin_root_path, notice: "#{controller_name.humanize} was successfully destroyed.", status: :see_other
     end
 
+    # POST /admin/resources/:id/approve
+    def approve
+      @resource.approved_at = Time.current
+      @resource.approved_by = current_user
+      @resource.status = :approved
+
+      @resource.save!
+      if @resource.save
+        redirect_to([:admin, @resource], notice: "#{controller_name.humanize} has been approved.")
+      else
+        redirect_on_error
+      end
+    end
+
+    # POST /admin/resources/:id/complete
+    def complete
+      @resource.completed_at = Time.current
+      @resource.completed_by = current_user
+      @resource.status = :completed
+
+      if @resource.save
+        redirect_to([:admin, @resource], notice: "#{controller_name.humanize} has been approved.")
+      else
+        redirect_on_error
+      end
+    end
+
+    # POST /admin/resources/:id/reject
+    def reject
+      @resource.rejected_at = Time.current
+      @resource.rejected_by = current_user
+      @resource.status = :rejected
+
+      if @resource.save
+        redirect_to([:admin, @resource], alert: "#{controller_name.humanize} has been rejected.")
+      else
+        redirect_on_error
+      end
+    end
+
     private
+
+    def redirect_on_error
+      redirect_to(admin_root_url, alert: "Error! #{@resource.errors.full_messages.join(". ")}.")
+    end
 
     def set_resource
       @resource = controller_name.classify.constantize.find(params[:id])

@@ -41,7 +41,7 @@ group :development, :test do
 end
 
 group :development do
-  gem "annotate", github: "dabit/annotate_models", branch: "rails-7" # Update when version > 3.1.1 is released.
+  gem "annotate"
   gem "brakeman"
   gem "bullet"
   gem "letter_opener"

@@ -4,8 +4,9 @@
   .col-md-3
   .col-md-6
     .card.mb-3
-      .card-header Error 404
+      = error_card_header(404)
       .card-body
         h2.display-3.text-danger Not Found
-        p The origin server did not find a current representation for the target resource or is not willing to disclose that one exists.
+        p.card-text The origin server did not find a current representation for the target resource or is not willing to disclose that one exists.
+        = error_alert(@error)
   .col-md-3

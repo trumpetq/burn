@@ -1,7 +1,7 @@
 .card.mb-3
-  .card-header Admin
+  = admin_card_header
   .card-body
-    - if policy([:admin, resource]).unsubscribe? && resource.subscribed?
+    - if resource.subscribed? && policy([:admin, resource]).unsubscribe?
       => link_to("Unsubscribe", unsubscribe_admin_newsletter_path(resource), class: "btn btn-warning", data: {turbo_confirm: "Are you sure?", turbo_method: :post})
     - if policy([:admin, resource]).destroy?
       = link_to("Delete", admin_newsletter_path(resource), class: "btn btn-danger", data: {turbo_confirm: "Are you sure?", turbo_method: :delete})

@@ -27,5 +27,17 @@ module Admin
     def destory?
       mayor?
     end
+
+    def approve?
+      leader?
+    end
+
+    def complete?
+      leader?
+    end
+
+    def reject?
+      leader?
+    end
   end
 end

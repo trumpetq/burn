@@ -4,7 +4,7 @@
   .col-md-3
   .col-md-6
     .card.mb-3
-      .card-header Forgot password
+      = icon_card_header("key", "Chnage password")
       .card-form
         = render "shared/error_messages", resource: resource
         = simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: {method: :put}, data: {turbo: false}) do |f|

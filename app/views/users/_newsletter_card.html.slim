@@ -1,6 +1,6 @@
 - if policy(user).me?
   .card.bg-info.bg-opacity-10.mb-3
-    .card-header #{bootstrap_icon("envelope-paper")} Subscription
+    = icon_card_header("envelope-paper", "Subscription")
     .card-body
       - if user.newsletter&.subscribed? && policy(user.newsletter).edit?
         p.card-text Subscribed to <b>#{user.newsletter.list&.to_s&.humanize(capitalize: false)}</b> list.

@@ -9,7 +9,22 @@ Rails.application.routes.draw do
   namespace :admin do
     resource :camp, only: [:show]
 
-    resources :camp_applications
+    resources :camp_applications do
+      member do
+        post :approve
+        post :complete
+        post :reject
+      end
+    end
+
+    resources :camp_interviews do
+      member do
+        post :approve
+        post :assign
+        post :complete
+        post :reject
+      end
+    end
 
     resources :newsletters do
       collection do

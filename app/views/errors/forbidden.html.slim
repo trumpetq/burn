@@ -4,8 +4,9 @@
   .col-md-3
   .col-md-6
     .card.mb-3
-      .card-header Error 403
+      = error_card_header(403)
       .card-body
         h2.display-3.text-danger Forbidden
-        p The server understood the request but refuses to authorize it.
+        p.card-text The server understood the request but refuses to authorize it.
+        = error_alert(@error)
   .col-md-3

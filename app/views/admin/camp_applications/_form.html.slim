@@ -36,11 +36,5 @@
     .col-md-12.mb-3
       = f.input :covid_protocol, label: "COVID-19 protocol", hint: "how do you think we should handle COVID-19 at camp"
   .row
-    .col-md-12.mb-3
-      = f.input :completed_at, include_blank: true, label: "Completed"
-  .row
-    .col-md-12.mb-3
-      = f.input :applied_at, include_blank: true, label: "Applied"
-  .row
     .col.d-grid
       = f.button :submit, submit_button_text(resource)

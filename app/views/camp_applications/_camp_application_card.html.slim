@@ -1,8 +1,5 @@
 .card.mb-3
-  .card-header
-    span Camp application
-    - if policy(resource).edit?
-      = link_to "Edit", edit_camp_application_path(resource), class: "float-end btn btn-xs btn-outline-primary"
+  = icon_card_header("file-text", "Camp application", header_edit_button(resource))
   .card-table
     table.table
       tbody

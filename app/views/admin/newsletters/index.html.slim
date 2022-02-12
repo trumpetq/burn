@@ -1,4 +1,4 @@
-- page_title("Subscribers")
+- page_title("Subscriptions")
 .row
   .col-md-8
     = render "search_card"
@@ -7,11 +7,7 @@
 .row
   .col-md-12
     .card.mb-3
-      .card-header
-        span Subscribers
-        - if policy([:admin, :newsletter]).new?
-          = link_to "New subscriber", new_admin_newsletter_path, class: "float-end btn btn-xs btn-outline-primary"
-
+      = icon_card_header("envelope-open", "Subscriptions", header_admin_new_button(:newsletter))
       .card-table
         table.table
           thead

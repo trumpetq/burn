@@ -1,0 +1,6 @@
+- if resource.status != :approved && policy([:admin, resource]).approve?
+  => link_to("Approve", polymorphic_path([:admin, resource], action: :approve), class: "btn btn-info text-white", data: {turbo_method: :post})
+- if resource.status != :completed && policy([:admin, resource]).complete?
+  => link_to("Complete", polymorphic_path([:admin, resource], action: :complete), class: "btn btn-success", data: {turbo_method: :post})
+- if resource.status != :rejected && policy([:admin, resource]).reject?
+  = link_to("Reject", polymorphic_path([:admin, resource], action: :reject), class: "btn btn-danger", data: {turbo_method: :post, turbo_confirm: "Are you sure?"})

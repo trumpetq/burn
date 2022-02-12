@@ -1,8 +1,5 @@
 .card.mb-3
-  .card-header
-    span Camp application
-    - if policy([:admin, resource]).edit?
-      = link_to "Edit", edit_admin_camp_application_path(resource), class: "float-end btn btn-xs btn-outline-primary"
+  = icon_card_header("file-text", "Camp application", header_admin_edit_button(resource))
   .card-table
     table.table
       tbody
@@ -45,15 +42,4 @@
         tr
           th Food allergies
           td = resource.food_allergies.presence || na_badge
-        tr
-          th Applied
-          td = admin_time(resource.applied_at)
-        tr
-          th Completed
-          td = admin_time(resource.completed_at)
-        tr
-          th Created
-          td = admin_time(resource.created_at)
-        tr
-          th Updated
-          td = admin_time(resource.updated_at)
+        = render "admin/camps/status_times", resource: resource

@@ -1,23 +1,24 @@
-
 module CampHelper
   def camp_status_badge(camp)
-    return na_badge if camp.blank?
+    return na_badge unless camp&.status.present?
 
     css_class =
       case camp.status.to_sym
       when :unavailable then "badge bg-secondary"
       when :active then "badge bg-primary"
       when :closed then "badge bg-secondary"
+      when :approved then "badge bg-info"
       when :completed then "badge bg-success"
+      when :rejected then "badge bg-danger"
       else
         "badge bg-dark"
       end
 
-    tag.span(camp.status&.to_s.humanize, class: css_class)
+    tag.span(camp.status&.to_s&.humanize, class: css_class)
   end
 
   def camp_vaccine_status_badge(camp)
-    return na_badge if camp.blank?
+    return na_badge unless camp&.vaccine_status.present?
 
     css_class =
       case camp.vaccine_status.to_sym
@@ -28,6 +29,6 @@ module CampHelper
         "badge bg-dark"
       end
 
-    tag.span(camp.vaccine_status&.to_s.humanize, class: css_class)
+    tag.span(camp.vaccine_status&.to_s&.humanize, class: css_class)
   end
 end

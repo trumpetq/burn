@@ -5,7 +5,8 @@ module BootstrapHelper
     when :notice then "alert-info"
     when :success then "alert-success"
     when :warning then "alert-warning"
-    else "alert-dark"
+    else
+      "alert-dark"
     end
   end
 

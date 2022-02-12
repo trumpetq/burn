@@ -1,10 +1,10 @@
-- page_title("New user")
+- page_title("New - User")
 
 .row
   .col-md-3
   .col-md-6
     .card.mb-3
-      .card-header New user
+      = icon_card_header("person", "User")
       .card-form
         = render "form", resource: @user
   .col-md-3

@@ -3,11 +3,7 @@
 .row
   .col-md-12
     .card.mb-3
-      .card-header
-        span Users
-        - if policy([:admin, :user]).new?
-          = link_to "New user", new_admin_user_path, class: "float-end btn btn-xs btn-outline-primary"
-
+      = icon_card_header("people", "Users", header_admin_new_button(:user))
       .card-table
         table.table
           thead

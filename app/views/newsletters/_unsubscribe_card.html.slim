@@ -1,6 +1,6 @@
 - if resource&.subscribed?
   .card.mb-3
-    .card-header Unsubscribe
+    = icon_card_header("envelope-slash", "Unsubscribe")
     .card-body
       p.card-text
         - if policy(resource).unsubscribe?

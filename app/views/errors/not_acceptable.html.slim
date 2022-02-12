@@ -4,8 +4,9 @@
   .col-md-3
   .col-md-6
     .card.mb-3
-      .card-header Error 406
+      = error_card_header(406)
       .card-body
         h2.display-3.text-danger Not Acceptable
-        p The target resource does not have a current representation that would be acceptable to the user agent, according to the proactive negotiation header fields received in the request, and the server is unwilling to supply a default representation.
+        p.card-text The target resource does not have a current representation that would be acceptable to the user agent, according to the proactive negotiation header fields received in the request, and the server is unwilling to supply a default representation.
+        = error_alert(@error)
   .col-md-3

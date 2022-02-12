@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_02_09_091429) do
+ActiveRecord::Schema[7.0].define(version: 2022_02_12_050344) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -33,7 +33,31 @@ ActiveRecord::Schema[7.0].define(version: 2022_02_09_091429) do
     t.integer "burning_man_year_count"
     t.datetime "approved_at"
     t.bigint "approved_by_id"
+    t.datetime "rejected_at"
+    t.bigint "completed_by_id"
+    t.bigint "rejected_by_id"
     t.index ["user_id"], name: "index_camp_applications_on_user_id"
+  end
+
+  create_table "camp_interviews", force: :cascade do |t|
+    t.integer "status", default: 0, null: false
+    t.bigint "user_id"
+    t.datetime "applied_at"
+    t.datetime "completed_at"
+    t.datetime "approved_at"
+    t.bigint "approved_by_id"
+    t.bigint "interviewed_by_id"
+    t.datetime "assigned_at"
+    t.bigint "skipped_at"
+    t.text "initial_notes"
+    t.text "feedback_notes"
+    t.text "private_notes"
+    t.datetime "rejected_at"
+    t.bigint "rejected_by_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "completed_by_id"
+    t.index ["user_id"], name: "index_camp_interviews_on_user_id"
   end
 
   create_table "newsletters", force: :cascade do |t|

@@ -13,6 +13,7 @@
 #  food_allergies         :text
 #  plan_to_contribute     :text
 #  referral_name          :string
+#  rejected_at            :datetime
 #  status                 :integer          default("unavailable"), not null
 #  vaccine_status         :integer
 #  what_excites_you       :text
@@ -20,6 +21,8 @@
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
 #  approved_by_id         :bigint
+#  completed_by_id        :bigint
+#  rejected_by_id         :bigint
 #  user_id                :bigint
 #
 # Indexes
@@ -30,7 +33,7 @@ class CampApplication < ApplicationRecord
   include Stepable
   extend Enumerize
 
-  enumerize :status, in: {unavailable: 0, active: 1, closed: 10, completed: 20}, default: :active, predicates: true, scope: true
+  enumerize :status, in: STATUSES, default: :active, predicates: true, scope: true
 
   enumerize :vaccine_status, in: {unvaccinated: 0, vaccinated: 1, vaccinated_and_boosted: 2}, predicates: true, scope: true
 

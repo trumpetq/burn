@@ -4,6 +4,7 @@ class ApplicationController < ActionController::Base
 
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
   rescue_from ActiveRecord::RecordNotFound, with: :not_found
+  rescue_from StandardError, with: :internal_server_error
 
   before_action :configure_permitted_parameters, if: :devise_controller?
   after_action :verify_authorized, unless: :devise_controller?
@@ -18,14 +19,18 @@ class ApplicationController < ActionController::Base
 
   private
 
+  def internal_server_error(e)
+    @error = e
+    render "errors/internal_server_error", status: :internal_server_error
+  end
+
   def not_found(e)
-    # raise e if Rails.env.development?
+    @error = e
     render "errors/not_found", status: :not_found
   end
 
   def user_not_authorized(e)
-    # raise e if Rails.env.development?
-
+    @error = e
     flash.now[:alert] = "Sorry, you don't have permission for that!"
     render "errors/forbidden", status: :forbidden
   end

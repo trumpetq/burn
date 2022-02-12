@@ -2,10 +2,7 @@
 .row
   .col-md-12
     .card.mb-3
-      .card-header
-        span Camp applications
-        - if policy([:admin, :camp_application]).new?
-          = link_to "New camp application", new_admin_camp_application_path, class: "float-end btn btn-xs btn-outline-primary"
+      = icon_card_header("file-text", "Camp applications", header_admin_new_button(:camp_application))
       .card-table
         table.table
           thead
@@ -13,8 +10,8 @@
               th ID
               th User
               th Status
-              th Applied
-              th Completed
+              th Referral
+              th Approved
               th
           tbody
             - @resources.each do |resource|
@@ -22,8 +19,8 @@
                 td = link_to_policy(policy([:admin, resource]).show?, resource.id, admin_camp_application_path(resource))
                 td = resource.user.present? ? link_to_policy(policy([:admin, resource.user]).show?, resource.user, admin_user_path(resource.user)) : na_badge
                 td = camp_status_badge(resource)
-                td = admin_time(resource.applied_at)
-                td = admin_time(resource.completed_at)
+                td = resource.referral_name
+                td = resource.approved_by.present? ? link_to_policy(policy([:admin, resource.approved_by]).show?, resource.approved_by, admin_user_path(resource.approved_by)) : na_badge
                 td.text-end
                   - if policy([:admin, resource]).edit?
                     = link_to(bootstrap_icon("pencil"), edit_admin_camp_application_path(resource))

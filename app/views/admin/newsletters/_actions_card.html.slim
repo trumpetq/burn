@@ -1,5 +1,5 @@
 .card.mb-3
-  .card-header Actions
+  = icon_card_header("send", "Actions")
   .card-body
     - if policy([:admin, :newsletter]).export?
       = link_to("Export", export_admin_newsletters_path, class: "btn btn-warning")

@@ -1,6 +1,6 @@
 module NewsletterHelper
   def newsletter_list_badge(newsletter)
-    return na_badge if newsletter.blank?
+    return na_badge unless newsletter&.list.present?
 
     css_class =
       case newsletter.list.to_sym
@@ -11,6 +11,6 @@ module NewsletterHelper
         "badge bg-dark"
       end
 
-    tag.span(newsletter.list&.to_s.humanize, class: css_class)
+    tag.span(newsletter.list&.to_s&.humanize, class: css_class)
   end
 end

@@ -4,8 +4,9 @@
   .col-md-3
   .col-md-6
     .card.mb-3
-      .card-header Error 401
+      = error_card_header(401)
       .card-body
         h2.display-3.text-danger Unauthorized
-        p The request has not been applied because it lacks valid authentication credentials for the target resource.
+        p.card-text The request has not been applied because it lacks valid authentication credentials for the target resource.
+        = error_alert(@error)
   .col-md-3

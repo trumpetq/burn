@@ -22,7 +22,7 @@
               td = ActiveRecord::Base.connection.select_value("SELECT version()")
             tr
               th Redis
-              td = Redis.new(url: Settings.redis.url).info["redis_version"]
+              td = Redis.new(url: ENV["REDIS_URL"]).info["redis_version"]
             tr
               th Environment
               td = Rails.env

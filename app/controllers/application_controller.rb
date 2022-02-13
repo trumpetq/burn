@@ -20,16 +20,19 @@ class ApplicationController < ActionController::Base
   private
 
   def internal_server_error(e)
+    Rollbar.error(e)
     @error = e
     render "errors/internal_server_error", status: :internal_server_error
   end
 
   def not_found(e)
+    Rollbar.error(e)
     @error = e
     render "errors/not_found", status: :not_found
   end
 
   def user_not_authorized(e)
+    Rollbar.error(e)
     @error = e
     flash.now[:alert] = "Sorry, you don't have permission for that!"
     render "errors/forbidden", status: :forbidden

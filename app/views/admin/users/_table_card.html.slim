@@ -1,5 +1,5 @@
 = turbo_frame_tag("users", target: "_top", class: "card mb-3") do
-  = icon_card_header("people", "Users", header_admin_new_button(:user))
+  = icon_card_header("people", "Users", pagy: pagy, button: header_admin_new_button(:user))
   .card-table
     table.table
       thead

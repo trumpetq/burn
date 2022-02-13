@@ -4,7 +4,7 @@
   .col-md-3
   .col-md-6
     .card.mb-3
-      = icon_card_header("file-text", "Camp application", header_admin_show_button(@resource))
+      = icon_card_header("file-text", "Camp application", button: header_admin_show_button(@resource))
       .card-form
         = render "form", resource: @resource
   .col-md-3

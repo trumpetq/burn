@@ -18,4 +18,9 @@ module BadgeHelper
       tag.span(text.presence || "No", class: "badge bg-danger")
     end
   end
+
+  def pagy_count_badge(pagy)
+    return na_badge unless pagy.present?
+    tag.span(number_with_delimiter(pagy.count), class: "badge rounded-pill bg-opacity-50 bg-secondary")
+  end
 end

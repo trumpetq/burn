@@ -1,15 +1,16 @@
-- if policy(:guide).index?
-  li.nav-item
-    = link_to("Guide", guides_path, class: "nav-link")
-- if policy(:user).index?
-  li.nav-item
-    = link_to("Campers", users_path, class: "nav-link")
-- if policy(:page).history?
-  li.nav-item
-    = link_to("History", history_pages_path, class: "nav-link")
-- if policy(:page).events?
-  li.nav-item
-    = link_to("Events", events_pages_path, class: "nav-link")
-- if policy(:newsletter).index?
-  li.nav-item
-    = link_to("Newsletter", newsletters_path, class: "nav-link")
+ul.navbar-nav.me-auto
+  - if policy(:guide).index?
+    li.nav-item
+      = link_to("Guide", guides_path, class: "nav-link")
+  - if policy(:user).index?
+    li.nav-item
+      = link_to("Campers", users_path, class: "nav-link")
+  - if policy(:page).history?
+    li.nav-item
+      = link_to("History", history_pages_path, class: "nav-link")
+  - if policy(:page).events?
+    li.nav-item
+      = link_to("Events", events_pages_path, class: "nav-link")
+  - if policy(:newsletter).index?
+    li.nav-item
+      = link_to("Newsletter", newsletters_path, class: "nav-link")

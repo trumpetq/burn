@@ -1,5 +1,4 @@
-ul.navbar-nav.me-auto
-  = render "shared/navbar/main"
+= render "shared/navbar/main"
 ul.navbar-nav
   - if policy(:user).camp?
     = render "shared/navbar/camp"

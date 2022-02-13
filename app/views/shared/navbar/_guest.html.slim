@@ -1,11 +1,7 @@
-ul.navbar-nav.me-auto
-  = render "shared/navbar/main"
-ul.navbar-nav
-  li.nav-item
+= render "shared/navbar/main"
+.d-flex
   - if policy(:user).devise?
-    li.nav-item
-      = link_to("Sign up", new_user_registration_path, class: "ms-2 btn btn-primary")
+    = link_to("Sign up", new_user_registration_path, class: "me-2 btn btn-primary")
   - if policy(:user).devise?
-    li.nav-item
-      = link_to("Sign in", new_user_session_path, class: "ms-2 btn btn-secondary")
+    = link_to("Sign in", new_user_session_path, class: "btn btn-secondary")
 

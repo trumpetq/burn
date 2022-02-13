@@ -9,8 +9,7 @@
         h2.display-3.text-danger Internal Server Error
         p.card-text The server encountered an unexpected condition that prevented it from fulfilling the request.
         = error_alert(@error)
-        - if Rails.env.development? && @error&.backtrace.present?
-          ul.list-unstyled.font-monospace
-            = @error.backtrace.each do
-              li.text-nowrap = _1
   .col-md-3
+.row
+  .col-md-12
+    = render "errors/backtrace_card", error: @error

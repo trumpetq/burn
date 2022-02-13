@@ -1,13 +1,13 @@
-= turbo_frame_tag("users", class: "card mb-3") do
+= turbo_frame_tag("users", target: "_top", class: "card mb-3") do
   = icon_card_header("people", "Users", header_admin_new_button(:user))
   .card-table
     table.table
       thead
         tr
-          th ID
+          th = admin_table_sort(column: "id", label: "ID")
           th = admin_table_sort(column: "name", label: "Name")
-          th Playa name
-          th Email
+          th = admin_table_sort(column: "playa_name", label: "Playa name")
+          th = admin_table_sort(column: "email", label: "Email")
           th Phone
           th Status
           th Role

@@ -1,11 +1,19 @@
 module Admin
   class UsersController < ApplicationController
+    include Sortable
     before_action :set_user, only: [:show, :edit, :update, :destroy, :restore]
 
     # GET /admin/users
     def index
       authorize([:admin, :user])
-      @pagy, @users = pagy(::User.order("LOWER(name)"))
+
+      query = ::User.all
+      query = query.order(id: param_direction) if params[:column] == "id"
+      query = query.order("LOWER(name) #{param_direction}") if params[:column] == "name"
+      query = query.order("LOWER(playa_name) #{param_direction}") if params[:column] == "playa_name"
+      query = query.order(email: param_direction) if params[:column] == "email"
+
+      @pagy, @users = pagy(query)
     end
 
     # GET /admin/users/:id

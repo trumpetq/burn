@@ -19,7 +19,7 @@
               th
           tbody
             - @newsletters.each do |newsletter|
-              tr
+              tr class=table_row_class(newsletter)
                 td = link_to_policy(policy([:admin, newsletter]).show?, newsletter.id, admin_newsletter_path(newsletter))
                 td = mail_to(newsletter.email)
                 td = newsletter.user.present? ? link_to_policy(policy([:admin, newsletter.user]).show?, newsletter.user, admin_user_path(newsletter.user)) : na_badge

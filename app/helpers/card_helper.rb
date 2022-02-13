@@ -3,8 +3,8 @@ module CardHelper
     tag.div(bootstrap_icon(icon) + " " + text + button, class: "card-header")
   end
 
-  def admin_card_header
-    tag.div(bootstrap_icon("shield-lock text-danger") + " Admin", class: "card-header")
+  def admin_card_header(button = nil)
+    tag.div(bootstrap_icon("shield-lock text-danger") + " Admin" + button, class: "card-header")
   end
 
   def error_card_header(error)
@@ -13,10 +13,5 @@ module CardHelper
 
   def pagy_card_footer(pagy)
     tag.div(pagy_bootstrap_nav(pagy).html_safe, class: "card-footer")
-  end
-
-  def error_alert(error)
-    return unless error.present? && Rails.env.development?
-    tag.div(error.message, class: "alert alert-danger")
   end
 end

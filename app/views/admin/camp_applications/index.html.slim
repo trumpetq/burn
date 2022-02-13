@@ -15,11 +15,11 @@
               th
           tbody
             - @resources.each do |resource|
-              tr
+              tr class=table_row_class(resource)
                 td = link_to_policy(policy([:admin, resource]).show?, resource.id, admin_camp_application_path(resource))
                 td = resource.user.present? ? link_to_policy(policy([:admin, resource.user]).show?, resource.user, admin_user_path(resource.user)) : na_badge
                 td = camp_status_badge(resource)
-                td = resource.referral_name
+                td = resource.referral_name.presence || na_badge
                 td = resource.approved_by.present? ? link_to_policy(policy([:admin, resource.approved_by]).show?, resource.approved_by, admin_user_path(resource.approved_by)) : na_badge
                 td.text-end
                   - if policy([:admin, resource]).edit?

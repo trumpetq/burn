@@ -10,6 +10,7 @@
 #  completed_at           :datetime
 #  covid_protocol         :text
 #  departure_on           :date
+#  discarded_at           :datetime
 #  food_allergies         :text
 #  plan_to_contribute     :text
 #  referral_name          :string
@@ -27,11 +28,13 @@
 #
 # Indexes
 #
-#  index_camp_applications_on_user_id  (user_id)
+#  index_camp_applications_on_discarded_at  (discarded_at)
+#  index_camp_applications_on_user_id       (user_id)
 #
 class CampApplication < ApplicationRecord
   include Stepable
   extend Enumerize
+  include Discard::Model
 
   enumerize :status, in: STATUSES, default: :active, predicates: true, scope: true
 

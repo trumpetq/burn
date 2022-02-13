@@ -32,6 +32,10 @@ module Admin
       record.user.present? && record.user == user
     end
 
+    def restore?
+      mayor?
+    end
+
     def unsubscribe?
       leader?
     end

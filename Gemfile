@@ -10,6 +10,7 @@ gem "cssbundling-rails"
 gem "config"
 gem "country_select"
 gem "devise" # FIX: Users::SessionsController when > 4.8.1
+gem "discard"
 gem "enumerize"
 gem "image_processing"
 # gem "importmap-rails" # Remove code

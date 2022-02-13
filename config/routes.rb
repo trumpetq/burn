@@ -14,6 +14,7 @@ Rails.application.routes.draw do
         post :approve
         post :complete
         post :reject
+        post :restore
       end
     end
 
@@ -23,6 +24,7 @@ Rails.application.routes.draw do
         post :assign
         post :complete
         post :reject
+        post :restore
       end
     end
 
@@ -32,6 +34,7 @@ Rails.application.routes.draw do
       end
 
       member do
+        post :restore
         post :unsubscribe
       end
     end
@@ -42,7 +45,11 @@ Rails.application.routes.draw do
       end
     end
 
-    resources :users
+    resources :users do
+      member do
+        post :restore
+      end
+    end
 
     root to: "pages#home"
   end

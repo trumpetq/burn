@@ -24,7 +24,7 @@ class NewslettersController < ApplicationController
 
   # POST /newsletters
   def create
-    @newsletter = ::Newsletter.for_user(current_user).take if current_user
+    @newsletter = ::Newsletter.kept.for_user(current_user).take if current_user
 
     if @newsletter.present?
       @newsletter.assign_attributes(permitted_attributes(::Newsletter))
@@ -77,7 +77,7 @@ class NewslettersController < ApplicationController
   private
 
   def set_newsletter
-    @newsletter = ::Newsletter.find(params[:id])
+    @newsletter = ::Newsletter.kept.find(params[:id])
     authorize(@newsletter)
   end
 end

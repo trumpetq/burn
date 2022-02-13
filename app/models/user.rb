@@ -7,6 +7,7 @@
 #  current_sign_in_at     :datetime
 #  current_sign_in_ip     :string
 #  description            :text
+#  discarded_at           :datetime
 #  email                  :string           default(""), not null
 #  encrypted_password     :string           default(""), not null
 #  facebook_url           :text
@@ -36,6 +37,7 @@
 #
 # Indexes
 #
+#  index_users_on_discarded_at          (discarded_at)
 #  index_users_on_email                 (email) UNIQUE
 #  index_users_on_reset_password_token  (reset_password_token) UNIQUE
 #  index_users_on_unlock_token          (unlock_token) UNIQUE
@@ -43,6 +45,7 @@
 class User < ApplicationRecord
   include Roleable
   extend Enumerize
+  include Discard::Model
 
   PREVIOUS_YEARS = [2016, 2017, 2018, 2019, 2021].freeze
   COMPLETE_PROFILE_FIELDS = [:country_code, :description, :name, :phone_number, :postal_code, :pronouns, :time_zone].freeze
@@ -116,6 +119,10 @@ class User < ApplicationRecord
 
   def social_media?
     facebook_url.present? || instagram_url.present? || twitter_url.present?
+  end
+
+  def active_for_authentication?
+    super && !discarded?
   end
 
   private

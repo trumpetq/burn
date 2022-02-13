@@ -1,4 +1,4 @@
 .card.mb-3
-  = admin_card_header
+  = admin_card_header(header_admin_delete_button(resource))
   .card-body
     = render "admin/camps/admin_buttons", resource: resource

@@ -4,7 +4,7 @@ class UsersController < ApplicationController
   # GET /users
   def index
     authorize(:user)
-    @pagy, @users = pagy(::User.with_status(:active))
+    @pagy, @users = pagy(::User.with_status(:active).order("LOWER(name)"))
   end
 
   # GET /users/:id
@@ -14,7 +14,7 @@ class UsersController < ApplicationController
   private
 
   def set_user
-    @user = ::User.find(params[:id])
+    @user = ::User.kept.find(params[:id])
     authorize(@user)
   end
 end

@@ -9,7 +9,7 @@ module Campable
   def index
     authorize(controller_name.classify.underscore.to_sym)
 
-    @resource = controller_name.classify.constantize.for_user(current_user).take
+    @resource = controller_name.classify.constantize.for_user(current_user).kept.take
 
     if @resource.present?
       redirect_to @resource
@@ -59,7 +59,7 @@ module Campable
   private
 
   def set_resource
-    @resource = controller_name.classify.constantize.find(params[:id])
+    @resource = controller_name.classify.constantize.kept.find(params[:id])
     authorize(@resource)
   end
 end

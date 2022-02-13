@@ -7,6 +7,7 @@
 #  current_sign_in_at     :datetime
 #  current_sign_in_ip     :string
 #  description            :text
+#  discarded_at           :datetime
 #  email                  :string           default(""), not null
 #  encrypted_password     :string           default(""), not null
 #  facebook_url           :text
@@ -36,6 +37,7 @@
 #
 # Indexes
 #
+#  index_users_on_discarded_at          (discarded_at)
 #  index_users_on_email                 (email) UNIQUE
 #  index_users_on_reset_password_token  (reset_password_token) UNIQUE
 #  index_users_on_unlock_token          (unlock_token) UNIQUE

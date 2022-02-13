@@ -1,10 +1,10 @@
 class ApplicationController < ActionController::Base
-  include Pundit
+  include Pundit::Authorization
   include Pagy::Backend
 
+  rescue_from StandardError, with: :internal_server_error # Must go first!
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
   rescue_from ActiveRecord::RecordNotFound, with: :not_found
-  rescue_from StandardError, with: :internal_server_error
 
   before_action :configure_permitted_parameters, if: :devise_controller?
   after_action :verify_authorized, unless: :devise_controller?

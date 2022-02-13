@@ -1,6 +1,6 @@
 module Admin
   class NewslettersController < ApplicationController
-    before_action :set_newsletter, only: [:show, :edit, :update, :destroy, :unsubscribe]
+    before_action :set_newsletter, only: [:show, :edit, :update, :destroy, :restore, :unsubscribe]
 
     # GET /admin/newsletters
     def index
@@ -49,7 +49,7 @@ module Admin
 
     # DELETE /admin/newsletters/:id
     def destroy
-      @newsletter.destroy
+      @newsletter.discard
 
       redirect_to admin_newsletters_url, notice: "Newsletter was successfully destroyed.", status: :see_other
     end
@@ -59,6 +59,13 @@ module Admin
       authorize([:admin, :newsletter])
       @general_list = ::Newsletter.with_list(:general).order(email: :asc).join(",\n")
       @campers_only_list = ::Newsletter.with_list(:campers_only).order(email: :asc).join(",\n")
+    end
+
+    # POST /admin/users/:id/restore
+    def restore
+      @newsletter.undiscard
+
+      redirect_to admin_newsletter_url(@newsletter), notice: "Newsletter was successfully restored."
     end
 
     # POST /admin/newsletters/:id/unsubscribe

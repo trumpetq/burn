@@ -3,8 +3,9 @@
   .row
     .col-md-6.mb-3
       = f.input :email
-    .col-md-6.mb-3
-      = f.input :user_id, label: "User ID"
+    - if current_user.mayor?
+      .col-md-6.mb-3
+        = f.input :user_id, label: "User ID"
   .row
     .col-md-6.mb-3
       = f.input :list, include_blank: false

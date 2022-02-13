@@ -24,7 +24,7 @@ module Admin
       edit?
     end
 
-    def destory?
+    def destroy?
       mayor?
     end
 
@@ -34,6 +34,10 @@ module Admin
 
     def complete?
       leader?
+    end
+
+    def restore?
+      mayor?
     end
 
     def reject?

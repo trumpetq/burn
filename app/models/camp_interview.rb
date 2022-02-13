@@ -7,6 +7,7 @@
 #  approved_at       :datetime
 #  assigned_at       :datetime
 #  completed_at      :datetime
+#  discarded_at      :datetime
 #  feedback_notes    :text
 #  initial_notes     :text
 #  private_notes     :text
@@ -23,7 +24,9 @@
 #
 # Indexes
 #
-#  index_camp_interviews_on_user_id  (user_id)
+#  index_camp_interviews_on_discarded_at  (discarded_at)
+#  index_camp_interviews_on_user_id       (user_id)
 #
 class CampInterview < ApplicationRecord
+  include Discard::Model
 end

@@ -1,11 +1,11 @@
 module Admin
   class UsersController < ApplicationController
-    before_action :set_user, only: [:show, :edit, :update, :destroy]
+    before_action :set_user, only: [:show, :edit, :update, :destroy, :restore]
 
     # GET /admin/users
     def index
       authorize([:admin, :user])
-      @pagy, @users = pagy(::User.all)
+      @pagy, @users = pagy(::User.order("LOWER(name)"))
     end
 
     # GET /admin/users/:id
@@ -45,9 +45,16 @@ module Admin
 
     # DELETE /admin/users/:id
     def destroy
-      @user.destroy
+      @user.discard
 
       redirect_to admin_users_url, notice: "User was successfully destroyed.", status: :see_other
+    end
+
+    # POST /admin/users/:id/restore
+    def restore
+      @user.undiscard
+
+      redirect_to admin_user_url(@user), notice: "User was successfully restored."
     end
 
     private

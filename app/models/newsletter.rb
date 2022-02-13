@@ -3,6 +3,7 @@
 # Table name: newsletters
 #
 #  id                :bigint           not null, primary key
+#  discarded_at      :datetime
 #  email             :string
 #  list              :integer          default("unsubscribed"), not null
 #  unsubscribe_token :string           not null
@@ -13,12 +14,15 @@
 #
 # Indexes
 #
+#  index_newsletters_on_discarded_at       (discarded_at)
 #  index_newsletters_on_email              (email) UNIQUE
 #  index_newsletters_on_unsubscribe_token  (unsubscribe_token) UNIQUE
 #  index_newsletters_on_user_id            (user_id) UNIQUE
 #
 class Newsletter < ApplicationRecord
   extend Enumerize
+  include Discard::Model
+
   has_secure_token :unsubscribe_token, length: 36
 
   validates :email, presence: true

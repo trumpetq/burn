@@ -3,7 +3,7 @@ module Admin
     extend ActiveSupport::Concern
 
     included do
-      before_action :set_resource, only: [:show, :edit, :update, :destroy, :approve, :complete, :reject]
+      before_action :set_resource, only: [:show, :edit, :update, :destroy, :approve, :complete, :restore, :reject]
     end
 
     # GET /admin/resources
@@ -48,7 +48,7 @@ module Admin
 
     # DELETE /admin/resources/:id
     def destroy
-      @resource.destroy
+      @resource.discard
 
       redirect_to admin_root_path, notice: "#{controller_name.humanize} was successfully destroyed.", status: :see_other
     end
@@ -91,6 +91,13 @@ module Admin
       else
         redirect_on_error
       end
+    end
+
+    # POST /admin/resources/:id/restore
+    def restore
+      @resource.undiscard
+
+      redirect_to [:admin, @resource], notice: "#{controller_name.humanize} was successfully restored."
     end
 
     private

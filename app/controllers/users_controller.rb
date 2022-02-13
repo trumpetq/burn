@@ -4,7 +4,7 @@ class UsersController < ApplicationController
   # GET /users
   def index
     authorize(:user)
-    @users = ::User.with_status(:active)
+    @pagy, @users = pagy(::User.with_status(:active))
   end
 
   # GET /users/:id

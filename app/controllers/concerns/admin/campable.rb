@@ -9,7 +9,7 @@ module Admin
     # GET /admin/resources
     def index
       authorize([:admin, controller_name.classify.underscore.to_sym])
-      @resources = controller_name.classify.constantize.order(updated_at: :desc)
+      @pagy, @resources = pagy(controller_name.classify.constantize.order(updated_at: :desc))
     end
 
     # GET /admin/resources/:id

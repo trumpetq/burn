@@ -25,3 +25,4 @@
                   - if policy([:admin, resource]).edit?
                     = link_to(bootstrap_icon("pencil"), edit_admin_camp_application_path(resource))
 
+      = pagy_card_footer(@pagy)

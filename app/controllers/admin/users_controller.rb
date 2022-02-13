@@ -5,7 +5,7 @@ module Admin
     # GET /admin/users
     def index
       authorize([:admin, :user])
-      @users = ::User.all
+      @pagy, @users = pagy(::User.all)
     end
 
     # GET /admin/users/:id

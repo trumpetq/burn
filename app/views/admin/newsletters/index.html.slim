@@ -28,4 +28,4 @@
                   - if policy([:admin, newsletter]).edit?
                     = link_to(bootstrap_icon("pencil"), edit_admin_newsletter_path(newsletter))
 
-      .card-footer == pagy_bootstrap_nav(@pagy)
+      = pagy_card_footer(@pagy)

@@ -11,6 +11,10 @@ module CardHelper
     tag.div(bootstrap_icon("exclamation-octagon") + " Error #{error}", class: "card-header bg-danger text-white")
   end
 
+  def pagy_card_footer(pagy)
+    tag.div(pagy_bootstrap_nav(pagy).html_safe, class: "card-footer")
+  end
+
   def error_alert(error)
     return unless error.present? && Rails.env.development?
     tag.div(error.message, class: "alert alert-danger")

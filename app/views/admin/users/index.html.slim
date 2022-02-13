@@ -30,3 +30,4 @@
                   - if policy([:admin, user]).edit?
                     = link_to(bootstrap_icon("pencil"), edit_admin_user_path(user))
 
+      = pagy_card_footer(@pagy)

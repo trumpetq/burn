@@ -1,6 +1,6 @@
 - if policy(user).admin?
   .card.mb-3
-    = icon_card_header("shield-lock text-danger", "Admin")
+    = card_header("shield-check text-danger", "Admin")
     .card-body
       - if policy([:admin, user]).edit?
         = link_to("Edit user", edit_admin_user_path(user), class: "btn btn-primary")

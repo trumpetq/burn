@@ -5,7 +5,7 @@
     = render "bunny_card"
   .col-md-6
     .card.mb-3
-      = icon_card_header("chat-right", "Contact")
+      = card_header("chat-right", "Contact")
       .card-table
         table.table
           tbody
@@ -25,7 +25,7 @@
                 = link_to("Request invite", Settings.slack.invite_url, class: "ms-3 btn btn-xs btn-outline-secondary", target: "_blank")
   .col-md-3
     .card.bg-info.bg-opacity-10.mb-3
-      = icon_card_header("people", "Campers")
+      = card_header("people", "Campers")
       .card-body
         p.card_text View a #{link_to_policy(policy(:user).index?, "complete list", users_path)} of this years campers.
 

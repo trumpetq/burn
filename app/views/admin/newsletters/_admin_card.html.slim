@@ -1,5 +1,5 @@
 .card.mb-3
-  = icon_card_header("shield-lock text-danger", "Admin", button: header_admin_delete_button(resource))
+  = card_header("shield-check text-danger", "Admin", button: header_admin_delete_button(resource))
   .card-body
     - if resource.subscribed? && policy([:admin, resource]).unsubscribe?
       => link_to("Unsubscribe", unsubscribe_admin_newsletter_path(resource), class: "btn btn-warning", data: {turbo_confirm: "Are you sure?", turbo_method: :post})

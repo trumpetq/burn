@@ -1,7 +1,7 @@
 - if Rails.env.development? && error&.backtrace.present?
 
   .card.mb-3
-    = icon_card_header("bug", "Backtrace")
+    = card_header("bug", "Backtrace")
     .card-body
       ul.list-unstyled.font-monospace
         = error.backtrace.each do

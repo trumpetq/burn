@@ -1,10 +1,8 @@
 .card.mb-3
-  .card-header
-    => bootstrap_icon("person")
-    | User
-    = header_admin_edit_button(@user)
+  = card_header("person", "User", button: header_admin_edit_button(@user)) do
     - if policy(@user).show?
       = link_to "Profile", user_path(@user), class: "float-end btn btn-xs btn-outline-secondary me-2"
+  end
   .card-table
     table.table
       tbody

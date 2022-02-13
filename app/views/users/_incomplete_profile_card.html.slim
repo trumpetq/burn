@@ -1,6 +1,6 @@
 - if user.incomplete_profile? && policy(user).me?
   .card.bg-warning.bg-opacity-50.mb-3
-    = icon_card_header("exclamation-triangle", "Incomplete profile")
+    = card_header("exclamation-triangle", "Incomplete profile")
     .card-body
       p.card-text Please add the following information:
       ul.list-unstyled

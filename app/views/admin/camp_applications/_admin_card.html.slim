@@ -1,4 +1,4 @@
 .card.mb-3
-  = icon_card_header("shield-lock text-danger", "Admin", button: header_admin_delete_button(resource))
+  = card_header("shield-check text-danger", "Admin", button: header_admin_delete_button(resource))
   .card-body
     = render "admin/camps/admin_buttons", resource: resource

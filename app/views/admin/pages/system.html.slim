@@ -4,7 +4,7 @@
   .col-md-3
   .col-md-6
     .card.mb-3
-      = icon_card_header("info-circle", "System information")
+      = card_header("info-circle", "System information")
       .card-table
         table.table
           tbody
@@ -19,7 +19,7 @@
               td = Rails.version
             tr
               th PostgreSQL
-              td = ActiveRecord::Base.connection.select_value("SELECT version()")
+              td = ActiveRecord::Base.connection.select_value("SHOW server_version")
             tr
               th Redis
               td = Redis.new(url: ENV["REDIS_URL"]).info["redis_version"]
@@ -29,8 +29,4 @@
             tr
               th Heroku release
               td = ENV["HEROKU_RELEASE_VERSION"].presence || na_badge
-            tr
-              th GitHub
-              td
-                code = link_to(git_commit_hash, "#{Settings.github.url}/commit/#{git_commit_hash}", target: "_blank")
   .col-md-3

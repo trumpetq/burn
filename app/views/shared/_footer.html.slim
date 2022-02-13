@@ -10,3 +10,5 @@
       li.nav-item
         = link_to_policy(policy(:page).contact?, "Contact", contact_pages_path, class: "nav-link text-secondary")
     p.mt-2.pl-3.text-center &copy; #{Time.current.year} 8-bit Bunny.
+    - if Rails.env.development?
+      p.text-center = Process.clock_gettime(Process::CLOCK_REALTIME, :millisecond)

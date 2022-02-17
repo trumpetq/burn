@@ -10,17 +10,19 @@
           th ID
           td = user.id
         tr
-          th Email
-          td = user.email
-        tr
           th Name
-          td = user.name
-        tr
-          th Pronouns
-          td = user_pronouns_badge(user)
+          td
+            = user.name
+            =< user_pronouns_badge(user)
         tr
           th Playa name
           td = user.playa_name.presence || na_badge
+        tr
+          th Plan
+          td = user_plan_badge(user)
+        tr
+          th Email
+          td = user.email
         tr
           th Phone number
           td = link_to_phone(user.phone_number)

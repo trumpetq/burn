@@ -30,6 +30,23 @@ module UserHelper
     tag.span(user.status&.to_s&.humanize, class: css_class)
   end
 
+  def user_plan_badge(user)
+    return na_badge unless user.present?
+
+    css_class =
+      case user.plan.to_sym
+      when :none then "badge bg-secondary"
+      when :camping_with_us then "badge bg-success"
+      when :thinking_about_it then "badge bg-info"
+      when :camping_elsewhere then "badge bg-warning"
+      when :not_going then "badge bg-danger"
+      else
+        "badge bg-dark"
+      end
+
+    tag.span(user.plan&.to_s&.humanize, class: css_class)
+  end
+
   def user_pronouns_badge(user)
     return na_badge unless user&.pronouns.present?
 

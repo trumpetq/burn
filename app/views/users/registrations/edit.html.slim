@@ -1,71 +1,13 @@
 - page_title("Edit - #{resource}")
 
 .row
-  .col-md-3
   .col-md-6
     .card.mb-3
       = card_header("person-check", "Edit profile", button: header_show_button(resource))
       .card-form
-        = render "shared/error_messages", resource: resource
-        = simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: {method: :put}, data: {turbo: false}) do |f|
-          = f.input :action, input_html: {value: "edit"}, as: :hidden
-          .row
-            .col-md-12.mb-3
-              = f.input :email, required: true, input_html: {autocomplete: "email"}
-          .row
-            .col-md-6.mb-3
-              = f.input :name, required: true, input_html: {autocomplete: "name"}, hint: "legal name"
-            .col-md-6.mb-3
-              = f.input :playa_name, hint: "if you have one"
-          .row
-            .col-md-12.mb-3
-              = f.input :title, hint: "tell us your role in camp"
-            .col-md-6.mb-3
-              = f.input :pronouns, label_method: -> { _1[0]&.sub(" ", "/") }
-          .row
-            .col-md-6.mb-3
-              = f.input :phone_number
-            .col-md-6.mb-3
-              = f.input :time_zone, include_blank: false
-          .row
-            .col-md-12.mb-3
-              = f.input :description, hint: "share something interesting about yourself"
-          .row
-            .col-md-6.mb-3
-              = f.input :country_code, hint: "where you call home", priority: ["US", "CA"], include_blank: true, label: "Country"
-            .col-md-6.mb-3
-              = f.input :postal_code
-          .row
-            .col-md-6.mb-3
-              = f.input :facebook_url, as: :string, label: "Facebook", hint: "https://www.facebook.com/<b>you</b>".html_safe
-            .col-md-6.mb-3
-              = f.input :instagram_url, as: :string, label: "Instagram", hint: "https://www.instagram.com/<b>you</b>".html_safe
-          .row
-            .col-md-6.mb-3
-              = f.input :twitter_url, as: :string, label: "Twitter", hint: "https://twitter.com/<b>you</b>".html_safe
-          .row
-            .col-md-12.mb-3
-              = f.input :previous_years, collection: ::User::PREVIOUS_YEARS, as: :check_boxes, label: "Previous years at 8-bit Bunny"
-          .row
-            .col.d-grid
-              = f.button :submit, "Update"
-    .card.mb-3
-      = card_header("key", "Change password")
-      .card-form
-        = simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: {method: :put, id: "password_user"}, data: {turbo: false}) do |f|
-          = f.input :email, as: :hidden, input_html: {autocomplete: "email", id: "user_email_hidden"}
-          .row
-            .col-md-12.mb-3
-              = f.input :password, hint: "leave it blank if you don't want to change it", required: false, input_html: {autocomplete: "new-password"}
-          .row
-            .col-md-12.mb-3
-              = f.input :password_confirmation, required: false, input_html: {autocomplete: "new-password"}
-          .row
-            .col-md-12.mb-3
-              = f.input :current_password, hint: "we need your current password to confirm your changes", required: true, input_html: {autocomplete: "current-password"}
-          .row
-            .col.d-grid
-              = f.button :submit, "Change"
-  .col-md-3
+        = render "form"
+  .col-md-2
+  .col-md-4
     = render "users/newsletter_card", user: resource
+    = render "change_password_card"
     = render "cancel_card", resource: resource

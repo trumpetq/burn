@@ -8,11 +8,13 @@
     .card.mb-3
       .card-body
         h4.card-title = @user
-        h6.card-subtitle.mb-2.text-muted = @user.title
+        h6.card-subtitle.mb-2.text-muted
+          = @user.title
+          - if @user.pronouns.present?
+            =< user_pronouns_badge(@user)
         p.card-text
           = @user.description.presence || "This user has not set a description yet."
-        - if @user.pronouns.present?
-          p.card-text <b>Pronouns</b> #{user_pronouns_badge(@user)}
+        p.card-text <b>Plan</b> #{user_plan_badge(@user)}
         - if @user.country_code.present?
           p.card-text <b>Country</b> #{@user.country_name}
         - if @user.postal_code.present?

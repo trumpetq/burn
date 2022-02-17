@@ -2,5 +2,7 @@
   .card.mb-3
     = card_header("shield-check text-danger", "Admin")
     .card-body
+      - if policy([:admin, user]).show?
+        => link_to(bootstrap_icon("back"), admin_user_path(user), class: "btn btn-secondary")
       - if policy([:admin, user]).edit?
         = link_to("Edit user", edit_admin_user_path(user), class: "btn btn-primary")

@@ -2,6 +2,6 @@
   .card.mb-3
     = card_header("envelope-slash", "Unsubscribe")
     .card-body
-      p.card-text
+      .btn-collection
         - if policy(resource).unsubscribe?
           = link_to("Unsubscribe", unsubscribe_newsletter_path(resource), class: "btn btn-danger", data: {turbo_confirm: "Are you sure?", turbo_method: :patch})

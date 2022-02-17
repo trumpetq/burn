@@ -2,4 +2,5 @@
   = card_header("x-square", "Cancel")
   .card-body
     p.card-text This <b>can not</b> be undone!
-    = link_to("Close account", registration_path(resource_name), class: "btn btn-danger", data: {turbo_confirm: "Are you sure?", turbo_method: :delete})
+    .btn-collection
+      = link_to("Close account", registration_path(resource_name), class: "btn btn-danger", data: {turbo_confirm: "Are you sure?", turbo_method: :delete})

@@ -26,8 +26,9 @@
         - if @user.social_media?
           p.card-text
             = user_social_media_icons(@user)
-        - if policy(@user).me?
-          = link_to("Edit profile", edit_user_registration_path, class: "btn btn-primary")
+        .btn-collection
+          - if policy(@user).me?
+            = link_to("Edit profile", edit_user_registration_path, class: "btn btn-primary")
   .col-md-3
     = render "incomplete_profile_card", user: @user
     = render "admin_card", user: @user

@@ -7,5 +7,6 @@
         - user.missing_fields.each
           li
             b = _1&.to_s&.humanize
-      - if policy(user).devise?
-        = link_to("Edit profile", edit_user_registration_path, class: "btn btn-dark")
+      .btn-collection
+        - if policy(user).devise?
+          = link_to("Edit profile", edit_user_registration_path, class: "btn btn-dark")

@@ -61,14 +61,14 @@ module Admin
       @campers_only_list = ::Newsletter.with_list(:campers_only).order(email: :asc).join(",\n")
     end
 
-    # POST /admin/users/:id/restore
+    # PATCH /admin/users/:id/restore
     def restore
       @newsletter.undiscard
 
       redirect_to admin_newsletter_url(@newsletter), notice: "Newsletter was successfully restored."
     end
 
-    # POST /admin/newsletters/:id/unsubscribe
+    # PATCH /admin/newsletters/:id/unsubscribe
     def unsubscribe
       @newsletter.unsubscribe!
       redirect_to admin_newsletter_path(@newsletter), notice: "Unsubscribe successfully completed."

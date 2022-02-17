@@ -3,6 +3,8 @@ module Stepable
   STATUSES = {unavailable: 0, active: 1, closed: 10, approved: 15, completed: 20, rejected: 30}.freeze
 
   included do
+    attribute :send_email, :boolean, default: true
+
     validates :user_id, uniqueness: true
 
     belongs_to :user

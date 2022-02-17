@@ -58,7 +58,7 @@ module Admin
       redirect_to admin_users_url, notice: "User was successfully destroyed.", status: :see_other
     end
 
-    # POST /admin/users/:id/restore
+    # PATCH /admin/users/:id/restore
     def restore
       @user.undiscard
 

@@ -67,7 +67,7 @@ class NewslettersController < ApplicationController
     redirect_to root_url, notice: "You are now unsubscribed.", status: :see_other
   end
 
-  # POST /newsletters/:id/unsubscribe
+  # PATCH /newsletters/:id/unsubscribe
   def unsubscribe
     @newsletter.unsubscribe!
 

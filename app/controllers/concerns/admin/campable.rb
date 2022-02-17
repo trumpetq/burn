@@ -3,7 +3,7 @@ module Admin
     extend ActiveSupport::Concern
 
     included do
-      before_action :set_resource, only: [:show, :edit, :update, :destroy, :approve, :complete, :restore, :reject]
+      before_action :set_resource, only: [:show, :edit, :update, :destroy, :active, :approve, :complete, :restore, :reject]
     end
 
     # GET /admin/resources
@@ -53,7 +53,19 @@ module Admin
       redirect_to admin_root_path, notice: "#{controller_name.humanize} was successfully destroyed.", status: :see_other
     end
 
-    # POST /admin/resources/:id/approve
+    # PATCH /admin/resources/:id/active
+    def active
+      @resource.status = :active
+
+      @resource.save!
+      if @resource.save
+        redirect_to([:admin, @resource], notice: "#{controller_name.humanize} has is now active.", status: :see_other)
+      else
+        redirect_on_error
+      end
+    end
+
+    # PATCH /admin/resources/:id/approve
     def approve
       @resource.approved_at = Time.current
       @resource.approved_by = current_user
@@ -61,49 +73,49 @@ module Admin
 
       @resource.save!
       if @resource.save
-        redirect_to([:admin, @resource], notice: "#{controller_name.humanize} has been approved.")
+        redirect_to([:admin, @resource], notice: "#{controller_name.humanize} has been approved.", status: :see_other)
       else
         redirect_on_error
       end
     end
 
-    # POST /admin/resources/:id/complete
+    # PATCH /admin/resources/:id/complete
     def complete
       @resource.completed_at = Time.current
       @resource.completed_by = current_user
       @resource.status = :completed
 
       if @resource.save
-        redirect_to([:admin, @resource], notice: "#{controller_name.humanize} has been approved.")
+        redirect_to([:admin, @resource], notice: "#{controller_name.humanize} has been approved.", status: :see_other)
       else
         redirect_on_error
       end
     end
 
-    # POST /admin/resources/:id/reject
+    # PATCH /admin/resources/:id/reject
     def reject
       @resource.rejected_at = Time.current
       @resource.rejected_by = current_user
       @resource.status = :rejected
 
       if @resource.save
-        redirect_to([:admin, @resource], alert: "#{controller_name.humanize} has been rejected.")
+        redirect_to([:admin, @resource], alert: "#{controller_name.humanize} has been rejected.", status: :see_other)
       else
         redirect_on_error
       end
     end
 
-    # POST /admin/resources/:id/restore
+    # PATCH /admin/resources/:id/restore
     def restore
       @resource.undiscard
 
-      redirect_to [:admin, @resource], notice: "#{controller_name.humanize} was successfully restored."
+      redirect_to([:admin, @resource], notice: "#{controller_name.humanize} was successfully restored.", status: :see_other)
     end
 
     private
 
     def redirect_on_error
-      redirect_to(admin_root_url, alert: "Error! #{@resource.errors.full_messages.join(". ")}.")
+      redirect_to(admin_root_url, alert: "Error! #{@resource.errors.full_messages.join(". ")}.", status: :see_other)
     end
 
     def set_resource

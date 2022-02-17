@@ -28,6 +28,10 @@ module Admin
       mayor?
     end
 
+    def active?
+      mayor?
+    end
+
     def approve?
       leader?
     end

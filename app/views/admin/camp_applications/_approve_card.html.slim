@@ -1,0 +1,11 @@
+- if [:rejected, :completed, :approved].exclude?(resource.status.to_sym) && policy([:admin, resource]).approve?
+  .card.mb-3
+    = card_header("check-circle", "Approve")
+    .card-body
+      = simple_form_for([:admin, resource], url: approve_admin_camp_application_path(resource)) do |f|
+        .row
+          .col.mb-3
+            = f.input :send_email, input_html: { id: "send_email_approve" }
+        .row
+          .col.d-grid
+            = f.button :submit, "Approve", class: "btn-override-primary"

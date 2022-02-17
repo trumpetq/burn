@@ -11,20 +11,21 @@ Rails.application.routes.draw do
 
     resources :camp_applications do
       member do
-        post :approve
-        post :complete
-        post :reject
-        post :restore
+        patch :active
+        patch :approve
+        patch :complete
+        patch :reject
+        patch :restore
       end
     end
 
     resources :camp_interviews do
       member do
-        post :approve
-        post :assign
-        post :complete
-        post :reject
-        post :restore
+        patch :approve
+        patch :assign
+        patch :complete
+        patch :reject
+        patch :restore
       end
     end
 
@@ -34,8 +35,8 @@ Rails.application.routes.draw do
       end
 
       member do
-        post :restore
-        post :unsubscribe
+        patch :restore
+        patch :unsubscribe
       end
     end
 
@@ -47,7 +48,7 @@ Rails.application.routes.draw do
 
     resources :users do
       member do
-        post :restore
+        patch :restore
       end
     end
 
@@ -65,7 +66,7 @@ Rails.application.routes.draw do
 
   resources :newsletters do
     member do
-      post :unsubscribe
+      patch :unsubscribe
     end
   end
 

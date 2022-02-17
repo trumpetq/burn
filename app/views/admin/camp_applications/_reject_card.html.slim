@@ -1,0 +1,11 @@
+- if [:rejected].exclude?(resource.status.to_sym) && policy([:admin, resource]).reject?
+  .card.mb-3
+    = card_header("x-octagon", "Reject")
+    .card-body
+      = simple_form_for([:admin, resource], url: reject_admin_camp_application_path(resource)) do |f|
+        .row
+          .col.mb-3
+            = f.input :send_email, input_html: { id: "send_email_reject" }
+        .row
+          .col.d-grid
+            = f.button :submit, "Reject", class: "btn-override-danger"

@@ -26,7 +26,7 @@ module ResourceHelper
     end
 
     if policy([:admin, resource]).try(:restore?) && resource.try(:discarded?)
-      link_to(bootstrap_icon("unlock-fill"), polymorphic_path([:admin, resource], action: :restore), data: {turbo_confirm: "Are you sure?", turbo_method: :post}, class: "float-end btn btn-xs btn-outline-warning")
+      link_to(bootstrap_icon("unlock-fill"), polymorphic_path([:admin, resource], action: :restore), data: {turbo_confirm: "Are you sure?", turbo_method: :patch}, class: "float-end btn btn-xs btn-outline-warning")
     end
   end
 

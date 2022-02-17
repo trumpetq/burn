@@ -4,3 +4,15 @@
   font-weight: 500;
   padding: 0.125em 0.5em;
 }
+
+body {
+.btn-override-primary { @extend .btn-primary; }
+.btn-override-secondary { @extend .btn-secondary; }
+.btn-override-success { @extend .btn-success; }
+.btn-override-danger { @extend .btn-danger; }
+.btn-override-warning { @extend .btn-warning; }
+.btn-override-info { @extend .btn-info; }
+.btn-override-light { @extend .btn-light; }
+.btn-override-dark { @extend .btn-dark; }
+.btn-override-link { @extend .btn-link; }
+}

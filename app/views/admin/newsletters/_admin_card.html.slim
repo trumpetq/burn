@@ -4,3 +4,5 @@
     .btn-collection
       - if resource.subscribed? && policy([:admin, resource]).unsubscribe?
         = link_to("Unsubscribe", unsubscribe_admin_newsletter_path(resource), class: "btn btn-warning", data: {turbo_confirm: "Are you sure?", turbo_method: :patch})
+      - if resource.discarded? && policy([:admin, resource]).force_delete?
+        = link_to("Force delete", polymorphic_path([:admin, resource], action: :force_delete), class: "btn btn-danger", data: {turbo_method: :delete, turbo_confirm: "Are you sure?"})

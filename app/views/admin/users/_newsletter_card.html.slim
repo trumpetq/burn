@@ -1,0 +1,16 @@
+- if user.newsletter.present?
+  .card.bg-info.bg-opacity-10.mb-3
+    = card_header("envelope-paper", "Subscription", button: header_admin_edit_button(user.newsletter))
+    .card-body
+      - if user.newsletter&.subscribed?
+        p.card-text Subscribed to the <b>#{user.newsletter.list&.to_s&.humanize(capitalize: false)}</b> list.
+      - else
+        .btn-collection
+          = link_to("Subscribe", new_admin_newsletter_path(email: user.email, user_id: user.id), class: "btn btn-primary")
+- else
+  .card.bg-info.bg-opacity-10.mb-3
+    = card_header("envelope-paper", "Subscription")
+    .card-body
+      p.card-text User is <b>not</b> subscribed.
+      .btn-collection
+        = link_to("Subscribe", new_admin_newsletter_path(email: user.email, user_id: user.id), class: "btn btn-primary")

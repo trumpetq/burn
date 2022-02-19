@@ -36,6 +36,10 @@ module Admin
       mayor?
     end
 
+    def force_delete?
+      mayor?
+    end
+
     def unsubscribe?
       leader?
     end

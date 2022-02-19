@@ -38,6 +38,7 @@ Rails.application.routes.draw do
 
       member do
         patch :restore
+        delete :force_delete
         patch :unsubscribe
       end
     end

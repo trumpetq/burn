@@ -71,7 +71,7 @@ class NewslettersController < ApplicationController
   def unsubscribe
     @newsletter.unsubscribe!
 
-    redirect_to root_url, notice: "You are now unsubscribed."
+    redirect_to root_url, notice: "You are now unsubscribed.", status: :see_other
   end
 
   private

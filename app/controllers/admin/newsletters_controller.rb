@@ -1,6 +1,6 @@
 module Admin
   class NewslettersController < ApplicationController
-    before_action :set_newsletter, only: [:show, :edit, :update, :destroy, :restore, :unsubscribe]
+    before_action :set_newsletter, only: [:show, :edit, :update, :destroy, :restore, :unsubscribe, :force_delete]
 
     # GET /admin/newsletters
     def index
@@ -19,7 +19,7 @@ module Admin
 
     # GET /admin/newsletters/new
     def new
-      @newsletter = ::Newsletter.new
+      @newsletter = ::Newsletter.new(email: params[:email], user_id: params[:user_id], list: :general)
       authorize([:admin, @newsletter])
     end
 
@@ -65,13 +65,20 @@ module Admin
     def restore
       @newsletter.undiscard
 
-      redirect_to admin_newsletter_url(@newsletter), notice: "Newsletter was successfully restored."
+      redirect_to admin_newsletter_url(@newsletter), notice: "Newsletter was successfully restored.", status: :see_other
+    end
+
+    # DELETE /admin/users/:id/force_delete
+    def force_delete
+      @newsletter.delete
+
+      redirect_to admin_root_url, notice: "Newsletter was been deleted.", status: :see_other
     end
 
     # PATCH /admin/newsletters/:id/unsubscribe
     def unsubscribe
       @newsletter.unsubscribe!
-      redirect_to admin_newsletter_path(@newsletter), notice: "Unsubscribe successfully completed."
+      redirect_to admin_newsletter_path(@newsletter), notice: "Unsubscribe successfully completed.", status: :see_other
     end
 
     private

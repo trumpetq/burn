@@ -1,12 +1,13 @@
-- if policy(user).me? && user.newsletter&.unsubscribed?
+- if policy(user).me?
   .card.bg-info.bg-opacity-10.mb-3
     = card_header("envelope-paper", "Subscription")
     .card-body
-      - if user.newsletter&.subscribed? && policy(user.newsletter).edit?
-        p.card-text Subscribed to <b>#{user.newsletter.list&.to_s&.humanize(capitalize: false)}</b> list.
-        .btn-collection
-          = link_to("Edit", edit_newsletter_path(user.newsletter), class: "btn btn-primary")
+      - if user.newsletter&.subscribed?
+        p.card-text
+          | Subscribed to the
+          b<> = link_to_policy(policy(user.newsletter).edit?, user.newsletter.list&.to_s&.humanize(capitalize: false), edit_newsletter_path(user.newsletter))
+          | list.
       - else
-        p.card-text Keep up to date with camp news.
+        p.card-text Keep <b>up to date</b> with camp news.
         .btn-collection
-          = link_to("Subscribe", new_newsletter_path(email: current_user.email), class: "btn btn-primary")
+          = link_to("Subscribe", new_newsletter_path(email: user.email), class: "btn btn-primary")

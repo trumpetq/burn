@@ -30,6 +30,7 @@
           - if policy(@user).me?
             = link_to("Edit profile", edit_user_registration_path, class: "btn btn-primary")
   .col-md-3
+    = render "avatar_card", user: @user
     = render "incomplete_profile_card", user: @user
     = render "admin_card", user: @user
     - if @user.newsletter&.unsubscribed?

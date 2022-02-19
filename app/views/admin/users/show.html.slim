@@ -2,12 +2,8 @@
 = discard_alert(@user)
 .row
   .col-md-4
-    .card.mb-3
-      .card-body
-        h4.card-title = @user
-        h6.card-subtitle.mb-2.text-muted = @user.title
-        p.card-text
-          = @user.description.presence || na_badge
+    = render "profile_card", user: @user
+    = render "steps_card", user: @user
   .col-md-4
     = render "avatar_card", user: @user
   .col-md-4

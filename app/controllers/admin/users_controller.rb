@@ -1,7 +1,7 @@
 module Admin
   class UsersController < ApplicationController
     include Sortable
-    before_action :set_user, only: [:show, :edit, :update, :destroy, :restore]
+    before_action :set_user, only: [:show, :edit, :update, :destroy, :restore, :remove_avatar]
 
     # GET /admin/users
     def index
@@ -62,7 +62,14 @@ module Admin
     def restore
       @user.undiscard
 
-      redirect_to admin_user_url(@user), notice: "User was successfully restored."
+      redirect_to admin_user_url(@user), notice: "User was successfully restored.", status: :see_other
+    end
+
+    # PATCH /admin/users/:id/remove_avatar
+    def remove_avatar
+      @user.update(avatar: nil)
+
+      redirect_to admin_user_url(@user), notice: "Photo has been removed.", status: :see_other
     end
 
     private

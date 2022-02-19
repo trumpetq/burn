@@ -1,3 +1,8 @@
+li.nav-item
+  - if current_user.avatar.attached?
+    = link_to(user_path(current_user), class: "nav-link pe-0") do
+      = image_tag(current_user.avatar.variant(:menu), size: "24x24", class: "rounded-circle", alt: @user)
+
 li.nav-item.dropdown
   = link_to(current_user, "#", class: "nav-link dropdown-toggle", data: {bs_toggle: "dropdown"})
   .dropdown-menu.dropdown-menu-end

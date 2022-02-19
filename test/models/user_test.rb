@@ -18,7 +18,7 @@
 #  locked_at              :datetime
 #  name                   :string           not null
 #  phone_number           :string
-#  plan                   :integer          default(0), not null
+#  plan                   :integer          default("none"), not null
 #  playa_name             :string
 #  postal_code            :string
 #  previous_years         :jsonb

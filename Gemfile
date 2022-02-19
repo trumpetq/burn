@@ -5,6 +5,7 @@ ruby "3.1.1"
 
 gem "aasm"
 gem "acts_as_list"
+gem "aws-sdk-s3", require: false
 gem "bootsnap", require: false
 gem "cssbundling-rails"
 gem "config"

@@ -36,8 +36,12 @@ module Admin
       mayor?
     end
 
+    def remove_avatar?
+      mayor?
+    end
+
     def permitted_attributes
-      attrs = [:name, :playa_name, :email, :password, :phone_number, :time_zone, :title, :description, :country_code, :postal_code, :pronouns, :facebook_url, :instagram_url, :twitter_url, :plan, previous_years: []]
+      attrs = [:name, :playa_name, :email, :password, :phone_number, :time_zone, :title, :description, :country_code, :postal_code, :pronouns, :facebook_url, :instagram_url, :twitter_url, :plan, :avatar, previous_years: []]
       attrs += [:role, :status] if user.mayor?
       attrs
     end

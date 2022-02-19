@@ -1,0 +1,12 @@
+- if @user.avatar.attached?
+  .card.mb-3
+    = card_header("image", "Photo") do
+      - if policy([:admin, @user]).remove_avatar?
+        = link_to("Remove", remove_avatar_admin_user_path(@user), class: "float-end btn btn-xs btn-outline-danger", data: {turbo_method: :patch, turbo_confirm: "Are you sure?"})
+    .card-body
+      = image_tag(@user.avatar.variant(:profile), class: "img-fluid", alt: @user)
+- else
+  .card.mb-3
+    = card_header("image", "Photo")
+    .card-body
+      .alert.alert-danger.mb-0 This user is <b>missing</b> a photo.

@@ -44,6 +44,9 @@
   .row
     .mb-3
       = f.input :previous_years, collection: ::User::PREVIOUS_YEARS, as: :check_boxes, label: "Previous years at 8-bit Bunny"
+  .row
+    .col-md-12.mb-3
+      = f.input :avatar, label: "Photo"
   - if current_user.mayor?
     .row
       .col-md-6.mb-3

@@ -17,7 +17,6 @@
   .row
     .col-md-6.mb-3
       = f.input :plan, include_blank: false, hint: "what are you doing in 2022"
-
   .row
     .col-md-6.mb-3
       = f.input :phone_number
@@ -42,6 +41,9 @@
   .row
     .col-md-12.mb-3
       = f.input :previous_years, collection: ::User::PREVIOUS_YEARS, as: :check_boxes, label: "Previous years at 8-bit Bunny"
+  .row
+    .col-md-12.mb-3
+      = f.input :avatar, label: "Photo", hint: "add a photo of yourself"
   .row
     .col.d-grid
       = f.button :submit, "Update"

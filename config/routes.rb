@@ -51,6 +51,7 @@ Rails.application.routes.draw do
     resources :users do
       member do
         patch :restore
+        patch :remove_avatar
       end
     end
 

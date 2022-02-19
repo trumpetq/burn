@@ -18,7 +18,7 @@
 #  locked_at              :datetime
 #  name                   :string           not null
 #  phone_number           :string
-#  plan                   :integer          default(0), not null
+#  plan                   :integer          default("none"), not null
 #  playa_name             :string
 #  postal_code            :string
 #  previous_years         :jsonb
@@ -69,6 +69,11 @@ class User < ApplicationRecord
 
   has_one :camp_application
   has_one :newsletter
+  has_one_attached :avatar do |attachable|
+    attachable.variant :menu, resize_to_limit: [100, 100]
+    attachable.variant :thumbnail, resize_to_limit: [300, 300]
+    attachable.variant :profile, resize_to_limit: [1000, 1000]
+  end
 
   scope :for_phone_number, ->(phone_number) { where(phone_numer: PhonyRails.normalize_number(phone_number)) }
   scope :for_email, ->(email) { where(email: email&.downcase) }

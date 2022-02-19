@@ -22,7 +22,8 @@ date:
     ["Wednesday, September 7th (gtfo)", "2022-09-07"]
   ]
 email:
-  contact: support@8bitbunny.com
+  support: support@8bitbunny.com
+  from: 8-bit Bunny <support@8bitbunny.com>
 facebook:
   url: https://www.facebook.com/groups/8bitbunny
 github:

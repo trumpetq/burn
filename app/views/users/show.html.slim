@@ -2,36 +2,11 @@
 
 .row
   .col-md-3
-    - if policy(@user).me?
-      = render "steps_card", user: @user
+    = render "steps_card", user: @user
   .col-md-6
-    .card.mb-3
-      .card-body
-        h4.card-title = @user
-        h6.card-subtitle.mb-2.text-muted
-          = @user.title
-          - if @user.pronouns.present?
-            =< user_pronouns_badge(@user)
-        p.card-text
-          = @user.description.presence || "This user has not set a description yet."
-        p.card-text <b>Plan</b> #{user_plan_badge(@user)}
-        - if @user.country_code.present?
-          p.card-text <b>Country</b> #{@user.country_name}
-        - if @user.postal_code.present?
-          p.card-text
-            <b>Postal code</b> #{@user.postal_code}
-            =< user_postal_code_badge(@user)
-        - if @user.previous_years.present?
-          p.card-text <b>Previous years</b> #{@user.previous_years.join(", ")}
-        - if @user.social_media?
-          p.card-text
-            = user_social_media_icons(@user)
-        .btn-collection
-          - if policy(@user).me?
-            = link_to("Edit profile", edit_user_registration_path, class: "btn btn-primary")
+    = render "profile_card", user: @user
   .col-md-3
     = render "avatar_card", user: @user
     = render "incomplete_profile_card", user: @user
     = render "admin_card", user: @user
-    - if @user.newsletter&.unsubscribed?
-      = render "newsletter_card", user: @user
+    = render "newsletter_card", user: @user

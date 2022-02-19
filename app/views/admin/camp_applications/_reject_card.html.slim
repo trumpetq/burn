@@ -1,4 +1,4 @@
-- if [:rejected].exclude?(resource.status.to_sym) && policy([:admin, resource]).reject?
+- if [:completed, :rejected].exclude?(resource.status.to_sym) && policy([:admin, resource]).reject?
   .card.mb-3
     = card_header("x-octagon", "Reject")
     .card-body

@@ -16,7 +16,7 @@
       = f.input :pronouns, label_method: -> { _1[0]&.sub(" ", "/") }
   .row
     .col-md-6.mb-3
-      = f.input :plan, include_blank: false, hint: "what are you doing in 2022"
+      = f.input :plan, include_blank: false, hint: "what are you doing in #{Settings.date.current_year}"
   .row
     .col-md-6.mb-3
       = f.input :phone_number

@@ -12,7 +12,7 @@
       = f.input :who_are_you, hint: "tell us about yourself", hint: "what should we know about you"
   .row
     .col-md-12.mb-3
-      = f.input :what_excites_you, label: "What excites you about camping with us", hint: "tell us what you are looking forward to in 2022"
+      = f.input :what_excites_you, label: "What excites you about camping with us", hint: "tell us what you are looking forward to in #{Settings.date.current_year}"
   .row
     .col-md-12.mb-3
       = f.input :plan_to_contribute, hint: "how will you make camp better"

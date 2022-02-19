@@ -1,4 +1,4 @@
-- if policy(user).me?
+- if policy(user).me? && user.newsletter&.unsubscribed?
   .card.bg-info.bg-opacity-10.mb-3
     = card_header("envelope-paper", "Subscription")
     .card-body

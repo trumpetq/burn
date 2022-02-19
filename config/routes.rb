@@ -16,6 +16,7 @@ Rails.application.routes.draw do
         patch :complete
         patch :reject
         patch :restore
+        delete :force_delete
       end
     end
 
@@ -26,6 +27,7 @@ Rails.application.routes.draw do
         patch :complete
         patch :reject
         patch :restore
+        delete :force_delete
       end
     end
 

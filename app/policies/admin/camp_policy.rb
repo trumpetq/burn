@@ -44,6 +44,10 @@ module Admin
       mayor?
     end
 
+    def force_delete?
+      mayor?
+    end
+
     def reject?
       leader?
     end

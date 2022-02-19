@@ -7,3 +7,5 @@
     = link_to("Complete", polymorphic_path([:admin, resource], action: :complete), class: "btn btn-success", data: {turbo_method: :patch})
   - if resource.status != :rejected && policy([:admin, resource]).reject?
     = link_to("Reject", polymorphic_path([:admin, resource], action: :reject), class: "btn btn-danger", data: {turbo_method: :patch, turbo_confirm: "Are you sure?"})
+  - if resource.discarded? && policy([:admin, resource]).force_delete?
+    = link_to("Force delete", polymorphic_path([:admin, resource], action: :force_delete), class: "btn btn-danger", data: {turbo_method: :delete, turbo_confirm: "Are you sure?"})

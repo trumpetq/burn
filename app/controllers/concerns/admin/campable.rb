@@ -3,7 +3,7 @@ module Admin
     extend ActiveSupport::Concern
 
     included do
-      before_action :set_resource, only: [:show, :edit, :update, :destroy, :active, :approve, :complete, :restore, :reject]
+      before_action :set_resource, only: [:show, :edit, :update, :destroy, :active, :approve, :complete, :restore, :reject, :force_delete]
     end
 
     # GET /admin/resources
@@ -57,8 +57,11 @@ module Admin
     def active
       @resource.status = :active
 
-      @resource.save!
+      active_before_save if defined?(active_before_save)
+
       if @resource.save
+        active_after_save if defined?(active_after_save)
+
         redirect_to([:admin, @resource], notice: "#{controller_name.humanize} has is now active.", status: :see_other)
       else
         redirect_on_error
@@ -71,10 +74,11 @@ module Admin
       @resource.approved_by = current_user
       @resource.status = :approved
 
-      CampApplicationMailer.with(user: current_user).approve_email.deliver_now if send_email
+      approve_before_save if defined?(approve_before_save)
 
-      @resource.save!
       if @resource.save
+        approve_after_save if defined?(approve_after_save)
+
         redirect_to([:admin, @resource], notice: "#{controller_name.humanize} has been approved.", status: :see_other)
       else
         redirect_on_error
@@ -87,9 +91,11 @@ module Admin
       @resource.completed_by = current_user
       @resource.status = :completed
 
-      CampApplicationMailer.with(user: current_user).complete_email.deliver_now if send_email
+      complete_before_save if defined?(complete_before_save)
 
       if @resource.save
+        complete_after_save if defined?(complete_after_save)
+
         redirect_to([:admin, @resource], notice: "#{controller_name.humanize} has been approved.", status: :see_other)
       else
         redirect_on_error
@@ -102,9 +108,11 @@ module Admin
       @resource.rejected_by = current_user
       @resource.status = :rejected
 
-      CampApplicationMailer.with(user: current_user).reject_email.deliver_now  if send_email
+      reject_before_save if defined?(reject_before_save)
 
       if @resource.save
+        reject_after_save if defined?(reject_after_save)
+
         redirect_to([:admin, @resource], alert: "#{controller_name.humanize} has been rejected.", status: :see_other)
       else
         redirect_on_error
@@ -116,6 +124,13 @@ module Admin
       @resource.undiscard
 
       redirect_to([:admin, @resource], notice: "#{controller_name.humanize} was successfully restored.", status: :see_other)
+    end
+
+    # DELETE /admin/resources/:id/force_delete
+    def force_delete
+      @resource.destroy
+
+      redirect_to(admin_root_url, alert: "#{controller_name.humanize} was successfully deleted.", status: :see_other)
     end
 
     private

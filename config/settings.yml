@@ -1,3 +1,5 @@
+app:
+  url: https://burn.8bitbunny.com
 date:
   current_year: 2022
   full_event: [
@@ -20,7 +22,7 @@ date:
     ["Wednesday, September 7th (gtfo)", "2022-09-07"]
   ]
 email:
-  contact: david@8bitbunny.com
+  contact: support@8bitbunny.com
 facebook:
   url: https://www.facebook.com/groups/8bitbunny
 github:

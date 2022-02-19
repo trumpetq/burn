@@ -71,6 +71,8 @@ module Admin
       @resource.approved_by = current_user
       @resource.status = :approved
 
+      CampApplicationMailer.with(user: current_user).approve_email.deliver_now if send_email
+
       @resource.save!
       if @resource.save
         redirect_to([:admin, @resource], notice: "#{controller_name.humanize} has been approved.", status: :see_other)
@@ -85,6 +87,8 @@ module Admin
       @resource.completed_by = current_user
       @resource.status = :completed
 
+      CampApplicationMailer.with(user: current_user).complete_email.deliver_now if send_email
+
       if @resource.save
         redirect_to([:admin, @resource], notice: "#{controller_name.humanize} has been approved.", status: :see_other)
       else
@@ -97,6 +101,8 @@ module Admin
       @resource.rejected_at = Time.current
       @resource.rejected_by = current_user
       @resource.status = :rejected
+
+      CampApplicationMailer.with(user: current_user).reject_email.deliver_now  if send_email
 
       if @resource.save
         redirect_to([:admin, @resource], alert: "#{controller_name.humanize} has been rejected.", status: :see_other)
@@ -121,6 +127,10 @@ module Admin
     def set_resource
       @resource = controller_name.classify.constantize.find(params[:id])
       authorize([:admin, @resource])
+    end
+
+    def send_email
+      params.dig(controller_name.singularize, :send_email) == "1"
     end
   end
 end

@@ -4,7 +4,7 @@ Rails.application.configure do
   config.cache_classes = true
 
   config.eager_load = true
-  
+
   config.force_ssl = true
 
   config.consider_all_requests_local = false
@@ -34,9 +34,11 @@ Rails.application.configure do
   config.active_record.dump_schema_after_migration = false
 
   config.action_mailer.perform_caching = false
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.raise_delivery_errors = true
   config.action_mailer.default_url_options = {host: "burn.8bitbunny.com"}
-
-  ActionMailer::Base.smtp_settings = {
+  config.action_mailer.smtp_settings = {
     user_name: "apikey",
     password: ENV["SENDGRID_API_KEY"],
     domain: "8bitbunny.com",

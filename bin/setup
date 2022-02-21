@@ -8,9 +8,12 @@ def system!(*args)
 end
 
 FileUtils.chdir APP_ROOT do
-  puts "Installing dependencies."
+  puts "Installing Gem dependencies."
   system! "gem install bundler --conservative"
   system("bundle check") || system!("bundle install")
+
+  puts "Installing NPM dependencies."
+  system! "yarn install"
 
   puts "Preparing database."
   system! "bin/rails db:prepare"

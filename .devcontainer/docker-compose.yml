@@ -1,0 +1,16 @@
+services:
+  db:
+    image: postgres
+    volumes: [../tmp/db:/var/lib/postgresql/data]
+    environment:
+      POSTGRES_HOST_AUTH_METHOD: trust
+      POSTGRES_USER: postgres
+
+  app:
+    build: .
+    command: sleep infinity
+    depends_on: [db]
+    environemnt:
+      DATABASE_URL: postgresql://db
+    network_mode: service:db
+    volumes: [..:/workspace:cached]

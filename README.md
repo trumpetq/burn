@@ -6,6 +6,7 @@ This Rails app is used to power our camps registration system at [burn.8bitbunny
 
 ### Develop on macOS
 1. Use [Homebrew](https://brew.sh) to install rbenv, PosgreSQL, and other native dependencies:
+
     ```
     $ brew install rbenv vips postgresql
     ```

@@ -10,7 +10,7 @@ services:
     build: .
     command: sleep infinity
     depends_on: [db]
-    environemnt:
+    environment:
       DATABASE_URL: postgresql://db
     network_mode: service:db
     volumes: [..:/workspace:cached]

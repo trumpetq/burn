@@ -1,6 +1,7 @@
 module Admin
   class UsersController < ApplicationController
     include Sortable
+
     before_action :set_user, only: [:show, :edit, :update, :destroy, :restore, :remove_avatar]
 
     # GET /admin/users
@@ -12,13 +13,14 @@ module Admin
       query = query.order("LOWER(name) #{param_direction}") if params[:column] == "name"
       query = query.order("LOWER(playa_name) #{param_direction}") if params[:column] == "playa_name"
       query = query.order(email: param_direction) if params[:column] == "email"
+      query = query.order(status: param_direction) if params[:column] == "status"
+      query = query.order(role: param_direction) if params[:column] == "role"
 
-      @pagy, @users = pagy(query)
+      @pagy, @users = pagy(query, items: 50)
     end
 
     # GET /admin/users/:id
     def show
-      # @user.generate_steps
     end
 
     # GET /admin/users/new

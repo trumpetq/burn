@@ -20,6 +20,8 @@ class ApplicationController < ActionController::Base
   private
 
   def internal_server_error(e)
+    raise e if Rails.env.development?
+
     Rollbar.error(e)
     @error = e
     render "errors/internal_server_error", status: :internal_server_error
@@ -32,9 +34,14 @@ class ApplicationController < ActionController::Base
   end
 
   def user_not_authorized(e)
-    Rollbar.error(e)
     @error = e
-    flash.now[:alert] = "Sorry, you don't have permission for that!"
-    render "errors/forbidden", status: :forbidden
+
+    if current_user.present?
+      Rollbar.error(e)
+      flash.now[:alert] = "Sorry, you don't have permission for that!"
+      render "errors/forbidden", status: :forbidden
+    else
+      redirect_to(new_user_session_url, alert: "You need to be signed in first.")
+    end
   end
 end

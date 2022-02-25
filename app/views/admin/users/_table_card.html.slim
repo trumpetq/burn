@@ -4,13 +4,13 @@
     table.table
       thead
         tr
-          th = admin_table_sort(column: "id", label: "ID")
-          th = admin_table_sort(column: "name", label: "Name")
-          th = admin_table_sort(column: "playa_name", label: "Playa name")
-          th = admin_table_sort(column: "email", label: "Email")
+          th = admin_table_sort(path: :users, column: "id", label: "ID")
+          th = admin_table_sort(path: :users, column: "name", label: "Name")
+          th = admin_table_sort(path: :users, column: "playa_name", label: "Playa name")
+          th = admin_table_sort(path: :users, column: "email", label: "Email")
           th Phone
-          th Status
-          th Role
+          th = admin_table_sort(path: :users, column: "status", label: "Status")
+          th = admin_table_sort(path: :users, column: "role", label: "Role")
           th
       tbody
         - users.each do |user|

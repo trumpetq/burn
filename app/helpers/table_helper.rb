@@ -1,9 +1,9 @@
 module TableHelper
-  def admin_table_sort(column:, label:)
+  def admin_table_sort(path:, column:, label:)
     if column == params[:column]
-      link_to(sort_icon + " " + label, admin_users_path(column: column, direction: next_direction), data: {turbo_frame: "users"})
+      link_to(sort_icon + " " + label, polymorphic_path([:admin, path.to_sym], column: column, direction: next_direction), data: {turbo_frame: path.to_s})
     else
-      link_to(label, admin_users_path(column: column, direction: "asc"), data: {turbo_frame: "users"})
+      link_to(label, polymorphic_path([:admin, path.to_sym], column: column, direction: "asc"), data: {turbo_frame: path.to_s})
     end
   end
 

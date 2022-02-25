@@ -1,5 +1,7 @@
 module Admin
   class NewslettersController < ApplicationController
+    include Sortable
+
     before_action :set_newsletter, only: [:show, :edit, :update, :destroy, :restore, :unsubscribe, :force_delete]
 
     # GET /admin/newsletters
@@ -10,7 +12,11 @@ module Admin
       query = query.for_email(params[:search][:email]) if params.dig(:search, :email).present?
       query = query.for_user(params[:search][:user_id]) if params.dig(:search, :user_id).present?
 
-      @pagy, @newsletters = pagy(query.order(updated_at: :desc))
+      query = query.order(id: param_direction) if params[:column] == "id"
+      query = query.order(email: param_direction) if params[:column] == "email"
+      query = query.order(list: param_direction) if params[:column] == "list"
+
+      @pagy, @newsletters = pagy(query.order(created_at: :desc), items: 50)
     end
 
     # GET /admin/newsletters/:id

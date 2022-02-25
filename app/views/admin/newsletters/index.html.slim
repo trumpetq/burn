@@ -6,26 +6,4 @@
     = render "actions_card"
 .row
   .col-md-12
-    .card.mb-3
-      = card_header("envelope-open", "Subscriptions", pagy: @pagy, button: header_admin_new_button(:newsletter))
-      .card-table
-        table.table
-          thead
-            tr
-              th ID
-              th Email
-              th User
-              th List
-              th
-          tbody
-            - @newsletters.each do |newsletter|
-              tr class=table_row_class(newsletter)
-                td = link_to_policy(policy([:admin, newsletter]).show?, newsletter.id, admin_newsletter_path(newsletter))
-                td = mail_to(newsletter.email)
-                td = newsletter.user.present? ? link_to_policy(policy([:admin, newsletter.user]).show?, newsletter.user, admin_user_path(newsletter.user)) : na_badge
-                td = newsletter_list_badge(newsletter)
-                td.text-end
-                  - if policy([:admin, newsletter]).edit?
-                    = link_to(bootstrap_icon("pencil"), edit_admin_newsletter_path(newsletter))
-
-      = pagy_card_footer(@pagy)
+    = render "table_card", newsletters: @newsletters, pagy: @pagy

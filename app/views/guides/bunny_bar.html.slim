@@ -3,7 +3,7 @@
 .row
   .col-md-3
     = render "menu_card"
-  .col-md-9
+  .col-md-6
     .card.mb-3
       = card_header("cup-straw", "Bunny Bar")
       .card-body
@@ -17,4 +17,10 @@
           li Propose to a stranger and get their hand in marriage. If they say no you spin again.
         h3 Megaphones
         p.card-text We have 30 10w megaphones. 10w is the perfect size. It's fun without being too obnoxiously loud. Many of our Bunny Bar tasks require a megaphone to complete.
+  .col-md-3
+    .card.mb-3
+      .card-body
         = image_tag("guides/spin-the-wheel.jpg", size: "2000x1333", class: "img-fluid", alt: "Spin the wheel")
+    .card.mb-3
+      .card-body
+        = image_tag("guides/megaphones.jpg", size: "2000x1333", class: "img-fluid", alt: "Megaphones")

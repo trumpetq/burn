@@ -3,9 +3,13 @@
 .row
   .col-md-3
     = render "menu_card"
-  .col-md-9
+  .col-md-6
     .card.mb-3
       = card_header("radioactive", "Disclaimer")
       .card-body
         .alert.alert-danger Burning Man is dangerous and you <b>might die</b>.
         p.card-text By joining our camp you agree that you have researched and fully understand the danger of attending Burning Man and agree to hold 8-bit Bunny harmless for any and all injury you sustain.
+  .col-md-3
+    .card.mb-3
+      .card-body
+        = image_tag("guides/disclaimer.jpg", size: "2000x2000", class: "img-fluid", alt: "You might die")

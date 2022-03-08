@@ -3,10 +3,17 @@
 .row
   .col-md-3
     = render "menu_card"
-  .col-md-9
+  .col-md-5
     .card.mb-3
       = card_header("truck-flatbed", "Shipping container")
       .card-body
         p.card-text We have a shipping container though the #{link_to("Black Rock City Storage Program", "https://storage.burningman.org/", target: "_blank")} that we use to store supplies year ruond.
         p.card-text During the event we used the container as an air conditioned chill space.
         p.card-text In order to get your #{link_to("deposit", deposit_guides_path)} back you must stay until the shipping container is fully loaded and the final MOOP sweep is complete.
+  .col-md-4
+    .card.mb-3
+      .card-body
+        = image_tag("guides/container-1.jpg", size: "2000x1333", class: "img-fluid", alt: "AC container")
+    .card.mb-3
+      .card-body
+        = image_tag("guides/container-2.jpg", size: "2000x2000", class: "img-fluid", alt: "Container packed")

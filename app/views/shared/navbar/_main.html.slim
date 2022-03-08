@@ -5,12 +5,12 @@ ul.navbar-nav.me-auto
   - if policy(:user).index?
     li.nav-item
       = link_to("Campers", users_path, class: "nav-link")
-  - if policy(:page).history?
+  - if policy(:guide).history?
     li.nav-item
-      = link_to("History", history_pages_path, class: "nav-link")
-  - if policy(:page).events?
+      = link_to("History", history_guides_path, class: "nav-link")
+  - if policy(:guide).events?
     li.nav-item
-      = link_to("Events", events_pages_path, class: "nav-link")
+      = link_to("Events", events_guides_path, class: "nav-link")
   - if policy(:newsletter).index?
     li.nav-item
       = link_to("Newsletter", newsletters_path, class: "nav-link")

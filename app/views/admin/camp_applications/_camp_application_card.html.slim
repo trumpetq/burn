@@ -8,7 +8,7 @@
           td = resource.id
         tr
           th User
-          td = resource.user.present? ? link_to_policy(policy([:admin, resource.user]).show?, resource.user, admin_user_path(resource.user)) : na_badge
+          td = admin_user_badge(resource.user)
         tr
           th Status
           td = camp_status_badge(resource)

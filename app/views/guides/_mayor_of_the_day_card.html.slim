@@ -1,0 +1,35 @@
+.card.mb-3
+  = card_header("calendar-day", "Mayor of the day")
+  .card-table
+    table.table
+      tbody
+        tr
+          th Monday
+          td
+            span.badge.bg-success Available
+        tr
+          th Tuesday
+          td
+            span.badge.bg-success Available
+        tr
+          th Wednesday
+          td
+            span.badge.bg-success Available
+        tr
+          th Thursday
+          td
+            span.badge.bg-success Available
+        tr
+          th Friday
+          td
+            span.badge.bg-success Available
+        tr
+          th Saturday
+          td
+            span.badge.bg-success Available
+        tr
+          th Sunday
+          td
+            span.badge.bg-success Available
+  .card-footer
+    p.mb-0 Email #{mail_to(Settings.email.david)} to sign up.

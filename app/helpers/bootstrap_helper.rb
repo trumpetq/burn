@@ -13,4 +13,8 @@ module BootstrapHelper
   def bootstrap_icon(name)
     tag.i(class: "bi-#{name}")
   end
+
+  def active_if(name)
+    name.to_sym == action_name.to_sym ? "active" : nil
+  end
 end

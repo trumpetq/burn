@@ -1,0 +1,111 @@
+  .card.mb-3
+    = card_header("life-preserver", "Guide")
+    ul.list-group.list-group-flush
+      - if policy(:guide).index?
+        li.list-group-item class=active_if(:index)
+          = link_to "Welcome", guides_path, class: "h6 text-decoration-none"
+          p.text-muted.mb-0 Introduction to camp
+      - if policy(:guide).history?
+        li.list-group-item class=active_if(:history)
+          = link_to "History", history_guides_path, class: "h6 text-decoration-none"
+          p.text-muted.mb-0 How it all started
+      - if policy(:guide).bunny_bar?
+        li.list-group-item class=active_if(:bunny_bar)
+          = link_to "Bunny Bar", bunny_bar_guides_path, class: "h6 text-decoration-none"
+          p.text-muted.mb-0 Spin the wheel
+      - if policy(:guide).sauna?
+        li.list-group-item class=active_if(:sauna)
+          = link_to "Sauna", sauna_guides_path, class: "h6 text-decoration-none"
+          p.text-muted.mb-0 Steam clean
+      - if policy(:guide).shade?
+        li.list-group-item class=active_if(:shade)
+          = link_to "Shade", shade_guides_path, class: "h6 text-decoration-none"
+          p.text-muted.mb-0 Hide from the sun
+      - if policy(:guide).build?
+        li.list-group-item  class=active_if(:build)
+          = link_to "Build", build_guides_path, class: "h6 text-decoration-none"
+          p.text-muted.mb-0 Early arrival
+      - if policy(:guide).teardown?
+        li.list-group-item  class=active_if(:teardown)
+          = link_to "Teardown", teardown_guides_path, class: "h6 text-decoration-none"
+          p.text-muted.mb-0 It's not all fun
+      - if policy(:guide).camp_jobs?
+        li.list-group-item  class=active_if(:camp_jobs)
+          = link_to "Camp jobs", camp_jobs_guides_path, class: "h6 text-decoration-none"
+          p.text-muted.mb-0 It's not all fun
+      - if policy(:guide).dues?
+        li.list-group-item class=active_if(:dues)
+          = link_to "Dues", dues_guides_path, class: "h6 text-decoration-none"
+          p.text-muted.mb-0 Share the cost
+      - if policy(:guide).deposit?
+        li.list-group-item class=active_if(:deposit)
+          = link_to "Depoist", deposit_guides_path, class: "h6 text-decoration-none"
+          p.text-muted.mb-0 Commit to teardown
+      - if policy(:guide).kitchen?
+        li.list-group-item class=active_if(:kitchen)
+          = link_to "Kitchen", kitchen_guides_path, class: "h6 text-decoration-none"
+          p.text-muted.mb-0 We eat together
+      - if policy(:guide).ice?
+        li.list-group-item class=active_if(:ice)
+          = link_to "Ice", ice_guides_path, class: "h6 text-decoration-none"
+          p.text-muted.mb-0 Ice delivered daily
+      - if policy(:guide).mayor_of_the_day?
+        li.list-group-item class=active_if(:mayor_of_the_day)
+          = link_to "Mayor of the day", mayor_of_the_day_guides_path, class: "h6 text-decoration-none"
+          p.text-muted.mb-0 Run camp for a day
+      - if policy(:guide).events?
+        li.list-group-item class=active_if(:events)
+          = link_to "Events", events_guides_path, class: "h6 text-decoration-none"
+          p.text-muted.mb-0 What where when
+      - if policy(:guide).yearbook?
+        li.list-group-item class=active_if(:yearbook)
+          = link_to "Yearbook", yearbook_guides_path, class: "h6 text-decoration-none"
+          p.text-muted.mb-0 The faces of camp
+      - if policy(:guide).map?
+        li.list-group-item class=active_if(:map)
+          = link_to "Map", map_guides_path, class: "h6 text-decoration-none"
+          p.text-muted.mb-0 Get placed
+      - if policy(:guide).parking?
+        li.list-group-item class=active_if(:parking)
+          = link_to "Parking", parking_guides_path, class: "h6 text-decoration-none"
+          p.text-muted.mb-0 Bringing a car or RV
+      - if policy(:guide).sound?
+        li.list-group-item class=active_if(:sound)
+          = link_to "Sound", sound_guides_path, class: "h6 text-decoration-none"
+          p.text-muted.mb-0 Bring your tunes
+      - if policy(:guide).power?
+        li.list-group-item class=active_if(:power)
+          = link_to "Power", power_guides_path, class: "h6 text-decoration-none"
+          p.text-muted.mb-0 6000W at 120V AC
+      - if policy(:guide).shipping_container?
+        li.list-group-item class=active_if(:shipping_container)
+          = link_to "Shipping container", shipping_container_guides_path, class: "h6 text-decoration-none"
+          p.text-muted.mb-0 AC chil space
+      - if policy(:guide).lag_bolts?
+        li.list-group-item class=active_if(:lag_bolts)
+          = link_to "Lag bolts", lag_bolts_guides_path, class: "h6 text-decoration-none"
+          p.text-muted.mb-0 Don't bring rebar
+      - if policy(:guide).projects?
+        li.list-group-item class=active_if(:projects)
+          = link_to "Projects", projects_guides_path, class: "h6 text-decoration-none"
+          p.text-muted.mb-0 Whats new in #{Settings.date.current_year}
+      - if policy(:guide).learn?
+        li.list-group-item class=active_if(:learn)
+          = link_to "Learn", learn_guides_path, class: "h6 text-decoration-none"
+          p.text-muted.mb-0 Develop a new skill
+      - if policy(:guide).tools?
+        li.list-group-item class=active_if(:tools)
+          = link_to "Tools", tools_guides_path, class: "h6 text-decoration-none"
+          p.text-muted.mb-0 Camp workshop
+      - if policy(:guide).trash?
+        li.list-group-item class=active_if(:trash)
+          = link_to "Trash", trash_guides_path, class: "h6 text-decoration-none"
+          p.text-muted.mb-0 No MOOP
+      - if policy(:guide).covid?
+        li.list-group-item class=active_if(:covid)
+          = link_to "COVID-19", covid_guides_path, class: "h6 text-decoration-none"
+          p.text-muted.mb-0 Stay healthy
+      - if policy(:guide).disclaimer?
+        li.list-group-item class=active_if(:disclaimer)
+          = link_to "Disclaimer", disclaimer_guides_path, class: "h6 text-decoration-none"
+          p.text-muted.mb-0 You might die

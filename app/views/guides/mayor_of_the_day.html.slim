@@ -1,0 +1,13 @@
+- page_title("Mayor of the day")
+
+.row
+  .col-md-3
+    = render "menu_card"
+  .col-md-6
+    .card.mb-3
+      = card_header("calendar-day", "Mayor of the day")
+      .card-body
+        p.card-text Were trying something new this year. Mayor of the day. This is your chance to run camp for a day.
+        p.card-text If you are interested email #{mail_to(Settings.email.david)} with the date you would like. This job is only available to people that have camped with us before.
+  .col-md-3
+    = render "mayor_of_the_day_card"

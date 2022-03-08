@@ -2,7 +2,10 @@ li.nav-item.dropdown
   = link_to("Camp", "#", class: "nav-link dropdown-toggle", data: {bs_toggle: "dropdown"})
   .dropdown-menu.dropdown-menu-end
     - if policy([:admin, :camp_application]).index?
-      = link_to("Camp applications", admin_camp_applications_path, class: "dropdown-item")
+      = link_to("Applications", admin_camp_applications_path, class: "dropdown-item")
+      .dropdown-divider
+    - if policy([:admin, :camp_interview]).index?
+      = link_to("Interviews", admin_camp_interviews_path, class: "dropdown-item")
       .dropdown-divider
     - if policy([:admin, :camp]).show?
       = link_to("Dashboard", admin_camp_path, class: "dropdown-item")

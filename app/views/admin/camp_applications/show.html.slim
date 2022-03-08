@@ -2,10 +2,9 @@
 = discard_alert(@resource)
 
 .row
-  .col-md-3
   .col-md-6
     = render "camp_application_card", resource: @resource
-  .col-md-3
+  .col-md-6
     = render "approve_card", resource: @resource
     = render "complete_card", resource: @resource
     = render "reject_card", resource: @resource

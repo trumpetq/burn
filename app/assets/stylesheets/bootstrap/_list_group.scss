@@ -1,0 +1,9 @@
+.list-group-item.active {
+  a {
+    color: $white;
+  }
+
+  .text-muted {
+    color: $gray-300 !important;
+  }
+}

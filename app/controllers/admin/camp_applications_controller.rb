@@ -19,6 +19,7 @@ module Admin
       return unless @resource.user.present?
 
       CampApplicationMailer.with(user: @resource.user).reject_email.deliver_now if send_email
+      @resource.user.update(plan: :camping_elsewhere)
     end
   end
 end

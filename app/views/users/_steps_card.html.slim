@@ -1,84 +1,21 @@
-- if policy(@user).me?
+- if policy(user).me?
   .card.mb-3
     = card_header("list-check", "Checklist")
     ul.list-group.list-group-flush
-      li.list-group-item.bg-info.bg-opacity-10
-        h5 Application
-        p.text-muted Apply to camp with us
-        - if user.camp_application.present?
-          - if user.camp_application.completed?
-            .badge.badge-secondary Done
-          - else
-            - if policy(user.camp_application).edit?
-              = link_to("Edit", edit_camp_application_path(user.camp_application), class: "btn btn-primary")
-        - else
-          - if policy(:camp_application).new?
-            = link_to("Start", new_camp_application_path, class: "btn btn-primary")
+      = render "users/steps/camp_application", user: current_user
+      = render "users/steps/camp_interview", user: current_user
+      = render "users/steps/camp_guide", user: current_user
+      = render "users/steps/camp_due", user: current_user
+      = render "users/steps/camp_deposit", user: current_user
+      = render "users/steps/camp_ticket", user: current_user
+      = render "users/steps/camp_job", user: current_user
+      = render "users/steps/camp_housing", user: current_user
+      = render "users/steps/camp_vehicle", user: current_user
+      = render "users/steps/camp_event", user: current_user
+      = render "users/steps/camp_feedback", user: current_user
+      = render "users/steps/camp_refund", user: current_user
 
 
-      li.list-group-item.bg-light
-        h5.text-muted Interview
-        p.text-muted
-          | Get to know us
-          br
-          <b>Available</b> February 25th, 2022
-      li.list-group-item.bg-light
-        h5.text-muted Guide
-        p.text-muted
-          | Read the guide, no seriously ready it
-          br
-          <b>Available</b> March 1st, 2022
-      li.list-group-item.bg-light
-        h5.text-muted Dues
-        p.text-muted
-          | Give us your money
-          br
-          <b>Available</b> April 1st, 2022
-      li.list-group-item.bg-light
-        h5.text-muted Depoist
-        p.text-muted
-          | Pay your deposit
-          br
-          <b>Available</b> April 1st, 2022
-      li.list-group-item.bg-light
-        h5.text-muted Tickets
-        p.text-muted
-          | Did you get tickets
-          br
-          <b>Available</b> June 1st, 2022
-      li.list-group-item.bg-light
-        h5.text-muted Jobs
-        p.text-muted
-          | Sign up for work shifts
-          br
-          <b>Available</b> June 1st, 2022
-      li.list-group-item.bg-light
-        h5.text-muted Housing
-        p.text-muted
-          | What are you living in
-          br
-          <b>Available</b> June 1st, 2022
-      li.list-group-item.bg-light
-        h5.text-muted Vehicle
-        p.text-muted
-          | How are you getting to the burn
-          br
-          <b>Available</b> June 1st, 2022
-      li.list-group-item.bg-light
-        h5.text-muted Event
-        p.text-muted
-          | See you at Burning Man
-          br
-          <b>Available</b> August 15st, 2022
-      li.list-group-item.bg-light
-        h5.text-muted Feedback
-        p.text-muted
-          | Share your thoughts after the event
-          br
-          <b>Available</b> September 15th, 2022
-      li.list-group-item.bg-light
-        h5.text-muted Refund
-        p.text-muted
-          | Your deposit returned
-          br
-          <b>Available</b> October 1st, 2022
+
+
+

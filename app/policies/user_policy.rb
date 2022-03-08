@@ -7,6 +7,10 @@ class UserPolicy < ApplicationPolicy
     member? || me?
   end
 
+  def edit?
+    me?
+  end
+
   def admin?
     leader?
   end

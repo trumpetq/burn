@@ -1,0 +1,33 @@
+.card.mb-3
+  = card_header("file-text", "Camp interview", button: header_admin_edit_button(resource))
+  .card-table
+    table.table
+      tbody
+        tr
+          th ID
+          td = resource.id
+        tr
+          th User
+          td = admin_user_badge(resource.user)
+        tr
+          th Status
+          td = camp_status_badge(resource)
+        tr
+          th Initial notes
+          td = resource.initial_notes.presence || na_badge
+        tr
+          th Feedback notes
+          td = resource.feedback_notes.presence || na_badge
+        tr
+          th Private notes
+          td = resource.private_notes.presence || na_badge
+        tr
+          th Interviewer
+          td = admin_user_badge(resource.interviewed_by)
+        tr
+          th Assigned
+          td
+            = admin_time(resource.assigned_at)
+            - if resource.assigned_by.present?
+              =< admin_user_badge(resource.assigned_by)
+        = render "admin/camps/status_times", resource: resource

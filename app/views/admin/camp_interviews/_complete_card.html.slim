@@ -1,0 +1,11 @@
+- if [:rejected, :completed].exclude?(resource.status.to_sym) && policy([:admin, resource]).complete?
+  .card.mb-3
+    = card_header("clipboard-check", "Complete")
+    .card-body
+      = simple_form_for([:admin, resource], url: complete_admin_camp_interview_path(resource)) do |f|
+        .row
+          .col.mb-3
+            = f.input :send_email, input_html: { id: "send_email_complete" }
+        .row
+          .col.d-grid
+            = f.button :submit, "Complete", class: "btn-override-success"

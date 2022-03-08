@@ -1,0 +1,13 @@
+- page_title("Map")
+
+.row
+  .col-md-3
+    = render "menu_card"
+  .col-md-9
+    .card.mb-3
+      = card_header("geo", "Map")
+      .card-body
+        p.card-text Our map for 2022 is not yet complete. Here is our map from <b>2019</b>.
+        p.card-text We plan to cap our camp at <b>#{Settings.camp.max_campers}</b> campers this year.
+        p
+          = image_tag("guides/map-2019.png", size: "2000x1400", class: "img-fluid")

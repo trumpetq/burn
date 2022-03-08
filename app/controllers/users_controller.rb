@@ -4,11 +4,16 @@ class UsersController < ApplicationController
   # GET /users
   def index
     authorize(:user)
-    @pagy, @users = pagy(::User.with_status(:active).order("LOWER(name)"))
+    @pagy, @camping_with_us = pagy(::User.with_plan(:camping_with_us).order("LOWER(name)"))
   end
 
   # GET /users/:id
   def show
+  end
+
+  # GET /users/:id/edit
+  def edit
+    redirect_to edit_user_registration_url
   end
 
   private

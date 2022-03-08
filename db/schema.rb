@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_02_19_061645) do
+ActiveRecord::Schema[7.0].define(version: 2022_02_27_023240) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -46,7 +46,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_02_19_061645) do
     t.datetime "applied_at"
     t.datetime "completed_at"
     t.string "referral_name"
-    t.integer "status", default: 0, null: false
+    t.integer "status", null: false
     t.text "what_excites_you"
     t.text "who_are_you"
     t.text "plan_to_contribute"
@@ -70,7 +70,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_02_19_061645) do
   end
 
   create_table "camp_interviews", force: :cascade do |t|
-    t.integer "status", default: 0, null: false
+    t.integer "status", null: false
     t.bigint "user_id"
     t.datetime "applied_at"
     t.datetime "completed_at"
@@ -88,6 +88,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_02_19_061645) do
     t.datetime "updated_at", null: false
     t.bigint "completed_by_id"
     t.datetime "discarded_at"
+    t.bigint "assigned_by_id"
+    t.bigint "skipped_by_id"
     t.index ["discarded_at"], name: "index_camp_interviews_on_discarded_at"
     t.index ["user_id"], name: "index_camp_interviews_on_user_id"
   end

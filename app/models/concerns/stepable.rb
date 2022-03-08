@@ -1,6 +1,6 @@
 module Stepable
   extend ActiveSupport::Concern
-  STATUSES = {unavailable: 0, active: 1, closed: 10, approved: 15, completed: 20, rejected: 30}.freeze
+  STATUSES = {unavailable: 0, active: 1, closed: 10, approved: 15, completed: 20, rejected: 30, skipped: 40, assigned: 50}.freeze
 
   included do
     attribute :send_email, :boolean, default: true
@@ -9,8 +9,11 @@ module Stepable
 
     belongs_to :user
     belongs_to :approved_by, class_name: ::User.name, optional: true
+    belongs_to :assigned_by, class_name: ::User.name, optional: true
+    belongs_to :closed_by, class_name: ::User.name, optional: true
     belongs_to :completed_by, class_name: ::User.name, optional: true
     belongs_to :rejected_by, class_name: ::User.name, optional: true
+    belongs_to :skipped_by, class_name: ::User.name, optional: true
 
     scope :for_user, ->(user) { where(user: user) }
   end

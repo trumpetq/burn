@@ -5,12 +5,106 @@ class GuidesController < ApplicationController
   def index
   end
 
+  # GET /guides/build
+  def build
+  end
+
+  # GET /guides/bunny_bar
+  def bunny_bar
+  end
+
+  # GET /guides/camp_jobs
+  def camp_jobs
+  end
+
+  # GET /guides/covid
+  def covid
+  end
+
+  # GET /guides/deposit
+  def deposit
+  end
+
+  # GET /guides/disclaimer
+  def disclaimer
+  end
+
+  # GET /guides/dues
+  def dues
+  end
+
+  # GET /guides/events
+  def events
+    @david = ::User.find(Settings.user.david)
+    @mirabelle = ::User.find(Settings.user.mirabelle)
+  end
+
+  # GET /guides/history
+  def history
+  end
+
+  # GET /guides/ice
+  def ice
+  end
+
+  # GET /guides/kitchen
+  def kitchen
+  end
+
+  # GET /guides/lag_bolts
+  def lag_bolts
+  end
+
+  # GET /guides/learn
+  def learn
+  end
+
+  # GET /guides/map
+  def map
+  end
+
+  # GET /guides/mayor_of_the_day
+  def mayor_of_the_day
+  end
+
+  # GET /guides/parking
+  def parking
+  end
+
   # GET /guides/power
   def power
   end
 
+  # GET /guides/projects
+  def projects
+  end
+
+  # GET /guides/sauna
+  def sauna
+  end
+
   # GET /guides/shipping_container
   def shipping_container
+  end
+
+  # GET /guides/sound
+  def sound
+  end
+
+  # GET /guides/teardown
+  def teardown
+  end
+
+  # GET /guides/tools
+  def tools
+  end
+
+  # GET /guides/trash
+  def trash
+  end
+
+  # GET /guides/yearbook
+  def yearbook
   end
 
   private

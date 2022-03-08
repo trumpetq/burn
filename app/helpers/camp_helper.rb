@@ -6,10 +6,12 @@ module CampHelper
       case camp.status.to_sym
       when :unavailable then "badge bg-secondary"
       when :active then "badge bg-info"
-      when :closed then "badge bg-secondary"
+      when :assigned then "badge bg-secondary"
       when :approved then "badge bg-primary"
       when :completed then "badge bg-success"
+      when :closed then "badge bg-warning"
       when :rejected then "badge bg-danger"
+      when :skipped then "badge bg-primary"
       else
         "badge bg-dark"
       end

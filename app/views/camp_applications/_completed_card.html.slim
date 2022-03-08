@@ -1,0 +1,9 @@
+- if resource.completed?
+  .card.bg-success.bg-opacity-25.mb-3
+    = card_header("check-circle", "Application completed")
+    .card-body
+      p.card-text Your application is complete.
+      p.card-text This step is <b>done</b>!
+      .btn-collection
+        - if policy(current_user).show?
+          = link_to("Profile", user_path(current_user), class: "btn btn-dark")

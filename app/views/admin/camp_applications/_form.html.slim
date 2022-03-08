@@ -1,15 +1,14 @@
 = render "shared/error_messages", resource: resource
 = simple_form_for([:admin, resource]) do |f|
-  - if current_user.mayor?
-    .row
-      .col-md-6.mb-3
-        = f.input :user_id, label: "User ID"
   .row
     .col-md-6.mb-3
       = f.input :status, include_blank: false
+    - if resource.new_record?
+      .col-md-6.mb-3
+        = f.input :user_id, hint: "1234", label: "User ID", required: true
   .row
     .col-md-12.mb-3
-      = f.input :who_are_you, hint: "tell us about yourself", hint: "what should we know about you"
+      = f.input :who_are_you, hint: "what should we know about you"
   .row
     .col-md-12.mb-3
       = f.input :what_excites_you, label: "What excites you about camping with us", hint: "tell us what you are looking forward to in #{Settings.date.current_year}"

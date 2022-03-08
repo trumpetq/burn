@@ -1,0 +1,20 @@
+= render "shared/error_messages", resource: resource
+= simple_form_for([:admin, resource]) do |f|
+  .row
+    .col-md-6.mb-3
+      = f.input :status, include_blank: false
+    - if resource.new_record?
+      .col-md-6.mb-3
+        = f.input :user_id, hint: "1234", label: "User ID", required: true
+  .row
+    .col-md-12.mb-3
+      = f.input :initial_notes, hint: "intro to the interview"
+  .row
+    .col-md-12.mb-3
+      = f.input :feedback_notes, hint: "let the person know how they did"
+  .row
+    .col-md-12.mb-3
+      = f.input :private_notes, hint: "share your concerns with camp leadership"
+  .row
+    .col.d-grid
+      = f.button :submit, submit_button_text(resource)

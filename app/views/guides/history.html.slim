@@ -1,0 +1,13 @@
+- page_title("History")
+
+.row
+  .col-md-3
+    = render "menu_card"
+  .col-md-5
+    .card.mb-3
+      = card_header("hourglass-split", "History")
+      .card-body
+        p.card-text 8-bit Bunny was founded by #{link_to("David", user_path(Settings.user.david))} in 2013.
+        = image_tag("guides/history.jpg", size: "2000x1333", class: "img-fluid", alt: "History of 8-bit Bunny")
+  .col-md-4
+    = render "past_events_card"

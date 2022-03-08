@@ -1,0 +1,12 @@
+- page_title("Yearbook")
+
+.row
+  .col-md-3
+    = render "menu_card"
+  .col-md-6
+    .card.mb-3
+      = card_header("camera", "Yearbook")
+      .card-body
+        p.card-text Our yearbook is a new project for 2022.
+  .col-md-3
+    = render "users/avatar_card", user: current_user

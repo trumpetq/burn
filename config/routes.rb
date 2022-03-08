@@ -22,6 +22,7 @@ Rails.application.routes.draw do
 
     resources :camp_interviews do
       member do
+        patch :active
         patch :approve
         patch :assign
         patch :complete
@@ -63,8 +64,32 @@ Rails.application.routes.draw do
 
   resources :guides, only: [:index] do
     collection do
+      get :build
+      get :bunny_bar
+      get :camp_jobs
+      get :covid
+      get :deposit
+      get :disclaimer
+      get :dues
+      get :events
+      get :history
+      get :ice
+      get :kitchen
+      get :lag_bolts
+      get :learn
+      get :map
+      get :mayor_of_the_day
+      get :parking
       get :power
+      get :projects
+      get :sauna
+      get :shade
       get :shipping_container
+      get :sound
+      get :teardown
+      get :tools
+      get :trash
+      get :yearbook
     end
   end
 
@@ -91,7 +116,11 @@ Rails.application.routes.draw do
     unlocks: "users/unlocks"
   }
 
-  resources :users, only: [:index, :show]
+  resources :users, only: [:index, :show, :edit] do
+    collection do
+      get :search
+    end
+  end
 
   root to: "pages#home"
 end

@@ -96,7 +96,7 @@ module Admin
       if @resource.save
         complete_after_save if defined?(complete_after_save)
 
-        redirect_to([:admin, @resource], notice: "#{controller_name.humanize} has been approved.", status: :see_other)
+        redirect_to([:admin, @resource], notice: "#{controller_name.humanize} has been completed.", status: :see_other)
       else
         redirect_on_error
       end

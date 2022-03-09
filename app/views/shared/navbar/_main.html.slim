@@ -11,6 +11,3 @@ ul.navbar-nav.me-auto
   - if policy(:guide).events?
     li.nav-item
       = link_to("Events", events_guides_path, class: "nav-link")
-  - if policy(:newsletter).index?
-    li.nav-item
-      = link_to("Newsletter", newsletters_path, class: "nav-link")

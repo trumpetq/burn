@@ -3,7 +3,7 @@
 .row
   .col-md-3
     = render "menu_card"
-  .col-md-9
+  .col-md-6
     .card.mb-3
       = card_header("nut", "Lag bolts")
       .card-body
@@ -14,3 +14,7 @@
             | 14" x 3/8" (Tents and small structures): #{link_to("Fastener SuperStore", "https://www.fastenersuperstore.com/products/476110/lag-screws?pid=17303", target: "_blank")}
             br
             | 18" x 1/2" (Large structures): #{link_to("Fastener SuperStore", "https://www.fastenersuperstore.com/products/476983/lag-screws?pid=17303", target: "_blank")}
+  .col-md-3
+    .card.mb-3
+      .card-body
+        = image_tag("guides/lag-bolts.jpg", size: "2000x1333", class: "img-fluid", alt: "Lag bolts")

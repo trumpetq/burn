@@ -1,14 +1,22 @@
 #footer.footer
   .container-fluid.py-3
     ul.nav.justify-content-center
-      li.nav-item
-        = link_to_policy(policy(:page).home?, "Home", root_path, class: "nav-link text-secondary")
+      - if policy(:page).home?
+        li.nav-item
+          = link_to("Home", root_path, class: "nav-link text-secondary")
+      - if policy(:guide).index?
+        li.nav-item
+          = link_to("Guide", guides_path, class: "nav-link text-secondary")
       li.nav-item
         = link_to(bootstrap_icon("facebook"), Settings.facebook.url, class: "nav-link text-secondary")
       li.nav-item
         = link_to(bootstrap_icon("github"), Settings.github.url, class: "nav-link text-secondary")
-      li.nav-item
-        = link_to_policy(policy(:page).contact?, "Contact", contact_pages_path, class: "nav-link text-secondary")
+      - if policy(:newsletter).index?
+        li.nav-item
+          = link_to("Newsletter", newsletters_path, class: "nav-link text-secondary")
+      - if policy(:page).contact?
+        li.nav-item
+          = link_to("Contact", contact_pages_path, class: "nav-link text-secondary")
     p.mt-2.pl-3.text-center &copy; #{Time.current.year} 8-bit Bunny.
     - if Rails.env.development?
       p.text-center = Process.clock_gettime(Process::CLOCK_REALTIME, :millisecond)

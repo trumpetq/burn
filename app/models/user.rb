@@ -18,7 +18,7 @@
 #  locked_at              :datetime
 #  name                   :string           not null
 #  phone_number           :string
-#  plan                   :integer          default("none"), not null
+#  plan                   :integer          not null
 #  playa_name             :string
 #  postal_code            :string
 #  previous_years         :jsonb
@@ -26,9 +26,9 @@
 #  remember_created_at    :datetime
 #  reset_password_sent_at :datetime
 #  reset_password_token   :string
-#  role                   :integer          default("guest"), not null
+#  role                   :integer          not null
 #  sign_in_count          :integer          default(0), not null
-#  status                 :integer          default("active"), not null
+#  status                 :integer          not null
 #  time_zone              :string           default("Pacific Time (US & Canada)"), not null
 #  title                  :string
 #  twitter_url            :text
@@ -55,8 +55,6 @@ class User < ApplicationRecord
 
   phony_normalize :phone_number, default_country_code: "US"
 
-  strip_attributes only: [:name, :playa_name]
-
   enumerize :role, in: {guest: 0, member: 1, camper: 2, leader: 5, mayor: 10}, default: :guest, predicates: true, scope: true
   enumerize :status, in: {active: 0, confirmed: 1, banned: 10}, default: :active, predicates: true, scope: true
   enumerize :plan, in: {none: 0, camping_with_us: 1, thinking_about_it: 2, camping_elsewhere: 3, not_going: 10}, default: :none, predicates: true, scope: true
@@ -68,6 +66,7 @@ class User < ApplicationRecord
   validates :facebook_url, :twitter_url, :instagram_url, url: {allow_blank: true}
 
   has_one :camp_application
+  has_one :camp_interview
   has_one :newsletter
   has_one_attached :avatar do |attachable|
     attachable.variant :menu, resize_to_limit: [100, 100]
@@ -78,10 +77,14 @@ class User < ApplicationRecord
   scope :for_phone_number, ->(phone_number) { where(phone_numer: PhonyRails.normalize_number(phone_number)) }
   scope :for_email, ->(email) { where(email: email&.downcase) }
   scope :in_bay_area, -> { where(postal_code: Settings.postal_code.bay_area) }
+  scope :order_by_name, -> { order("LOWER(name) ASC") }
 
   before_validation :set_urls
   before_validation :scrub_previous_years
+  before_validation :normalize_attributes
   after_create :set_role, :create_newsletter
+
+  has_many :assigned_camp_interviews, foreign_key: :interviewed_by_id, class_name: ::CampInterview.name
 
   def to_s
     display_name
@@ -96,6 +99,12 @@ class User < ApplicationRecord
     return name if name.present?
     return "User ##{id}" if id.present?
     "Guest"
+  end
+
+  def full_name
+    full_name = name
+    full_name = "#{full_name} (#{playa_name})" if playa_name.present?
+    full_name
   end
 
   def country_name
@@ -179,5 +188,11 @@ class User < ApplicationRecord
 
   def scrub_previous_years
     previous_years.reject!(&:blank?)
+  end
+
+  def normalize_attributes
+    self.name = name&.strip
+    self.playa_name = playa_name&.strip
+    self.email = email&.strip&.downcase
   end
 end

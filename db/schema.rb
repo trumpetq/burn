@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_02_27_023240) do
+ActiveRecord::Schema[7.0].define(version: 2022_03_09_224244) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -94,9 +94,20 @@ ActiveRecord::Schema[7.0].define(version: 2022_02_27_023240) do
     t.index ["user_id"], name: "index_camp_interviews_on_user_id"
   end
 
+  create_table "camp_tickets", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.integer "type", null: false
+    t.integer "status", null: false
+    t.integer "location", null: false
+    t.text "notes"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_camp_tickets_on_user_id"
+  end
+
   create_table "newsletters", force: :cascade do |t|
     t.string "email"
-    t.integer "list", default: 0, null: false
+    t.integer "list", null: false
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -115,8 +126,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_02_27_023240) do
     t.string "phone_number"
     t.string "name", null: false
     t.string "playa_name"
-    t.integer "role", default: 0, null: false
-    t.integer "status", default: 0, null: false
+    t.integer "role", null: false
+    t.integer "status", null: false
     t.string "time_zone", default: "Pacific Time (US & Canada)", null: false
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
@@ -141,7 +152,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_02_27_023240) do
     t.text "twitter_url"
     t.integer "pronouns"
     t.datetime "discarded_at"
-    t.integer "plan", default: 0, null: false
+    t.integer "plan", null: false
     t.index ["discarded_at"], name: "index_users_on_discarded_at"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true

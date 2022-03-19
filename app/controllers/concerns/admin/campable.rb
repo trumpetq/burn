@@ -57,6 +57,8 @@ module Admin
     def active
       @resource.status = :active
 
+      @resource.update(permitted_attributes([:admin, @resource])) if params[controller_name.singularize].present?
+
       active_before_save if defined?(active_before_save)
 
       if @resource.save
@@ -73,6 +75,8 @@ module Admin
       @resource.approved_at = Time.current
       @resource.approved_by = current_user
       @resource.status = :approved
+
+      @resource.update(permitted_attributes([:admin, @resource])) if params[controller_name.singularize].present?
 
       approve_before_save if defined?(approve_before_save)
 
@@ -91,6 +95,8 @@ module Admin
       @resource.completed_by = current_user
       @resource.status = :completed
 
+      @resource.update(permitted_attributes([:admin, @resource])) if params[controller_name.singularize].present?
+
       complete_before_save if defined?(complete_before_save)
 
       if @resource.save
@@ -107,6 +113,8 @@ module Admin
       @resource.rejected_at = Time.current
       @resource.rejected_by = current_user
       @resource.status = :rejected
+
+      @resource.update(permitted_attributes([:admin, @resource])) if params[controller_name.singularize].present?
 
       reject_before_save if defined?(reject_before_save)
 
@@ -144,7 +152,7 @@ module Admin
       authorize([:admin, @resource])
     end
 
-    def send_email
+    def send_email?
       params.dig(controller_name.singularize, :send_email) == "1"
     end
   end

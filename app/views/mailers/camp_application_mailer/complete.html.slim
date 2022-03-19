@@ -1,6 +1,5 @@
 p Congratulations your application to camp with us in #{Settings.date.current_year} has been marked complete.
 p We are excited about building an amazing camp with you this year and want to welcome you to our camp.
-p
-  | 8-bit Bunny
-  br
-  = link_to('burn.8bitbunny.com', Settings.app.url)
+
+= render "mailers/shared/incomplete_profile", user: @user
+= render "mailers/shared/signature"

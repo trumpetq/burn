@@ -1,0 +1,10 @@
+.card.mb-2
+  = card_header("file-earmark-person", link_to_policy(policy(camp_interview).show?, "Interview #{camp_interview.id}", camp_interview_path(camp_interview)))
+  .card-body
+    p.card-text
+      <b>User</b> #{user_badge(camp_interview.user)}
+    - if camp_interview.initial_notes.present?
+      p.card-text
+        <b>Initial notes</b> #{camp_interview.initial_notes}
+    p.card-text
+      = camp_status_badge(camp_interview)

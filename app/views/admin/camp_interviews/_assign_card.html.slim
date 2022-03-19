@@ -5,13 +5,13 @@
       = simple_form_for([:admin, resource], url: assign_admin_camp_interview_path(resource)) do |f|
         .row
           .col.mb-3
-            = f.input :send_email, input_html: {id: "send_email_approve"}
-        .row
-          .col.mb-3
-            = f.input :interviewed_by_id, collection: ::User.with_plan(:camping_with_us).order("LOWER(name) ASC"), label: "Interviewer", label_method: :name, prompt: "Choose a user", required: true
+            = f.input :interviewed_by_id, collection: ::User.with_plan(:camping_with_us).order_by_name, label: "Interviewer", label_method: :full_name, prompt: "Choose a user", required: true
         .row
           .col.mb-3
             = f.input :initial_notes
+        .row
+          .col.mb-3
+            = f.input :send_email, input_html: {id: "send_email_approve"}
         .row
           .col.d-grid
             = f.button :submit, "Assign", class: "btn-override-primary"

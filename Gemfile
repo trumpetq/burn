@@ -31,7 +31,6 @@ gem "sassc-rails"
 gem "simple_form"
 gem "slim-rails"
 gem "stimulus-rails"
-gem "strip_attributes"
 gem "turbo-rails"
 gem "validate_url"
 

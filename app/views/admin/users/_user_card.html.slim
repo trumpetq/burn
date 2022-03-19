@@ -1,8 +1,5 @@
 .card.mb-3
-  = card_header("person", "User", button: header_admin_edit_button(@user)) do
-    - if policy(@user).show?
-      = link_to "Profile", user_path(@user), class: "float-end btn btn-xs btn-outline-secondary me-2"
-  end
+  = card_header("person", "User", buttons: [header_show_button(@user), header_admin_edit_button(@user)])
   .card-table
     table.table
       tbody

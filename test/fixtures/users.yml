@@ -18,7 +18,7 @@
 #  locked_at              :datetime
 #  name                   :string           not null
 #  phone_number           :string
-#  plan                   :integer          default("none"), not null
+#  plan                   :integer          not null
 #  playa_name             :string
 #  postal_code            :string
 #  previous_years         :jsonb
@@ -26,9 +26,9 @@
 #  remember_created_at    :datetime
 #  reset_password_sent_at :datetime
 #  reset_password_token   :string
-#  role                   :integer          default("guest"), not null
+#  role                   :integer          not null
 #  sign_in_count          :integer          default(0), not null
-#  status                 :integer          default("active"), not null
+#  status                 :integer          not null
 #  time_zone              :string           default("Pacific Time (US & Canada)"), not null
 #  title                  :string
 #  twitter_url            :text

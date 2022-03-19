@@ -1,0 +1,10 @@
+p Congratulations your interview has been assigned to #{link_to(@interview_by, users_url(@interviewed_by))}.
+
+p Interviewing is an important step in joining our camp. The purpose of this process is to help you get to know our camp better. Please reach out to #{link_to(@interview_by, users_url(@interviewed_by))} to schedule a time to meet in person or online.
+
+p Interviews typically take 30-45 minutes. You can read more about the process in our #{link_to("guide", interview_guides_url)}.
+
+p You must complete the interview process before you can be accepted into 8-bit Bunny for #{Settings.date.current_year}.
+
+= render "mailers/shared/incomplete_profile", user: @user
+= render "mailers/shared/signature"

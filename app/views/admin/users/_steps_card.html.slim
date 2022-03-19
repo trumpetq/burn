@@ -10,7 +10,7 @@
             td = camp_status_badge(user.camp_application)
             td
               - if policy([:admin, user.camp_application]).show?
-                = link_to(bootstrap_icon("back"), admin_camp_application_path(user.camp_application))
+                = link_to(bootstrap_icon("link"), admin_camp_application_path(user.camp_application))
           - else
             td = na_badge
             td

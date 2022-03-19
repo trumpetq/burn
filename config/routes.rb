@@ -62,6 +62,13 @@ Rails.application.routes.draw do
 
   resources :camp_applications, except: [:destroy]
 
+  resources :camp_interviews, only: [:index, :show] do
+    member do
+      patch :approve
+      patch :reject
+    end
+  end
+
   resources :guides, only: [:index] do
     collection do
       get :build
@@ -74,6 +81,7 @@ Rails.application.routes.draw do
       get :events
       get :history
       get :ice
+      get :interview
       get :kitchen
       get :lag_bolts
       get :learn

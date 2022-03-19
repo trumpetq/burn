@@ -1,0 +1,12 @@
+- if current_user.present?
+  - if current_user.camp_interview.present? && policy(current_user.camp_interview).show?
+    .card.mb-3
+      = card_header("telephone", "Interview")
+      .card-body
+        p.card-text View <b>#{link_to("interview", camp_interview_path(current_user.camp_interview))}</b> details.
+        p.card-text = camp_status_badge(current_user.camp_interview)
+  - else
+    .card.mb-3
+      = card_header("telephone", "Interview")
+      .card-body
+        p.card-text You haven't been assigned an interview yet.

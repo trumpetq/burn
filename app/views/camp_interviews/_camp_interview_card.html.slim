@@ -1,0 +1,29 @@
+.card.mb-3
+  = card_header("file-earmark-person", "Interview")
+  .card-table
+    table.table
+      tbody
+        tr
+          th Status
+          td = camp_status_badge(resource)
+        tr
+          th Feedback notes
+          td = resource.feedback_notes.presence || na_badge
+        tr
+          th Interviewer
+          td = user_badge(resource.interviewed_by)
+        tr
+          th Assigned
+          td = admin_time(resource.assigned_at)
+        tr
+          th Approved
+          td = admin_time(resource.approved_at)
+        tr
+          th Completed
+          td = admin_time(resource.completed_at)
+        tr
+          th Created
+          td = admin_time(resource.created_at)
+        tr
+          th Updated
+          td = admin_time(resource.updated_at)

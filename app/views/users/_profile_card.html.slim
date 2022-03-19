@@ -7,6 +7,11 @@
         =< user_pronouns_badge(user)
     p.card-text
       = user.description.presence || "This user has not set a description yet."
+    - if policy(user).contact?
+      p.card-text
+        <b>Email</b> #{mail_to(user.email)}
+      p.card-text
+        <b>Phone</b> #{link_to_phone(user.phone_number)}
     p.card-text <b>Plan</b> #{user_plan_badge(user)}
     - if user.country_code.present?
       p.card-text <b>Country</b> #{user.country_name}

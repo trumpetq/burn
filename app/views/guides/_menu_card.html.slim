@@ -29,6 +29,10 @@
         li.list-group-item  class=active_if(:teardown)
           = link_to "Teardown", teardown_guides_path, class: "h6 text-decoration-none"
           p.text-muted.mb-0 It's not all fun
+      - if policy(:guide).interview?
+        li.list-group-item  class=active_if(:interview)
+          = link_to "Interview", interview_guides_path, class: "h6 text-decoration-none"
+          p.text-muted.mb-0 Get to know us
       - if policy(:guide).camp_jobs?
         li.list-group-item  class=active_if(:camp_jobs)
           = link_to "Camp jobs", camp_jobs_guides_path, class: "h6 text-decoration-none"

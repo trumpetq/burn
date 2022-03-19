@@ -5,7 +5,7 @@
 #  id                :bigint           not null, primary key
 #  discarded_at      :datetime
 #  email             :string
-#  list              :integer          default("unsubscribed"), not null
+#  list              :integer          not null
 #  unsubscribe_token :string           not null
 #  unsubscribed_at   :datetime
 #  created_at        :datetime         not null

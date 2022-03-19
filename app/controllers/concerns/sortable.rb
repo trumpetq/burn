@@ -1,5 +1,5 @@
 module Sortable
   def param_direction
-    params[:direction] == "asc" ? "ASC" : "DESC"
+    params[:direction]&.downcase == "asc" ? "ASC" : "DESC"
   end
 end

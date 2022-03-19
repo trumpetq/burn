@@ -4,7 +4,7 @@ class UsersController < ApplicationController
   # GET /users
   def index
     authorize(:user)
-    @pagy, @camping_with_us = pagy(::User.with_plan(:camping_with_us).order("LOWER(name)"))
+    @pagy, @camping_with_us = pagy(::User.with_plan(:camping_with_us).order_by_name)
   end
 
   # GET /users/:id

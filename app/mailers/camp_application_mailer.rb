@@ -1,16 +1,19 @@
 class CampApplicationMailer < ApplicationMailer
-  def approve_email
+  def approve
     @user = params[:user]
+    @resource = params[:resource]
     mail(to: @user.email, subject: "Your 8-bit Bunny application has been approved")
   end
 
-  def complete_email
+  def complete
     @user = params[:user]
+    @resource = params[:resource]
     mail(to: @user.email, subject: "Your 8-bit Bunny application has been completed")
   end
 
-  def reject_email
+  def reject
     @user = params[:user]
+    @resource = params[:resource]
     mail(to: @user.email, subject: "Your 8-bit Bunny application has been rejected")
   end
 end

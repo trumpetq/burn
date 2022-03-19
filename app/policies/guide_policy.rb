@@ -43,6 +43,10 @@ class GuidePolicy < ApplicationPolicy
     everyone?
   end
 
+  def interview?
+    everyone?
+  end
+
   def kitchen?
     everyone?
   end

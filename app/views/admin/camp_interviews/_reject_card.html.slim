@@ -5,6 +5,12 @@
       = simple_form_for([:admin, resource], url: reject_admin_camp_interview_path(resource)) do |f|
         .row
           .col.mb-3
+            = f.input :feedback_notes, hint: "Shown to user"
+        .row
+          .col.mb-3
+            = f.input :private_notes, hint: "Only visible to camp leadership"
+        .row
+          .col.mb-3
             = f.input :send_email, input_html: { id: "send_email_reject" }
         .row
           .col.d-grid

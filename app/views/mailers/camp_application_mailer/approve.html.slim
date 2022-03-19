@@ -1,7 +1,6 @@
 p Congratulations your application to camp with us has been approved.
 p This is the first step towards camping with us in #{Settings.date.current_year}.
 p We will be in contact with you in the comming weeks to schedule an interview with you.
-p
-  | 8-bit Bunny
-  br
-  = link_to('burn.8bitbunny.com', Settings.app.url)
+
+= render "mailers/shared/incomplete_profile", user: @user
+= render "mailers/shared/signature"

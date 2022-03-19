@@ -1,18 +1,20 @@
 - if user.camp_application.present?
   - if user.camp_application.completed?
     li.list-group-item.bg-success.bg-opacity-10
-      h5 Application
+      h5 = link_to_policy(policy(user.camp_application).show?, "Application", camp_application_path(user.camp_application), class: "text-decoration-none")
       p.text-muted
-        | Apply to camp with us
+        | First step
         =< camp_status_badge(user.camp_application)
   - elsif user.camp_application.rejected?
     li.list-group-item.bg-danger.bg-opacity-25
-      h5 Application
-      p.text-muted Your application was rejected.
-      p Sorry you <b>can not</b> camp with us in #{Settings.date.current_year}.
+      h5 = link_to_policy(policy(user.camp_application).show?, "Application", camp_application_path(user.camp_application), class: "text-decoration-none")
+      p.text-muted
+        | Sorry
+        =< camp_status_badge(user.camp_application)
+      p You <b>can not</b> camp with us in #{Settings.date.current_year}.
   - else
     li.list-group-item.bg-info.bg-opacity-10
-      h5 Application
+      h5 = link_to_policy(policy(user.camp_application).show?, "Application", camp_application_path(user.camp_application), class: "text-decoration-none")
       p.text-muted
         | Apply to camp with us
         =< camp_status_badge(user.camp_application)

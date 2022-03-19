@@ -1,0 +1,7 @@
+p You have been assigned a new interview for #{link_to(@user, users_url(@user))}.
+p Please reach out to them directly to schedule a time that works for both of you.
+p It will be your job to decide if they camp with us or not.
+p You can approve or reject the #{link_to(@resource, camp_interviews_path(@resource))} online.
+
+= render "mailers/shared/signature"
+

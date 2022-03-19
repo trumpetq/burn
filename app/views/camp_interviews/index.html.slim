@@ -1,0 +1,35 @@
+- page_title("Interviews")
+
+.row
+  .col-md-9
+    .card.mb-3
+      = card_header("file-earmark-person", "Interviews")
+      .card-body
+        p.card-text The following interviews are assigned to you. Please approve or reject each one after meeting with the person.
+  .col-md-3
+
+.row
+  - @assigned_camp_interviews.each do |camp_interview|
+    .col-md-4
+      = render "approve_or_reject_card", camp_interview: camp_interview
+
+.row
+  .col-md-9
+    .card.mb-3
+      = card_header("file-earmark-person", "Completed interviews", pagy: @pagy)
+      .card-table
+        table.table
+          thead
+            tr
+              th ID
+              th User
+              th Status
+              th Updated
+          tbody
+            - @completed_camp_interviews.each do |camp_interview|
+              tr
+                td = link_to_policy(policy(camp_interview).show?, camp_interview.id, camp_interview_path(camp_interview))
+                td = user_badge(camp_interview.user)
+                td = camp_status_badge(camp_interview)
+                td = admin_time(camp_interview.updated_at)
+      = pagy_card_footer(@pagy)

@@ -1,4 +1,10 @@
 .card {
+  .card-header {
+    .spacer {
+      height: 1em;
+    }
+  }
+
   .card-form {
     @extend .card-body;
   }

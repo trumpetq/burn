@@ -85,4 +85,9 @@ module UserHelper
     return na_badge if user.blank?
     tag.span(link_to_policy(policy([:admin, user]).show?, user, admin_user_path(user)), class: "badge bg-light")
   end
+
+  def user_badge(user)
+    return na_badge if user.blank?
+    tag.span(link_to_policy(policy(user).show?, user, user_path(user)), class: "badge bg-light")
+  end
 end

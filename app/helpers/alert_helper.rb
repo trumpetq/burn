@@ -1,7 +1,7 @@
 module AlertHelper
   def error_alert(error)
     return unless error.present? && Rails.env.development?
-    tag.div(error.message, class: "alert alert-danger")
+    tag.div(error.message, class: "alert alert-dark")
   end
 
   def discard_alert(resource)

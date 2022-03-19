@@ -1,0 +1,10 @@
+p Unfortunately we have some bad news. After going though the interview process we have decided not to move forward with your application to camp with us.
+
+- if @resource.feedback_notes.present?
+  p Your interviewer provided the following feedback:
+  p = @resource.feedback_notes
+
+p We are sorry that you will not be able to camp with us in #{Settings.date.current_year}.
+
+= render "mailers/shared/signature"
+

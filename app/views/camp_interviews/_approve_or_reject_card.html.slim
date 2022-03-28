@@ -4,12 +4,12 @@
 
     - if camp_interview.approved? && camp_interview.valid?
       .card-body
-        p.alert.alert-success Interview has been <b>approved</b>.
+        .alert.alert-success Interview has been <b>approved</b>.
         p.card-text #{user_link(camp_interview.user)} will be notified of their approval.
         p.card-text <b>Thank you</b> for contribuiting to camp!
     - elsif camp_interview.rejected? && camp_interview.valid?
       .card-body
-        p.alert.alert-danger Interview has been <b>rejected</b>.
+        .alert.alert-danger Interview has been <b>rejected</b>.
         p.card-text #{user_link(camp_interview.user)} will be notified of their rejection.
     - else
       .card-body

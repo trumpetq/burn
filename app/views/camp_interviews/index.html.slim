@@ -2,10 +2,10 @@
 
 .row
   .col-md-9
-    .card.mb-3
-      = card_header("file-earmark-person", "Interviews")
-      .card-body
-        p.card-text The following interviews are assigned to you. Please approve or reject each one after meeting with the person.
+    - if @assigned_camp_interviews.size.positive?
+      = render "instructions_card"
+    - else
+      = render "no_interviews_card"
   .col-md-3
 
 .row

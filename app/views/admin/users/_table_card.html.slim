@@ -1,29 +1,30 @@
-= turbo_frame_tag("users", target: "_top", class: "card mb-3") do
-  = card_header("people", "Users", pagy: pagy, button: header_admin_new_button(:user))
-  .card-table
-    table.table
-      thead
-        tr
-          th = admin_table_sort(path: :users, column: "id", label: "ID")
-          th = admin_table_sort(path: :users, column: "name", label: "Name")
-          th = admin_table_sort(path: :users, column: "playa_name", label: "Playa name")
-          th = admin_table_sort(path: :users, column: "email", label: "Email")
-          th Phone
-          th = admin_table_sort(path: :users, column: "status", label: "Status")
-          th = admin_table_sort(path: :users, column: "role", label: "Role")
-          th
-      tbody
-        - users.each do |user|
-          tr class=table_row_class(user)
-            td = link_to_policy(policy([:admin, user]).show?, user.id, admin_user_path(user))
-            td = link_to_policy(policy([:admin, user]).show?, user.name, admin_user_path(user))
-            td = link_to_policy(policy([:admin, user]).show?, user.playa_name.presence || na_badge, user_path(user))
-            td = mail_to(user.email)
-            td = link_to_phone(user.phone_number)
-            td = user_status_badge(user)
-            td = user_role_badge(user)
-            td.text-end
-              - if policy([:admin, user]).edit?
-                = link_to(bootstrap_icon("pencil"), edit_admin_user_path(user))
+= turbo_frame_tag("users_card", target: "_top") do
+  .card.mb-3
+    = card_header("people", "Users", pagy: pagy, buttons: [header_admin_new_button(:user)])
+    .card-table
+      table.table
+        thead
+          tr
+            th = admin_table_sort(path: :users, column: "id", label: "ID")
+            th = admin_table_sort(path: :users, column: "name", label: "Name")
+            th = admin_table_sort(path: :users, column: "playa_name", label: "Playa name")
+            th = admin_table_sort(path: :users, column: "email", label: "Email")
+            th Camp
+            th = admin_table_sort(path: :users, column: "status", label: "Status")
+            th = admin_table_sort(path: :users, column: "plan", label: "Plan")
+            th = admin_table_sort(path: :users, column: "role", label: "Role")
+            th
+        tbody
+          - users.each do |user|
+            tr class=table_row_class(user)
+              td = link_to_policy(policy([:admin, user]).show?, user.id, admin_user_path(user))
+              td = link_to_policy(policy([:admin, user]).show?, user.name, admin_user_path(user))
+              td = link_to_policy(policy([:admin, user]).show?, user.playa_name.presence || na_badge, user_path(user))
+              td = mail_to(user.email)
+              td = user_camp_status_badge(user)
+              td = user_status_badge(user)
+              td = user_plan_badge(user)
+              td = user_role_badge(user)
+              td.text-end = admin_edit_icon(user)
 
-  = pagy_card_footer(pagy)
+    = pagy_card_footer(pagy)

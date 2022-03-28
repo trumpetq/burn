@@ -24,7 +24,7 @@ class UserPolicy < ApplicationPolicy
   end
 
   def me?
-    record == user
+    record.present? && record == user
   end
 
   def contact?

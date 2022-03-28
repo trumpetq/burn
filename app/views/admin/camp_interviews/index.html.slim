@@ -2,7 +2,7 @@
 .row
   .col-md-12
     .card.mb-3
-      = card_header("file-earmark-person", "Camp interviews", pagy: @pagy, button: header_admin_new_button(:camp_interview))
+      = card_header("file-earmark-person", "Camp interviews", pagy: @pagy, buttons: [header_admin_new_button(:camp_interview)])
       .card-table
         table.table
           thead
@@ -10,15 +10,15 @@
               th ID
               th User
               th Status
+              th Interviewer
               th
           tbody
             - @resources.each do |resource|
               tr class=table_row_class(resource)
                 td = link_to_policy(policy([:admin, resource]).show?, resource.id, admin_camp_interview_path(resource))
-                td = resource.user.present? ? link_to_policy(policy([:admin, resource.user]).show?, resource.user, admin_user_path(resource.user)) : na_badge
+                td = admin_user_link(resource.user)
                 td = camp_status_badge(resource)
-                 td.text-end
-                  - if policy([:admin, resource]).edit?
-                    = link_to(bootstrap_icon("pencil"), edit_admin_camp_interview_path(resource))
-
+                td = admin_user_link(resource.interviewed_by)
+                td.text-end = admin_edit_icon(resource)
       = pagy_card_footer(@pagy)
+

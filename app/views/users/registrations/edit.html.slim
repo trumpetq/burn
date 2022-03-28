@@ -3,7 +3,7 @@
 .row
   .col-md-6
     .card.mb-3
-      = card_header("person-check", "Edit profile", button: header_show_button(resource))
+      = card_header("person-check", "Edit profile", buttons: [header_show_button(resource)])
       .card-form
         = render "form"
   .col-md-6

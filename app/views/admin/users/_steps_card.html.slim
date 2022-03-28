@@ -8,9 +8,7 @@
           - if user.camp_application.present?
             td = link_to_policy(policy([:admin, user.camp_application]).show?, user.camp_application.id, admin_camp_application_path(user.camp_application))
             td = camp_status_badge(user.camp_application)
-            td
-              - if policy([:admin, user.camp_application]).show?
-                = link_to(bootstrap_icon("link"), admin_camp_application_path(user.camp_application))
+            td.text-end = admin_link_icon(user.camp_application)
           - else
             td = na_badge
             td

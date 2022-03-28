@@ -2,10 +2,10 @@
   .card.mb-3
     = card_header("clipboard-check", "Complete")
     .card-body
-      = simple_form_for([:admin, resource], url: complete_admin_camp_application_path(resource)) do |f|
+      = simple_form_for([:admin, resource], namespace: "complete", url: complete_admin_camp_application_path(resource)) do |f|
         .row
           .col.mb-3
-            = f.input :send_email, input_html: { id: "send_email_complete" }
+            = f.input :send_email
         .row
           .col.d-grid
             = f.button :submit, "Complete", class: "btn-override-success"

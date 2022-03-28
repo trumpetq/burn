@@ -14,6 +14,7 @@ module Admin
       query = query.order("LOWER(playa_name) #{param_direction}") if params[:column] == "playa_name"
       query = query.order(email: param_direction) if params[:column] == "email"
       query = query.order(status: param_direction) if params[:column] == "status"
+      query = query.order(plan: param_direction) if params[:column] == "plan"
       query = query.order(role: param_direction) if params[:column] == "role"
 
       @pagy, @users = pagy(query, items: 50)

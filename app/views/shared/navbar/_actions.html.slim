@@ -1,0 +1,7 @@
+- if policy(:camp_application).new? && current_user.camp_application.blank?
+  li.nav-item
+    = link_to("Application", new_camp_application_path, class: "btn btn-success me-2")
+
+- if current_user.camp_interview.present? && current_user.camp_interview.assigned? && policy(current_user.camp_interview).show?
+  li.nav-item
+    = link_to("Interview", camp_interview_path(current_user.camp_interview), class: "btn btn-primary me-2")

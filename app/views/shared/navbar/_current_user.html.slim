@@ -1,5 +1,6 @@
 = render "shared/navbar/main"
 ul.navbar-nav
+  = render "shared/navbar/actions"
   - if policy(:user).camp?
     = render "shared/navbar/camp"
   - if policy(:user).admin?

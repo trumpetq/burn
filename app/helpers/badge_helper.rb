@@ -1,6 +1,14 @@
 module BadgeHelper
-  def na_badge
-    tag.span("N/A", class: "badge bg-light text-dark")
+  def na_badge(style: :word, class_name: nil)
+    badge_text =
+      case style.to_sym
+      when :word then "N/A"
+      when :letter then "&ndash;".html_safe
+      else
+        "Error"
+      end
+
+    tag.span(badge_text, class: "badge bg-light text-dark #{class_name}".strip)
   end
 
   def no_badge(text = nil)

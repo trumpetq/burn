@@ -11,7 +11,7 @@
           td = resource.feedback_notes.presence || na_badge
         tr
           th Interviewer
-          td = user_badge(resource.interviewed_by)
+          td = user_link(resource.interviewed_by)
         tr
           th Assigned
           td = admin_time(resource.assigned_at)

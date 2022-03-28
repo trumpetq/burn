@@ -1,7 +1,14 @@
 .card {
   .card-header {
+    a {
+      text-decoration: none;
+    }
     .spacer {
       height: 1em;
+    }
+
+    &.no-body {
+      border-bottom: 0;
     }
   }
 

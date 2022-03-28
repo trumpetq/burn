@@ -9,27 +9,10 @@
   .col-md-3
 
 .row
-  - @assigned_camp_interviews.each do |camp_interview|
+  - @assigned_camp_interviews.each_with_index do |camp_interview, index|
     .col-md-4
-      = render "approve_or_reject_card", camp_interview: camp_interview
+      = render "approve_or_reject_card", camp_interview: camp_interview, index: index
 
 .row
   .col-md-9
-    .card.mb-3
-      = card_header("file-earmark-person", "Completed interviews", pagy: @pagy)
-      .card-table
-        table.table
-          thead
-            tr
-              th ID
-              th User
-              th Status
-              th Updated
-          tbody
-            - @completed_camp_interviews.each do |camp_interview|
-              tr
-                td = link_to_policy(policy(camp_interview).show?, camp_interview.id, camp_interview_path(camp_interview))
-                td = user_badge(camp_interview.user)
-                td = camp_status_badge(camp_interview)
-                td = admin_time(camp_interview.updated_at)
-      = pagy_card_footer(@pagy)
+    = render "finished_camp_interviews_card", finished_camp_interviews: @finished_camp_interviews, pagy: @pagy

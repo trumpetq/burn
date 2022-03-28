@@ -64,8 +64,7 @@ Rails.application.routes.draw do
 
   resources :camp_interviews, only: [:index, :show] do
     member do
-      patch :approve
-      patch :reject
+      patch :approve_or_reject
     end
   end
 

@@ -58,7 +58,6 @@ class User < ApplicationRecord
   enumerize :role, in: {guest: 0, member: 1, camper: 2, leader: 5, mayor: 10}, default: :guest, predicates: true, scope: true
   enumerize :status, in: {active: 0, confirmed: 1, banned: 10}, default: :active, predicates: true, scope: true
   enumerize :plan, in: {none: 0, camping_with_us: 1, thinking_about_it: 2, camping_elsewhere: 3, not_going: 10}, default: :none, predicates: true, scope: true
-
   enumerize :pronouns, in: {he_him: 1, she_her: 2, they_them: 3, she_they: 4, he_they: 5, all: 10}, predicates: true, scope: true
 
   validates :name, :role, :status, :time_zone, presence: true
@@ -74,6 +73,8 @@ class User < ApplicationRecord
     attachable.variant :profile, resize_to_limit: [1000, 1000]
   end
 
+  has_many :camp_interviews, foreign_key: :interviewed_by_id, class_name: ::CampInterview.name
+
   scope :for_phone_number, ->(phone_number) { where(phone_numer: PhonyRails.normalize_number(phone_number)) }
   scope :for_email, ->(email) { where(email: email&.downcase) }
   scope :in_bay_area, -> { where(postal_code: Settings.postal_code.bay_area) }
@@ -83,8 +84,6 @@ class User < ApplicationRecord
   before_validation :scrub_previous_years
   before_validation :normalize_attributes
   after_create :set_role, :create_newsletter
-
-  has_many :assigned_camp_interviews, foreign_key: :interviewed_by_id, class_name: ::CampInterview.name
 
   def to_s
     display_name
@@ -111,10 +110,6 @@ class User < ApplicationRecord
     return if country_code.blank?
     country = ISO3166::Country[country_code]
     country.translations[I18n.locale.to_s] || country.iso_short_name
-  end
-
-  def camp_application
-    ::CampApplication.for_user(self).take
   end
 
   def complete_profile?

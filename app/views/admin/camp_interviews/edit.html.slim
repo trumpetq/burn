@@ -4,7 +4,7 @@
   .col-md-3
   .col-md-6
     .card.mb-3
-      = card_header("file-earmark-person", "Camp interview", button: header_admin_show_button(@resource))
+      = card_header("file-earmark-person", "Camp interview", buttons: [header_admin_show_button(@resource)])
       .card-form
         = render "form", resource: @resource
   .col-md-3

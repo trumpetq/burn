@@ -1,6 +1,6 @@
 - if user.newsletter.present?
   .card.bg-info.bg-opacity-10.mb-3
-    = card_header("envelope-paper", "Subscription", button: header_admin_edit_button(user.newsletter))
+    = card_header("envelope-paper", "Subscription", buttons: [header_admin_edit_button(user.newsletter)])
     .card-body
       - if user.newsletter&.subscribed?
         p.card-text Subscribed to the <b>#{user.newsletter.list&.to_s&.humanize(capitalize: false)}</b> list.

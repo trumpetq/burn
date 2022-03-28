@@ -1,6 +1,6 @@
 module CampHelper
-  def camp_status_badge(camp)
-    return na_badge unless camp&.status.present?
+  def camp_status_badge(camp, style: :word, class_name: nil)
+    return na_badge(style: style, class_name: class_name) unless camp&.status.present?
 
     css_class =
       case camp.status.to_sym
@@ -16,7 +16,15 @@ module CampHelper
         "badge bg-dark"
       end
 
-    tag.span(camp.status&.to_s&.humanize, class: css_class)
+    badge_text =
+      case style.to_sym
+      when :word then camp.status&.to_s&.humanize
+      when :letter then camp.status&.to_s&.upcase&.first
+      else
+        "Error"
+      end
+
+    tag.span(badge_text, class: "#{css_class} #{class_name}".strip)
   end
 
   def camp_vaccine_status_badge(camp)

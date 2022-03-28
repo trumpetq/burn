@@ -1,5 +1,5 @@
 .card.mb-3
-  = card_header("envelope-open", "Subscription", button: header_admin_edit_button(@newsletter))
+  = card_header("envelope-open", "Subscription", buttons: [header_admin_edit_button(@newsletter)])
   .card-table
     table.table
       tbody
@@ -8,7 +8,7 @@
           td = @newsletter.id
         tr
           th User
-          td = @newsletter.user.present? ? link_to_policy(policy([:admin, @newsletter.user]).show?, @newsletter.user, admin_user_path(@newsletter.user)) : na_badge
+          td = admin_user_link(@newsletter.user)
         tr
           th List
           td = newsletter_list_badge(@newsletter)

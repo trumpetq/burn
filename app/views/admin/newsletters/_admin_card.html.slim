@@ -1,5 +1,5 @@
 .card.mb-3
-  = card_header("shield-check text-danger", "Admin", button: header_admin_delete_button(resource))
+  = card_header("shield-check text-danger", "Admin", buttons: [header_admin_delete_button(resource)])
   .card-body
     .btn-collection
       - if resource.subscribed? && policy([:admin, resource]).unsubscribe?

@@ -29,7 +29,7 @@ module Admin
     end
 
     def me?
-      record == user
+      record.present? && record == user
     end
 
     def restore?

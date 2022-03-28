@@ -7,15 +7,15 @@ html
 
     = favicon_link_tag
 
-    title = content_for?(:title) ? yield(:title) : raise(ArgumentError.new('title is missing'))
+    title = content_for?(:title) ? yield(:title) : raise(ArgumentError.new("title is missing"))
 
     = stylesheet_link_tag "application", "data-turbo-track": "reload"
     = javascript_include_tag "application", "data-turbo-track": "reload", defer: true
   body
-    = render 'shared/navbar'
-    = render 'shared/flash'
+    = render "shared/navbar"
+    = render "shared/flash"
     div#root
     #main
       .container-fluid
         = yield
-    = render 'shared/footer'
+    = render "shared/footer"

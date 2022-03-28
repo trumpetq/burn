@@ -3,7 +3,7 @@
   .col-md-3
   .col-md-6
     .card.mb-3
-      = card_header("envelope-open", "Subscription", button: header_show_button(@newsletter))
+      = card_header("envelope-open", "Subscription", buttons: [header_show_button(@newsletter)])
       .card-form
         = render "form", resource: @newsletter
   .col-md-3

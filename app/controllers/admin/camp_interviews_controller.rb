@@ -14,8 +14,8 @@ module Admin
       @resource.update(permitted_attributes([:admin, @resource])) if params[controller_name.singularize].present?
 
       if @resource.save
-        CampInterviewMailer.with(user: @resource.user, interviewed_by: @interviewed_by, resource: @resource).assign.deliver_now if send_email?
-        CampInterviewMailer.with(user: @resource.user, interviewed_by: @interviewed_by, resource: @resource).new_interview.deliver_now if send_email?
+        CampInterviewMailer.with(resource: @resource).assign.deliver_now if send_email?
+        CampInterviewMailer.with(resource: @resource).new_interview.deliver_now if send_email?
 
         redirect_to([:admin, @resource], success: "#{controller_name.humanize} has been assigned to #{@interviewed_by}.", status: :see_other)
       else
@@ -26,7 +26,7 @@ module Admin
     def approve_after_save
       return unless @resource.user.present?
 
-      CampInterviewMailer.with(user: @resource.user, resource: @resource).approve.deliver_now if send_email?
+      CampInterviewMailer.with(resource: @resource).approve.deliver_now if send_email?
       @resource.user.update(plan: :camping_with_us)
     end
 
@@ -39,7 +39,7 @@ module Admin
     def reject_after_save
       return unless @resource.user.present?
 
-      CampInterviewMailer.with(user: @resource.user, resource: @resource).reject.deliver_now if send_email?
+      CampInterviewMailer.with(resource: @resource).reject.deliver_now if send_email?
       @resource.user.update(plan: :camping_elsewhere)
     end
   end

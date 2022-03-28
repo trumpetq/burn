@@ -1,7 +1,7 @@
 - if policy(user).me?
   - if user.avatar.attached?
     .card.mb-3
-      = card_header("image", "Photo", button: header_edit_button(user))
+      = card_header("image", "Photo", buttons: [header_edit_button(user)])
       .card-body
         = image_tag(user.avatar.variant(:thumbnail), class: "img-fluid", alt: user)
   - else

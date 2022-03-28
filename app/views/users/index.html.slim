@@ -13,7 +13,7 @@
           tbody
             - @camping_with_us.each do |user|
               tr
-                td = link_to_policy(policy(user).show?, user, user_path(user))
+                td = user_link(user)
                 td = user.title.presence || na_badge
       = pagy_card_footer(@pagy)
   .col-md-3

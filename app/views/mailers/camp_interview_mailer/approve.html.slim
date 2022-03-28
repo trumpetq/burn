@@ -2,5 +2,5 @@ p Congratulations your interview has been approved.
 p You have been accepted into 8-bit Bunny for #{Settings.date.current_year}.
 p If you haven't already please take a look at the #{link_to("guide", guides_url)}.
 
-= render "mailers/shared/incomplete_profile", user: @user
+= render "mailers/shared/incomplete_profile", user: @resource.user
 = render "mailers/shared/signature"

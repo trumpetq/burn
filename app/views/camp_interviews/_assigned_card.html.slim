@@ -1,0 +1,15 @@
+- if policy(resource).me? && resource.assigned?
+  .card.bg-info.bg-opacity-10.mb-3
+    = card_header("people-fill", "Assigned interview")
+    .card-body
+      p.card-text Your interview has been assigned to #{user_link(resource.interviewed_by)}.
+      p.card-text If you haven't done so already please contact them directly to schedule a time
+      - if policy(resource.interviewed_by).contact?
+        p.card-text
+          <b>Email</b> #{mail_to(resource.interviewed_by.email)}
+        p.card-text
+          <b>Phone</b> #{link_to_phone(resource.interviewed_by.phone_number)}
+        - if resource.interviewed_by.country_code.present?
+          p.card-text <b>Country</b> #{resource.interviewed_by.country_name}
+        p.card-text
+          <b>Time zone</b> #{resource.interviewed_by.time_zone}

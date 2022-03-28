@@ -1,8 +1,8 @@
 - if [:rejected, :completed, :approved].exclude?(resource.status.to_sym) && policy([:admin, resource]).approve?
   .card.mb-3
     = card_header("check-circle", "Approve")
-    .card-body
-      = simple_form_for([:admin, resource], url: approve_admin_camp_interview_path(resource)) do |f|
+    .card-form
+      = simple_form_for([:admin, resource], namespace: "approve", url: approve_admin_camp_interview_path(resource)) do |f|
         .row
           .col.mb-3
             = f.input :feedback_notes, hint: "Shown to user"
@@ -11,7 +11,7 @@
             = f.input :private_notes, hint: "Only visible to camp leadership"
         .row
           .col.mb-3
-            = f.input :send_email, input_html: { id: "send_email_approve" }
+            = f.input :send_email
         .row
           .col.d-grid
             = f.button :submit, "Approve", class: "btn-override-primary"

@@ -19,10 +19,14 @@ module Stepable
   end
 
   def to_s
-    "#{self.class.name.underscore.humanize} ##{id}"
+    "#{to_s_without_camp} #{id}"
   end
 
   def to_log
     "#{self.class.name.underscore.humanize} id=#{id}, user_id=#{user_id}"
+  end
+
+  def to_s_without_camp
+    self.class.name.underscore.delete("camp_").humanize
   end
 end

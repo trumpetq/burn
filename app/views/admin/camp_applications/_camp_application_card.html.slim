@@ -1,5 +1,5 @@
 .card.mb-3
-  = card_header("file-earmark-text", "Camp application", button: header_admin_edit_button(resource))
+  = card_header("file-earmark-text", "Camp application", buttons: [header_admin_edit_button(resource)])
   .card-table
     table.table
       tbody
@@ -8,7 +8,7 @@
           td = resource.id
         tr
           th User
-          td = admin_user_badge(resource.user)
+          td = admin_user_link(resource.user)
         tr
           th Status
           td = camp_status_badge(resource)

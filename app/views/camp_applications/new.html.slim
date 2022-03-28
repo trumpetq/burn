@@ -4,7 +4,8 @@
   .col-md-3
   .col-md-6
     .card.mb-3
-      = card_header("file-earmark-text", "Camp application")
+      = card_header("file-earmark-text", "Application")
       .card-form
+        p.alert.alert-success This application is the <b>first step</b> to camp with us in #{Settings.date.current_year}.
         = render "form", resource: @resource
   .col-md-3

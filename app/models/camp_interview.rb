@@ -34,6 +34,10 @@ class CampInterview < ApplicationRecord
   include Discard::Model
   extend Enumerize
 
+  attr_accessor :action, :index
+
+  validates :action, inclusion: {in: ["approved", "rejected"]}, allow_nil: true
+
   enumerize :status, in: STATUSES.slice(:unavailable, :active, :approved, :completed, :rejected, :skipped, :assigned), default: :active, predicates: true, scope: true
 
   validates :feedback_notes, :initial_notes, :private_notes, length: {maximum: 10_000}

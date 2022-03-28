@@ -1,0 +1,9 @@
+p #{link_to(@resource.user, user_url(@resource.user))} has been <b>rejected</b> by #{link_to(@resource.interviewed_by, user_url(@resource.interviewed_by))}.
+
+- if @resource.feedback_notes.present?
+  p <b>Feedback</b> #{@resource.feedback_notes}
+
+- if @resource.private_notes.present?
+  p <b>Private</b> #{@resource.private_notes}
+
+= render "mailers/shared/signature"

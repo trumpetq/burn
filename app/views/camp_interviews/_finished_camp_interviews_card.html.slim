@@ -1,0 +1,23 @@
+- if finished_camp_interviews.size.positive?
+  .card.mb-3
+        = card_header("file-earmark-person", "Finished interviews", pagy: pagy)
+        .card-table
+          table.table
+            thead
+              tr
+                th ID
+                th User
+                th Status
+                th Updated
+                th Assigned by
+                th
+            tbody
+              - finished_camp_interviews.each do |camp_interview|
+                tr
+                  td = link_to_policy(policy(camp_interview).show?, camp_interview.id, camp_interview_path(camp_interview))
+                  td = user_link(camp_interview.user)
+                  td = camp_status_badge(camp_interview)
+                  td = admin_time(camp_interview.updated_at)
+                  td = user_link(camp_interview.assigned_by)
+                  td.text-end = link_icon(camp_interview)
+        = pagy_card_footer(pagy)

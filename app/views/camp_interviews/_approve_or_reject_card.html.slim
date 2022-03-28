@@ -1,10 +1,37 @@
-.card.mb-2
-  = card_header("file-earmark-person", link_to_policy(policy(camp_interview).show?, "Interview #{camp_interview.id}", camp_interview_path(camp_interview)))
-  .card-body
-    p.card-text
-      <b>User</b> #{user_badge(camp_interview.user)}
-    - if camp_interview.initial_notes.present?
-      p.card-text
-        <b>Initial notes</b> #{camp_interview.initial_notes}
-    p.card-text
-      = camp_status_badge(camp_interview)
+= turbo_frame_tag "approve_or_reject_card_#{index}", target: "_top"
+  .card.mb-3
+    = card_header("file-earmark-person", link_to_policy(policy(camp_interview).show?, camp_interview, camp_interview_path(camp_interview)), buttons: [camp_status_badge(camp_interview)])
+
+    - if camp_interview.approved? && camp_interview.valid?
+      .card-body
+        p.alert.alert-success Interview has been <b>approved</b>.
+        p.card-text #{user_link(camp_interview.user)} will be notified of their approval.
+        p.card-text <b>Thank you</b> for contribuiting to camp!
+    - elsif camp_interview.rejected? && camp_interview.valid?
+      .card-body
+        p.alert.alert-danger Interview has been <b>rejected</b>.
+        p.card-text #{user_link(camp_interview.user)} will be notified of their rejection.
+    - else
+      .card-body
+        p.card-text
+          <b>User</b> #{user_link(camp_interview.user)}
+        p.card-text
+          <b>Assigned by</b> #{user_link(camp_interview.assigned_by)}
+        - if camp_interview.initial_notes.present?
+          p.card-text
+            <b>Initial notes</b> #{camp_interview.initial_notes}
+        = render "shared/error_messages", resource: camp_interview
+        = simple_form_for(camp_interview, namespace: "form_#{index}", url: approve_or_reject_camp_interview_path(camp_interview)) do |f|
+            = f.input :index, input_html: { value: index }, as: :hidden
+            .row
+              .col.mb-3
+                = f.input :feedback_notes, hint: "Sent to the user by email"
+            .row
+              .col.mb-3
+                = f.input :private_notes, hint: "Only visible to camp leadership, what did you think"
+            .row
+              .col.mb-3
+                = f.input :action, as: :radio_buttons, hint: "Decide if this person should camp with us", collection: [[yes_badge("Approve"), "approved"], [no_badge("Reject"), "rejected"]]
+            .row
+              .col.d-grid
+                = f.button :submit, "Submit", class: "btn-override-primary"

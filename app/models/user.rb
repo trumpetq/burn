@@ -120,6 +120,10 @@ class User < ApplicationRecord
     !complete_profile?
   end
 
+  def should_edit_profile?
+    incomplete_profile? || !avatar.attached?
+  end
+
   def missing_fields
     COMPLETE_PROFILE_FIELDS.filter { !send(_1).present? }
   end

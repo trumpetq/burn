@@ -7,9 +7,14 @@
     .card.mb-3
       = card_header("sunglasses", "Shade")
       .card-body
-        p.card-text In 2017 we built a beautiful shade structure and in 2021 we added a second one.
-        p.card-text Our main shade structure hosts our #{link_to("sauna", sauna_guides_path)} and #{link_to("Bunny Bar", bunny_bar_guides_path)}.
-        p.card-text We do not provide shade for tent camping. We can provide recomendations though for inexpensive options you can setup yourself.
+        p.card-text In 2017 we built a beautiful shade structure and in 2021 we added a second one.  (See both below)
+        p.card-text Our main shade structure hosts our #{link_to("Sauna", sauna_guides_path)} and #{link_to("Bunny Bar", bunny_bar_guides_path)}.
+        p.card-text We do not provide shade for individual camping tents. Some recomendations for inexpensive options you can bring and set up yourself:
+        p.card-text 
+          ul
+            li #{link_to("Gorilla Hut", "https://www.buildgorillahut.com/")}, an update of the classic Monkey Hut
+            li #{link_to("Some tent and shade advice", "https://www.burn.life/tents-and-shade.html")}
+            li #{link_to("An old BORG article with some various advice", "https://journal.burningman.org/2011/04/black-rock-city/survive-and-thrive/diy-your-burn-shelter-shade-cool-cool-comfort/")}
     .card.mb-3
       .card-body
         = image_tag("guides/shade.jpg", size: "2000x1333", class: "img-fluid", alt: "Shade")

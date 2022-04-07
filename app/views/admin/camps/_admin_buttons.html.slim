@@ -1,11 +1,13 @@
 - if current_user.mayor?
-  - if resource.status != :active && policy([:admin, resource]).active?
+  - if resource.status != :active && resource.respond_to?(:active?) && policy([:admin, resource]).active?
     = link_to("Active", polymorphic_path([:admin, resource], action: :active), class: "btn btn-info text-white", data: {turbo_method: :patch})
-  - if resource.status != :approved && policy([:admin, resource]).approve?
+  - if resource.status != :approved && resource.respond_to?(:approved?) && policy([:admin, resource]).approve?
     = link_to("Approve", polymorphic_path([:admin, resource], action: :approve), class: "btn btn-primary", data: {turbo_method: :patch})
-  - if resource.status != :completed && policy([:admin, resource]).complete?
+  - if resource.status != :paid && resource.respond_to?(:paid?) && policy([:admin, resource]).pay?
+    = link_to("Pay", polymorphic_path([:admin, resource], action: :pay), class: "btn btn-primary", data: {turbo_method: :patch})
+  - if resource.status != :completed && resource.respond_to?(:completed?) && policy([:admin, resource]).complete?
     = link_to("Complete", polymorphic_path([:admin, resource], action: :complete), class: "btn btn-success", data: {turbo_method: :patch})
-  - if resource.status != :rejected && policy([:admin, resource]).reject?
+  - if resource.status != :rejected && resource.respond_to?(:rejected?) && policy([:admin, resource]).reject?
     = link_to("Reject", polymorphic_path([:admin, resource], action: :reject), class: "btn btn-danger", data: {turbo_method: :patch, turbo_confirm: "Are you sure?"})
-  - if resource.discarded? && policy([:admin, resource]).force_delete?
+  - if resource.try(:discarded?) && policy([:admin, resource]).force_delete?
     = link_to("Force delete", polymorphic_path([:admin, resource], action: :force_delete), class: "btn btn-danger", data: {turbo_method: :delete, turbo_confirm: "Are you sure?"})

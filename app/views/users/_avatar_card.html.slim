@@ -10,6 +10,7 @@
       .card-body
         p.card-text You are <b>missing</b> a photo.
         p.card-text Photos help other campers learn peoples names before the event starts.
+      .card-footer
         .btn-collection
           - if policy(user).devise?
             = link_to("Add photo", edit_user_registration_path, class: "btn btn-dark")

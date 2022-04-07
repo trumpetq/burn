@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_03_09_224244) do
+ActiveRecord::Schema[7.0].define(version: 2022_04_04_234020) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -69,6 +69,46 @@ ActiveRecord::Schema[7.0].define(version: 2022_03_09_224244) do
     t.index ["user_id"], name: "index_camp_applications_on_user_id"
   end
 
+  create_table "camp_deposits", force: :cascade do |t|
+    t.integer "status", null: false
+    t.bigint "user_id"
+    t.datetime "paid_at"
+    t.datetime "completed_at"
+    t.bigint "completed_by_id"
+    t.text "private_notes"
+    t.datetime "rejected_at"
+    t.bigint "rejected_by_id"
+    t.integer "price_cents", default: 0, null: false
+    t.string "price_currency", default: "USD", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "transaction_id", null: false
+    t.integer "payment_method"
+    t.integer "price_tier"
+    t.bigint "paid_by_id"
+    t.index ["user_id"], name: "index_camp_deposits_on_user_id"
+  end
+
+  create_table "camp_dues", force: :cascade do |t|
+    t.integer "status", null: false
+    t.bigint "user_id"
+    t.datetime "paid_at"
+    t.datetime "completed_at"
+    t.bigint "completed_by_id"
+    t.text "private_notes"
+    t.datetime "rejected_at"
+    t.bigint "rejected_by_id"
+    t.integer "price_cents", default: 0, null: false
+    t.string "price_currency", default: "USD", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "transaction_id", null: false
+    t.integer "payment_method"
+    t.integer "price_tier"
+    t.bigint "paid_by_id"
+    t.index ["user_id"], name: "index_camp_dues_on_user_id"
+  end
+
   create_table "camp_interviews", force: :cascade do |t|
     t.integer "status", null: false
     t.bigint "user_id"
@@ -96,12 +136,15 @@ ActiveRecord::Schema[7.0].define(version: 2022_03_09_224244) do
 
   create_table "camp_tickets", force: :cascade do |t|
     t.bigint "user_id", null: false
-    t.integer "type", null: false
+    t.integer "ticket_type", null: false
     t.integer "status", null: false
     t.integer "location", null: false
     t.text "notes"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "confirmation_id"
+    t.integer "sale", null: false
+    t.integer "availability", null: false
     t.index ["user_id"], name: "index_camp_tickets_on_user_id"
   end
 

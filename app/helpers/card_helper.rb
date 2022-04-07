@@ -27,6 +27,7 @@ module CardHelper
   end
 
   def pagy_card_footer(pagy)
+    return if pagy.blank? || pagy.pages == 1
     tag.div(pagy_bootstrap_nav(pagy).html_safe, class: "card-footer")
   end
 end

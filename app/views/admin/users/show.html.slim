@@ -3,10 +3,11 @@
 .row
   .col-md-4
     = render "profile_card", user: @user
-    = render "steps_card", user: @user
+    = render "checklist_card", user: @user
   .col-md-4
     = render "avatar_card", user: @user
     = render "newsletter_card", user: @user
+    = render "camp_tickets_card", user: @user
   .col-md-4
     = render "user_card", user: @user
     = render "security_card", user: @user

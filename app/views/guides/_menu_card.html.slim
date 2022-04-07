@@ -97,6 +97,10 @@
         li.list-group-item class=active_if(:learn)
           = link_to "Learn", learn_guides_path, class: "h6 text-decoration-none"
           p.text-muted.mb-0 Develop a new skill
+      - if policy(:guide).tickets?
+        li.list-group-item class=active_if(:tickets)
+          = link_to "Tickets", tickets_guides_path, class: "h6 text-decoration-none"
+          p.text-muted.mb-0 To the event
       - if policy(:guide).tools?
         li.list-group-item class=active_if(:tools)
           = link_to "Tools", tools_guides_path, class: "h6 text-decoration-none"

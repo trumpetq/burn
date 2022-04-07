@@ -20,6 +20,24 @@ Rails.application.routes.draw do
       end
     end
 
+    resources :camp_deposits do
+      member do
+        patch :active
+        patch :complete
+        patch :reject
+        patch :pay
+      end
+    end
+
+    resources :camp_dues do
+      member do
+        patch :active
+        patch :complete
+        patch :reject
+        patch :pay
+      end
+    end
+
     resources :camp_interviews do
       member do
         patch :active
@@ -31,6 +49,8 @@ Rails.application.routes.draw do
         delete :force_delete
       end
     end
+
+    resources :camp_tickets
 
     resources :newsletters do
       collection do
@@ -62,11 +82,25 @@ Rails.application.routes.draw do
 
   resources :camp_applications, except: [:destroy]
 
+  resources :camp_deposits, except: [:destroy] do
+    member do
+      patch :pay
+    end
+  end
+
+  resources :camp_dues, except: [:destroy] do
+    member do
+      patch :pay
+    end
+  end
+
   resources :camp_interviews, only: [:index, :show] do
     member do
       patch :approve_or_reject
     end
   end
+
+  resources :camp_tickets
 
   resources :guides, only: [:index] do
     collection do
@@ -94,6 +128,7 @@ Rails.application.routes.draw do
       get :shipping_container
       get :sound
       get :teardown
+      get :tickets
       get :tools
       get :trash
       get :yearbook

@@ -4,6 +4,7 @@ camp:
   max_campers: 50
 date:
   current_year: 2022
+  previous_years: [2016, 2017, 2018, 2019, 2021]
   full_event: [
     ["Monday, August 22nd (build week)", "2022-08-22"],
     ["Tuesday, August 23rd (build week)", "2022-08-23"],
@@ -31,6 +32,9 @@ facebook:
   url: https://www.facebook.com/groups/8bitbunny
 github:
   url: https://github.com/ramaboo/burn
+instagram:
+  url: https://www.instagram.com/8.bit.bunny/
+  username: 8.bit.bunny
 mayor:
   monday:
   tuesday:

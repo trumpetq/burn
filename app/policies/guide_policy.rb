@@ -99,6 +99,10 @@ class GuidePolicy < ApplicationPolicy
     everyone?
   end
 
+  def tickets?
+    everyone?
+  end
+
   def tools?
     everyone?
   end

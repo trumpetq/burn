@@ -3,10 +3,11 @@
     = card_header("exclamation-triangle", "Incomplete profile")
     .card-body
       p.card-text Please add the following information:
-      ul.list-unstyled
+      ul.list-unstyled.mb-1
         - user.missing_fields.each
           li
             b = _1&.to_s&.humanize
+    .card-footer
       .btn-collection
         - if policy(user).devise?
           = link_to("Edit profile", edit_user_registration_path, class: "btn btn-dark")

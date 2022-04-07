@@ -43,7 +43,7 @@
       = f.input :twitter_url, as: :string, label: "Twitter", hint: "https://twitter.com/<b>you</b>".html_safe
   .row
     .mb-3
-      = f.input :previous_years, collection: ::User::PREVIOUS_YEARS, as: :check_boxes, label: "Previous years at 8-bit Bunny"
+      = f.input :previous_years, collection: Settings.date.previous_years, as: :check_boxes, label: "Previous years at 8-bit Bunny"
   .row
     .col-md-12.mb-3
       = f.input :avatar, label: "Photo"

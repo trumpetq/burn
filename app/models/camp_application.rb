@@ -32,9 +32,11 @@
 #  index_camp_applications_on_user_id       (user_id)
 #
 class CampApplication < ApplicationRecord
+  extend Enumerize
+
   include Stepable
   include Discard::Model
-  extend Enumerize
+
 
   enumerize :status, in: STATUSES.slice(:unavailable, :active, :approved, :completed, :rejected), default: :active, predicates: true, scope: true
 

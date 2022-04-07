@@ -30,9 +30,9 @@
 #  index_camp_interviews_on_user_id       (user_id)
 #
 class CampInterview < ApplicationRecord
+  extend Enumerize
   include Stepable
   include Discard::Model
-  extend Enumerize
 
   attr_accessor :action, :index
 

@@ -40,16 +40,20 @@ module Admin
       leader?
     end
 
-    def restore?
+    def force_delete?
       mayor?
     end
 
-    def force_delete?
+    def pay?
       mayor?
     end
 
     def reject?
       leader?
+    end
+
+    def restore?
+      mayor?
     end
   end
 end

@@ -44,11 +44,11 @@
 #  index_users_on_unlock_token          (unlock_token) UNIQUE
 #
 class User < ApplicationRecord
-  include Roleable
   extend Enumerize
+
+  include Roleable
   include Discard::Model
 
-  PREVIOUS_YEARS = [2016, 2017, 2018, 2019, 2021].freeze
   COMPLETE_PROFILE_FIELDS = [:country_code, :description, :name, :phone_number, :postal_code, :pronouns, :time_zone].freeze
 
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :validatable, :trackable, :lockable
@@ -64,16 +64,19 @@ class User < ApplicationRecord
   validates :phone_number, phony_plausible: true
   validates :facebook_url, :twitter_url, :instagram_url, url: {allow_blank: true}
 
-  has_one :camp_application
-  has_one :camp_interview
-  has_one :newsletter
   has_one_attached :avatar do |attachable|
     attachable.variant :menu, resize_to_limit: [100, 100]
     attachable.variant :thumbnail, resize_to_limit: [300, 300]
     attachable.variant :profile, resize_to_limit: [1000, 1000]
   end
 
+  has_one :camp_application
+  has_one :camp_deposit
+  has_one :camp_due
+  has_one :camp_interview
   has_many :camp_interviews, foreign_key: :interviewed_by_id, class_name: ::CampInterview.name
+  has_many :camp_tickets
+  has_one :newsletter
 
   scope :for_phone_number, ->(phone_number) { where(phone_numer: PhonyRails.normalize_number(phone_number)) }
   scope :for_email, ->(email) { where(email: email&.downcase) }
@@ -139,6 +142,10 @@ class User < ApplicationRecord
 
   def active_for_authentication?
     super && !discarded?
+  end
+
+  def has_ticket?
+    camp_tickets.with_ticket_type(:ticket).with_availability(:using_myself).exists?
   end
 
   private

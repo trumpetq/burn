@@ -24,6 +24,7 @@
     - if user.social_media?
       p.card-text
         = user_social_media_icons(user)
+  .card-footer
     .btn-collection
       - if policy(user).me?
         = link_to("Edit profile", edit_user_registration_path, class: "btn btn-primary")

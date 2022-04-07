@@ -95,6 +95,10 @@ class GuidesController < ApplicationController
   def teardown
   end
 
+  # GET /guides/tickets
+  def tickets
+  end
+
   # GET /guides/tools
   def tools
   end

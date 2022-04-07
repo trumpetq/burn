@@ -107,6 +107,29 @@ module UserHelper
     capture do
       concat camp_status_badge(user.camp_application, style: :letter, class_name: "me-1")
       concat camp_status_badge(user.camp_interview, style: :letter, class_name: "me-1")
+      concat user_has_tickets_badge(user, style: :letter, class: "me-1")
     end
+  end
+
+  def user_has_ticket_badge(user, style: :word, class_name: nil)
+    return na_badge(style: style, class_name: class_name) if user.blank?
+
+    if user.has_ticket?
+      ticket_text = "Yes"
+      css_class = "badge bg-success"
+    else
+      ticket_text = "No"
+      css_class = "badge bg-danger"
+    end
+
+    badge_text =
+      case style.to_sym
+      when :word then ticket_text
+      when :letter then ticket_text.upcase.first
+      else
+        "Error"
+      end
+
+    tag.span(badge_text, class: "#{css_class} #{class_name}".strip)
   end
 end

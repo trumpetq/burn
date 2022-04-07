@@ -14,7 +14,7 @@
             tbody
               - finished_camp_interviews.each do |camp_interview|
                 tr
-                  td = link_to_policy(policy(camp_interview).show?, camp_interview.id, camp_interview_path(camp_interview))
+                  td = link_to_id(camp_interview)
                   td = user_link(camp_interview.user)
                   td = camp_status_badge(camp_interview)
                   td = admin_time(camp_interview.updated_at)

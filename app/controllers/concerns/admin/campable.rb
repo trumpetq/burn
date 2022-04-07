@@ -3,23 +3,26 @@ module Admin
     extend ActiveSupport::Concern
 
     included do
-      before_action :set_resource, only: [:show, :edit, :update, :destroy, :active, :approve, :complete, :restore, :reject, :force_delete]
+      before_action :set_resource, only: [:show, :edit, :update, :destroy, :active, :approve, :complete, :force_delete, :pay, :reject, :restore]
     end
 
     # GET /admin/resources
     def index
       authorize([:admin, controller_name.classify.underscore.to_sym])
       @pagy, @resources = pagy(controller_name.classify.constantize.includes(:user).order(updated_at: :desc))
+      after_index if defined?(after_index)
     end
 
     # GET /admin/resources/:id
     def show
+      after_show if defined?(after_show)
     end
 
     # GET /admin/resources/new
     def new
       @resource = controller_name.classify.constantize.new
       authorize([:admin, @resource])
+      after_new if defined?(after_new)
     end
 
     # POST /admin/resources
@@ -27,7 +30,7 @@ module Admin
       @resource = controller_name.classify.constantize.new(permitted_attributes([:admin, controller_name.classify.constantize]))
       authorize([:admin, @resource])
       if @resource.save
-        redirect_to [:admin, @resource], success: "#{controller_name.humanize} was successfully created."
+        redirect_to([:admin, @resource], success: "#{admin_link_to_resource} was successfully created.")
       else
         render :new, status: :unprocessable_entity
       end
@@ -40,7 +43,7 @@ module Admin
     # PATCH /admin/resources/:id
     def update
       if @resource.update(permitted_attributes([:admin, @resource]))
-        redirect_to [:admin, @resource], success: "#{controller_name.humanize} was successfully updated."
+        redirect_to([:admin, @resource], success: "#{admin_link_to_resource} was successfully updated.")
       else
         render :edit, status: :unprocessable_entity
       end
@@ -48,9 +51,13 @@ module Admin
 
     # DELETE /admin/resources/:id
     def destroy
-      @resource.discard
+      if @resource.respond_to?(:discard)
+        @resource.discard
+      else
+        @resource.destroy
+      end
 
-      redirect_to admin_root_path, notice: "#{controller_name.humanize} was successfully destroyed.", status: :see_other
+      redirect_to(admin_root_path, notice: "#{controller_name.singularize.humanize} was successfully destroyed.", status: :see_other)
     end
 
     # PATCH /admin/resources/:id/active
@@ -64,7 +71,7 @@ module Admin
       if @resource.save
         active_after_save if defined?(active_after_save)
 
-        redirect_to([:admin, @resource], notice: "#{controller_name.humanize} has is now active.", status: :see_other)
+        redirect_to([:admin, @resource], notice: "#{admin_link_to_resource} has is now active.", status: :see_other)
       else
         redirect_on_error
       end
@@ -83,7 +90,7 @@ module Admin
       if @resource.save
         approve_after_save if defined?(approve_after_save)
 
-        redirect_to([:admin, @resource], notice: "#{controller_name.humanize} has been approved.", status: :see_other)
+        redirect_to([:admin, @resource], notice: "#{admin_link_to_resource} has been approved.", status: :see_other)
       else
         redirect_on_error
       end
@@ -102,7 +109,26 @@ module Admin
       if @resource.save
         complete_after_save if defined?(complete_after_save)
 
-        redirect_to([:admin, @resource], notice: "#{controller_name.humanize} has been completed.", status: :see_other)
+        redirect_to([:admin, @resource], notice: "#{admin_link_to_resource} has been completed.", status: :see_other)
+      else
+        redirect_on_error
+      end
+    end
+
+    # PATCH /admin/resources/:id/pay
+    def pay
+      @resource.paid_at = Time.current
+      @resource.paid_by = current_user
+      @resource.status = :paid
+
+      @resource.update(permitted_attributes([:admin, @resource])) if params[controller_name.singularize].present?
+
+      pay_before_save if defined?(pay_before_save)
+
+      if @resource.save
+        pay_after_save if defined?(pay_after_save)
+
+        redirect_to([:admin, @resource], notice: "#{admin_link_to_resource} has been paid.", status: :see_other)
       else
         redirect_on_error
       end
@@ -121,7 +147,7 @@ module Admin
       if @resource.save
         reject_after_save if defined?(reject_after_save)
 
-        redirect_to([:admin, @resource], alert: "#{controller_name.humanize} has been rejected.", status: :see_other)
+        redirect_to([:admin, @resource], alert: "#{admin_link_to_resource} has been rejected.", status: :see_other)
       else
         redirect_on_error
       end
@@ -131,14 +157,14 @@ module Admin
     def restore
       @resource.undiscard
 
-      redirect_to([:admin, @resource], notice: "#{controller_name.humanize} was successfully restored.", status: :see_other)
+      redirect_to([:admin, @resource], notice: "#{admin_link_to_resource} was successfully restored.", status: :see_other)
     end
 
     # DELETE /admin/resources/:id/force_delete
     def force_delete
       @resource.destroy
 
-      redirect_to(admin_root_url, alert: "#{controller_name.humanize} was successfully deleted.", status: :see_other)
+      redirect_to(admin_root_url, alert: "#{controller_name.singularize.humanize} was successfully deleted.", status: :see_other)
     end
 
     private
@@ -154,6 +180,10 @@ module Admin
 
     def send_email?
       params.dig(controller_name.singularize, :send_email) == "1"
+    end
+
+    def admin_link_to_resource
+      view_context.link_to_policy(policy([:admin, @resource]).show?, controller_name.singularize.humanize, [:admin, @resource])
     end
   end
 end

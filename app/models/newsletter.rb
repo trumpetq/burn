@@ -21,6 +21,7 @@
 #
 class Newsletter < ApplicationRecord
   extend Enumerize
+
   include Discard::Model
 
   has_secure_token :unsubscribe_token, length: 36

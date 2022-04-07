@@ -2,6 +2,8 @@ module Admin
   class CampApplicationsController < ApplicationController
     include Admin::Campable
 
+    private
+
     def approve_after_save
       return unless @resource.user.present?
 

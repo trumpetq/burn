@@ -16,14 +16,26 @@ class CampPolicy < ApplicationPolicy
   end
 
   def edit?
-    member? && me?
+    member? && me? && !finished?
   end
 
   def update?
-    member? && me?
+    edit?
+  end
+
+  def destroy?
+    edit?
+  end
+
+  def admin?
+    leader?
   end
 
   def me?
     record.user.present? && record.user == user
+  end
+
+  def finished?
+    record.finished?
   end
 end

@@ -2,9 +2,10 @@
 
 .row
   .col-md-3
-    = render "steps_card", user: @user
+    = render "checklist_card", user: @user
   .col-md-6
     = render "profile_card", user: @user
+    = render "camp_tickets_card", user: @user, camp_tickets: @user.camp_tickets
   .col-md-3
     = render "avatar_card", user: @user
     = render "incomplete_profile_card", user: @user

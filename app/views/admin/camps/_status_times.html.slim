@@ -1,24 +1,35 @@
-tr
-  th Applied
-  td = admin_time(resource.applied_at)
-tr
-  th Approved
-  td
-    = admin_time(resource.approved_at)
-    - if resource.approved_by.present?
-      =< admin_user_badge(resource.approved_by)
-tr
-  th Completed
-  td
-    = admin_time(resource.completed_at)
-    - if resource.completed_by.present?
-      =< admin_user_badge(resource.completed_by)
-tr
-  th Rejected
-  td
-    = admin_time(resource.rejected_at)
-    - if resource.rejected_by.present?
-      =< admin_user_badge(resource.rejected_by)
+- if resource.respond_to?(:applied_at)
+  tr
+    th Applied
+    td = admin_time(resource.applied_at)
+- if resource.respond_to?(:approved_at)
+  tr
+    th Approved
+    td
+      = admin_time(resource.approved_at)
+      - if resource.approved_by.present?
+        =< admin_user_badge(resource.approved_by)
+- if resource.respond_to?(:paid_at)
+  tr
+    th Paid
+    td
+      = admin_time(resource.paid_at)
+      - if resource.paid_by.present?
+        =< admin_user_badge(resource.paid_by)
+- if resource.respond_to?(:completed_at)
+  tr
+    th Completed
+    td
+      = admin_time(resource.completed_at)
+      - if resource.completed_by.present?
+        =< admin_user_badge(resource.completed_by)
+- if resource.respond_to?(:rejected_at)
+  tr
+    th Rejected
+    td
+      = admin_time(resource.rejected_at)
+      - if resource.rejected_by.present?
+        =< admin_user_badge(resource.rejected_by)
 tr
   th Created
   td = admin_time(resource.created_at)

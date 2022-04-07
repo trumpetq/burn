@@ -3,9 +3,14 @@
   .card-table
     table.table
       tbody
-        tr
-          th ID
-          td = user.id
+        - if user.complete_profile?
+          tr.table-success
+            th ID
+            td = user.id
+        - else
+          tr.table-warning
+            th ID
+            td = user.id
         tr
           th Name
           td

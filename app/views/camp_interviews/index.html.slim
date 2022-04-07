@@ -2,10 +2,10 @@
 
 .row
   .col-md-9
-    - if @assigned_camp_interviews.size.positive?
-      = render "instructions_card"
+    - if @assigned_camp_interviews.empty?
+      = render "empty_card"
     - else
-      = render "no_interviews_card"
+      = render "instructions_card"
   .col-md-3
 
 .row

@@ -2,6 +2,13 @@ module Admin
   class CampInterviewsController < ApplicationController
     include Admin::Campable
 
+    # GET /admin/camp_interviews
+    def index
+      authorize([:admin, :camp_interview])
+      @pagy, @resources = pagy(::CampInterview.includes(:user, :interviewed_by).order(updated_at: :desc))
+    end
+
+    # PATCH /admin/camp_interviews/:id/assign
     def assign
       set_resource
 
@@ -17,11 +24,13 @@ module Admin
         CampInterviewMailer.with(resource: @resource).assign.deliver_now if send_email?
         CampInterviewMailer.with(resource: @resource).new_interview.deliver_now if send_email?
 
-        redirect_to([:admin, @resource], success: "#{controller_name.humanize} has been assigned to #{@interviewed_by}.", status: :see_other)
+        redirect_to([:admin, @resource], success: "#{controller_name.singularize.humanize} has been assigned to #{@interviewed_by}.", status: :see_other)
       else
         redirect_on_error
       end
     end
+
+    private
 
     def approve_after_save
       return unless @resource.user.present?

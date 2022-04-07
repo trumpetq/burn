@@ -17,7 +17,7 @@
         tbody
           - users.each do |user|
             tr class=table_row_class(user)
-              td = link_to_policy(policy([:admin, user]).show?, user.id, admin_user_path(user))
+              td = admin_link_to_id(user)
               td = link_to_policy(policy([:admin, user]).show?, user.name, admin_user_path(user))
               td = link_to_policy(policy([:admin, user]).show?, user.playa_name.presence || na_badge, user_path(user))
               td = mail_to(user.email)

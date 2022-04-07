@@ -8,5 +8,5 @@
   li.list-group-item.bg-light
     h6.text-muted Depoist
     p.text-muted Pay your deposit
-    - false # if policy(:camp_deposit).new?
+    - if false # if policy(:camp_deposit).new?
       = link_to("Pay deposit", new_camp_deposit_path, class: "btn btn-primary")

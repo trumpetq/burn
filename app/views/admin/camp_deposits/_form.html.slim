@@ -1,0 +1,22 @@
+= render "shared/error_messages", resource: resource
+= simple_form_for([:admin, resource]) do |f|
+  .row
+    .col-md-6.mb-3
+      = f.input :status, include_blank: false
+    - if resource.new_record?
+      .col-md-6.mb-3
+        = f.input :user_id, hint: "1234", label: "User ID", required: true
+  .row
+    .col-md-6.mb-3
+      = f.input :payment_method, include_blank: false
+    .col-md-6.mb-3
+      = f.input :price_tier, include_blank: false
+  .row
+    .col-md-6.mb-3
+      = f.input :price
+  .row
+    .col-md-12.mb-3
+      = f.input :private_notes
+  .row
+    .col.d-grid
+      = f.button :submit, submit_button_text(resource)

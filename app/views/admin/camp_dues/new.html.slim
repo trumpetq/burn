@@ -1,0 +1,10 @@
+- page_title("New - Camp due")
+
+.row
+  .col-md-3
+  .col-md-6
+    .card.mb-3
+      = card_header("cash-coin", "Camp due")
+      .card-form
+        = render "form", resource: @resource
+  .col-md-3

@@ -1,0 +1,12 @@
+- if user.camp_deposit.present?
+  li.list-group-item.bg-light
+    h6 = link_to_policy(policy(user.camp_deposit).show?, "Deposit", camp_deposit_path(user.camp_deposit), class: "text-decoration-none")
+    p.text-muted
+      | Pay your deposit
+      =< camp_status_badge(user.camp_deposit)
+- else
+  li.list-group-item.bg-light
+    h6.text-muted Depoist
+    p.text-muted Pay your deposit
+    - if policy(:camp_deposit).new?
+      = link_to("Pay deposit", new_camp_deposit_path, class: "btn btn-primary")

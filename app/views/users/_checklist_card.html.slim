@@ -1,0 +1,21 @@
+- if policy(user).me?
+  .card.mb-3
+    = card_header("list-check", "Checklist")
+    ul.list-group.list-group-flush
+      = render "users/checklist/camp_application", user: current_user
+      = render "users/checklist/camp_interview", user: current_user
+      = render "users/checklist/camp_guide", user: current_user
+      = render "users/checklist/camp_due", user: current_user
+      = render "users/checklist/camp_deposit", user: current_user
+      = render "users/checklist/camp_ticket", user: current_user
+      = render "users/checklist/camp_job", user: current_user
+      = render "users/checklist/camp_housing", user: current_user
+      = render "users/checklist/camp_vehicle", user: current_user
+      = render "users/checklist/camp_event", user: current_user
+      = render "users/checklist/camp_feedback", user: current_user
+      = render "users/checklist/camp_refund", user: current_user
+
+
+
+
+

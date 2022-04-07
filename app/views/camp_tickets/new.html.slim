@@ -1,0 +1,11 @@
+- page_title("New ticket")
+
+.row
+  .col-md-3
+  .col-md-6
+    .card.mb-3
+      = card_header("ticket-detailed", "Ticket")
+      .card-form
+        p.card-text Tell us about your ticket or vehicle pass.
+        = render "form", resource: @resource
+  .col-md-3

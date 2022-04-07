@@ -1,0 +1,30 @@
+.card.mb-3
+  = card_header("ticket-detailed", "Ticket", buttons: [header_edit_button(resource), header_delete_button(resource)])
+  .card-table
+    table.table
+      tbody
+        tr
+          th Availability
+          td = camp_availability_badge(resource)
+        tr
+          th Type
+          td = camp_ticket_type_badge(resource)
+        tr
+          th Location
+          td = camp_location_badge(resource)
+        tr
+          th Sale
+          td = camp_sale_badge(resource)
+        tr
+          th Confirmation ID
+          td
+            code = resource.confirmation_id.presence || na_badge
+        tr
+          th Notes
+          td = resource.notes.presence || na_badge
+        tr
+          th Created
+          td = admin_time(resource.created_at)
+        tr
+          th Updated
+          td = admin_time(resource.updated_at)

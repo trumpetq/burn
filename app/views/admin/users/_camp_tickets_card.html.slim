@@ -1,0 +1,24 @@
+- if user.camp_tickets.present?
+ .card.mb-3
+    = card_header("ticket-detailed", "Camp tickets", buttons: [header_admin_new_button(:camp_ticket, user_id: user.id)])
+    .card-table
+      table.table
+        thead
+          tr
+            th ID
+            th Ticket type
+            th Availability
+            th
+        tbody
+          - user.camp_tickets.each do |resource|
+            tr
+              td = admin_link_to_id(resource)
+              td = camp_ticket_type_badge(resource)
+              td = camp_availability_badge(resource)
+              td.text-end = admin_edit_icon(resource)
+
+- else
+  .card.mb-3
+    = card_header("ticket-detailed", "Camp tickets", buttons: [header_admin_new_button(:camp_ticket, user_id: user.id)])
+    .card-body
+      .alert.alert-dark.mb-0 No tickets found.

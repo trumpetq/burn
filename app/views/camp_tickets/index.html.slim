@@ -1,0 +1,9 @@
+- page_title("Tickets")
+.row
+  .col-md-9
+    - if @camp_tickets.empty?
+      = render "empty_card"
+    - else
+      = render "table_card", camp_tickets: @camp_tickets
+  .col-md-3
+    = render "information_card"

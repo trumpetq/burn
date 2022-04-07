@@ -1,0 +1,31 @@
+.card.mb-3
+  = card_header("piggy-bank", "Camp deposit", buttons: [header_show_button(resource), header_admin_edit_button(resource)])
+  .card-table
+    table.table
+      tbody
+        tr
+          th ID
+          td = resource.id
+        tr
+          th User
+          td = admin_user_link(resource.user)
+        tr
+          th Status
+          td = camp_status_badge(resource)
+        tr
+          th Price
+          td = number_to_currency(resource.price)
+        tr
+          th Pricing tier
+          td = camp_price_tier_badge(resource)
+        tr
+          th Payment method
+          td = camp_payment_method_badge(resource)
+        tr
+          th Transaction ID
+          td
+            code = resource.transaction_id
+        tr
+          th Private notes
+          td = resource.private_notes.presence || na_badge
+        = render "admin/camps/status_times", resource: resource

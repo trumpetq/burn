@@ -1,0 +1,26 @@
+- page_title("Camp deposits")
+.row
+  .col-md-12
+    .card.mb-3
+      = card_header("piggy-bank", "Camp deposits", pagy: @pagy, buttons: [header_admin_new_button(:camp_deposit)])
+      .card-table
+        table.table
+          thead
+            tr
+              th ID
+              th User
+              th Status
+              th Price
+              th Method
+              th
+          tbody
+            - @resources.each do |resource|
+              tr
+                td = admin_link_to_id(resource)
+                td = admin_user_link(resource.user)
+                td = camp_status_badge(resource)
+                td = link_to_policy(policy([:admin, resource]).show?, number_to_currency(resource.price), admin_camp_due_path(resource))
+                td = camp_payment_method_badge(resource)
+                td.text-end = admin_edit_icon(resource)
+      = pagy_card_footer(@pagy)
+

@@ -1,0 +1,56 @@
+.card.mb-3
+  = card_header("list-check", "Checklist")
+  .card-table
+    table.table
+      tbody
+        tr
+          th Application
+          - if user.camp_application.present?
+            td = admin_link_to_id(user.camp_application)
+            td = camp_status_badge(user.camp_application)
+            td.text-end = admin_link_icon(user.camp_application)
+          - else
+            td = na_badge
+            td
+            td
+        tr
+          th Interview
+          - if user.camp_interview.present?
+            td = admin_link_to_id(user.camp_interview)
+            td = camp_status_badge(user.camp_interview)
+            td.text-end = admin_link_icon(user.camp_interview)
+          - else
+            td = na_badge
+            td
+            td
+        tr
+          th Tickets
+          - if user.camp_tickets.present?
+            td
+              span.badge.rounded-pill.bg-primary = user.camp_tickets.size
+            td = user_has_ticket_badge(user)
+            td
+          - else
+            td = na_badge
+            td
+            td
+        tr
+          th Dues
+          - if user.camp_due.present?
+            td = admin_link_to_id(user.camp_due)
+            td = camp_status_badge(user.camp_due)
+            td.text-end = admin_link_icon(user.camp_due)
+          - else
+            td = na_badge
+            td
+            td
+        tr
+          th Deposit
+          - if user.camp_deposit.present?
+            td = admin_link_to_id(user.camp_deposit)
+            td = camp_status_badge(user.camp_deposit)
+            td.text-end = admin_link_icon(user.camp_deposit)
+          - else
+            td = na_badge
+            td
+            td

@@ -1,0 +1,11 @@
+- page_title("Edit - #{@resource}")
+
+.row
+  .col-md-3
+  .col-md-6
+    .card.mb-3
+      = card_header("cash-coin", "Camp due", buttons: [header_admin_show_button(@resource)])
+      .card-form
+        = render "form", resource: @resource
+  .col-md-3
+    = render "admin_card", resource: @resource

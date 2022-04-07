@@ -1,0 +1,18 @@
+= render "shared/error_messages", resource: resource
+= simple_form_for(resource) do |f|
+  .row
+    .col-md-6.mb-3
+      = f.input :availability, include_blank: false
+    .col-md-6.mb-3
+      = f.input :ticket_type, include_blank: false, label: "Type"
+  .row
+    .col-md-6.mb-3
+      = f.input :location, include_blank: false
+    .col-md-6.mb-3
+      = f.input :sale, include_blank: false
+  .row
+    .col-md-12.mb-3
+      = f.input :notes, hint: "anything else you think we should know"
+  .row
+    .col.d-grid
+      = f.button :submit, submit_button_text(resource)

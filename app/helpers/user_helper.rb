@@ -107,7 +107,7 @@ module UserHelper
     capture do
       concat camp_status_badge(user.camp_application, style: :letter, class_name: "me-1")
       concat camp_status_badge(user.camp_interview, style: :letter, class_name: "me-1")
-      concat user_has_tickets_badge(user, style: :letter, class: "me-1")
+      concat user_has_ticket_badge(user, style: :letter, class: "me-1")
     end
   end
 

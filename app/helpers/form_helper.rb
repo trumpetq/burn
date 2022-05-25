@@ -4,7 +4,7 @@ module FormHelper
   end
 
   def user_id_input(resource, f)
-    if resource.new_record?
+    if resource.new_record? && resource.errors[:user_id].blank?
       if resource.user.present?
         capture do
           concat(f.label(:user))

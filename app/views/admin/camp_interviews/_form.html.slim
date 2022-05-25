@@ -1,8 +1,9 @@
 = render "shared/error_messages", resource: resource
 = simple_form_for([:admin, resource]) do |f|
   .row
-    .col-md-6.mb-3
-      = f.input :status, include_blank: false
+    - unless resource.new_record?
+      .col-md-6.mb-3
+        = f.input :status, include_blank: false
     .col-md-6.mb-3
       = user_id_input(resource, f)
   .row

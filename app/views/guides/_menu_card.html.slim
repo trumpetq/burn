@@ -43,7 +43,7 @@
           p.text-muted.mb-0 Share the cost
       - if policy(:guide).deposit?
         li.list-group-item class=active_if(:deposit)
-          = link_to "Depoist", deposit_guides_path, class: "h6 text-decoration-none"
+          = link_to "Deposit", deposit_guides_path, class: "h6 text-decoration-none"
           p.text-muted.mb-0 Commit to teardown
       - if policy(:guide).kitchen?
         li.list-group-item class=active_if(:kitchen)
@@ -84,7 +84,7 @@
       - if policy(:guide).shipping_container?
         li.list-group-item class=active_if(:shipping_container)
           = link_to "Shipping container", shipping_container_guides_path, class: "h6 text-decoration-none"
-          p.text-muted.mb-0 AC chil space
+          p.text-muted.mb-0 AC chill space
       - if policy(:guide).lag_bolts?
         li.list-group-item class=active_if(:lag_bolts)
           = link_to "Lag bolts", lag_bolts_guides_path, class: "h6 text-decoration-none"

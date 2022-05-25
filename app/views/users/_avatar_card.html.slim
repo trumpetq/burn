@@ -3,7 +3,8 @@
     .card.mb-3
       = card_header("image", "Photo", buttons: [header_edit_button(user)])
       .card-body
-        = image_tag(user.avatar.variant(:thumbnail), class: "img-fluid", alt: user)
+        a href="#" data-bs-toggle="modal" data-bs-target="#user-#{user.id}-avatar"
+          = image_tag(user.avatar.variant(:thumbnail), class: "img-fluid", alt: user)
   - else
     .card.bg-danger.bg-opacity-25.mb-3
       = card_header("image", "Photo")
@@ -14,3 +15,12 @@
         .btn-collection
           - if policy(user).devise?
             = link_to("Add photo", edit_user_registration_path, class: "btn btn-dark")
+- else
+  - if user.avatar.attached?
+    .card.mb-3
+      = card_header("image", "Photo")
+      .card-body
+        a href="#" data-bs-toggle="modal" data-bs-target="#user-#{user.id}-avatar"
+          = image_tag(user.avatar.variant(:thumbnail), class: "img-fluid", alt: user)
+
+= render "avatar_modal", user: user

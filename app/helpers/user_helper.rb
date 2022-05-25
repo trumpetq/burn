@@ -65,10 +65,10 @@ module UserHelper
     tag.span(user.pronouns&.to_s&.humanize&.sub(" ", "/"), class: css_class)
   end
 
-  def user_postal_code_badge(user)
+  def user_bay_area_badge(user)
     return unless user&.in_bay_area?
 
-    tag.span("Bay area", class: "badge bg-info")
+    tag.span("Bay area", class: "badge bg-secondary")
   end
 
   def user_social_media_icons(user)
@@ -98,6 +98,18 @@ module UserHelper
       concat camp_status_badge(user.camp_application, style: :letter, class_name: "me-1")
       concat camp_status_badge(user.camp_interview, style: :letter, class_name: "me-1")
       concat user_has_ticket_badge(user, style: :letter, class_name: "me-1")
+    end
+  end
+
+  def user_location_badge(user)
+    return if user.blank?
+    capture do
+      concat user.country_name if user.country_code.present?
+      concat ", #{user.postal_code}" if user.postal_code.present?
+      if user.in_bay_area?
+        concat " "
+        concat user_bay_area_badge(user)
+      end
     end
   end
 

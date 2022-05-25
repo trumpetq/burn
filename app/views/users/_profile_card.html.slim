@@ -18,13 +18,14 @@
     - if user.postal_code.present?
       p.card-text
         <b>Postal code</b> #{user.postal_code}
-        =< user_postal_code_badge(user)
+        =< user_bay_area_badge(user)
     - if user.previous_years.present?
       p.card-text <b>Previous years</b> #{user.previous_years.join(", ")}
     - if user.social_media?
       p.card-text
         = user_social_media_icons(user)
-  .card-footer
-    .btn-collection
-      - if policy(user).me?
-        = link_to("Edit profile", edit_user_registration_path, class: "btn btn-primary")
+  - if policy(user).me?
+    .card-footer
+      .btn-collection
+        - if policy(user).me?
+          = link_to("Edit profile", edit_user_registration_path, class: "btn btn-primary")

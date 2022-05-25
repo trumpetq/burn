@@ -1,28 +1,33 @@
 - if user.camp_application.present?
-  - if user.camp_application.completed?
-    li.list-group-item.bg-success.bg-opacity-10
-      h6 = link_to_policy(policy(user.camp_application).show?, "Application", camp_application_path(user.camp_application), class: "text-decoration-none")
-      p.text-muted
-        | First step
-        =< camp_status_badge(user.camp_application)
+  - if user.camp_application.discarded?
+    li.list-group-item.bg-danger.bg-opacity-25
+      h6 Application
+      p Your application was <b>not found</b>
+      p Contact #{mail_to(Settings.email.support, subject: "Missing application for #{user}", class: "text-muted", target: "_blank")}
   - elsif user.camp_application.rejected?
     li.list-group-item.bg-danger.bg-opacity-25
-      h6 = link_to_policy(policy(user.camp_application).show?, "Application", camp_application_path(user.camp_application), class: "text-decoration-none")
+      h6 = link_to_camp(user.camp_application, class: "text-decoration-none")
       p.text-muted
         | Sorry
         =< camp_status_badge(user.camp_application)
-      p.mb-0 You <b>can not</b> camp with us in #{Settings.date.current_year}.
-  - else
-    li.list-group-item.bg-info.bg-opacity-10
-      h6 = link_to_policy(policy(user.camp_application).show?, "Application", camp_application_path(user.camp_application), class: "text-decoration-none")
+      p You <b>can not</b> camp with us in #{Settings.date.current_year}.
+  - elsif user.camp_application.finished?
+    li.list-group-item.bg-success.bg-opacity-10
+      h6 = link_to_camp(user.camp_application, class: "text-decoration-none")
       p.text-muted
-        | Apply to camp with us
+        | First step <b>finished</b>
+        =< camp_status_badge(user.camp_application)
+  - else
+    li.list-group-item.bg-secondary.bg-opacity-10
+      h6 = link_to_camp(user.camp_application, class: "text-decoration-none")
+      p.text-muted
+        | Processing
         =< camp_status_badge(user.camp_application)
       - if policy(user.camp_application).edit?
-        = link_to("Edit", edit_camp_application_path(user.camp_application), class: "btn btn-primary")
+        p = link_to("Edit", edit_camp_application_path(user.camp_application), class: "btn btn-primary")
 - else
   li.list-group-item.bg-info.bg-opacity-10
     h6 Application
     p.text-muted Apply to camp with us
     - if policy(:camp_application).new?
-      = link_to("Start", new_camp_application_path, class: "btn btn-primary")
+      p = link_to("Start application", new_camp_application_path, class: "btn btn-success")

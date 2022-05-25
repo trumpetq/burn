@@ -65,7 +65,7 @@ class User < ApplicationRecord
   validates :facebook_url, :twitter_url, :instagram_url, url: {allow_blank: true}
 
   has_one_attached :avatar do |attachable|
-    attachable.variant :menu, resize_to_limit: [100, 100]
+    attachable.variant :menu, resize_to_fill: [100, 100]
     attachable.variant :thumbnail, resize_to_limit: [300, 300]
     attachable.variant :profile, resize_to_limit: [1000, 1000]
   end
@@ -104,9 +104,9 @@ class User < ApplicationRecord
   end
 
   def full_name
-    full_name = name
-    full_name = "#{full_name} (#{playa_name})" if playa_name.present?
-    full_name
+    n = name
+    n = "#{name} (#{playa_name})" if playa_name.present?
+    n
   end
 
   def country_name
@@ -131,6 +131,10 @@ class User < ApplicationRecord
     COMPLETE_PROFILE_FIELDS.filter { !send(_1).present? }
   end
 
+  def might_camp_with_us?
+    plan.none? || plan.camping_with_us? || plan.thinking_about_it?
+  end
+
   def in_bay_area?
     return false unless postal_code.present? && country_code == "US"
     Settings.postal_code.bay_area.include?(postal_code)
@@ -146,6 +150,18 @@ class User < ApplicationRecord
 
   def has_ticket?
     camp_tickets.with_ticket_type(:ticket).with_availability(:using_myself).exists?
+  end
+
+  def can_apply?
+    camp_application.blank?
+  end
+
+  def can_interview?
+    camp_application.finished?
+  end
+
+  def has_interviews?
+    camp_interviews.size.positive?
   end
 
   private

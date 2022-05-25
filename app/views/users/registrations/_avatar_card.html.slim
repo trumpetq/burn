@@ -1,5 +1,5 @@
-.card.mb-3
-  = card_header("image", "Photo", class_name: (resource.avatar.attached? ? nil : "bg-danger bg-opacity-25"))
+.card.mb-3 class=(resource.avatar.attached? ? nil : "bg-danger bg-opacity-25")
+  = card_header("image", "Photo")
   .card-body.pb-0
     - if resource.avatar.attached?
       = image_tag(user.avatar.variant(:thumbnail), class: "img-fluid", alt: user)

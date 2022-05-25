@@ -10,4 +10,4 @@
   - if resource.status != :rejected && resource.respond_to?(:rejected?) && policy([:admin, resource]).reject?
     = link_to("Reject", polymorphic_path([:admin, resource], action: :reject), class: "btn btn-danger", data: {turbo_method: :patch, turbo_confirm: "Are you sure?"})
   - if resource.try(:discarded?) && policy([:admin, resource]).force_delete?
-    = link_to("Force delete", polymorphic_path([:admin, resource], action: :force_delete), class: "btn btn-danger", data: {turbo_method: :delete, turbo_confirm: "Are you sure?"})
+    = link_to("Force delete", polymorphic_path([:admin, resource], action: :force_delete), class: "btn btn-dark", data: {turbo_method: :delete, turbo_confirm: "Are you sure?"})

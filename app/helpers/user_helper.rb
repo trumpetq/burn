@@ -91,23 +91,13 @@ module UserHelper
     tag.span(link_to_policy(policy(user).show?, user, user_path(user)), class: "badge bg-light")
   end
 
-  def user_link(user)
-    return na_badge if user.blank?
-    link_to_policy(policy(user).show?, user, user_path(user))
-  end
-
-  def admin_user_link(user)
-    return na_badge if user.blank?
-    link_to_policy(policy([:admin, user]).show?, user, admin_user_path(user))
-  end
-
   def user_camp_status_badge(user)
     return na_badge if user.blank?
 
     capture do
       concat camp_status_badge(user.camp_application, style: :letter, class_name: "me-1")
       concat camp_status_badge(user.camp_interview, style: :letter, class_name: "me-1")
-      concat user_has_ticket_badge(user, style: :letter, class: "me-1")
+      concat user_has_ticket_badge(user, style: :letter, class_name: "me-1")
     end
   end
 

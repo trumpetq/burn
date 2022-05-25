@@ -16,9 +16,9 @@
             - @resources.each do |resource|
               tr class=table_row_class(resource)
                 td = admin_link_to_id(resource)
-                td = admin_user_link(resource.user)
+                td = admin_link_to_user(resource.user)
                 td = camp_status_badge(resource)
-                td = admin_user_link(resource.interviewed_by)
+                td = admin_link_to_user(resource.interviewed_by)
                 td.text-end = admin_edit_icon(resource)
       = pagy_card_footer(@pagy)
 

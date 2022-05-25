@@ -8,7 +8,7 @@
           td = resource.id
         tr
           th User
-          td = admin_user_link(resource.user)
+          td = admin_link_to_user(resource.user)
         tr
           th Status
           td = camp_status_badge(resource)
@@ -23,7 +23,7 @@
           td = resource.private_notes.presence || na_badge
         tr
           th Interviewer
-          td = admin_user_link(resource.interviewed_by)
+          td = admin_link_to_user(resource.interviewed_by)
         tr
           th Assigned
           td

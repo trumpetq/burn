@@ -20,15 +20,15 @@ module Stepable
   end
 
   def to_s
-    "#{to_s_without_camp} #{id}"
+    self.class.name.underscore.delete_prefix("camp_").humanize
   end
 
   def to_log
     "#{self.class.name.underscore.humanize} id=#{id}, user_id=#{user_id}"
   end
 
-  def to_s_without_camp
-    self.class.name.underscore.delete("camp_").humanize
+  def to_s_with_id
+    "#{self} ##{id}"
   end
 
   def multiple?
@@ -36,6 +36,6 @@ module Stepable
   end
 
   def finished?
-    completed?
+    try(:completed?) || try(:approved?) || try(:skipped?)
   end
 end

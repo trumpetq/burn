@@ -20,7 +20,7 @@
               td = admin_link_to_id(user)
               td = link_to_policy(policy([:admin, user]).show?, user.name, admin_user_path(user))
               td = link_to_policy(policy([:admin, user]).show?, user.playa_name.presence || na_badge, user_path(user))
-              td = mail_to(user.email)
+              td = mail_to(user.email, target: "_blank")
               td = user_camp_status_badge(user)
               td = user_status_badge(user)
               td = user_plan_badge(user)

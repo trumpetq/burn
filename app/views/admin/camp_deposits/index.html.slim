@@ -17,7 +17,7 @@
             - @resources.each do |resource|
               tr
                 td = admin_link_to_id(resource)
-                td = admin_user_link(resource.user)
+                td = admin_link_to_user(resource.user)
                 td = camp_status_badge(resource)
                 td = link_to_policy(policy([:admin, resource]).show?, number_to_currency(resource.price), admin_camp_due_path(resource))
                 td = camp_payment_method_badge(resource)

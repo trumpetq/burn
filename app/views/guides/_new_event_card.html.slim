@@ -1,6 +1,6 @@
 .card.mb-3
   = card_header("calendar-plus", "Your event")
   .card-body
-    p.card-text Interested in throwing an event at 8-bit Bunny. Email #{mail_to(Settings.email.david)}.
+    p.card-text Interested in throwing an event at 8-bit Bunny. Email #{mail_to(Settings.email.david, target: "_blank")}.
   .card-footer
     p.mb-0 Past events:</b> #{link_to("2019", "https://playaevents.burningman.org/playa_event/search/2019/?q=8-bit+Bunny", target: "_blank")}, #{link_to("2018", "https://playaevents.burningman.org/playa_event/search/2018/?q=8-bit+Bunny ", target: "_blank")}, #{link_to("2017", "https://playaevents.burningman.org/playa_event/search/2017/?q=8-bit+Bunny ", target: "_blank")}, #{link_to("2016", "https://playaevents.burningman.org/playa_event/search/2016/?q=8-bit+Bunny ", target: "_blank")}

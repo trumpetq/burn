@@ -18,5 +18,15 @@ module IconHelper
     return unless policy([:admin, resource]).edit?
     link_to(bootstrap_icon("pencil"), edit_polymorphic_path([:admin, resource]))
   end
+
+  def new_icon(resource, options = {})
+    return unless policy(resource).new?
+    link_to(bootstrap_icon("plus-circle-fill"), new_polymorphic_path(resource, options))
+  end
+
+  def admin_new_icon(resource, options = {})
+    return unless policy([:admin, resource]).new?
+    link_to(bootstrap_icon("plus-circle-fill"), new_polymorphic_path([:admin, resource], options))
+  end
 end
 

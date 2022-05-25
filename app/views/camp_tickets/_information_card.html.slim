@@ -4,3 +4,7 @@
     p.card-text Help us keep track of tickets for camp.
     - if policy(:camp_ticket).new?
       p.card-text Looking for a ticket? You can post a <b>#{link_to("wanted", new_camp_ticket_path(availability: :wanted), class: "text-danger")}</b> ad.
+  .card-footer
+    .btn-collection
+      - if policy(:camp_ticket).new?
+        = link_to("Add ticket", new_camp_ticket_path, class: "btn btn-secondary")

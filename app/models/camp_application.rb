@@ -37,7 +37,6 @@ class CampApplication < ApplicationRecord
   include Stepable
   include Discard::Model
 
-
   enumerize :status, in: STATUSES.slice(:unavailable, :active, :approved, :completed, :rejected), default: :active, predicates: true, scope: true
 
   enumerize :vaccine_status, in: {unvaccinated: 0, vaccinated: 1, vaccinated_and_boosted: 2}, predicates: true, scope: true
@@ -48,4 +47,8 @@ class CampApplication < ApplicationRecord
 
   validates :covid_protocol, :food_allergies, :plan_to_contribute, :who_are_you, :what_excites_you, length: {maximum: 10_000}
   validates :referral_name, length: {maximum: 250}
+
+  def finished?
+    completed? || approved?
+  end
 end

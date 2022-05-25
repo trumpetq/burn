@@ -13,7 +13,7 @@
           tbody
             - @camping_with_us.each do |user|
               tr
-                td = user_link(user)
+                td = link_to_user(user)
                 td = user.title.presence || na_badge
       = pagy_card_footer(@pagy)
   .col-md-3

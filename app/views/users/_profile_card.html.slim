@@ -9,7 +9,7 @@
       = user.description.presence || "This user has not set a description yet."
     - if policy(user).contact?
       p.card-text
-        <b>Email</b> #{mail_to(user.email)}
+        <b>Email</b> #{mail_to(user.email, target: "_blank")}
       p.card-text
         <b>Phone</b> #{link_to_phone(user.phone_number)}
     p.card-text <b>Plan</b> #{user_plan_badge(user)}

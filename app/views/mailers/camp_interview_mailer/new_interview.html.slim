@@ -2,12 +2,12 @@ p You have been assigned a new interview for #{link_to(@resource.user, user_url(
 
 p Please reach out to them directly to schedule a time that works for both of you.
 
-p It will be your job to decide if they camp with us or not.
+p It will be your job to decide if they camp with us or not. You can read more about the #{link_to("interview process", interview_guides_url)} in our guide.
 
 - if @resource.initial_notes.present?
   p = @resource.initial_notes
 
-p You can approve or reject the #{link_to(@resource, camp_interview_url(@resource))} online.
+p You can approve or reject the #{link_to("interview", camp_interview_url(@resource))} online.
 
 = render "mailers/shared/signature"
 

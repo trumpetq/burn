@@ -1,27 +1,40 @@
 - if user.camp_interview.present?
-  - if user.camp_interview.completed?
-    li.list-group-item.bg-success.bg-opacity-10
-      h6 = link_to_policy(policy(user.camp_interview).show?, "Interview", camp_interview_path(user.camp_interview), class: "text-decoration-none")
-      p.text-muted
-        | Second step
-        =< camp_status_badge(user.camp_interview)
+  - if user.camp_interview.discarded?
+    li.list-group-item.bg-danger.bg-opacity-25
+      h6 Interview
+      p Your interview was <b>not found</b>
+      p Contact #{mail_to(Settings.email.support, subject: "Missing interview for #{user}", class: "text-muted", target: "_blank")}
   - elsif user.camp_interview.rejected?
     li.list-group-item.bg-danger.bg-opacity-25
-      h6 = link_to_policy(policy(user.camp_interview).show?, "Interview", camp_interview_path(user.camp_interview), class: "text-decoration-none")
+      h6 = link_to_camp(user.camp_interview, class: "text-decoration-none")
       p.text-muted
         | Sorry
         =< camp_status_badge(user.camp_interview)
       p You <b>can not</b> camp with us in #{Settings.date.current_year}.
+  - elsif user.camp_interview.finished?
+    li.list-group-item.bg-success.bg-opacity-10
+      h6 = link_to_camp(user.camp_interview, class: "text-decoration-none")
+      p.text-muted
+        | Second step <b>finished</b>
+        =< camp_status_badge(user.camp_interview)
   - else
     li.list-group-item.bg-info.bg-opacity-10
-      h6 = link_to_policy(policy(user.camp_interview).show?, "Interview", camp_interview_path(user.camp_interview), class: "text-decoration-none")
+      h6 = link_to_camp(user.camp_interview, class: "text-decoration-none")
       p.text-muted
         | Get to know us
         =< camp_status_badge(user.camp_interview)
-
 - else
-  li.list-group-item.bg-info.bg-opacity-10
-    h6 Interview
-    p.text-muted
-      | Get to know us
-      .badge.bg-secondary Unassigned
+  - if user.can_interview?
+    li.list-group-item.bg-secondary.bg-opacity-10
+      h6 Interview
+      p.text-muted
+        | Get to know us
+        span.badge.bg-info< Pending
+      p.text-muted We will assign you an interview
+  - else
+    li.list-group-item.bg-secondary.bg-opacity-10
+      h6 Interview
+      p.text-muted
+        | Get to know us
+        span.badge.bg-warning< Waiting
+      p.text-muted Your <b>application</b> must be approved first

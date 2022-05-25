@@ -19,7 +19,7 @@
             - @resources.each do |resource|
               tr
                 td = admin_link_to_id(resource)
-                td = admin_user_link(resource.user)
+                td = admin_link_to_user(resource.user)
                 td = camp_ticket_type_badge(resource)
                 td = camp_availability_badge(resource)
                 td = camp_location_badge(resource)

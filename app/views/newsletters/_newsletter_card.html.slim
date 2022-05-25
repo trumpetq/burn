@@ -5,7 +5,7 @@
       tbody
         tr
           th Email
-          td = mail_to(@newsletter.email)
+          td = mail_to(@newsletter.email, target: "_blank")
         tr
           th List
           td = newsletter_list_badge(@newsletter)

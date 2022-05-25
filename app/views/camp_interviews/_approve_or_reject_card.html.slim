@@ -5,18 +5,18 @@
     - if camp_interview.approved? && camp_interview.valid?
       .card-body
         .alert.alert-success Interview has been <b>approved</b>.
-        p.card-text #{user_link(camp_interview.user)} will be notified of their approval.
+        p.card-text #{link_to_user(camp_interview.user)} will be notified of their approval.
         p.card-text <b>Thank you</b> for contribuiting to camp!
     - elsif camp_interview.rejected? && camp_interview.valid?
       .card-body
         .alert.alert-danger Interview has been <b>rejected</b>.
-        p.card-text #{user_link(camp_interview.user)} will be notified of their rejection.
+        p.card-text #{link_to_user(camp_interview.user)} will be notified of their rejection.
     - else
       .card-body
         p.card-text
-          <b>User</b> #{user_link(camp_interview.user)}
+          <b>User</b> #{link_to_user(camp_interview.user)}
         p.card-text
-          <b>Assigned by</b> #{user_link(camp_interview.assigned_by)}
+          <b>Assigned by</b> #{link_to_user(camp_interview.assigned_by)}
         - if camp_interview.initial_notes.present?
           p.card-text
             <b>Initial notes</b> #{camp_interview.initial_notes}
@@ -28,7 +28,7 @@
                 = f.input :feedback_notes, hint: "Sent to the user by email"
             .row
               .col.mb-3
-                = f.input :private_notes, hint: "Only visible to camp leadership, what did you think"
+                = f.input :private_notes, hint: "Only visible to camp leadership, what did you think of them"
             .row
               .col.mb-3
                 = f.input :action, as: :radio_buttons, hint: "Decide if this person should camp with us", collection: [[yes_badge("Approve"), "approved"], [no_badge("Reject"), "rejected"]]

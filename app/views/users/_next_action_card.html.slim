@@ -1,0 +1,12 @@
+- if policy(user).me?
+  - if policy(:camp_application).should_apply?
+    .card.mb-3.bg-success.bg-opacity-10
+      = card_header("file-earmark-text", "Application")
+      .card-body
+        p.card-text Are you <b>planning to camp</b> with us this year? If so you will need to fill out an application.
+        p.card-text If you will be camping <b>elsewhere</b>, then please <b>#{link_to_policy(policy(current_user).devise?, "update", edit_user_registration_path)}</b> your plan.
+      .card-footer
+        .btn-collection
+          - if policy(:camp_application).new?
+            = link_to("Start application", new_camp_application_path, class: "btn btn-success")
+

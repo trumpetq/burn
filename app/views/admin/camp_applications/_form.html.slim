@@ -3,9 +3,8 @@
   .row
     .col-md-6.mb-3
       = f.input :status, include_blank: false
-    - if resource.new_record?
-      .col-md-6.mb-3
-        = f.input :user_id, hint: "1234", label: "User ID", required: true
+    .col-md-6.mb-3
+      = user_id_input(resource, f)
   .row
     .col-md-12.mb-3
       = f.input :who_are_you, hint: "what should we know about you"

@@ -11,7 +11,7 @@
           tbody
             tr
               th Email
-              td = mail_to(Settings.email.contact)
+              td = mail_to(Settings.email.contact, target: "_blank")
             tr
               th Facebook
               td = link_to(Settings.facebook.url, target: "_blank")

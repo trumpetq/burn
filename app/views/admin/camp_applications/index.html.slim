@@ -17,7 +17,7 @@
             - @resources.each do |resource|
               tr class=table_row_class(resource)
                 td = admin_link_to_id(resource)
-                td = admin_user_link(resource.user)
+                td = admin_link_to_user(resource.user)
                 td = camp_status_badge(resource)
                 td = resource.referral_name.presence || na_badge
                 td = resource.approved_by.present? ? link_to_policy(policy([:admin, resource.approved_by]).show?, resource.approved_by, admin_user_path(resource.approved_by)) : na_badge

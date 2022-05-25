@@ -12,7 +12,7 @@
           - else
             td = na_badge
             td
-            td
+            td.text-end = admin_new_icon(:camp_application, user_id: user.id)
         tr
           th Interview
           - if user.camp_interview.present?
@@ -22,7 +22,7 @@
           - else
             td = na_badge
             td
-            td
+            td.text-end = admin_new_icon(:camp_interview, user_id: user.id)
         tr
           th Tickets
           - if user.camp_tickets.present?

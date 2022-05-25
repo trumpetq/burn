@@ -4,6 +4,7 @@
   .col-md-3
     = render "checklist_card", user: @user
   .col-md-6
+    = render "next_action_card", user: @user
     = render "profile_card", user: @user
     = render "camp_tickets_card", user: @user, camp_tickets: @user.camp_tickets
   .col-md-3

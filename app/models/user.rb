@@ -157,7 +157,7 @@ class User < ApplicationRecord
   end
 
   def can_interview?
-    camp_application.finished?
+    camp_application&.finished?
   end
 
   def has_interviews?

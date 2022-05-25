@@ -3,7 +3,7 @@
   .card-table
     table.table
       tbody
-        tr
+        tr class=table_row_class(user.camp_application)
           th Application
           - if user.camp_application.present?
             td = admin_link_to_id(user.camp_application)
@@ -13,7 +13,7 @@
             td = na_badge
             td
             td.text-end = admin_new_icon(:camp_application, user_id: user.id)
-        tr
+        tr class=table_row_class(user.camp_interview)
           th Interview
           - if user.camp_interview.present?
             td = admin_link_to_id(user.camp_interview)
@@ -34,7 +34,7 @@
             td = na_badge
             td
             td
-        tr
+        tr class=table_row_class(user.camp_due)
           th Dues
           - if user.camp_due.present?
             td = admin_link_to_id(user.camp_due)
@@ -44,7 +44,7 @@
             td = na_badge
             td
             td
-        tr
+        tr class=table_row_class(user.camp_deposit)
           th Deposit
           - if user.camp_deposit.present?
             td = admin_link_to_id(user.camp_deposit)

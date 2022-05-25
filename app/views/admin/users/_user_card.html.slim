@@ -8,9 +8,11 @@
             th ID
             td = user.id
         - else
-          tr.table-warning
+          tr.table-secondary
             th ID
-            td = user.id
+            td
+              = user.id
+              .badge.bg-secondary< Incomplete profile
         tr
           th Name
           td

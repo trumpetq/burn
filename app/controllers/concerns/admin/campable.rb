@@ -4,6 +4,7 @@ module Admin
 
     included do
       before_action :set_resource, only: [:show, :edit, :update, :destroy, :active, :approve, :complete, :force_delete, :pay, :reject, :restore]
+      before_action :set_redirect_url, only: [:destroy, :force_delete]
     end
 
     # GET /admin/resources
@@ -54,13 +55,15 @@ module Admin
 
     # DELETE /admin/resources/:id
     def destroy
+      @user = @resource.user
+
       if @resource.respond_to?(:discard)
         @resource.discard
       else
         @resource.destroy
       end
 
-      redirect_to(admin_root_path, notice: "#{controller_name.singularize.humanize} was successfully destroyed.", status: :see_other)
+      redirect_to(@redirect_url, warning: "#{controller_name.singularize.humanize} was successfully destroyed.", status: :see_other)
     end
 
     # PATCH /admin/resources/:id/active
@@ -167,7 +170,7 @@ module Admin
     def force_delete
       @resource.destroy
 
-      redirect_to(admin_root_url, alert: "#{controller_name.singularize.humanize} was successfully deleted.", status: :see_other)
+      redirect_to(@redirect_url, alert: "#{controller_name.singularize.humanize} was successfully deleted.", status: :see_other)
     end
 
     private
@@ -187,6 +190,11 @@ module Admin
 
     def admin_link_to_resource
       view_context.link_to_policy(policy([:admin, @resource]).show?, controller_name.singularize.humanize, [:admin, @resource])
+    end
+
+    def set_redirect_url
+      @redirect_url = admin_root_url
+      @redirect_url = admin_user_url(@resource.user) if @resource.user.present? && !@resource.is_a?(::User)
     end
   end
 end

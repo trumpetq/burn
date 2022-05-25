@@ -29,7 +29,7 @@ module Admin
     def create_camp_interview
       return if @resource.user&.camp_interview.present?
 
-      @resource.user.camp_interview.create
+      @resource.user.create_camp_interview
     end
   end
 end

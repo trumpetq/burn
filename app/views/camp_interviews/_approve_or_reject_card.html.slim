@@ -11,6 +11,10 @@
       .card-body
         .alert.alert-danger Interview has been <b>rejected</b>.
         p.card-text #{link_to_user(camp_interview.user)} will be notified of their rejection.
+    - elsif camp_interview.completed?
+      .card-body
+        .alert.alert-success Interview has been <b>completed</b>.
+        p.card-text No further action is required.
     - else
       .card-body
         p.card-text

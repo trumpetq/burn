@@ -1,10 +1,14 @@
 class CampInterviewPolicy < CampPolicy
   def show?
-    (member? && me?) || (member? && record.interviewed_by == user) || mayor?
+    (member? && me?) || interviewer? || mayor?
   end
 
   def approve_or_reject?
     member? && record.interviewed_by == user
+  end
+
+  def interviewer?
+    (member? && record.interviewed_by == user)
   end
 
   def permitted_attributes

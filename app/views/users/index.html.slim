@@ -16,8 +16,8 @@
             - @camping_with_us.each do |user|
               tr
                 td
-                  - if user.avatar.attached?
-                    = image_tag(current_user.avatar.variant(:menu), size: "24x24", class: "rounded-circle", alt: user)
+                  - if user&.avatar&.attached?
+                    = image_tag(user.avatar.variant(:menu), size: "24x24", class: "rounded-circle", alt: user)
                 td = link_to_user(user)
                 td = user.title.presence || na_badge
                 td = user_location_badge(user)

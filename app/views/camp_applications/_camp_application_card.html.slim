@@ -36,12 +36,14 @@
         tr
           th Food allergies
           td = resource.food_allergies.presence || na_badge
-        tr
-          th Applied
-          td = admin_time(resource.applied_at)
-        tr
-          th Completed
-          td = admin_time(resource.completed_at)
+        - if resource.applied_at.present?
+          tr
+            th Applied
+            td = admin_time(resource.applied_at)
+        - if resource.completed_at.present?
+          tr
+            th Completed
+            td = admin_time(resource.completed_at)
         tr
           th Created
           td = admin_time(resource.created_at)

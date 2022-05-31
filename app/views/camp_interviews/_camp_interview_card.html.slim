@@ -12,15 +12,18 @@
         tr
           th Interviewer
           td = link_to_user(resource.interviewed_by)
-        tr
-          th Assigned
-          td = admin_time(resource.assigned_at)
-        tr
-          th Approved
-          td = admin_time(resource.approved_at)
-        tr
-          th Completed
-          td = admin_time(resource.completed_at)
+        - if resource.approved_at.present?
+          tr
+            th Approved
+            td = admin_time(resource.approved_at)
+        - if resource.skipped_at.present?
+          tr
+            th Skipped
+            td = admin_time(resource.skipped_at)
+        - if resource.completed_at.present?
+          tr
+            th Completed
+            td = admin_time(resource.completed_at)
         tr
           th Created
           td = admin_time(resource.created_at)

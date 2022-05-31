@@ -14,9 +14,9 @@ Rails.application.routes.draw do
         patch :active
         patch :approve
         patch :complete
+        delete :force_delete
         patch :reject
         patch :restore
-        delete :force_delete
       end
     end
 
@@ -24,8 +24,8 @@ Rails.application.routes.draw do
       member do
         patch :active
         patch :complete
-        patch :reject
         patch :pay
+        patch :reject
       end
     end
 
@@ -33,8 +33,8 @@ Rails.application.routes.draw do
       member do
         patch :active
         patch :complete
-        patch :reject
         patch :pay
+        patch :reject
       end
     end
 
@@ -44,9 +44,10 @@ Rails.application.routes.draw do
         patch :approve
         patch :assign
         patch :complete
-        patch :reject
-        patch :restore
         delete :force_delete
+        patch :skip
+        patch :restore
+        patch :reject
       end
     end
 
@@ -58,8 +59,8 @@ Rails.application.routes.draw do
       end
 
       member do
-        patch :restore
         delete :force_delete
+        patch :restore
         patch :unsubscribe
       end
     end
@@ -72,8 +73,8 @@ Rails.application.routes.draw do
 
     resources :users do
       member do
-        patch :restore
         patch :remove_avatar
+        patch :restore
       end
     end
 

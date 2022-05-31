@@ -48,12 +48,16 @@ module Admin
       mayor?
     end
 
+    def restore?
+      mayor?
+    end
+
     def reject?
       leader?
     end
 
-    def restore?
-      mayor?
+    def skip?
+      leader?
     end
   end
 end

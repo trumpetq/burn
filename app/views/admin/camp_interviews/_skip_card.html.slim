@@ -1,0 +1,17 @@
+- if [:rejected, :completed, :approved, :assigned, :skipped].exclude?(resource.status.to_sym) && policy([:admin, resource]).skip?
+  .card.mb-3
+    = card_header("skip-forward-circle", "Skip")
+    .card-body
+      = simple_form_for([:admin, resource], namespace: "skip", url: skip_admin_camp_interview_path(resource)) do |f|
+        .row
+          .col.mb-3
+            = f.input :private_notes
+        .row
+          .col.mb-3
+            = f.input :feedback_notes, hint: "Shown to user"
+        .row
+          .col.mb-3
+            = f.input :send_email
+        .row
+          .col.d-grid
+            = f.button :submit, "Skip", class: "btn-override-info"

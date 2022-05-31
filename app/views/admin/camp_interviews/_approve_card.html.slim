@@ -1,4 +1,4 @@
-- if [:rejected, :completed, :approved].exclude?(resource.status.to_sym) && policy([:admin, resource]).approve?
+- if [:rejected, :completed, :approved, :skipped].exclude?(resource.status.to_sym) && policy([:admin, resource]).approve?
   .card.mb-3
     = card_header("check-circle", "Approve")
     .card-form

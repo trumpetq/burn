@@ -3,7 +3,7 @@ module Admin
     extend ActiveSupport::Concern
 
     included do
-      before_action :set_resource, only: [:show, :edit, :update, :destroy, :active, :approve, :complete, :force_delete, :pay, :reject, :restore]
+      before_action :set_resource, only: [:show, :edit, :update, :destroy, :active, :approve, :complete, :force_delete, :pay, :reject, :restore, :skip]
       before_action :set_redirect_url, only: [:destroy, :force_delete]
     end
 
@@ -121,6 +121,13 @@ module Admin
       end
     end
 
+    # DELETE /admin/resources/:id/force_delete
+    def force_delete
+      @resource.destroy
+
+      redirect_to(@redirect_url, alert: "#{controller_name.singularize.humanize} was successfully deleted.", status: :see_other)
+    end
+
     # PATCH /admin/resources/:id/pay
     def pay
       @resource.paid_at = Time.current
@@ -138,6 +145,13 @@ module Admin
       else
         redirect_on_error
       end
+    end
+
+    # PATCH /admin/resources/:id/restore
+    def restore
+      @resource.undiscard
+
+      redirect_to([:admin, @resource], notice: "#{admin_link_to_resource} was successfully restored.", status: :see_other)
     end
 
     # PATCH /admin/resources/:id/reject
@@ -159,18 +173,23 @@ module Admin
       end
     end
 
-    # PATCH /admin/resources/:id/restore
-    def restore
-      @resource.undiscard
+    # PATCH /admin/resources/:id/skip
+    def skip
+      @resource.skipped_at = Time.current
+      @resource.skipped_by = current_user
+      @resource.status = :skipped
 
-      redirect_to([:admin, @resource], notice: "#{admin_link_to_resource} was successfully restored.", status: :see_other)
-    end
+      @resource.update(permitted_attributes([:admin, @resource])) if params[controller_name.singularize].present?
 
-    # DELETE /admin/resources/:id/force_delete
-    def force_delete
-      @resource.destroy
+      skip_before_save if defined?(skip_before_save)
 
-      redirect_to(@redirect_url, alert: "#{controller_name.singularize.humanize} was successfully deleted.", status: :see_other)
+      if @resource.save
+        skip_after_save if defined?(skip_after_save)
+
+        redirect_to([:admin, @resource], notice: "#{admin_link_to_resource} has been skipped.", status: :see_other)
+      else
+        redirect_on_error
+      end
     end
 
     private

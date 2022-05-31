@@ -34,9 +34,9 @@ module Admin
 
     def approve_after_save
       return unless @resource.user.present?
+      @resource.user.update(plan: :camping_with_us)
 
       CampInterviewMailer.with(resource: @resource).approve.deliver_now if send_email?
-      @resource.user.update(plan: :camping_with_us)
     end
 
     def complete_after_save
@@ -47,9 +47,18 @@ module Admin
 
     def reject_after_save
       return unless @resource.user.present?
+      @resource.user.update(plan: :camping_elsewhere)
 
       CampInterviewMailer.with(resource: @resource).reject.deliver_now if send_email?
-      @resource.user.update(plan: :camping_elsewhere)
+    end
+
+    def skip_after_save
+      return unless @resource.user.present?
+      @resource.user.update(plan: :camping_with_us)
+      @resource.update(interviewed_by: nil)
+
+      CampInterviewMailer.with(resource: @resource).skip.deliver_now if send_email?
+
     end
   end
 end

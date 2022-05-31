@@ -1,0 +1,11 @@
+p Congratulations you are able to skip the interview process.
+p Few people are granted this privilage. Either you have camped with us before, or someone has vouched for you.
+
+= render "mailers/shared/incomplete_profile", user: @resource.user
+
+- if @resource.feedback_notes.present?
+  p <b>Feedback</b> #{@resource.feedback_notes}
+
+p We look forward to camping with you in #{Settings.date.current_year}.
+
+= render "mailers/shared/signature"

@@ -3,6 +3,8 @@
     = link_to("Active", polymorphic_path([:admin, resource], action: :active), class: "btn btn-info text-white", data: {turbo_method: :patch})
   - if resource.status != :approved && resource.respond_to?(:approved?) && policy([:admin, resource]).approve?
     = link_to("Approve", polymorphic_path([:admin, resource], action: :approve), class: "btn btn-primary", data: {turbo_method: :patch})
+  - if resource.status != :skipped && resource.respond_to?(:skipped?) && policy([:admin, resource]).skip?
+    = link_to("Skip", polymorphic_path([:admin, resource], action: :skip), class: "btn btn-info", data: {turbo_method: :patch})
   - if resource.status != :paid && resource.respond_to?(:paid?) && policy([:admin, resource]).pay?
     = link_to("Pay", polymorphic_path([:admin, resource], action: :pay), class: "btn btn-primary", data: {turbo_method: :patch})
   - if resource.status != :completed && resource.respond_to?(:completed?) && policy([:admin, resource]).complete?

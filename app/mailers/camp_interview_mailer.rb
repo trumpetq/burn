@@ -14,6 +14,11 @@ class CampInterviewMailer < ApplicationMailer
     mail(to: Settings.email.david, subject: "#{@resource.user} interview has been approved")
   end
 
+  def skip
+    @resource = params[:resource]
+    mail(to: @resource.user.email, subject: "You have skipped the interview step for 8-bit Bunny")
+  end
+
   def new_interview
     @resource = params[:resource]
     mail(to: @resource.interviewed_by.email, subject: "Your have a new interview for 8-bit Bunny")

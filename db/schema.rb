@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_04_04_234020) do
+ActiveRecord::Schema[7.0].define(version: 2022_05_31_215215) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -118,7 +118,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_04_04_234020) do
     t.bigint "approved_by_id"
     t.bigint "interviewed_by_id"
     t.datetime "assigned_at"
-    t.bigint "skipped_at"
     t.text "initial_notes"
     t.text "feedback_notes"
     t.text "private_notes"
@@ -130,6 +129,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_04_04_234020) do
     t.datetime "discarded_at"
     t.bigint "assigned_by_id"
     t.bigint "skipped_by_id"
+    t.datetime "skipped_at"
     t.index ["discarded_at"], name: "index_camp_interviews_on_discarded_at"
     t.index ["user_id"], name: "index_camp_interviews_on_user_id"
   end

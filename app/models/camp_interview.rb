@@ -12,7 +12,7 @@
 #  initial_notes     :text
 #  private_notes     :text
 #  rejected_at       :datetime
-#  skipped_at        :bigint
+#  skipped_at        :datetime
 #  status            :integer          not null
 #  created_at        :datetime         not null
 #  updated_at        :datetime         not null

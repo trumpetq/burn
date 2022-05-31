@@ -7,28 +7,35 @@
     th Approved
     td
       = admin_time(resource.approved_at)
-      - if resource.approved_by.present?
+      - if resource.try(:approved_by)
         =< admin_user_badge(resource.approved_by)
+- if resource.respond_to?(:skipped_at)
+  tr
+    th Skipped
+    td
+      = admin_time(resource.skipped_at)
+      - if resource.try(:skipped_by)
+        =< admin_user_badge(resource.skipped_by)
 - if resource.respond_to?(:paid_at)
   tr
     th Paid
     td
       = admin_time(resource.paid_at)
-      - if resource.paid_by.present?
+      - if resource.try(:paid_by)
         =< admin_user_badge(resource.paid_by)
 - if resource.respond_to?(:completed_at)
   tr
     th Completed
     td
       = admin_time(resource.completed_at)
-      - if resource.completed_by.present?
+      - if resource.try(:completed_by)
         =< admin_user_badge(resource.completed_by)
 - if resource.respond_to?(:rejected_at)
   tr
     th Rejected
     td
       = admin_time(resource.rejected_at)
-      - if resource.rejected_by.present?
+      - if resource.try(:rejected_by)
         =< admin_user_badge(resource.rejected_by)
 tr
   th Created

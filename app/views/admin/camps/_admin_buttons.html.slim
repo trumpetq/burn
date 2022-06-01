@@ -1,6 +1,6 @@
 - if current_user.mayor?
   - if resource.status != :active && resource.respond_to?(:active?) && policy([:admin, resource]).active?
-    = link_to("Active", polymorphic_path([:admin, resource], action: :active), class: "btn btn-info text-white", data: {turbo_method: :patch})
+    = link_to("Active", polymorphic_path([:admin, resource], action: :active), class: "btn btn-info", data: {turbo_method: :patch})
   - if resource.status != :approved && resource.respond_to?(:approved?) && policy([:admin, resource]).approve?
     = link_to("Approve", polymorphic_path([:admin, resource], action: :approve), class: "btn btn-primary", data: {turbo_method: :patch})
   - if resource.status != :skipped && resource.respond_to?(:skipped?) && policy([:admin, resource]).skip?

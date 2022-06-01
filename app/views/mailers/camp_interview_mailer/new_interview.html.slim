@@ -1,4 +1,8 @@
-p You have been assigned a new interview for #{link_to(@resource.user, user_url(@resource.user))}.
+p
+  ' You have been assigned a new interview for #{link_to(@resource.user, user_url(@resource.user))}.
+  - if policy(@resource&.user&.camp_application).show?
+    | You can view their #{link_to("application", camp_application_url(@resource.user.camp_application))} to 8-bit Bunny.
+
 
 p Please reach out to them directly to schedule a time that works for both of you.
 
@@ -8,6 +12,7 @@ p It will be your job to decide if they camp with us or not. You can read more a
   p = @resource.initial_notes
 
 p You can approve or reject the #{link_to("interview", camp_interview_url(@resource))} online.
+
 
 = render "mailers/shared/signature"
 

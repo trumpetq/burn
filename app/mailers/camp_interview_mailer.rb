@@ -1,6 +1,4 @@
 class CampInterviewMailer < ApplicationMailer
-  include Pundit::Authorization
-
   def assign
     @resource = params[:resource]
     mail(to: @resource.user.email, subject: "Please complete your interview for 8-bit Bunny")
@@ -34,9 +32,5 @@ class CampInterviewMailer < ApplicationMailer
   def admin_reject
     @resource = params[:resource]
     mail(to: Settings.email.david, subject: "#{@resource.user} interview has been rejected")
-  end
-
-  def current_user
-    @resource.user
   end
 end

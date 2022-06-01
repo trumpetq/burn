@@ -9,7 +9,7 @@ module Admin
       authorize([:admin, :newsletter])
 
       query = ::Newsletter.includes(:user)
-      query = query.for_email(params[:search][:email]) if params.dig(:search, :email).present?
+      query = query.like_email(params[:search][:email]) if params.dig(:search, :email).present?
       query = query.for_user(params[:search][:user_id]) if params.dig(:search, :user_id).present?
 
       query = query.order(id: param_direction) if params[:column] == "id"

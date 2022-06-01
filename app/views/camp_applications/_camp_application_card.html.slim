@@ -4,6 +4,9 @@
     table.table
       tbody
         tr
+          th User
+          td = link_to_user(resource.user)
+        tr
           th Status
           td = camp_status_badge(resource)
         tr

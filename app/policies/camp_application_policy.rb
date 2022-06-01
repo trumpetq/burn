@@ -1,4 +1,8 @@
 class CampApplicationPolicy < CampPolicy
+  def show?
+    (member? && me?) || camper?
+  end
+
   def should_apply?
     new? && user.camp_application.blank? && user.might_camp_with_us?
   end

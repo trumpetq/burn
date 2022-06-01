@@ -4,7 +4,7 @@ class CampPolicy < ApplicationPolicy
   end
 
   def show?
-    (member? && me?) || mayor?
+    (member? && me?) || leader?
   end
 
   def new?

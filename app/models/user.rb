@@ -79,7 +79,9 @@ class User < ApplicationRecord
   has_one :newsletter
 
   scope :for_phone_number, ->(phone_number) { where(phone_numer: PhonyRails.normalize_number(phone_number)) }
-  scope :for_email, ->(email) { where(email: email&.downcase) }
+  scope :for_email, ->(email) { where(email: email&.downcase&.squish) }
+  scope :like_email, ->(email) { where("email LIKE ?", "%#{email&.downcase&.squish}%") }
+  scope :like_name, ->(name) { where("LOWER(name) LIKE ?", "%#{name&.downcase&.squish}%") }
   scope :in_bay_area, -> { where(postal_code: Settings.postal_code.bay_area) }
   scope :order_by_name, -> { order("LOWER(name) ASC") }
 

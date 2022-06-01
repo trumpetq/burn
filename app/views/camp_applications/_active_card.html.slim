@@ -1,4 +1,4 @@
-- if resource.active?
+- if resource.active? && policy(resource.user).me?
   .card.bg-info.bg-opacity-25.mb-3
     = card_header("info-circle", "Application submited")
     .card-body

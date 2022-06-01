@@ -1,4 +1,4 @@
-- if resource.completed?
+- if resource.completed? && policy(resource.user).me?
   .card.bg-success.bg-opacity-25.mb-3
     = card_header("check-circle", "Application completed")
     .card-body

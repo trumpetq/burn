@@ -6,7 +6,8 @@ module UserHelper
       case user.role.to_sym
       when :mayor then "badge bg-danger"
       when :leader then "badge bg-warning"
-      when :member then "badge bg-success"
+      when :camper then "badge bg-success"
+      when :member then "badge bg-primary"
       when :guest then "badge bg-secondary"
       else
         "badge bg-dark"

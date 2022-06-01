@@ -11,6 +11,7 @@ module Admin
       query = ::Newsletter.includes(:user).kept
       query = query.like_email(params[:search][:email]) if params.dig(:search, :email).present?
       query = query.for_user(params[:search][:user_id]) if params.dig(:search, :user_id).present?
+      query = query.with_list(params[:search][:list]) if params.dig(:search, :list).present?
 
       query = query.order(id: param_direction) if params[:column] == "id"
       query = query.order(email: param_direction) if params[:column] == "email"
@@ -63,8 +64,10 @@ module Admin
     # GET /admin/newsletters/export
     def export
       authorize([:admin, :newsletter])
-      @general_list = ::Newsletter.with_list(:general).order(email: :asc).join(",\n")
-      @campers_only_list = ::Newsletter.with_list(:campers_only).order(email: :asc).join(",\n")
+      @general_list = ::Newsletter.with_list(:general).order(email: :asc)
+      @general_list_text = @general_list.join(",\n")
+      @campers_only_list = ::Newsletter.with_list(:campers_only).order(email: :asc)
+      @campers_only_list_text = @campers_only_list.join(",\n")
     end
 
     # PATCH /admin/users/:id/restore

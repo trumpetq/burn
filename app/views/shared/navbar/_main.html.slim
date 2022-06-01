@@ -15,4 +15,4 @@ ul.navbar-nav.me-auto
     li.nav-item
       = link_to(camp_interviews_path, class: "nav-link") do
         | Interviews
-        =< tag.span(current_user.camp_interviews.size, class: "badge rounded-pill bg-opacity-50 bg-secondary")
+        =< count_badge(current_user.camp_interviews.size)

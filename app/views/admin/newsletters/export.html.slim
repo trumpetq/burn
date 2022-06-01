@@ -3,14 +3,14 @@
 .row
   .col-md-4
     .card.mb-3
-      = card_header("mailbox", "General list")
+      = card_header("mailbox", "General list", pagy: @general_list.size)
       .card-body
-        textarea.form-control.text rows="10" = @general_list
+        textarea.form-control.text rows="10" = @general_list_text
   .col-md-4
     .card.mb-3
-      = card_header("mailbox", "Campers only list")
+      = card_header("mailbox", "Campers only list", pagy: @campers_only_list.size)
       .card-body
-        textarea.form-control.text rows="10" = @campers_only_list
+        textarea.form-control.text rows="10" = @campers_only_list_text
   .col-md-4
     .card.bg-info.bg-opacity-25.mb-3
       = card_header("info-circle", "Info")

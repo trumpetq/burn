@@ -29,6 +29,16 @@ module BadgeHelper
 
   def pagy_count_badge(pagy)
     return na_badge unless pagy.present?
-    tag.span(number_with_delimiter(pagy.count), class: "badge rounded-pill bg-opacity-50 bg-secondary")
+    if pagy.respond_to?(:count)
+      count_badge(pagy.count)
+    else
+      count_badge(pagy.to_i)
+    end
+  end
+
+  def count_badge(count)
+    return na_badge unless count.present?
+
+    tag.span(number_with_delimiter(count), class: "badge rounded-pill bg-opacity-50 bg-secondary")
   end
 end

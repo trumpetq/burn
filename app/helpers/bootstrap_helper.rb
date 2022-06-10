@@ -17,4 +17,36 @@ module BootstrapHelper
   def active_if(name)
     name.to_sym == action_name.to_sym ? "active" : nil
   end
+
+  def primary_badge(text = nil)
+    tag.span(text, class: "badge text-bg-primary")
+  end
+
+  def secondary_badge(text = nil)
+    tag.span(text, class: "badge text-bg-secondary")
+  end
+
+  def success_badge(text = nil)
+    tag.span(text, class: "badge text-bg-success")
+  end
+
+  def danger_badge(text = nil)
+    tag.span(text, class: "badge text-bg-danger")
+  end
+
+  def warning_badge(text = nil)
+    tag.span(text, class: "badge text-bg-warning")
+  end
+
+  def info_badge(text = nil)
+    tag.span(text, class: "badge text-bg-info")
+  end
+
+  def light_badge(text = nil)
+    tag.span(text, class: "badge text-bg-light")
+  end
+
+  def dark_badge(text = nil)
+    tag.span(text, class:"badge text-bg-dark")
+  end
 end

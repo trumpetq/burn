@@ -9,6 +9,15 @@
       = admin_time(resource.approved_at)
       - if resource.try(:approved_by)
         =< admin_user_badge(resource.approved_by)
+
+- if resource.respond_to?(:assigned_at)
+  tr
+    th Assigned
+    td
+      = admin_time(resource.assigned_at)
+      - if resource.try(:assigned_by)
+        =< admin_user_badge(resource.assigned_by)
+
 - if resource.respond_to?(:skipped_at)
   tr
     th Skipped
@@ -30,6 +39,13 @@
       = admin_time(resource.completed_at)
       - if resource.try(:completed_by)
         =< admin_user_badge(resource.completed_by)
+- if resource.respond_to?(:no_response_at)
+  tr
+    th No response
+    td
+      = admin_time(resource.no_response_at)
+      - if resource.try(:no_response_by)
+        =< admin_user_badge(resource.no_response_by)
 - if resource.respond_to?(:rejected_at)
   tr
     th Rejected

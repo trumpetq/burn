@@ -10,6 +10,7 @@
 #  discarded_at      :datetime
 #  feedback_notes    :text
 #  initial_notes     :text
+#  no_response_at    :datetime
 #  private_notes     :text
 #  rejected_at       :datetime
 #  skipped_at        :datetime
@@ -20,6 +21,7 @@
 #  assigned_by_id    :bigint
 #  completed_by_id   :bigint
 #  interviewed_by_id :bigint
+#  no_response_by_id :bigint
 #  rejected_by_id    :bigint
 #  skipped_by_id     :bigint
 #  user_id           :bigint
@@ -36,9 +38,9 @@ class CampInterview < ApplicationRecord
 
   attr_accessor :action, :index
 
-  validates :action, inclusion: {in: ["approved", "rejected"]}, allow_nil: true
+  validates :action, inclusion: {in: ["approved", "no_response", "rejected"]}, allow_nil: true
 
-  enumerize :status, in: STATUSES.slice(:unavailable, :active, :approved, :completed, :rejected, :skipped, :assigned), default: :active, predicates: true, scope: true
+  enumerize :status, in: STATUSES.slice(:unavailable, :active, :approved, :assigned, :completed, :no_response, :rejected, :skipped), default: :active, predicates: true, scope: true
 
   validates :feedback_notes, :initial_notes, :private_notes, length: {maximum: 10_000}
   validates :interviewed_by, presence: true, if: :assigned?

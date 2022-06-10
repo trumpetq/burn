@@ -3,7 +3,7 @@ module Admin
     extend ActiveSupport::Concern
 
     included do
-      before_action :set_resource, only: [:show, :edit, :update, :destroy, :active, :approve, :complete, :force_delete, :pay, :reject, :restore, :skip]
+      before_action :set_resource, only: [:show, :edit, :update, :destroy, :active, :approve, :complete, :force_delete, :no_response, :pay, :reject, :restore, :skip]
       before_action :set_redirect_url, only: [:destroy, :force_delete]
     end
 
@@ -126,6 +126,25 @@ module Admin
       @resource.destroy
 
       redirect_to(@redirect_url, alert: "#{controller_name.singularize.humanize} was successfully deleted.", status: :see_other)
+    end
+
+    # PATCH /admin/resources/:id/no_response
+    def no_response
+      @resource.no_response_at = Time.current
+      @resource.no_response_by = current_user
+      @resource.status = :no_response
+
+      @resource.update(permitted_attributes([:admin, @resource])) if params[controller_name.singularize].present?
+
+      no_response_before_save if defined?(no_response_before_save)
+
+      if @resource.save
+        no_response_after_save if defined?(no_response_after_save)
+
+        redirect_to([:admin, @resource], notice: "#{admin_link_to_resource} has been marked as having no response.", status: :see_other)
+      else
+        redirect_on_error
+      end
     end
 
     # PATCH /admin/resources/:id/pay

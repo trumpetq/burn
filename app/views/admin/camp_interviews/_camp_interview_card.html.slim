@@ -24,10 +24,4 @@
         tr
           th Interviewer
           td = admin_link_to_user(resource.interviewed_by)
-        tr
-          th Assigned
-          td
-            = admin_time(resource.assigned_at)
-            - if resource.assigned_by.present?
-              =< admin_user_badge(resource.assigned_by)
         = render "admin/camps/status_times", resource: resource

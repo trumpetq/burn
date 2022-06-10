@@ -44,6 +44,10 @@ module Admin
       mayor?
     end
 
+    def no_response?
+      mayor?
+    end
+
     def pay?
       mayor?
     end

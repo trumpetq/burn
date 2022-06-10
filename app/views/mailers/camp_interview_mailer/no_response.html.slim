@@ -1,0 +1,14 @@
+p Hello #{link_to(@resource.user, users_url(@resource.user))},
+
+p We have not heard back from you about your interview with #{link_to(@resource.interviewed_by, user_url(@resource.interviewed_by))}.
+
+p Interviewing is an important step in joining our camp. The purpose of this process is to help you get to know our camp better. If you are still interested in camping with us please reach out to #{link_to(@resource.interviewed_by, user_url(@resource.interviewed_by))} to schedule a time to meet in person or virtually.
+
+p Interviews typically take 30-45 minutes. You can read more about the process in our #{link_to("guide", interview_guides_url)}.
+
+p You must complete the interview process before you can be accepted into 8-bit Bunny for #{Settings.date.current_year}.
+
+p If you are no longer interested in camping with us you can update your #{link_to("plan", edit_registration_url(@resource.user))}.
+
+= render "mailers/shared/incomplete_profile", user: @resource.user
+= render "mailers/shared/signature"

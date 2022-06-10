@@ -11,3 +11,6 @@
         p.card-text Keep <b>up to date</b> with camp news.
         .btn-collection
           = link_to("Subscribe", new_newsletter_path(email: user.email), class: "btn btn-primary")
+    .card-footer
+      p.card-text = link_to("#{bootstrap_icon("facebook")} Facebook group".html_safe, Settings.facebook.url, class: "text-decoration-none")
+      p.card-text = link_to("#{bootstrap_icon("instagram")} 8.bit.bunny".html_safe, Settings.instagram.url, class: "text-decoration-none")

@@ -9,6 +9,8 @@
     = link_to("Pay", polymorphic_path([:admin, resource], action: :pay), class: "btn btn-primary", data: {turbo_method: :patch})
   - if resource.status != :completed && resource.respond_to?(:completed?) && policy([:admin, resource]).complete?
     = link_to("Complete", polymorphic_path([:admin, resource], action: :complete), class: "btn btn-success", data: {turbo_method: :patch})
+  - if resource.status != :no_response && resource.respond_to?(:no_response?) && policy([:admin, resource]).no_response?
+    = link_to("No response", polymorphic_path([:admin, resource], action: :no_response), class: "btn btn-secondary", data: {turbo_method: :patch})
   - if resource.status != :rejected && resource.respond_to?(:rejected?) && policy([:admin, resource]).reject?
     = link_to("Reject", polymorphic_path([:admin, resource], action: :reject), class: "btn btn-danger", data: {turbo_method: :patch, turbo_confirm: "Are you sure?"})
   - if resource.try(:discarded?) && policy([:admin, resource]).force_delete?

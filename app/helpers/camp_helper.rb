@@ -11,6 +11,7 @@ module CampHelper
       when :closed then "badge bg-warning"
       when :completed then "badge bg-success"
       when :no_response then "badge bg-secondary"
+      when :refunded then "badge bg-warning"
       when :rejected then "badge bg-danger"
       when :skipped then "badge bg-primary"
       when :paid then "badge bg-primary"

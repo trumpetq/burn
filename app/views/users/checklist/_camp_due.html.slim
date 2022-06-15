@@ -1,6 +1,44 @@
-li.list-group-item.bg-light
-  h6.text-muted Dues
-  p.text-muted
-    | Give us your money
-    br
-    <b>Available</b> June 15th, 2022
+- if user.camp_due.present?
+  - if user.camp_due.rejected?
+    li.list-group-item.bg-danger.bg-opacity-25
+      h6 = link_to_camp(user.camp_due, class: "text-decoration-none")
+      p.text-muted
+        | Sorry
+        =< camp_status_badge(user.camp_due)
+      p You <b>can not</b> camp with us in #{Settings.date.current_year}.
+  - elsif user.camp_due.finished?
+    li.list-group-item.bg-success.bg-opacity-10
+      h6 = link_to_camp(user.camp_due, class: "text-decoration-none")
+      p.text-muted
+        | Dues <b>finished</b>
+        =< camp_status_badge(user.camp_due)
+  - elsif user.camp_due.paid?
+    li.list-group-item.bg-success.bg-opacity-10
+      h6 = link_to_camp("Dues", user.camp_due, class: "text-decoration-none")
+      p.text-muted
+        | Give us your money
+        =< camp_status_badge(user.camp_due)
+  - else
+    li.list-group-item.bg-info.bg-opacity-10
+      h6 = link_to_camp(user.camp_due, class: "text-decoration-none")
+      p.text-muted
+        | Give us your money
+        =< camp_status_badge(user.camp_due)
+      = link_to("Continue", camp_due_path(user.camp_due), class: "btn btn-success")
+- else
+  - if user.can_pay_dues?
+    li.list-group-item.bg-secondary.bg-opacity-10
+      h6.text-muted Dues
+      p.text-muted Give us your #{link_to_guide("money", :dues)}
+      = link_to("Pay dues", new_camp_due_path, class: "btn btn-success")
+  - else
+    li.list-group-item.bg-secondary.bg-opacity-10
+      h6.text-muted Dues
+      p.text-muted
+        | Give us your money
+        span.badge.bg-secondary< Prerequisite
+      ol.list-numbered.text-muted
+        - if !user.camp_application&.finished?
+          li <b>Application</b> must be approved
+        - if !user.camp_interview&.finished?
+          li <b>Interview</b> must be completed

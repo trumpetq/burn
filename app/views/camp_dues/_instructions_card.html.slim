@@ -1,0 +1,24 @@
+- if resource.active? && policy(resource.user).me?
+  .card.mb-3
+    = card_header("wallet", "Payment instructions")
+    .card-body
+      - case resource.payment_method.to_sym
+      - when :cash
+        p.card-text You have selected the cash payment option. Please contact #{mail_to(Settings.email.david)} to make payment arangments. If possible we prefer PayPal or Venmo transactions.
+        p.card-text Once you have made payment you can mark this as paid.
+      - when :paypal
+        p.card-text PayPal <b>#{number_to_currency(resource.price)}</b> to <b>#{Settings.payment.paypal}</b>. Please include the transaction ID <b>#{resource.transaction_id}</b> in the notes. When you have completed the transfer mark dues as paid.
+        p.alert.alert-warning For PayPal transactions you must send the money as <b>friends and family</b>. We will refund any payments sent as goods and services.
+        p.card-text Payments are currently being manually verified so it might take a day or two for it to show up as completed.
+      - when :venmo
+        p.card-text Venmo <b>#{number_to_currency(resource.price)}</b> to <b>#{Settings.payment.venmo}</b>. If verification is require the last 4 digits of the phone number are #{Settings.payment.venmo_last_4}. Please include the transaction ID <b>#{resource.transaction_id}</b> in the notes. When you have completed the transfer mark dues as paid.
+        p.card-text Payments are currently being manually verified so it might take a day or two for it to show up as completed.
+      - when :other
+        p.card-text You have selected the other payment option. Please contact #{mail_to(Settings.email.david)} to make payment arangments. If possible we prefer PayPal or Venmo transactions.
+        p.card-text Once you have made payment you can mark this as paid.
+    .card-footer
+      .btn-collection
+        - if policy(resource).pay?
+          = link_to("Mark paid", pay_camp_due_path(resource), data: {turbo_method: :patch}, class: "btn btn-dark")
+        - if policy(resource).edit? && !(resource.payment_method.paypal? || resource.payment_method.venmo?)
+          = link_to("Edit", edit_camp_due_path(resource), class: "btn btn-primary")

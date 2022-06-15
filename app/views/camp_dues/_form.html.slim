@@ -1,0 +1,12 @@
+= render "shared/error_messages", resource: resource
+= simple_form_for(resource) do |f|
+  .row
+    .col-md-6.mb-3
+      = f.input :pricing_tier, label_method: -> { Settings.pricing_tiers[_1[1]].description_and_price }, hint: "learn about #{link_to_guide("tiered pricing", :dues)}".html_safe
+    .col-md-6.mb-3
+      = f.input :payment_method, include_blank: false, selected: :venmo, hint: "how are you paying, Venmo or PayPal preferred"
+    .col-md-12.mb-3
+      = f.input :notes, hint: "anything else we should know"
+  .row
+    .col.d-grid
+      = f.button :submit, "Continue", class: "btn-success-override"

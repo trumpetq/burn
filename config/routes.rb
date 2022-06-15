@@ -25,6 +25,7 @@ Rails.application.routes.draw do
         patch :active
         patch :complete
         patch :pay
+        patch :refund
         patch :reject
       end
     end
@@ -34,7 +35,9 @@ Rails.application.routes.draw do
         patch :active
         patch :complete
         patch :pay
+        patch :refund
         patch :reject
+        patch :skip
       end
     end
 
@@ -125,6 +128,7 @@ Rails.application.routes.draw do
       get :parking
       get :power
       get :projects
+      get :rules
       get :sauna
       get :shade
       get :shipping_container

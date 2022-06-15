@@ -155,11 +155,19 @@ class User < ApplicationRecord
   end
 
   def can_apply?
-    camp_application.blank?
+   !status.banned?
   end
 
   def can_interview?
     camp_application&.finished?
+  end
+
+  def can_pay_dues?
+    camp_application&.finished? && camp_interview&.finished?
+  end
+
+  def can_pay_deposit?
+    can_pay_dues? && camp_dues&.finished?
   end
 
   def has_interviews?

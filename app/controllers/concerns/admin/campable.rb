@@ -166,11 +166,23 @@ module Admin
       end
     end
 
-    # PATCH /admin/resources/:id/restore
-    def restore
-      @resource.undiscard
+    # PATCH /admin/resources/:id/refund
+    def refund
+      @resource.refunded_at = Time.current
+      @resource.refunded_by = current_user
+      @resource.status = :refunded
 
-      redirect_to([:admin, @resource], notice: "#{admin_link_to_resource} was successfully restored.", status: :see_other)
+      @resource.update(permitted_attributes([:admin, @resource])) if params[controller_name.singularize].present?
+
+      refund_before_save if defined?(refund_before_save)
+
+      if @resource.save
+        refund_after_save if defined?(refund_after_save)
+
+        redirect_to([:admin, @resource], alert: "#{admin_link_to_resource} has been refunded.", status: :see_other)
+      else
+        redirect_on_error
+      end
     end
 
     # PATCH /admin/resources/:id/reject
@@ -190,6 +202,13 @@ module Admin
       else
         redirect_on_error
       end
+    end
+
+    # PATCH /admin/resources/:id/restore
+    def restore
+      @resource.undiscard
+
+      redirect_to([:admin, @resource], notice: "#{admin_link_to_resource} was successfully restored.", status: :see_other)
     end
 
     # PATCH /admin/resources/:id/skip

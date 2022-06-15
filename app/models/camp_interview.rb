@@ -33,6 +33,7 @@
 #
 class CampInterview < ApplicationRecord
   extend Enumerize
+
   include Stepable
   include Discard::Model
 

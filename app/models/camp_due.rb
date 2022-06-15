@@ -4,18 +4,21 @@
 #
 #  id              :bigint           not null, primary key
 #  completed_at    :datetime
+#  notes           :text
 #  paid_at         :datetime
 #  payment_method  :integer
 #  price_cents     :integer          default(0), not null
 #  price_currency  :string           default("USD"), not null
-#  price_tier      :integer
+#  pricing_tier    :integer
 #  private_notes   :text
+#  refunded_at     :datetime
 #  rejected_at     :datetime
 #  status          :integer          not null
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
 #  completed_by_id :bigint
 #  paid_by_id      :bigint
+#  refunded_by_id  :bigint
 #  rejected_by_id  :bigint
 #  transaction_id  :string           not null
 #  user_id         :bigint
@@ -29,6 +32,6 @@ class CampDue < ApplicationRecord
 
   include Stepable
   include Transactable
+
+  enumerize :status, in: STATUSES.slice(:unavailable, :active, :completed, :paid, :refunded, :rejected, :skipped), default: :active, predicates: true, scope: true
 end
-
-

@@ -79,6 +79,10 @@ class GuidePolicy < ApplicationPolicy
     everyone?
   end
 
+  def rules?
+    everyone?
+  end
+
   def sauna?
     everyone?
   end

@@ -52,12 +52,16 @@ module Admin
       mayor?
     end
 
-    def restore?
+    def refund?
       mayor?
     end
 
     def reject?
       leader?
+    end
+
+    def restore?
+      mayor?
     end
 
     def skip?

@@ -1,0 +1,36 @@
+.card.mb-3
+  = card_header("cash-coin", "Dues", buttons: [header_edit_button(resource)])
+  .card-table
+    table.table
+      tbody
+        tr
+          th User
+          td = link_to_user(resource.user)
+        tr
+          th Status
+          td = camp_status_badge(resource)
+        tr
+          th Price
+          td
+            = number_to_currency(resource.price)
+            =< camp_pricing_tier_badge(resource)
+
+        tr
+          th Payment method
+          td = camp_payment_method_badge(resource)
+        tr
+          th Transaction ID
+          td = resource.transaction_id
+        tr
+          th Notes
+          td = resource.notes.presence || na_badge
+        - if resource.completed_at.present?
+          tr
+            th Completed
+            td = admin_time(resource.completed_at)
+        tr
+          th Created
+          td = admin_time(resource.created_at)
+        tr
+          th Updated
+          td = admin_time(resource.updated_at)

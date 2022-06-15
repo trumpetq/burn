@@ -65,7 +65,6 @@ class CampInterviewsController < ApplicationController
 
     if @resource.save && @resource.user.present? && previous_status != :no_response
       CampInterviewMailer.with(resource: @resource).no_response.deliver_now
-      @resource.user.update(plan: :camping_elsewhere)
     end
   end
 

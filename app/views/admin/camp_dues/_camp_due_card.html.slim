@@ -17,7 +17,7 @@
           td = number_to_currency(resource.price)
         tr
           th Pricing tier
-          td = camp_price_tier_badge(resource)
+          td = camp_pricing_tier_badge(resource)
         tr
           th Payment method
           td = camp_payment_method_badge(resource)
@@ -28,4 +28,4 @@
         tr
           th Private notes
           td = resource.private_notes.presence || na_badge
-        = render "admin/camps/status_times", resource: resource
+        = render "admin/shared/status_times", resource: resource

@@ -1,0 +1,11 @@
+- page_title(@resource)
+
+.row
+  .col-md-3
+  .col-md-6
+    = render "instructions_card", resource: @resource
+    = render "paid_card", resource: @resource
+    = render "camp_due_card", resource: @resource
+  .col-md-3
+    = render "completed_card", resource: @resource
+    = render "admin_card", resource: @resource

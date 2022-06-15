@@ -15,11 +15,11 @@ module CampTransactionHelper
     tag.span(camp.payment_method&.to_s&.humanize, class: css_class)
   end
 
-  def camp_price_tier_badge(camp)
-    return na_badge unless camp&.price_tier.present?
+  def camp_pricing_tier_badge(camp)
+    return na_badge unless camp&.pricing_tier.present?
 
     css_class =
-      case camp.price_tier.to_sym
+      case camp.pricing_tier.to_sym
       when :low_income then "badge bg-warning"
       when :middle_income then "badge bg-primary"
       when :startup then "badge bg-success"
@@ -28,6 +28,6 @@ module CampTransactionHelper
         "badge bg-dark"
       end
 
-    tag.span(camp.price_tier&.to_s&.humanize, class: css_class)
+    tag.span(camp.pricing_tier&.to_s&.humanize, class: css_class)
   end
 end

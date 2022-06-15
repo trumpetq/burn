@@ -9,11 +9,10 @@ li.nav-item.dropdown
     - if policy([:admin, :camp_interview]).index?
       = link_to("Interviews", admin_camp_interviews_path, class: "dropdown-item")
       .dropdown-divider
-    - if policy([:admin, :camp_ticket]).index?
-      = link_to("Tickets", admin_camp_tickets_path, class: "dropdown-item")
-      .dropdown-divider
     - if policy([:admin, :camp_due]).index?
       = link_to("Dues", admin_camp_dues_path, class: "dropdown-item")
     - if policy([:admin, :camp_deposit]).index?
       = link_to("Deposits", admin_camp_deposits_path, class: "dropdown-item")
-
+      .dropdown-divider
+    - if policy([:admin, :camp_ticket]).index?
+      = link_to("Tickets", admin_camp_tickets_path, class: "dropdown-item")

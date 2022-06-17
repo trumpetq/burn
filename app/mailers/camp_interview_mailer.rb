@@ -21,7 +21,7 @@ class CampInterviewMailer < ApplicationMailer
 
   def new_interview
     @resource = params[:resource]
-    mail(to: @resource.interviewed_by.email, subject: "Your have a new interview for 8-bit Bunny")
+    mail(to: @resource.interviewed_by.email, subject: "You have a new interview for 8-bit Bunny")
   end
 
   def no_response

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_06_10_194505) do
+ActiveRecord::Schema[7.0].define(version: 2022_06_16_205257) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -89,6 +89,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_10_194505) do
     t.datetime "refunded_at"
     t.bigint "refunded_by_id"
     t.text "notes"
+    t.datetime "skipped_at"
+    t.bigint "skipped_by_id"
     t.index ["user_id"], name: "index_camp_deposits_on_user_id"
   end
 
@@ -112,6 +114,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_10_194505) do
     t.datetime "refunded_at"
     t.bigint "refunded_by_id"
     t.text "notes"
+    t.datetime "skipped_at"
+    t.bigint "skipped_by_id"
     t.index ["user_id"], name: "index_camp_dues_on_user_id"
   end
 

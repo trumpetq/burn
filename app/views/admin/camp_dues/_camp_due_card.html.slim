@@ -14,17 +14,18 @@
           td = camp_status_badge(resource)
         tr
           th Price
-          td = number_to_currency(resource.price)
-        tr
-          th Pricing tier
-          td = camp_pricing_tier_badge(resource)
+          td
+            = number_to_currency(resource.price)
+            =< camp_pricing_tier_badge(resource)
         tr
           th Payment method
           td = camp_payment_method_badge(resource)
         tr
           th Transaction ID
-          td
-            code = resource.transaction_id
+          td = resource.transaction_id
+        tr
+          th Notes
+          td = resource.notes.presence || na_badge
         tr
           th Private notes
           td = resource.private_notes.presence || na_badge

@@ -3,7 +3,7 @@ module Admin
     extend ActiveSupport::Concern
 
     included do
-      before_action :set_resource, only: [:show, :edit, :update, :destroy, :active, :approve, :complete, :force_delete, :no_response, :pay, :reject, :restore, :skip]
+      before_action :set_resource, only: [:show, :edit, :update, :destroy, :active, :approve, :complete, :force_delete, :no_response, :pay, :refund, :reject, :restore, :skip]
       before_action :set_redirect_url, only: [:destroy, :force_delete]
     end
 

@@ -13,6 +13,7 @@
 #  private_notes   :text
 #  refunded_at     :datetime
 #  rejected_at     :datetime
+#  skipped_at      :datetime
 #  status          :integer          not null
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
@@ -20,6 +21,7 @@
 #  paid_by_id      :bigint
 #  refunded_by_id  :bigint
 #  rejected_by_id  :bigint
+#  skipped_by_id   :bigint
 #  transaction_id  :string           not null
 #  user_id         :bigint
 #

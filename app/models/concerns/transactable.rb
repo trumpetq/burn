@@ -16,6 +16,8 @@ module Transactable
 
     before_validation :set_transaction_id
     before_validation :set_price
+
+    scope :for_transaction_id, ->(transaction_id) { where(transaction_id: transaction_id&.upcase) }
   end
 
   def set_transaction_id

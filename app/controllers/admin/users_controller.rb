@@ -8,23 +8,23 @@ module Admin
     def index
       authorize([:admin, :user])
 
-      query = ::User.includes(:camp_application, :camp_interview).kept
+      @query = ::User.includes(:camp_application, :camp_interview).kept
 
-      query = query.like_name(params[:search][:name]) if params.dig(:search, :name).present?
-      query = query.with_role(params[:search][:role]) if params.dig(:search, :role).present?
-      query = query.like_email(params[:search][:email]) if params.dig(:search, :email).present?
-      query = query.with_plan(params[:search][:plan]) if params.dig(:search, :plan).present?
+      @query = @query.like_name(params[:search][:name]) if params.dig(:search, :name).present?
+      @query = @query.with_role(params[:search][:role]) if params.dig(:search, :role).present?
+      @query = @query.like_email(params[:search][:email]) if params.dig(:search, :email).present?
+      @query = @query.with_plan(params[:search][:plan]) if params.dig(:search, :plan).present?
 
-      query = query.order(id: param_direction) if params[:column] == "id"
-      query = query.order("LOWER(name) #{param_direction}") if params[:column] == "name"
-      query = query.order("LOWER(playa_name) #{param_direction}") if params[:column] == "playa_name"
-      query = query.order(email: param_direction) if params[:column] == "email"
-      query = query.order(status: param_direction) if params[:column] == "status"
-      query = query.order(plan: param_direction) if params[:column] == "plan"
-      query = query.order(role: param_direction) if params[:column] == "role"
+      @query = @query.order(id: param_direction) if params[:column] == "id"
+      @query = @query.order("LOWER(name) #{param_direction}") if params[:column] == "name"
+      @query = @query.order("LOWER(playa_name) #{param_direction}") if params[:column] == "playa_name"
+      @query = @query.order(email: param_direction) if params[:column] == "email"
+      @query = @query.order(status: param_direction) if params[:column] == "status"
+      @query = @query.order(plan: param_direction) if params[:column] == "plan"
+      @query = @query.order(role: param_direction) if params[:column] == "role"
 
-      query = query.order(updated_at: :desc)
-      @pagy, @users = pagy(query, items: 50)
+      @query = @query.order(updated_at: :desc)
+      @pagy, @users = pagy(@query, items: 50)
     end
 
     # GET /admin/users/:id

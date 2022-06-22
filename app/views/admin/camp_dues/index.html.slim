@@ -1,5 +1,8 @@
 - page_title("Camp dues")
 .row
+  .col-md-8
+    = render "search_card"
+.row
   .col-md-12
     .card.mb-3
       = card_header("cash-coin", "Camp dues", pagy: @pagy, buttons: [header_admin_new_button(:camp_due)])

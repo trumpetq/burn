@@ -8,16 +8,16 @@ module Admin
     def index
       authorize([:admin, :newsletter])
 
-      query = ::Newsletter.includes(:user).kept
-      query = query.like_email(params[:search][:email]) if params.dig(:search, :email).present?
-      query = query.for_user(params[:search][:user_id]) if params.dig(:search, :user_id).present?
-      query = query.with_list(params[:search][:list]) if params.dig(:search, :list).present?
+      @query = ::Newsletter.includes(:user).kept
+      @query = @query.like_email(params[:search][:email]) if params.dig(:search, :email).present?
+      @query = @query.for_user(params[:search][:user_id]) if params.dig(:search, :user_id).present?
+      @query = @query.with_list(params[:search][:list]) if params.dig(:search, :list).present?
 
-      query = query.order(id: param_direction) if params[:column] == "id"
-      query = query.order(email: param_direction) if params[:column] == "email"
-      query = query.order(list: param_direction) if params[:column] == "list"
+      @query = @query.order(id: param_direction) if params[:column] == "id"
+      @query = @query.order(email: param_direction) if params[:column] == "email"
+      @query = @query.order(list: param_direction) if params[:column] == "list"
 
-      @pagy, @newsletters = pagy(query.order(created_at: :desc), items: 50)
+      @pagy, @newsletters = pagy(@query.order(created_at: :desc), items: 50)
     end
 
     # GET /admin/newsletters/:id

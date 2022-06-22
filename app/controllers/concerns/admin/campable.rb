@@ -10,7 +10,11 @@ module Admin
     # GET /admin/resources
     def index
       authorize([:admin, controller_name.classify.underscore.to_sym])
-      @pagy, @resources = pagy(controller_name.classify.constantize.includes(:user).order(updated_at: :desc))
+      @query = controller_name.classify.constantize.includes(:user).order(updated_at: :desc)
+
+      search_index if defined?(search_index)
+
+      @pagy, @resources = pagy(@query)
       after_index if defined?(after_index)
     end
 

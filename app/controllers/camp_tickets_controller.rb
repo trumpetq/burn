@@ -4,9 +4,9 @@ class CampTicketsController < ApplicationController
   # GET /camp_tickets
   def index
     authorize(:camp_ticket)
-    query = ::CampTicket.for_user(current_user)
+    @query = ::CampTicket.for_user(current_user)
 
-    @camp_tickets = query.includes(:user).order(updated_at: :desc)
+    @camp_tickets = @query.includes(:user).order(updated_at: :desc)
   end
 
   private

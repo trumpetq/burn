@@ -1,10 +1,6 @@
 rollbar_handler = proc do |options|
-  d 'rollbar_handler'
-  d options[:exception]
   case options[:exception]
   when ActionController::RoutingError
-    d 'routing error'
-    d options[:exception].message
     message = options[:exception].message
     needles = ["wp-admin", "wp-includes", "xmlrpc.php"]
     raise Rollbar::Ignore if message&.match?(Regexp.union(needles))

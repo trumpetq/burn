@@ -5,10 +5,10 @@
       = simple_form_for([:admin, resource], namespace: "reject", url: reject_admin_camp_interview_path(resource)) do |f|
         .row
           .col.mb-3
-            = f.input :feedback_notes, hint: "Shown to user"
+            = f.input :feedback_notes, hint: "shown to user"
         .row
           .col.mb-3
-            = f.input :private_notes, hint: "Only visible to camp leadership"
+            = f.input :private_notes, hint: "only visible to camp leadership"
         .row
           .col.mb-3
             = f.input :send_email

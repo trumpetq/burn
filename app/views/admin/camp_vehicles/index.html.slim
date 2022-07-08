@@ -1,0 +1,29 @@
+- page_title("Camp tickets")
+
+.row
+  .col-md-12
+    .card.mb-3
+      = card_header("ticket-detailed", "Camp tickets", pagy: @pagy, buttons: [header_admin_new_button(:camp_ticket)])
+      .card-table
+        table.table
+          thead
+            tr
+              th ID
+              th User
+              th Ticket type
+              th Availability
+              th Location
+              th Sale
+              th
+          tbody
+            - @resources.each do |resource|
+              tr
+                td = admin_link_to_id(resource)
+                td = admin_link_to_user(resource.user)
+                td = camp_ticket_type_badge(resource)
+                td = camp_availability_badge(resource)
+                td = camp_location_badge(resource)
+                td = camp_sale_badge(resource)
+                td.text-end = admin_edit_icon(resource)
+      = pagy_card_footer(@pagy)
+

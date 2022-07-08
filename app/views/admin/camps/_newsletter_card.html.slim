@@ -1,0 +1,18 @@
+
+.card.mb-3
+  = card_header("envelope-open", "Newsletter")
+  .card-table
+    table.table
+      tbody
+        tr
+          th Subscribed
+          td = @subscribed_count
+        tr
+          th Unsubscribed
+          td = @subscribed_count
+        tr
+          th General list
+          td = @general_list_count
+        tr
+          th Campers only
+          td = @campers_only_list_count

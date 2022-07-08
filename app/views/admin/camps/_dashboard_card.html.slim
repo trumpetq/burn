@@ -1,0 +1,29 @@
+.card.mb-3
+  = card_header("kanban", "Dashboard")
+  .card-table
+    table.table
+      tbody
+        tr
+          th Users
+          td = @users_count
+        tr
+          th Applications
+          td = @camp_applications_count
+        tr
+          th Interviews
+          td = @camp_interviews_count
+        tr
+          th Dues
+          td = @camp_dues_count
+        tr
+          th Deposits
+          td = @camp_deposits_count
+        tr
+          th Tickets
+          td = @camp_tickets_count
+        tr
+          th Vehicles
+          td = @camp_vehicles_count
+        tr
+          th Newsletter
+          td = @newsletter_count

@@ -29,13 +29,13 @@
             = f.input :index, input_html: { value: index }, as: :hidden
             .row
               .col.mb-3
-                = f.input :feedback_notes, hint: "Sent to the user by email"
+                = f.input :feedback_notes, hint: "sent to the user by email"
             .row
               .col.mb-3
-                = f.input :private_notes, hint: "Only visible to camp leadership, what did you think of them"
+                = f.input :private_notes, hint: "only visible to camp leadership, what did you think of them"
             .row
               .col.mb-3
-                = f.input :action, as: :radio_buttons, hint: "Decide if this person should camp with us", checked: camp_interview.status, collection: [[yes_badge("Approve"), "approved"], [no_badge("Reject"), "rejected"], [secondary_badge("No response"), "no_response"]]
+                = f.input :action, as: :radio_buttons, hint: "decide if this person should camp with us", checked: camp_interview.status, collection: [[yes_badge("Approve"), "approved"], [no_badge("Reject"), "rejected"], [secondary_badge("No response"), "no_response"]]
             .row
               .col.d-grid
                 = f.button :submit, "Submit", class: "btn-primary-override"

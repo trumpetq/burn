@@ -37,6 +37,9 @@
           th Status
           td = user_status_badge(user)
         tr
+          th Private notes
+          td = user.private_notes.presence || na_badge
+        tr
           th Time zone
           td = user.time_zone.presence || na_badge
         tr

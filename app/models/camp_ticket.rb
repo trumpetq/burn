@@ -6,6 +6,7 @@
 #  availability    :integer          not null
 #  location        :integer          not null
 #  notes           :text
+#  private_notes   :text
 #  sale            :integer          not null
 #  status          :integer          not null
 #  ticket_type     :integer          not null

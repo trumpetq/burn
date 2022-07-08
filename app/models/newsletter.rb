@@ -37,6 +37,8 @@ class Newsletter < ApplicationRecord
   scope :for_email, ->(email) { where(email: email&.downcase&.squish) }
   scope :like_email, ->(email) { where("email LIKE ?", "%#{email&.downcase&.squish}%") }
   scope :for_user, ->(user) { where(user: user) }
+  scope :subscribed, -> { with_list(:general, :campers_only) }
+  scope :unsubscribed, -> { with_list(:unsubsribed)}
 
   before_validation :set_unsubscribed_at
 

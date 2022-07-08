@@ -22,6 +22,7 @@
 #  playa_name             :string
 #  postal_code            :string
 #  previous_years         :jsonb
+#  private_notes          :text
 #  pronouns               :integer
 #  remember_created_at    :datetime
 #  reset_password_sent_at :datetime

@@ -11,6 +11,7 @@
           thead
             tr
               th ID
+              th Transaction ID
               th User
               th Status
               th Price
@@ -20,6 +21,7 @@
             - @resources.each do |resource|
               tr
                 td = admin_link_to_id(resource)
+                td = link_to_policy(policy([:admin, resource]).show?, resource.transaction_id, admin_camp_due_path(resource))
                 td = admin_link_to_user(resource.user)
                 td = camp_status_badge(resource)
                 td = link_to_policy(policy([:admin, resource]).show?, number_to_currency(resource.price), admin_camp_due_path(resource))

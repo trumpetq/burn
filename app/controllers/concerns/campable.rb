@@ -14,7 +14,7 @@ module Campable
     if @resource.present? && !@resource.try(:discarded?)
       redirect_to @resource
     else
-      redirect_to root_path, warning: "No #{controller_name.singularize.humanize(capitalize: false)} found."
+      redirect_to root_url, warning: "No #{controller_name.singularize.humanize(capitalize: false)} found."
     end
   end
 
@@ -39,7 +39,7 @@ module Campable
 
     authorize(@resource)
     if @resource.save
-      redirect_to user_path(current_user), success: "#{link_to_resource} was created."
+      redirect_to user_url(current_user), success: "#{link_to_resource} was created."
     else
       render :new, status: :unprocessable_entity
     end
@@ -66,7 +66,7 @@ module Campable
       @resource.destroy
     end
 
-    redirect_to user_path(current_user), notice: "#{controller_name.singularize.humanize} was successfully destroyed.", status: :see_other
+    redirect_to user_url(current_user), notice: "#{controller_name.singularize.humanize} was successfully destroyed.", status: :see_other
   end
 
   # PATCH /resources/:id/pay
@@ -78,7 +78,7 @@ module Campable
     @resource.update(permitted_attributes([:admin, @resource])) if params[controller_name.singularize].present?
 
     if @resource.save
-      redirect_to(user_path(current_user), notice: "#{link_to_resource} has been marked as paid.", status: :see_other)
+      redirect_to(user_url(current_user), notice: "#{link_to_resource} has been marked as paid.", status: :see_other)
     else
       redirect_on_error
     end

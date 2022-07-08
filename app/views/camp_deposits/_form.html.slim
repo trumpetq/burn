@@ -1,8 +1,16 @@
 = render "shared/error_messages", resource: resource
 = simple_form_for(resource) do |f|
   .row
-    .col-md-6.mb-3
-
+    - if current_user&.camp_due&.pricing_tier.present?
+      .col-md-7.mb-3
+        = f.input :pricing_tier, disabled: true, selected: current_user.camp_due.pricing_tier,  label_method: -> { Settings.pricing_tiers[_1[1]].description_and_price }, hint: "the same price as #{link_to_guide("dues", :dues)}".html_safe
+    - else
+      .col-md-7.mb-3
+        = f.input :pricing_tier, label_method: -> { Settings.pricing_tiers[_1[1]].description_and_price }, include_blank: false, hint: "the same price as #{link_to_guide("dues", :dues)}".html_safe
+    .col-md-5.mb-3
+      = f.input :payment_method, include_blank: false, selected: :venmo, hint: "how are you paying, Venmo or PayPal preferred"
+    .col-md-12.mb-3
+      = f.input :notes, hint: "anything else we should know"
   .row
     .col.d-grid
-      = f.button :submit, submit_button_text(resource)
+      = f.button :submit, "Continue", class: "btn-success-override"

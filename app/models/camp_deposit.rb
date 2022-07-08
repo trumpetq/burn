@@ -35,6 +35,5 @@ class CampDeposit < ApplicationRecord
   include Stepable
   include Transactable
 
-  enumerize :status, in: STATUSES.slice(:unavailable, :active, :approved, :assigned, :completed, :no_response, :rejected, :skipped), default: :active, predicates: true, scope: true
-
+  enumerize :status, in: STATUSES.slice(:unavailable, :active, :completed, :paid, :refunded, :rejected, :skipped), default: :active, predicates: true, scope: true
 end

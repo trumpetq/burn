@@ -4,6 +4,8 @@ rollbar_handler = proc do |options|
     message = options[:exception].message
     needles = ["wp-admin", "wp-includes", "xmlrpc.php"]
     raise Rollbar::Ignore if message&.match?(Regexp.union(needles))
+  when ActionController::InvalidAuthenticityToken
+    raise Rollbar::Ignore
   end
 end
 

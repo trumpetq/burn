@@ -1,0 +1,12 @@
+- if resource.paid? && policy(resource.user).me?
+  .card.bg-info.bg-opacity-10.mb-3
+    = card_header("bank", "Paid")
+    .card-body
+      p.card-text Your depost has been marked as paid.
+      - case resource.payment_method.to_sym
+      - when :paypal
+        p.card-text You indicated you sent #{number_to_currency(resource.price)} on PayPal to #{Settings.payment.paypal} with transaction ID #{resource.transaction_id} in the notes.
+      - when :venmo
+        p.card-text You indicated you sent #{number_to_currency(resource.price)} on Venmo to #{Settings.payment.venmo} with transaction ID #{resource.transaction_id} in the notes.
+
+      p.card-text It usually takes a couple of days for us to manually verify payment. Once that is done this task will show as completed.

@@ -27,6 +27,7 @@ Rails.application.routes.draw do
         patch :pay
         patch :refund
         patch :reject
+        patch :skip
       end
     end
 
@@ -125,6 +126,7 @@ Rails.application.routes.draw do
       get :learn
       get :map
       get :mayor_of_the_day
+      get :outside_services
       get :parking
       get :power
       get :projects

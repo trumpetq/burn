@@ -167,7 +167,7 @@ class User < ApplicationRecord
   end
 
   def can_pay_deposit?
-    can_pay_dues? && camp_dues&.finished?
+    can_pay_dues? && (camp_due&.finished? || camp_due&.paid?)
   end
 
   def has_interviews?

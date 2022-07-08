@@ -117,6 +117,8 @@ Rails.application.routes.draw do
 
   resources :camp_tickets
 
+  resources :camp_vehicles
+
   resources :guides, only: [:index] do
     collection do
       get :build

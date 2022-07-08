@@ -9,9 +9,8 @@ class CreateCampVehicles < ActiveRecord::Migration[7.0]
       t.integer :status, null: false
       t.datetime :rejected_at
       t.bigint :rejected_by_id
-      t.integer :vehicle_type
+      t.integer :vehicle
       t.string :licence_plate
-      t.integer :ownership
       t.text :notes
       t.text :private_notes
       t.boolean :sleeping

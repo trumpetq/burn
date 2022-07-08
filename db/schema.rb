@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_07_08_061503) do
+ActiveRecord::Schema[7.0].define(version: 2022_07_08_064044) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -170,14 +170,14 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_08_061503) do
     t.integer "status", null: false
     t.datetime "rejected_at"
     t.bigint "rejected_by_id"
-    t.integer "vehicle_type"
+    t.integer "vehicle"
     t.string "licence_plate"
-    t.integer "ownership"
     t.text "notes"
     t.text "private_notes"
     t.boolean "sleeping"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "trailer"
     t.index ["user_id"], name: "index_camp_vehicles_on_user_id"
   end
 

@@ -8,20 +8,20 @@
         = f.input :user_id, hint: "1234", label: "User ID", required: true
   .row
     .col-md-6.mb-3
-      = f.input :availability, include_blank: false
+      = f.input :vehicle
     .col-md-6.mb-3
-      = f.input :ticket_type, include_blank: false, label: "Type"
+      = f.input :trailer
   .row
     .col-md-6.mb-3
-      = f.input :location, include_blank: false
+      = f.input :licence_plate, hint: "if you know it"
     .col-md-6.mb-3
-      = f.input :sale, include_blank: false
-  .row
-    .col-md-12.mb-3
-      = f.input :confirmation_id, hint: "check email from ticketsupport@burningman.org", label: "Confirmation ID"
+      = f.input :sleeping, as: :select,  hint: "are you sleeping in your vehicle or trailer"
   .row
     .col-md-12.mb-3
       = f.input :notes
+  .row
+    .col-md-12.mb-3
+      = f.input :private_notes, hint: "only visible to camp leaders"
   .row
     .col.d-grid
       = f.button :submit, submit_button_text(resource)

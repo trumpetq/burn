@@ -12,5 +12,7 @@
         .btn-collection
           = link_to("Subscribe", new_newsletter_path(email: user.email), class: "btn btn-primary")
     .card-footer
-      p.card-text = link_to("#{bootstrap_icon("facebook")} Facebook group".html_safe, Settings.facebook.url, class: "text-decoration-none")
-      p.card-text = link_to("#{bootstrap_icon("instagram")} 8.bit.bunny".html_safe, Settings.instagram.url, class: "text-decoration-none")
+      ul.list-inline.mb-0
+        li.list-inline-item = link_to(bootstrap_icon("facebook"), Settings.facebook.url, class: "text-decoration-none")
+        li.list-inline-item = link_to(bootstrap_icon("tiktok"), Settings.tiktok.url, class: "text-decoration-none")
+        li.list-inline-item = link_to(bootstrap_icon("instagram"), Settings.instagram.url, class: "text-decoration-none")

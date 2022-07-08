@@ -155,7 +155,7 @@ class User < ApplicationRecord
   end
 
   def can_apply?
-   !status.banned?
+    !status.banned?
   end
 
   def can_interview?

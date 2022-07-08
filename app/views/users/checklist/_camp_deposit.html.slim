@@ -14,7 +14,7 @@
         =< camp_status_badge(user.camp_deposit)
   - elsif user.camp_deposit.paid?
     li.list-group-item.bg-success.bg-opacity-10
-      h6 = link_to_camp("Dues", user.camp_deposit, class: "text-decoration-none")
+      h6 = link_to_camp("Deposit", user.camp_deposit, class: "text-decoration-none")
       p.text-muted
         | Pay your deposit
         =< camp_status_badge(user.camp_deposit)

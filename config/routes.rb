@@ -58,6 +58,15 @@ Rails.application.routes.draw do
 
     resources :camp_tickets
 
+    resources :camp_vehicles do
+      member do
+        patch :active
+        patch :approve
+        patch :complete
+        patch :reject
+      end
+    end
+
     resources :newsletters do
       collection do
         get :export

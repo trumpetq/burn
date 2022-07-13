@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_06_16_205257) do
+ActiveRecord::Schema[7.0].define(version: 2022_07_08_064044) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -157,7 +157,28 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_16_205257) do
     t.string "confirmation_id"
     t.integer "sale", null: false
     t.integer "availability", null: false
+    t.text "private_notes"
     t.index ["user_id"], name: "index_camp_tickets_on_user_id"
+  end
+
+  create_table "camp_vehicles", force: :cascade do |t|
+    t.bigint "completed_by_id"
+    t.datetime "completed_at"
+    t.datetime "approved_at"
+    t.bigint "approved_by_id"
+    t.bigint "user_id"
+    t.integer "status", null: false
+    t.datetime "rejected_at"
+    t.bigint "rejected_by_id"
+    t.integer "vehicle"
+    t.string "licence_plate"
+    t.text "notes"
+    t.text "private_notes"
+    t.boolean "sleeping"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "trailer"
+    t.index ["user_id"], name: "index_camp_vehicles_on_user_id"
   end
 
   create_table "newsletters", force: :cascade do |t|
@@ -208,6 +229,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_16_205257) do
     t.integer "pronouns"
     t.datetime "discarded_at"
     t.integer "plan", null: false
+    t.text "private_notes"
     t.index ["discarded_at"], name: "index_users_on_discarded_at"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true

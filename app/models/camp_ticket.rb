@@ -6,6 +6,7 @@
 #  availability    :integer          not null
 #  location        :integer          not null
 #  notes           :text
+#  private_notes   :text
 #  sale            :integer          not null
 #  status          :integer          not null
 #  ticket_type     :integer          not null
@@ -35,6 +36,9 @@ class CampTicket < ApplicationRecord
 
   validates :confirmation_id, length: {maximum: 100}
   validates :notes, length: {maximum: 10_000}
+
+  scope :owned, -> { with_availability(:using_myself, :for_a_friend, :for_sale) }
+  scope :wanted, ->{ with_availability(:wanted) }
 
   def multiple?
     true

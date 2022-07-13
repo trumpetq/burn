@@ -27,9 +27,8 @@ module Admin
     def new
       @resource = controller_name.classify.constantize.new
       authorize([:admin, @resource])
-      if params[:user_id]
-        @resource.user = ::User.find(params[:user_id])
-      end
+      @resource.user = ::User.find(params[:user_id]) if params[:user_id]
+
       after_new if defined?(after_new)
     end
 

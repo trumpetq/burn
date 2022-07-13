@@ -1,0 +1,33 @@
+.card.mb-3
+  = card_header("truck", "Camp vehicle", buttons: [header_show_button(resource), header_admin_edit_button(resource)])
+  .card-table
+    table.table
+      tbody
+        tr
+          th ID
+          td = resource.id
+        tr
+          th User
+          td = admin_link_to_user(resource.user)
+        tr
+          th Status
+          td = camp_status_badge(resource)
+        tr
+          th Vehicle
+          td = camp_vehicle_badge(resource)
+        tr
+          th Trailer
+          td = camp_vehicle_badge(resource)
+        tr
+          th Licence plate
+          td = resource.licence_plate.presence || na_badge
+        tr
+          th Sleeping
+          td = resource.sleeping.nil? ? na_badge : yes_or_no_badge(resource.sleeping)
+        tr
+          th Notes
+          td = resource.notes.presence || na_badge
+        tr
+          th Private notes
+          td = resource.private_notes.presence || na_badge
+        = render "admin/shared/status_times", resource: resource

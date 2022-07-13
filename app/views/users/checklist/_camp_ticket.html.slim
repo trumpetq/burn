@@ -3,3 +3,4 @@ li.list-group-item.bg-light
   h6.text-muted = link_to_policy(policy(:camp_ticket).index?, "Tickets", camp_tickets_path)
   p.text-muted
     | Did you get tickets
+    =< camp_ticket_count_badge(user.camp_tickets)

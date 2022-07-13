@@ -75,9 +75,9 @@ module UserHelper
   def user_social_media_icons(user)
     if user.social_media?
       capture do
-        concat link_to(bootstrap_icon("facebook"), user.facebook_url, target: "_blank", class: "me-2") if user.facebook_url.present?
-        concat link_to(bootstrap_icon("instagram"), user.instagram_url, target: "_blank", class: "me-2") if user.instagram_url.present?
-        concat link_to(bootstrap_icon("twitter"), user.twitter_url, target: "_blank", class: "me-2") if user.twitter_url.present?
+        concat(link_to(bootstrap_icon("facebook"), user.facebook_url, target: "_blank", class: "me-2")) if user.facebook_url.present?
+        concat(link_to(bootstrap_icon("instagram"), user.instagram_url, target: "_blank", class: "me-2")) if user.instagram_url.present?
+        concat(link_to(bootstrap_icon("twitter"), user.twitter_url, target: "_blank", class: "me-2")) if user.twitter_url.present?
       end
     end
   end
@@ -96,20 +96,20 @@ module UserHelper
     return na_badge if user.blank?
 
     capture do
-      concat camp_status_badge(user.camp_application, style: :letter, class_name: "me-1")
-      concat camp_status_badge(user.camp_interview, style: :letter, class_name: "me-1")
-      concat user_has_ticket_badge(user, style: :letter, class_name: "me-1")
+      concat(camp_status_badge(user.camp_application, style: :letter, class_name: "me-1"))
+      concat(camp_status_badge(user.camp_interview, style: :letter, class_name: "me-1"))
+      concat(user_has_ticket_badge(user, style: :letter, class_name: "me-1"))
     end
   end
 
   def user_location_badge(user)
     return if user.blank?
     capture do
-      concat user.country_name if user.country_code.present?
-      concat ", #{user.postal_code}" if user.postal_code.present?
+      concat(user.country_name) if user.country_code.present?
+      concat(", #{user.postal_code}") if user.postal_code.present?
       if user.in_bay_area?
-        concat " "
-        concat user_bay_area_badge(user)
+        concat(" ")
+        concat(user_bay_area_badge(user))
       end
     end
   end

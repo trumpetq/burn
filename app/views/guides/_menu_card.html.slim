@@ -105,6 +105,10 @@
         li.list-group-item class=active_if(:tools)
           = link_to "Tools", tools_guides_path, class: "h6 text-decoration-none"
           p.text-muted.mb-0 Camp workshop
+      - if policy(:guide).outside_services?
+        li.list-group-item class=active_if(:outside_services)
+          = link_to "Outside services", outside_services_guides_path, class: "h6 text-decoration-none"
+          p.text-muted.mb-0 Buy your burn
       - if policy(:guide).trash?
         li.list-group-item class=active_if(:trash)
           = link_to "Trash", trash_guides_path, class: "h6 text-decoration-none"

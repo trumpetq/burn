@@ -22,6 +22,7 @@
 #  playa_name             :string
 #  postal_code            :string
 #  previous_years         :jsonb
+#  private_notes          :text
 #  pronouns               :integer
 #  remember_created_at    :datetime
 #  reset_password_sent_at :datetime
@@ -63,6 +64,7 @@ class User < ApplicationRecord
   validates :name, :role, :status, :time_zone, presence: true
   validates :phone_number, phony_plausible: true
   validates :facebook_url, :twitter_url, :instagram_url, url: {allow_blank: true}
+  validates :private_notes, length: {maximum: 10_000}
 
   has_one_attached :avatar do |attachable|
     attachable.variant :menu, resize_to_fill: [100, 100]
@@ -155,7 +157,7 @@ class User < ApplicationRecord
   end
 
   def can_apply?
-   !status.banned?
+    !status.banned?
   end
 
   def can_interview?
@@ -167,7 +169,7 @@ class User < ApplicationRecord
   end
 
   def can_pay_deposit?
-    can_pay_dues? && camp_dues&.finished?
+    can_pay_dues? && (camp_due&.finished? || camp_due&.paid?)
   end
 
   def has_interviews?

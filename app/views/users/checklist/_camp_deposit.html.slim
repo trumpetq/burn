@@ -1,6 +1,46 @@
-li.list-group-item.bg-light
-  h6.text-muted Deposit
-  p.text-muted
-    | Pay your deposit
-    br
-    <b>Available</b> July 1st, 2022
+- if user.camp_deposit.present?
+  - if user.camp_deposit.rejected?
+    li.list-group-item.bg-danger.bg-opacity-25
+      h6 = link_to_camp(user.camp_deposit, class: "text-decoration-none")
+      p.text-muted
+        | Sorry
+        =< camp_status_badge(user.camp_deposit)
+      p You <b>can not</b> camp with us in #{Settings.date.current_year}.
+  - elsif user.camp_deposit.finished?
+    li.list-group-item.bg-success.bg-opacity-10
+      h6 = link_to_camp(user.camp_deposit, class: "text-decoration-none")
+      p.text-muted
+        | Deposit <b>finished</b>
+        =< camp_status_badge(user.camp_deposit)
+  - elsif user.camp_deposit.paid?
+    li.list-group-item.bg-success.bg-opacity-10
+      h6 = link_to_camp("Deposit", user.camp_deposit, class: "text-decoration-none")
+      p.text-muted
+        | Pay your deposit
+        =< camp_status_badge(user.camp_deposit)
+  - else
+    li.list-group-item.bg-info.bg-opacity-10
+      h6 = link_to_camp(user.camp_deposit, class: "text-decoration-none")
+      p.text-muted
+        | Pay your deposit
+        =< camp_status_badge(user.camp_deposit)
+      = link_to("Continue", camp_deposit_path(user.camp_deposit), class: "btn btn-success")
+- else
+  - if user.can_pay_deposit?
+    li.list-group-item.bg-secondary.bg-opacity-10
+      h6.text-muted Deposit
+      p.text-muted Pay your #{link_to_guide("deposit", :deposit)}
+      = link_to("Pay deposit", new_camp_deposit_path, class: "btn btn-success")
+  - else
+    li.list-group-item.bg-secondary.bg-opacity-10
+      h6.text-muted Deposit
+      p.text-muted
+        |Pay your deposit
+        span.badge.bg-secondary< Prerequisite
+      ol.list-numbered.text-muted
+        - unless user.camp_application&.finished?
+          li <b>Application</b> must be approved
+        - unless user.camp_interview&.finished?
+          li <b>Interview</b> must be completed
+        - unless user.camp_due&.finished?
+          li <b>Dues</b> must be paid

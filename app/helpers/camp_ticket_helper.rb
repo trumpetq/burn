@@ -59,4 +59,10 @@ module CampTicketHelper
 
     tag.span(camp.sale&.to_s&.humanize, class: css_class)
   end
+
+  def camp_ticket_count_badge(camp_tickets)
+    owned_tickets = camp_tickets.owned
+    return na_badge unless owned_tickets.present?
+    tag.span(owned_tickets.size, class: "badge bg-success rounded-pill")
+  end
 end

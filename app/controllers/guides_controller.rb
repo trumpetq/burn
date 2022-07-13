@@ -67,6 +67,10 @@ class GuidesController < ApplicationController
   def mayor_of_the_day
   end
 
+  # GET /guides/outside_services
+  def outside_services
+  end
+
   # GET /guides/parking
   def parking
   end

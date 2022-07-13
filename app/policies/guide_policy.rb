@@ -67,6 +67,10 @@ class GuidePolicy < ApplicationPolicy
     everyone?
   end
 
+  def outside_services?
+    member?
+  end
+
   def parking?
     everyone?
   end

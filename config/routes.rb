@@ -27,6 +27,7 @@ Rails.application.routes.draw do
         patch :pay
         patch :refund
         patch :reject
+        patch :skip
       end
     end
 
@@ -56,6 +57,15 @@ Rails.application.routes.draw do
     end
 
     resources :camp_tickets
+
+    resources :camp_vehicles do
+      member do
+        patch :active
+        patch :approve
+        patch :complete
+        patch :reject
+      end
+    end
 
     resources :newsletters do
       collection do
@@ -107,6 +117,8 @@ Rails.application.routes.draw do
 
   resources :camp_tickets
 
+  resources :camp_vehicles
+
   resources :guides, only: [:index] do
     collection do
       get :build
@@ -125,6 +137,7 @@ Rails.application.routes.draw do
       get :learn
       get :map
       get :mayor_of_the_day
+      get :outside_services
       get :parking
       get :power
       get :projects

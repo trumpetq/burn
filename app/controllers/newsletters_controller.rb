@@ -6,9 +6,9 @@ class NewslettersController < ApplicationController
     authorize(:newsletter)
 
     if current_user && current_user.newsletter.present?
-      redirect_to newsletter_path(current_user.newsletter), notice: "We found your subscription."
+      redirect_to newsletter_url(current_user.newsletter), notice: "We found your subscription."
     else
-      redirect_to new_newsletter_path
+      redirect_to new_newsletter_url
     end
   end
 

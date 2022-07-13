@@ -1,0 +1,44 @@
+- page_title("Outside Services")
+
+.row
+  .col-md-3
+    = render "menu_card"
+  .col-md-6
+    .card.mb-3
+      = card_header("truck-flatbed", "Outside services")
+      .card-body
+        h5 MECO
+        h6.text-muted Potable water
+        p.card-text
+          <b>Contact:</b> Amanda McKinnies
+          br
+          <b>Email:</b> #{mail_to("mecoamanda775@gmail.com")}
+          br
+          <b>Website:</b> #{link_to("meco-reno.com", "https://www.meco-reno.com/", target: "_blank")}
+        hr
+        h5 United Site Services
+        h6.text-muted Greywater
+        p.card-text
+          <b>Contact:</b> Kristina Retzloff
+          br
+          <b>Email:</b> #{mail_to("burningmanorders@unitedsiteservicesinc.com")}
+          br
+          <b>Phone:</b> #{link_to_phone("+12089060399")}
+          br
+          <b>Website:</b> #{link_to("unitedsiteservices.com", "https://www.unitedsiteservices.com/", target: "_blank")}
+        hr
+        h5 Enterprise
+        h6.text-muted Trucking
+        p.card-text
+          <b>Phone:</b> #{link_to_phone("+19252953000")}
+          br
+          <b>Website:</b> #{link_to("enterprisetrucks.com", "https://www.enterprisetrucks.com/", target: "_blank")}
+          br
+          <b>Address:</b> 2550 Monument Blvd, Concord, CA 94520
+        hr
+        h5 BRC Fuel Program
+        h6.text-muted Propane
+        p.card-text
+          <b>Email:</b> #{mail_to("petrol@burningman.org")}
+          br
+          <b>Website:</b> #{link_to("burningman.org", "https://burningman.org/event/preparation/black-rock-city-guide/infrastructure/brc-fuel-program/", target: "_blank")}

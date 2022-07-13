@@ -87,7 +87,7 @@ module Admin
     # PATCH /admin/newsletters/:id/unsubscribe
     def unsubscribe
       @newsletter.unsubscribe!
-      redirect_to admin_newsletter_path(@newsletter), notice: "Unsubscribe successfully completed.", status: :see_other
+      redirect_to admin_newsletter_url(@newsletter), notice: "Unsubscribe successfully completed.", status: :see_other
     end
 
     private

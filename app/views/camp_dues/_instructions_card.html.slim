@@ -19,6 +19,6 @@
     .card-footer
       .btn-collection
         - if policy(resource).pay?
-          = link_to("Mark paid", pay_camp_due_path(resource), data: {turbo_method: :patch}, class: "btn btn-dark")
+          = link_to("Mark paid", polymorphic_path([:pay, resource]), data: {turbo_method: :patch}, class: "btn btn-dark")
         - if policy(resource).edit? && !(resource.payment_method.paypal? || resource.payment_method.venmo?)
-          = link_to("Edit", edit_camp_due_path(resource), class: "btn btn-primary")
+          = link_to("Edit", edit_polymorphic_path(resource), class: "btn btn-primary")

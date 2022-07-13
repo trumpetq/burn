@@ -1,0 +1,27 @@
+= render "shared/error_messages", resource: resource
+= simple_form_for([:admin, resource]) do |f|
+  .row
+    .col-md-6.mb-3
+      = f.input :status, include_blank: false
+    - if resource.new_record?
+      .col-md-6.mb-3
+        = f.input :user_id, hint: "1234", label: "User ID", required: true
+  .row
+    .col-md-6.mb-3
+      = f.input :vehicle
+    .col-md-6.mb-3
+      = f.input :trailer
+  .row
+    .col-md-6.mb-3
+      = f.input :licence_plate, hint: "if you know it"
+    .col-md-6.mb-3
+      = f.input :sleeping, as: :select,  hint: "are you sleeping in your vehicle or trailer"
+  .row
+    .col-md-12.mb-3
+      = f.input :notes
+  .row
+    .col-md-12.mb-3
+      = f.input :private_notes, hint: "only visible to camp leaders"
+  .row
+    .col.d-grid
+      = f.button :submit, submit_button_text(resource)

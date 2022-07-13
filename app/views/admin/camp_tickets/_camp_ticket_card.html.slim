@@ -31,4 +31,7 @@
         tr
           th Notes
           td = resource.notes.presence || na_badge
+        tr
+          th Private notes
+          td = resource.private_notes.presence || na_badge
         = render "admin/shared/status_times", resource: resource

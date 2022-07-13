@@ -47,6 +47,9 @@
   .row
     .col-md-12.mb-3
       = f.input :avatar, label: "Photo"
+  .row
+    .col-md-12.mb-3
+      = f.input :private_notes, hint: "only visiable to camp leaders"
   - if current_user.mayor?
     .row
       .col-md-6.mb-3

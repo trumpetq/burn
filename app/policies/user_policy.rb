@@ -19,16 +19,16 @@ class UserPolicy < ApplicationPolicy
     leader?
   end
 
+  def contact?
+    member?
+  end
+
   def devise?
     everyone?
   end
 
   def me?
     record.present? && record == user
-  end
-
-  def contact?
-    member?
   end
 
   def permitted_attributes

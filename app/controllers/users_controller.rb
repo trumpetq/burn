@@ -16,6 +16,17 @@ class UsersController < ApplicationController
     redirect_to edit_user_registration_url
   end
 
+  # GET /users/me
+  def me
+    skip_authorization
+
+    if current_user
+      redirect_to(current_user)
+    else
+      redirect_to(new_user_session_url, notice: "You must be signed in to view your profile.")
+    end
+  end
+
   private
 
   def set_user

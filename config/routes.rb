@@ -179,6 +179,7 @@ Rails.application.routes.draw do
 
   resources :users, only: [:index, :show, :edit] do
     collection do
+      get :me
       get :search
     end
   end

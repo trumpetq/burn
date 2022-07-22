@@ -7,6 +7,7 @@
 #  approval_required :boolean
 #  description       :text
 #  east_bay          :boolean
+#  notes             :text
 #  points            :decimal(4, 2)
 #  private_notes     :text
 #  status            :integer          not null
@@ -30,7 +31,7 @@ class CampJobDefinition < ApplicationRecord
   enumerize :status, in: STATUSES.slice(:unavailable, :active), default: :active, predicates: true, scope: true
   enumerize :timeframe, in: {unavailable: 0, event: 1, pre_event: 2, post_event: 3}, predicates: true, scope: true
 
-  has_many :camp_jobs, dependant: :destroy
+  has_many :camp_jobs, dependent: :destroy
 
   def multiple?
     true

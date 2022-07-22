@@ -1,0 +1,14 @@
+.card.mb-3
+  = card_header("hammer", "Job", buttons: [header_edit_button(resource), header_delete_button(resource)])
+  .card-table
+    table.table
+      tbody
+        tr
+          th Notes
+          td = resource.notes.presence || na_badge
+        tr
+          th Created
+          td = admin_time(resource.created_at)
+        tr
+          th Updated
+          td = admin_time(resource.updated_at)

@@ -30,6 +30,7 @@
 #  role                   :integer          not null
 #  sign_in_count          :integer          default(0), not null
 #  status                 :integer          not null
+#  tiktok_url             :text
 #  time_zone              :string           default("Pacific Time (US & Canada)"), not null
 #  title                  :string
 #  twitter_url            :text
@@ -48,6 +49,7 @@ class User < ApplicationRecord
   extend Enumerize
 
   include Roleable
+  include Sociable
   include Discard::Model
 
   COMPLETE_PROFILE_FIELDS = [:country_code, :description, :name, :phone_number, :postal_code, :pronouns, :time_zone].freeze
@@ -63,7 +65,6 @@ class User < ApplicationRecord
 
   validates :name, :role, :status, :time_zone, presence: true
   validates :phone_number, phony_plausible: true
-  validates :facebook_url, :twitter_url, :instagram_url, url: {allow_blank: true}
   validates :private_notes, length: {maximum: 10_000}
 
   has_one_attached :avatar do |attachable|
@@ -77,6 +78,7 @@ class User < ApplicationRecord
   has_one :camp_due
   has_one :camp_interview
   has_many :camp_interviews, foreign_key: :interviewed_by_id, class_name: ::CampInterview.name
+  has_many :camp_jobs
   has_many :camp_tickets
   has_one :newsletter
 
@@ -87,7 +89,6 @@ class User < ApplicationRecord
   scope :in_bay_area, -> { where(postal_code: Settings.postal_code.bay_area) }
   scope :order_by_name, -> { order("LOWER(name) ASC") }
 
-  before_validation :set_urls
   before_validation :scrub_previous_years
   before_validation :normalize_attributes
   after_create :set_role, :create_newsletter
@@ -190,34 +191,6 @@ class User < ApplicationRecord
     else
       ::Newsletter.create(email: email, user: self, list: :general)
     end
-  end
-
-  def set_urls
-    set_facebook_url
-    set_instagram_url
-    set_twitter_url
-  end
-
-  def set_facebook_url
-    return if facebook_url.blank?
-    return if facebook_url.match?(/\Ahttps?:\/\//)
-    return if instagram_url.match?(/facebook\.com/)
-    self.facebook_url = "https://www.facebook.com/#{facebook_url}"
-  end
-
-  def set_instagram_url
-    return if instagram_url.blank?
-    return if instagram_url.match?(/\Ahttps?:\/\//)
-    return if instagram_url.match?(/instagram\.com/)
-    self.instagram_url = "https://www.instagram.com/#{instagram_url}"
-  end
-
-  def set_twitter_url
-    return if twitter_url.blank?
-    return if twitter_url.match?(/\Ahttps?:\/\//)
-    return if instagram_url.match?(/twitter\.com/)
-    twitter_url.sub!("@", "")
-    self.twitter_url = "https://twitter.com/#{twitter_url}"
   end
 
   def scrub_previous_years

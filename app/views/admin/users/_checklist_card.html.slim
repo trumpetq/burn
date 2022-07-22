@@ -27,7 +27,7 @@
           th Tickets
           - if user.camp_tickets.present?
             td
-              span.badge.rounded-pill.bg-primary = user.camp_tickets.size
+              = primary_count_badge(user.camp_tickets.size)
             td = user_has_ticket_badge(user)
             td
           - else

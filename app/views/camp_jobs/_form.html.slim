@@ -1,0 +1,9 @@
+= render "shared/error_messages", resource: resource
+= simple_form_for(resource) do |f|
+
+  .row
+    .col-md-12.mb-3
+      = f.input :notes, hint: "anything else you think we should know"
+  .row
+    .col.d-grid
+      = f.button :submit, submit_button_text(resource)

@@ -36,9 +36,9 @@ module BadgeHelper
     end
   end
 
-  def count_badge(count)
+  def count_badge(count, class_name: "badge rounded-pill bg-opacity-50 bg-secondary")
     return na_badge unless count.present?
 
-    tag.span(number_with_delimiter(count), class: "badge rounded-pill bg-opacity-50 bg-secondary")
+    tag.span(number_with_delimiter(count), class: class_name)
   end
 end

@@ -3,9 +3,9 @@ module CampInterviewHelper
     return na_badge unless count.present?
 
     if count.zero?
-      tag.span(number_with_delimiter(count), class: "badge rounded-pill bg-success")
+      success_count_badge(count)
     else
-      tag.span(number_with_delimiter(count), class: "badge rounded-pill bg-warning text-dark")
+      warning_count_badge(count)
     end
   end
 end

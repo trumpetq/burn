@@ -1,0 +1,10 @@
+- page_title("New - Camp job")
+
+.row
+  .col-md-3
+  .col-md-6
+    .card.mb-3
+      = card_header("hammer", "Camp job")
+      .card-form
+        = render "form", resource: @resource
+  .col-md-3

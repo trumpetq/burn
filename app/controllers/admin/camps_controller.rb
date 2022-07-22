@@ -10,6 +10,7 @@ module Admin
       @camp_deposits_count = ::CampDeposit.all.count
       @camp_dues_count = ::CampDue.all.count
       @camp_interviews_count = ::CampInterview.all.count
+      @camp_jobs_count = ::CampTicket.all.count
       @camp_tickets_count = ::CampTicket.all.count
       @camp_vehicles_count = ::CampVehicle.all.count
 

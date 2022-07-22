@@ -6,7 +6,7 @@ class CampTicketsController < ApplicationController
     authorize(:camp_ticket)
     @query = ::CampTicket.for_user(current_user)
 
-    @camp_tickets = @query.includes(:user).order(updated_at: :desc)
+    @pagy, @camp_tickets = pagy(@query.includes(:user).order(updated_at: :desc))
   end
 
   private

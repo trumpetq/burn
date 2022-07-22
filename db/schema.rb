@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_07_08_064044) do
+ActiveRecord::Schema[7.0].define(version: 2022_07_22_222624) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -146,6 +146,45 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_08_064044) do
     t.index ["user_id"], name: "index_camp_interviews_on_user_id"
   end
 
+  create_table "camp_job_definitions", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.integer "status", null: false
+    t.integer "timeframe", null: false
+    t.text "private_notes"
+    t.text "description"
+    t.text "title"
+    t.boolean "all_day"
+    t.boolean "east_bay"
+    t.boolean "strong_person"
+    t.boolean "approval_required"
+    t.decimal "points", precision: 4, scale: 2
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_camp_job_definitions_on_user_id"
+  end
+
+  create_table "camp_jobs", force: :cascade do |t|
+    t.integer "status", null: false
+    t.bigint "user_id", null: false
+    t.datetime "assigned_at"
+    t.bigint "assigned_by_id"
+    t.datetime "completed_at"
+    t.bigint "completed_by_id"
+    t.datetime "approved_at"
+    t.bigint "approved_by_id"
+    t.text "private_notes"
+    t.text "notes"
+    t.datetime "rejected_at"
+    t.bigint "rejected_by_id"
+    t.date "job_on"
+    t.datetime "begin_at"
+    t.datetime "end_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "camp_job_definition_id", null: false
+    t.index ["user_id"], name: "index_camp_jobs_on_user_id"
+  end
+
   create_table "camp_tickets", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.integer "ticket_type", null: false
@@ -230,6 +269,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_08_064044) do
     t.datetime "discarded_at"
     t.integer "plan", null: false
     t.text "private_notes"
+    t.text "tiktok_url"
     t.index ["discarded_at"], name: "index_users_on_discarded_at"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true

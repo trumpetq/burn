@@ -2,28 +2,33 @@ li.nav-item.dropdown
   = link_to("Admin", "#", class: "nav-link dropdown-toggle", data: {bs_toggle: "dropdown"})
   .dropdown-menu.dropdown-menu-end
     - if policy([:admin, :camp]).show?
-      = link_to("Dashboard", admin_camp_path, class: "dropdown-item")
+      = link_to(bootstrap_icon("kanban", class_name: "me-2") + "Dashboard", admin_camp_path, class: "dropdown-item")
       .dropdown-divider
     - if policy([:admin, :camp_application]).index?
-      = link_to("Applications", admin_camp_applications_path, class: "dropdown-item")
+      = link_to(bootstrap_icon("file-earmark-text", class_name: "me-2") + "Applications", admin_camp_applications_path, class: "dropdown-item")
     - if policy([:admin, :camp_interview]).index?
-      = link_to("Interviews", admin_camp_interviews_path, class: "dropdown-item")
+      = link_to(bootstrap_icon("file-earmark-person", class_name: "me-2") + "Interviews", admin_camp_interviews_path, class: "dropdown-item")
       .dropdown-divider
     - if policy([:admin, :camp_due]).index?
-      = link_to("Dues", admin_camp_dues_path, class: "dropdown-item")
+      = link_to(bootstrap_icon("cash-coin", class_name: "me-2") + "Dues", admin_camp_dues_path, class: "dropdown-item")
     - if policy([:admin, :camp_deposit]).index?
-      = link_to("Deposits", admin_camp_deposits_path, class: "dropdown-item")
+      = link_to(bootstrap_icon("piggy-bank", class_name: "me-2") + "Deposits", admin_camp_deposits_path, class: "dropdown-item")
+      .dropdown-divider
+    - if policy([:admin, :camp_job]).index?
+      = link_to(bootstrap_icon("hammer", class_name: "me-2") + "Jobs".html_safe, admin_camp_jobs_path, class: "dropdown-item")
+    - if policy([:admin, :camp_job_definition]).index?
+      = link_to(bootstrap_icon("wrench", class_name: "me-2") + "Job definitions".html_safe, admin_camp_job_definitions_path, class: "dropdown-item")
       .dropdown-divider
     - if policy([:admin, :camp_ticket]).index?
-      = link_to("Tickets", admin_camp_tickets_path, class: "dropdown-item")
+      = link_to(bootstrap_icon("ticket-detailed", class_name: "me-2") + "Tickets", admin_camp_tickets_path, class: "dropdown-item")
     - if policy([:admin, :camp_vehicle]).index?
-      = link_to("Vehicles", admin_camp_vehicles_path, class: "dropdown-item")
+      = link_to(bootstrap_icon("truck", class_name: "me-2") + "Vehicles", admin_camp_vehicles_path, class: "dropdown-item")
       .dropdown-divider
     - if policy([:admin, :user]).index?
-      = link_to("Users", admin_users_path, class: "dropdown-item")
+      = link_to(bootstrap_icon("person", class_name: "me-2") + "Users", admin_users_path, class: "dropdown-item")
       .dropdown-divider
     - if policy([:admin, :newsletter]).index?
-      = link_to("Newsletters", admin_newsletters_path, class: "dropdown-item")
+      = link_to(bootstrap_icon("envelope-open", class_name: "me-2") + "Newsletters", admin_newsletters_path, class: "dropdown-item")
       .dropdown-divider
     - if policy([:admin, :page]).system?
-      = link_to("System", system_admin_pages_path, class: "dropdown-item")
+      = link_to(bootstrap_icon("info-circle", class_name: "me-2") + "System", system_admin_pages_path, class: "dropdown-item")

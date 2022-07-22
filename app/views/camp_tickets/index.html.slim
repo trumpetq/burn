@@ -4,6 +4,6 @@
     - if @camp_tickets.empty?
       = render "empty_card"
     - else
-      = render "table_card", camp_tickets: @camp_tickets
+      = render "table_card", camp_tickets: @camp_tickets, pagy: @pagy
   .col-md-3
     = render "information_card"

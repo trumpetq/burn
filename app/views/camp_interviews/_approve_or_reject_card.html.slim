@@ -11,19 +11,37 @@
       .card-body
         .alert.alert-danger Interview has been <b>rejected</b>.
         p.card-text #{link_to_user(camp_interview.user)} will be notified of their rejection.
+    - elsif camp_interview.no_response? && camp_interview.valid?
+      .card-body
+        .alert.alert-secondary Interview has been marked <b>no response</b>.
+        p.card-text #{link_to_user(camp_interview.user)} will be notified.
     - elsif camp_interview.completed?
       .card-body
         .alert.alert-success Interview has been <b>completed</b>.
         p.card-text No further action is required.
     - else
+      .card-table
+        table.table
+          tbody
+            - if camp_interview.user.present?
+              tr
+                th User
+                td = link_to_user(camp_interview.user)
+            - if camp_interview.user&.camp_application.present?
+              tr
+                th Application
+                td
+                  = link_to_camp(camp_interview.user.camp_application)
+                  =< camp_status_badge(camp_interview.user.camp_application)
+            - if camp_interview.assigned_by.present?
+              tr
+                th Assigned by
+                td = link_to_user(camp_interview.assigned_by)
+            - if camp_interview.initial_notes.present?
+              tr
+                th Initial notes
+                td = camp_interview.initial_notes
       .card-body
-        p.card-text
-          <b>User</b> #{link_to_user(camp_interview.user)}
-        p.card-text
-          <b>Assigned by</b> #{link_to_user(camp_interview.assigned_by)}
-        - if camp_interview.initial_notes.present?
-          p.card-text
-            <b>Initial notes</b> #{camp_interview.initial_notes}
         = render "shared/error_messages", resource: camp_interview
         = simple_form_for(camp_interview, namespace: "form_#{index}", url: approve_or_reject_camp_interview_path(camp_interview)) do |f|
             = f.input :index, input_html: { value: index }, as: :hidden

@@ -30,6 +30,7 @@
 #  role                   :integer          not null
 #  sign_in_count          :integer          default(0), not null
 #  status                 :integer          not null
+#  tiktok_url             :text
 #  time_zone              :string           default("Pacific Time (US & Canada)"), not null
 #  title                  :string
 #  twitter_url            :text

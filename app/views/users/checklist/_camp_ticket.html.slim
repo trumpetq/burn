@@ -1,6 +1,18 @@
 
 li.list-group-item.bg-light
   h6.text-muted = link_to_policy(policy(:camp_ticket).index?, "Tickets", camp_tickets_path)
-  p.text-muted
-    | Did you get tickets
-    =< camp_ticket_count_badge(user.camp_tickets)
+
+  - if user.camp_tickets.size.zero?
+    p.text-muted
+      | Let us know when you have them
+    - if policy(:camp_ticket).new?
+      p = link_to("Add ticket", new_camp_ticket_path, class: "btn btn-primary")
+  - else
+    - if user.camp_tickets.owned.size.positive?
+      p.text-muted
+        | Required at the gate
+        =< camp_ticket_count_badge(user.camp_tickets)
+    - if user.camp_tickets.wanted.size.positive?
+      p.text-muted
+        | Wanted ads listed
+        =< danger_count_badge(user.camp_tickets.wanted.size)

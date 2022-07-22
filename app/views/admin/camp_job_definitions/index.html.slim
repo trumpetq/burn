@@ -1,0 +1,21 @@
+- page_title("Camp job definitions")
+
+.row
+  .col-md-12
+    .card.mb-3
+      = card_header("wrench", "Camp job definitions", pagy: @pagy, buttons: [header_admin_new_button(:camp_job_definition)])
+      .card-table
+        table.table
+          thead
+            tr
+              th ID
+              th User
+              th
+          tbody
+            - @resources.each do |resource|
+              tr
+                td = admin_link_to_id(resource)
+                td = admin_link_to_user(resource.user)
+                td.text-end = admin_edit_icon(resource)
+      = pagy_card_footer(@pagy)
+

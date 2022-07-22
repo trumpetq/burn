@@ -7,4 +7,6 @@
   .card-footer
     .btn-collection
       - if policy(:camp_ticket).new?
-        = link_to("Add ticket", new_camp_ticket_path, class: "btn btn-secondary")
+        = link_to("Have ticket", new_camp_ticket_path, class: "btn btn-primary")
+      - if policy(:camp_ticket).new?
+        = link_to("Need ticket", new_camp_ticket_path(availability: :wanted), class: "btn btn-danger")

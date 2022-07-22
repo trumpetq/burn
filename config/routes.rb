@@ -56,6 +56,23 @@ Rails.application.routes.draw do
       end
     end
 
+    resources :camp_job_definitions do
+      member do
+        patch :active
+      end
+    end
+
+    resources :camp_jobs do
+      member do
+        patch :active
+        patch :approve
+        patch :assign
+        patch :complete
+        patch :skip
+        patch :reject
+      end
+    end
+
     resources :camp_tickets
 
     resources :camp_vehicles do

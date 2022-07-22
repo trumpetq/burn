@@ -4,4 +4,7 @@
     ul.list-unstyled.mb-0
       - if policy([:admin, :user]).deleted?
         li = link_to("Deleted users", deleted_admin_users_path)
+      - if policy([:admin, :user]).interviewers?
+        li = link_to("Interviewers", interviewers_admin_users_path)
+
 

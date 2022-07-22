@@ -105,6 +105,7 @@ Rails.application.routes.draw do
     resources :users do
       collection do
         get :deleted
+        get :interviewers
       end
 
       member do

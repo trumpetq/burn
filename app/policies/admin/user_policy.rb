@@ -32,6 +32,10 @@ module Admin
       mayor?
     end
 
+    def interviewers?
+      leader?
+    end
+
     def me?
       record.present? && record == user
     end

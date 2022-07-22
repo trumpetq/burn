@@ -74,6 +74,13 @@ module Admin
       @pagy, @users = pagy(::User.discarded.order(discarded_at: :desc))
     end
 
+    # GET /admin/users/interviewers
+    def interviewers
+      authorize([:admin, :user])
+      user_ids = ::CampInterview.distinct.pluck(:interviewed_by_id)
+      @pagy, @users = pagy(::User.where(id: user_ids).order_by_name)
+    end
+
     # PATCH /admin/users/:id/restore
     def restore
       @user.undiscard

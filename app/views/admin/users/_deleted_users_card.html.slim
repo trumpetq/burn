@@ -1,0 +1,29 @@
+.card.mb-3
+  = card_header("people", "Deleted users", pagy: pagy)
+  .card-table
+    table.table
+      thead
+        tr
+          th ID
+          th Name
+          th Email
+          th Camp
+          th Status
+          th Plan
+          th Role
+          th Deleted at
+          th
+      tbody
+        - users.each do |user|
+          tr class=table_row_class(user)
+            td = admin_link_to_id(user)
+            td = link_to_policy(policy([:admin, user]).show?, user.name, admin_user_path(user))
+            td = mail_to(user.email, target: "_blank")
+            td = user_camp_status_badge(user)
+            td = user_status_badge(user)
+            td = user_plan_badge(user)
+            td = user_role_badge(user)
+            td = admin_time(user.discarded_at)
+            td.text-end = admin_edit_icon(user)
+
+  = pagy_card_footer(pagy)

@@ -68,6 +68,12 @@ module Admin
       redirect_to admin_users_url, notice: "User was successfully destroyed.", status: :see_other
     end
 
+    # GET /admin/users/deleted
+    def deleted
+      authorize([:admin, :user])
+      @pagy, @users = pagy(::User.discarded.order(discarded_at: :desc))
+    end
+
     # PATCH /admin/users/:id/restore
     def restore
       @user.undiscard

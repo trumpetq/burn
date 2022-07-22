@@ -28,6 +28,10 @@ module Admin
       mayor?
     end
 
+    def deleted?
+      mayor?
+    end
+
     def me?
       record.present? && record == user
     end

@@ -86,6 +86,10 @@ Rails.application.routes.draw do
     end
 
     resources :users do
+      collection do
+        get :deleted
+      end
+
       member do
         patch :remove_avatar
         patch :restore

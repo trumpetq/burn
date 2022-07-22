@@ -35,7 +35,7 @@ module Admin
       @newsletter = ::Newsletter.new(permitted_attributes([:admin, ::Newsletter]))
       authorize([:admin, @newsletter])
       if @newsletter.save
-        redirect_to admin_newsletter_url(@newsletter), success: "Newsletter was successfully created."
+        redirect_to(admin_newsletter_url(@newsletter), success: "Newsletter was successfully created.")
       else
         render :new, status: :unprocessable_entity
       end
@@ -48,7 +48,7 @@ module Admin
     # PATCH /admin/newsletters/:id
     def update
       if @newsletter.update(permitted_attributes([:admin, @newsletter]))
-        redirect_to admin_newsletter_url(@newsletter), success: "Newsletter was successfully updated."
+        redirect_to(admin_newsletter_url(@newsletter), success: "Newsletter was successfully updated.")
       else
         render :edit, status: :unprocessable_entity
       end
@@ -58,7 +58,7 @@ module Admin
     def destroy
       @newsletter.discard
 
-      redirect_to admin_newsletters_url, notice: "Newsletter was successfully destroyed.", status: :see_other
+      redirect_to(admin_newsletters_url, notice: "Newsletter was successfully destroyed.", status: :see_other)
     end
 
     # GET /admin/newsletters/export
@@ -74,20 +74,20 @@ module Admin
     def restore
       @newsletter.undiscard
 
-      redirect_to admin_newsletter_url(@newsletter), notice: "Newsletter was successfully restored.", status: :see_other
+      redirect_to(admin_newsletter_url(@newsletter), notice: "Newsletter was successfully restored.", status: :see_other)
     end
 
     # DELETE /admin/users/:id/force_delete
     def force_delete
       @newsletter.delete
 
-      redirect_to admin_root_url, notice: "Newsletter was been deleted.", status: :see_other
+      redirect_to(admin_root_url, notice: "Newsletter was been deleted.", status: :see_other)
     end
 
     # PATCH /admin/newsletters/:id/unsubscribe
     def unsubscribe
       @newsletter.unsubscribe!
-      redirect_to admin_newsletter_url(@newsletter), notice: "Unsubscribe successfully completed.", status: :see_other
+      redirect_to(admin_newsletter_url(@newsletter), notice: "Unsubscribe successfully completed.", status: :see_other)
     end
 
     private

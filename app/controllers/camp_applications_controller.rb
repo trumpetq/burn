@@ -2,9 +2,7 @@ class CampApplicationsController < ApplicationController
   include Campable
 
   def after_new
-    return unless current_user.present?
-
-    redirect_to(current_user.camp_application, notice: "It looks like you already applied. Here is your current application.") if current_user.camp_application.present?
+    redirect_to(current_user.camp_application, notice: "It looks like you already applied. Here is your current application.") if current_user&.camp_application.present?
   end
 
   def after_create

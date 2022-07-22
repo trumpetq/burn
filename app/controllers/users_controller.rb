@@ -13,7 +13,7 @@ class UsersController < ApplicationController
 
   # GET /users/:id/edit
   def edit
-    redirect_to edit_user_registration_url
+    redirect_to(edit_user_registration_url)
   end
 
   # GET /users/me

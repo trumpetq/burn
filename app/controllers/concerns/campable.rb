@@ -11,10 +11,12 @@ module Campable
 
     @resource = controller_name.classify.constantize.for_user(current_user).take
 
+    after_index if defined?(after_index)
+
     if @resource.present? && !@resource.try(:discarded?)
-      redirect_to @resource
+      redirect_to(@redirect_url || @resource)
     else
-      redirect_to root_url, warning: "No #{controller_name.singularize.humanize(capitalize: false)} found."
+      redirect_to(@redirect_url || root_url, warning: "No #{controller_name.singularize.humanize(capitalize: false)} found.")
     end
   end
 
@@ -38,10 +40,13 @@ module Campable
     @resource.status = :active
 
     authorize(@resource)
+
+    before_create if defined?(before_create)
+
     if @resource.save
       after_create if defined?(after_create)
 
-      redirect_to user_url(current_user), success: "#{link_to_resource} was created."
+      redirect_to(@redirect_url || user_url(current_user), success: "#{link_to_resource} was created.")
     else
       render :new, status: :unprocessable_entity
     end
@@ -54,7 +59,7 @@ module Campable
   # PATCH /resources/:id
   def update
     if @resource.update(permitted_attributes(@resource))
-      redirect_to @resource, success: "#{link_to_resource} was updated."
+      redirect_to(@redirect_url || @resource, success: "#{link_to_resource} was updated.")
     else
       render :edit, status: :unprocessable_entity
     end
@@ -68,7 +73,7 @@ module Campable
       @resource.destroy
     end
 
-    redirect_to user_url(current_user), notice: "#{controller_name.singularize.humanize} was successfully destroyed.", status: :see_other
+    redirect_to(@redirect_url || user_url(current_user), notice: "#{controller_name.singularize.humanize} was successfully destroyed.", status: :see_other)
   end
 
   # PATCH /resources/:id/pay
@@ -80,7 +85,7 @@ module Campable
     @resource.update(permitted_attributes([:admin, @resource])) if params[controller_name.singularize].present?
 
     if @resource.save
-      redirect_to(user_url(current_user), notice: "#{link_to_resource} has been marked as paid.", status: :see_other)
+      redirect_to(@redirect_url || user_url(current_user), notice: "#{link_to_resource} has been marked as paid.", status: :see_other)
     else
       redirect_on_error
     end

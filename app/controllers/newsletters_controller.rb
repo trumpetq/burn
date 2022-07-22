@@ -6,9 +6,9 @@ class NewslettersController < ApplicationController
     authorize(:newsletter)
 
     if current_user && current_user.newsletter.present?
-      redirect_to newsletter_url(current_user.newsletter), notice: "We found your subscription."
+      redirect_to(newsletter_url(current_user.newsletter), notice: "We found your subscription.")
     else
-      redirect_to new_newsletter_url
+      redirect_to(new_newsletter_url)
     end
   end
 
@@ -38,9 +38,9 @@ class NewslettersController < ApplicationController
 
     if @newsletter.save
       if current_user
-        redirect_to newsletter_url(@newsletter), success: "Subscription has been created."
+        redirect_to(newsletter_url(@newsletter), success: "Subscription has been created.")
       else
-        redirect_to root_url, success: "Subscription has been created."
+        redirect_to(root_url, success: "Subscription has been created.")
       end
     else
       render :new, status: :unprocessable_entity
@@ -54,7 +54,7 @@ class NewslettersController < ApplicationController
   # PATCH /newsletters/:id
   def update
     if @newsletter.update(permitted_attributes(@newsletter))
-      redirect_to newsletter_url(@newsletter), success: "Subscription has been successfully updated."
+      redirect_to(newsletter_url(@newsletter), success: "Subscription has been successfully updated.")
     else
       render :edit, status: :unprocessable_entity
     end
@@ -64,14 +64,14 @@ class NewslettersController < ApplicationController
   def destroy
     @newsletter.unsubscribe!
 
-    redirect_to root_url, notice: "You are now unsubscribed.", status: :see_other
+    redirect_to(root_url, notice: "You are now unsubscribed.", status: :see_other)
   end
 
   # PATCH /newsletters/:id/unsubscribe
   def unsubscribe
     @newsletter.unsubscribe!
 
-    redirect_to root_url, notice: "You are now unsubscribed.", status: :see_other
+    redirect_to(root_url, notice: "You are now unsubscribed.", status: :see_other)
   end
 
   private

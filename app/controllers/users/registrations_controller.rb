@@ -21,7 +21,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def update
     if params.dig(:user, :action) == "edit"
       if resource.update(permitted_attributes(@user))
-        redirect_to user_url(resource), success: "Your profile has been updated."
+        redirect_to(user_url(resource), success: "Your profile has been updated.")
       else
         render :edit, status: :unprocessable_entity
       end
@@ -34,7 +34,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def destroy
     resource.discard
     sign_out
-    redirect_to root_url, alert: "Your account is now closed.", status: :see_other
+    redirect_to(root_url, alert: "Your account is now closed.", status: :see_other)
   end
 
   # GET /resource/cancel

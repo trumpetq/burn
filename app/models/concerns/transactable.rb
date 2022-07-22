@@ -10,14 +10,18 @@ module Transactable
 
     enumerize :pricing_tier, in: {low_income: 10, middle_income: 20, startup: 30, baller: 40}, default: :middle_income, predicates: true, scope: true
 
+    before_validation :set_transaction_id
+    before_validation :set_price
+
     validates :transaction_id, length: {is: 6}
     validates :private_notes, length: {maximum: 10_000}
     validates :pricing_tier, presence: true
 
-    before_validation :set_transaction_id
-    before_validation :set_price
-
     scope :for_transaction_id, ->(transaction_id) { where(transaction_id: transaction_id&.upcase) }
+  end
+
+  def preferred_payment_method?
+    payment_method.paypal? || payment_method.venmo?
   end
 
   def set_transaction_id

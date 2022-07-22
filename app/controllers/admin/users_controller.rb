@@ -42,7 +42,7 @@ module Admin
       @user = ::User.new(permitted_attributes([:admin, ::User]))
       authorize([:admin, @user])
       if @user.save
-        redirect_to admin_user_url(@user), success: "User was successfully created."
+        redirect_to(admin_user_url(@user), success: "User was successfully created.")
       else
         render :new, status: :unprocessable_entity
       end
@@ -55,7 +55,7 @@ module Admin
     # PATCH /admin/users/:id
     def update
       if @user.update(permitted_attributes([:admin, @user]))
-        redirect_to admin_user_url(@user), success: "User was successfully updated."
+        redirect_to(admin_user_url(@user), success: "User was successfully updated.")
       else
         render :edit, status: :unprocessable_entity
       end
@@ -65,7 +65,7 @@ module Admin
     def destroy
       @user.discard
 
-      redirect_to admin_users_url, notice: "User was successfully destroyed.", status: :see_other
+      redirect_to(admin_users_url, notice: "User was successfully destroyed.", status: :see_other)
     end
 
     # GET /admin/users/deleted
@@ -78,14 +78,14 @@ module Admin
     def restore
       @user.undiscard
 
-      redirect_to admin_user_url(@user), notice: "User was successfully restored.", status: :see_other
+      redirect_to(admin_user_url(@user), notice: "User was successfully restored.", status: :see_other)
     end
 
     # PATCH /admin/users/:id/remove_avatar
     def remove_avatar
       @user.update(avatar: nil)
 
-      redirect_to admin_user_url(@user), notice: "Photo has been removed.", status: :see_other
+      redirect_to(admin_user_url(@user), notice: "Photo has been removed.", status: :see_other)
     end
 
     private

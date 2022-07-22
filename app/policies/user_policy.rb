@@ -15,10 +15,6 @@ class UserPolicy < ApplicationPolicy
     leader?
   end
 
-  def camp?
-    leader?
-  end
-
   def contact?
     member?
   end

@@ -5,7 +5,7 @@
     - if @assigned_camp_interviews.empty?
       = render "empty_card"
     - else
-      = render "instructions_card"
+      = render "instructions_card", pagy: @assigned_camp_interviews_pagy
   .col-md-3
 
 .row
@@ -15,4 +15,4 @@
 
 .row
   .col-md-9
-    = render "finished_camp_interviews_card", finished_camp_interviews: @finished_camp_interviews, pagy: @pagy
+    = render "finished_camp_interviews_card", finished_camp_interviews: @finished_camp_interviews, pagy: @finished_camp_interviews_pagy

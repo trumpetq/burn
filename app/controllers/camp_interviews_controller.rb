@@ -4,8 +4,8 @@ class CampInterviewsController < ApplicationController
   # GET /camp_interviews
   def index
     authorize(:camp_interview)
-    @assigned_camp_interviews = current_user.camp_interviews.with_status(:assigned).includes([:user, :assigned_by])
-    @pagy, @finished_camp_interviews = pagy(current_user.camp_interviews.with_status(:approved, :completed, :no_response, :rejected).includes([:user, :assigned_by, :interviewed_by]))
+    @assigned_camp_interviews_pagy, @assigned_camp_interviews = pagy(current_user.camp_interviews.with_status(:assigned).includes([:user, :assigned_by]))
+    @finished_camp_interviews_pagy, @finished_camp_interviews = pagy(current_user.camp_interviews.with_status(:approved, :completed, :no_response, :rejected).includes([:user, :assigned_by, :interviewed_by]))
   end
 
   # PATCH /camp_interviews/:id/approve_or_reject

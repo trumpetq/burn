@@ -39,6 +39,8 @@ module Campable
 
     authorize(@resource)
     if @resource.save
+      after_create if defined?(after_create)
+
       redirect_to user_url(current_user), success: "#{link_to_resource} was created."
     else
       render :new, status: :unprocessable_entity

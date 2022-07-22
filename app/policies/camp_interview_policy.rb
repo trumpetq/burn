@@ -1,10 +1,14 @@
 class CampInterviewPolicy < CampPolicy
+  def index?
+    leader?
+  end
+
   def show?
     (member? && me?) || interviewer? || mayor?
   end
 
   def approve_or_reject?
-    member? && record.interviewed_by == user
+    leader? && record.interviewed_by == user
   end
 
   def interviewer?

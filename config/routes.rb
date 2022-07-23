@@ -62,6 +62,12 @@ Rails.application.routes.draw do
       end
     end
 
+    resources :camp_job_descriptions do
+      member do
+        patch :active
+      end
+    end
+
     resources :camp_jobs do
       member do
         patch :active
@@ -137,6 +143,10 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :camp_job_definitions, only: [:index, :show]
+  resources :camp_job_descriptions, only: [:index, :show]
+  resources :camp_jobs
+
   resources :camp_tickets
 
   resources :camp_vehicles
@@ -145,7 +155,6 @@ Rails.application.routes.draw do
     collection do
       get :build
       get :bunny_bar
-      get :camp_jobs
       get :covid
       get :deposit
       get :disclaimer
@@ -154,6 +163,7 @@ Rails.application.routes.draw do
       get :history
       get :ice
       get :interview
+      get :jobs
       get :kitchen
       get :lag_bolts
       get :learn
@@ -172,6 +182,7 @@ Rails.application.routes.draw do
       get :tickets
       get :tools
       get :trash
+      get :work_access_pass
       get :yearbook
     end
   end

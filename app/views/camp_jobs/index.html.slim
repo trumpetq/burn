@@ -1,9 +1,9 @@
 - page_title("Jobs")
 .row
   .col-md-9
-    - if @camp_jobs.empty?
+    - if @resources.empty?
       = render "empty_card"
     - else
-      = render "table_card", camp_jobs: @camp_jobs, pagy: @pagy
+      = render "table_card", resources: @resources, pagy: @pagy
   .col-md-3
     = render "information_card"

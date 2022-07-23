@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_07_22_225126) do
+ActiveRecord::Schema[7.0].define(version: 2022_07_23_060358) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -152,7 +152,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_22_225126) do
     t.integer "timeframe", null: false
     t.text "private_notes"
     t.text "description"
-    t.text "title"
     t.boolean "all_day"
     t.boolean "east_bay"
     t.boolean "strong_person"
@@ -161,7 +160,19 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_22_225126) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.text "notes"
+    t.bigint "camp_job_description_id"
+    t.datetime "begin_at"
+    t.datetime "end_at"
+    t.date "job_on"
     t.index ["user_id"], name: "index_camp_job_definitions_on_user_id"
+  end
+
+  create_table "camp_job_descriptions", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.text "title", null: false
+    t.integer "status", null: false
+    t.bigint "user_id"
   end
 
   create_table "camp_jobs", force: :cascade do |t|
@@ -177,9 +188,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_22_225126) do
     t.text "notes"
     t.datetime "rejected_at"
     t.bigint "rejected_by_id"
-    t.date "job_on"
-    t.datetime "begin_at"
-    t.datetime "end_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "camp_job_definition_id", null: false

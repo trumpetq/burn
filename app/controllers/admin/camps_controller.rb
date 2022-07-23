@@ -20,7 +20,6 @@ module Admin
       @approved_camp_applications_count = ::CampApplication.with_status(:approved).count
       @completed_camp_applications_count = ::CampApplication.with_status(:completed).count
       @rejected_camp_applications_count = ::CampApplication.with_status(:rejected).count
-      @unavailable_camp_applications_count = ::CampApplication.with_status(:unavailable).count
 
       @camp_interviews_count = ::CampInterview.all.count
       @active_camp_interviews_count = ::CampInterview.with_status(:active).count
@@ -30,7 +29,6 @@ module Admin
       @no_response_camp_interviews_count = ::CampInterview.with_status(:no_response).count
       @rejected_camp_interviews_count = ::CampInterview.with_status(:rejected).count
       @skipped_camp_interviews_count = ::CampInterview.with_status(:skipped).count
-      @unavailable_camp_interviews_count = ::CampInterview.with_status(:unavailable).count
 
       @camp_dues_count = ::CampDue.all.count
       @active_camp_dues_count = ::CampDue.with_status(:active).count
@@ -39,7 +37,6 @@ module Admin
       @refunded_camp_dues_count = ::CampDue.with_status(:refunded).count
       @rejected_camp_dues_count = ::CampDue.with_status(:rejected).count
       @skipped_camp_dues_count = ::CampDue.with_status(:skipped).count
-      @unavailable_camp_dues_count = ::CampDue.with_status(:unavailable).count
 
       @camp_deposits_count = ::CampDeposit.all.count
       @active_camp_deposits_count = ::CampDeposit.with_status(:active).count
@@ -48,7 +45,6 @@ module Admin
       @refunded_camp_deposits_count = ::CampDeposit.with_status(:refunded).count
       @rejected_camp_deposits_count = ::CampDeposit.with_status(:rejected).count
       @skipped_camp_deposits_count = ::CampDeposit.with_status(:skipped).count
-      @unavailable_camp_deposits_count = ::CampDeposit.with_status(:unavailable).count
 
       @camp_jobs_count = ::CampJob.all.count
       @active_camp_jobs_count = ::CampJob.with_status(:active).count
@@ -57,11 +53,12 @@ module Admin
       @completed_camp_jobs_count = ::CampJob.with_status(:completed).count
       @rejected_camp_jobs_count = ::CampJob.with_status(:rejected).count
       @skipped_camp_jobs_count = ::CampJob.with_status(:skipped).count
-      @unavailable_camp_jobs_count = ::CampJob.with_status(:unavailable).count
 
       @camp_job_definitions_count = ::CampJobDefinition.all.count
-      @active_camp_job_defintions_count = ::CampJobDefinition.with_status(:active).count
-      @unavailable_camp_job_definitions_count = ::CampJobDefinition.with_status(:unavailable).count
+      @active_camp_job_definitions_count = ::CampJobDefinition.with_status(:active).count
+
+      @camp_job_descriptions_count = ::CampJobDescription.all.count
+      @active_camp_job_descriptions_count = ::CampJobDescription.with_status(:active).count
 
       @camp_tickets_count = ::CampTicket.all.count
       @active_camp_tickets_count = ::CampTicket.with_status(:active).count

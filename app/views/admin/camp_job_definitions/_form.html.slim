@@ -1,11 +1,25 @@
 = render "shared/error_messages", resource: resource
 = simple_form_for([:admin, resource]) do |f|
   .row
+    .col-md-6.mb-3
+      = f.input :camp_job_description_id, collection: ::CampJobDescription.order(title: :asc), label_method: :title, prompt: "Choose a description", required: true
+  .row
+    .col-md-6.mb-3
+      = f.input :timeframe, include_blank: false
+  .row
     .col-md-12.mb-3
       = f.input :notes
   .row
     .col-md-12.mb-3
       = f.input :private_notes, hint: "only visiable to camp leaders"
+
+  .row
+    .col-md-6.mb-3
+      = f.input :all_day
+      = f.input :approval_required
+      = f.input :east_bay
+      = f.input :strong_person
+
   .row
     .col.d-grid
       = f.button :submit, submit_button_text(resource)

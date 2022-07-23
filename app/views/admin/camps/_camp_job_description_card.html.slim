@@ -1,0 +1,9 @@
+
+.card.mb-3
+  = card_header("book", link_to_policy(policy([:admin, :camp_job_description]).index?, "Job descriptions", admin_camp_job_descriptions_path), pagy: @camp_job_descriptions_count)
+  .card-table
+    table.table
+      tbody
+        tr
+          th Active
+          td = number_with_delimiter(@active_camp_job_descriptions_count)

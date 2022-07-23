@@ -1,0 +1,17 @@
+.card.mb-3
+  = card_header("toggle-on", "Settings")
+  .card-table
+    table.table
+      tbody
+        tr
+          th All day
+          td = yes_or_no_badge(resource.all_day)
+        tr
+          th Approval required
+          td = yes_or_no_badge(resource.approval_required)
+        tr
+          th East bay
+          td = yes_or_no_badge(resource.east_bay)
+        tr
+          th Strong person
+          td = yes_or_no_badge(resource.strong_person)

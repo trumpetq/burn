@@ -1,0 +1,13 @@
+- page_title("Jobs")
+
+.row
+  .col-md-3
+    = render "menu_card"
+  .col-md-9
+    .card.mb-3
+      = card_header("hammer", "Jobs")
+      .card-body
+        p.card-text We all participate in running camp.
+        p.card-text We use a point system to divide up work as fairly as possible. Once you have paid dues you will be able to sign up for jobs online.
+        p.card-text Not all work is created equally. For example 1 hour of doing dishes is a lot worse than one hour of DJing. Points are used to represent a combination of how long a job takes and how much it sucks. You will need to sign up for #{Settings.camp.min_points} points worth of jobs.
+        p.card-text You do not earn points during early entry. If you have a #{link_to_guide("WAP", :work_access_pass)} it's assumed you are already working.

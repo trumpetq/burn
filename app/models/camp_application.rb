@@ -37,7 +37,7 @@ class CampApplication < ApplicationRecord
   include Stepable
   include Discard::Model
 
-  enumerize :status, in: STATUSES.slice(:unavailable, :active, :approved, :completed, :rejected), default: :active, predicates: true, scope: true
+  enumerize :status, in: STATUSES.slice(:active, :approved, :completed, :rejected), default: :active, predicates: true, scope: true
   enumerize :vaccine_status, in: {unvaccinated: 0, vaccinated: 1, vaccinated_and_boosted: 2}, predicates: true, scope: true
 
   validates :plan_to_contribute, :what_excites_you, :who_are_you, :vaccine_status, :burning_man_year_count, :arrival_on, :departure_on, presence: true

@@ -33,9 +33,9 @@
         li.list-group-item  class=active_if(:interview)
           = link_to "Interview", interview_guides_path, class: "h6 text-decoration-none"
           p.text-muted.mb-0 Get to know us
-      - if policy(:guide).camp_jobs?
-        li.list-group-item  class=active_if(:camp_jobs)
-          = link_to "Camp jobs", camp_jobs_guides_path, class: "h6 text-decoration-none"
+      - if policy(:guide).jobs?
+        li.list-group-item  class=active_if(:jobs)
+          = link_to "Jobs", jobs_guides_path, class: "h6 text-decoration-none"
           p.text-muted.mb-0 It's not all fun
       - if policy(:guide).dues?
         li.list-group-item class=active_if(:dues)

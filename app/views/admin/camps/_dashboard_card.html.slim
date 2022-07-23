@@ -40,6 +40,11 @@
           td = number_with_delimiter(@camp_job_definitions_count)
         tr
           th
+            = bootstrap_icon("book", class_name: "me-1")
+            | Job descriptions
+          td = number_with_delimiter(@camp_job_descriptions_count)
+        tr
+          th
             = bootstrap_icon("ticket-detailed", class_name: "me-1")
             | Tickets
           td = number_with_delimiter(@camp_tickets_count)

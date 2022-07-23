@@ -1,0 +1,23 @@
+- page_title("Job descriptions")
+
+.row
+  .col-md-12
+    .card.mb-3
+      = card_header("book", "Job descriptions", pagy: @pagy, buttons: [header_admin_new_button(:camp_job_description)])
+      .card-table
+        table.table
+          thead
+            tr
+              th ID
+              th Title
+              th Description
+              th
+          tbody
+            - @resources.each do |resource|
+              tr
+                td = admin_link_to_id(resource)
+                td = admin_link_to_camp(resource, resource.title&.truncate(30))
+                td = resource.description&.truncate(50)
+                td.text-end = admin_edit_icon(resource)
+      = pagy_card_footer(@pagy)
+

@@ -5,29 +5,10 @@
       thead
         tr
           th ID
-          th Type
-          th Availability
-          th Location
-          th Sale
-          th Confirmation
           th
       tbody
-        - camp_tickets.each do |resource|
+        - resources.each do |resource|
           tr
             td = link_to_id(resource)
-            td = camp_ticket_type_badge(resource)
-            td = camp_availability_badge(resource)
-            td = camp_location_badge(resource)
-            td = camp_sale_badge(resource)
-            td
-              - if resource.confirmation_id.present?
-                code = resource.confirmation_id
-              - else
-                = na_badge
             td.text-end = edit_icon(resource)
-    .card-footer
-      .btn-collection
-        - if policy(:camp_ticket).new?
-          = link_to("Have ticket", new_camp_ticket_path, class: "btn btn-primary")
-        - if policy(:camp_ticket).new?
-          = link_to("Need ticket", new_camp_ticket_path(availability: :wanted), class: "btn btn-danger")
+  = pagy_card_footer(pagy)

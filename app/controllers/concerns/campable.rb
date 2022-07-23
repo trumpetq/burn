@@ -9,14 +9,23 @@ module Campable
   def index
     authorize(controller_name.classify.underscore.to_sym)
 
-    @resource = controller_name.classify.constantize.for_user(current_user).take
+    if controller_name.classify.constantize.new.multiple?
+      @query = controller_name.classify.constantize.includes(:user).order(updated_at: :desc)
 
-    after_index if defined?(after_index)
+      search_index if defined?(search_index)
 
-    if @resource.present? && !@resource.try(:discarded?)
-      redirect_to(@redirect_url || @resource)
+      @pagy, @resources = pagy(@query)
     else
-      redirect_to(@redirect_url || root_url, warning: "No #{controller_name.singularize.humanize(capitalize: false)} found.")
+
+      @resource = controller_name.classify.constantize.for_user(current_user).take
+
+      after_index if defined?(after_index)
+
+      if @resource.present? && !@resource.try(:discarded?)
+        redirect_to(@redirect_url || @resource)
+      else
+        redirect_to(@redirect_url || root_url, warning: "No #{controller_name.singularize.humanize(capitalize: false)} found.")
+      end
     end
   end
 

@@ -1,0 +1,12 @@
+.card.mb-3
+  = card_header("book", "Job descriptions")
+  .card-table
+    table.table
+      thead
+        tr
+          th ID
+      tbody
+        - resources.each do |resource|
+          tr
+            td = link_to_id(resource)
+  = pagy_card_footer(pagy)

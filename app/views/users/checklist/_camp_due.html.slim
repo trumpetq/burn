@@ -1,26 +1,26 @@
 - if user.camp_due.present?
   - if user.camp_due.rejected?
     li.list-group-item.bg-danger.bg-opacity-25
-      h6 = link_to_camp(user.camp_due, class: "text-decoration-none")
+      h6 = link_to_camp(user.camp_due, "Dues", class: "text-decoration-none")
       p.text-muted
         | Sorry
         =< camp_status_badge(user.camp_due)
       p You <b>can not</b> camp with us in #{Settings.date.current_year}.
   - elsif user.camp_due.finished?
     li.list-group-item.bg-success.bg-opacity-10
-      h6 = link_to_camp(user.camp_due, class: "text-decoration-none")
+      h6 = link_to_camp(user.camp_due, "Dues", class: "text-decoration-none")
       p.text-muted
         | Dues <b>finished</b>
         =< camp_status_badge(user.camp_due)
   - elsif user.camp_due.paid?
     li.list-group-item.bg-success.bg-opacity-10
-      h6 = link_to_camp("Dues", user.camp_due, class: "text-decoration-none")
+      h6 = link_to_camp(user.camp_due, "Dues", class: "text-decoration-none")
       p.text-muted
         | Give us your money
         =< camp_status_badge(user.camp_due)
   - else
     li.list-group-item.bg-info.bg-opacity-10
-      h6 = link_to_camp(user.camp_due, class: "text-decoration-none")
+      h6 = link_to_camp(user.camp_due, "Dues", class: "text-decoration-none")
       p.text-muted
         | Give us your money
         =< camp_status_badge(user.camp_due)

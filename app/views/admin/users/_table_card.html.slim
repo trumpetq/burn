@@ -13,7 +13,7 @@
           th Role
           th
       tbody
-        - users.each do |user|
+        - resources.each do |user|
           tr class=table_row_class(user)
             td = admin_link_to_id(user)
             td = link_to_policy(policy([:admin, user]).show?, user.name, admin_user_path(user))

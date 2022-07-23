@@ -41,7 +41,7 @@ class CampInterview < ApplicationRecord
 
   validates :action, inclusion: {in: ["approved", "no_response", "rejected"]}, allow_nil: true
 
-  enumerize :status, in: STATUSES.slice(:unavailable, :active, :approved, :assigned, :completed, :no_response, :rejected, :skipped), default: :active, predicates: true, scope: true
+  enumerize :status, in: STATUSES.slice(:active, :approved, :assigned, :completed, :no_response, :rejected, :skipped), default: :active, predicates: true, scope: true
 
   validates :feedback_notes, :initial_notes, :private_notes, length: {maximum: 10_000}
   validates :interviewed_by, presence: true, if: :assigned?

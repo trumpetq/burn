@@ -11,10 +11,6 @@ class GuidePolicy < ApplicationPolicy
     everyone?
   end
 
-  def camp_jobs?
-    everyone?
-  end
-
   def covid?
     everyone?
   end
@@ -44,6 +40,10 @@ class GuidePolicy < ApplicationPolicy
   end
 
   def interview?
+    everyone?
+  end
+
+  def jobs?
     everyone?
   end
 
@@ -116,6 +116,10 @@ class GuidePolicy < ApplicationPolicy
   end
 
   def trash?
+    everyone?
+  end
+
+  def work_access_pass?
     everyone?
   end
 

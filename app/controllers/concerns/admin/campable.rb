@@ -36,6 +36,9 @@ module Admin
     def create
       @resource = controller_name.classify.constantize.new(permitted_attributes([:admin, controller_name.classify.constantize]))
       authorize([:admin, @resource])
+
+      before_create if defined?(before_create)
+
       if @resource.save
         redirect_to([:admin, @resource], success: "#{admin_link_to_resource} was successfully created.")
       else

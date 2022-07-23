@@ -5,10 +5,7 @@
 #  id                     :bigint           not null, primary key
 #  approved_at            :datetime
 #  assigned_at            :datetime
-#  begin_at               :datetime
 #  completed_at           :datetime
-#  end_at                 :datetime
-#  job_on                 :date
 #  notes                  :text
 #  private_notes          :text
 #  rejected_at            :datetime
@@ -32,7 +29,7 @@ class CampJob < ApplicationRecord
   include Stepable
   include Discard::Model
 
-  enumerize :status, in: STATUSES.slice(:unavailable, :active, :approved, :assigned, :completed, :rejected), default: :active, predicates: true, scope: true
+  enumerize :status, in: STATUSES.slice(:active, :approved, :assigned, :completed, :rejected), default: :active, predicates: true, scope: true
 
   belongs_to :camp_job_definition
 

@@ -1,0 +1,2 @@
+class CampJobDescriptionPolicy < CampPolicy
+end

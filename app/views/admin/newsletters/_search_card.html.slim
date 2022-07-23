@@ -7,7 +7,6 @@
            = f.input :email, as: :string, input_html: { value: params.dig(:search, :email) }, label: "Email", required: false
         .col-md-6.mb-3
           = f.input :list, collection: ::Newsletter.list.values.sort, selected: params.dig(:search, :list), label_method: -> { _1.humanize }, label: "List", include_blank: true, required: false
-
       .row
         .col-md-6.mb-3
            = f.input :user_id, input_html: { value: params.dig(:search, :user_id) }, label: "User ID", required: false

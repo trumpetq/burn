@@ -21,6 +21,8 @@ li.nav-item.dropdown
       = link_to(bootstrap_icon("hammer", class_name: "me-2") + "Jobs".html_safe, admin_camp_jobs_path, class: "dropdown-item")
     - if policy([:admin, :camp_job_definition]).index?
       = link_to(bootstrap_icon("wrench", class_name: "me-2") + "Job definitions".html_safe, admin_camp_job_definitions_path, class: "dropdown-item")
+    - if policy([:admin, :camp_job_description]).index?
+      = link_to(bootstrap_icon("book", class_name: "me-2") + "Job description".html_safe, admin_camp_job_descriptions_path, class: "dropdown-item")
       .dropdown-divider
     - if policy([:admin, :camp_ticket]).index?
       = link_to(bootstrap_icon("ticket-detailed", class_name: "me-2") + "Tickets", admin_camp_tickets_path, class: "dropdown-item")

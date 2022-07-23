@@ -1,5 +1,5 @@
 .card.mb-3
-  = card_header("wrench", "Camp job definition", buttons: [header_show_button(resource), header_admin_edit_button(resource)])
+  = card_header("wrench", "Job definition", buttons: [header_show_button(resource), header_admin_edit_button(resource)])
   .card-table
     table.table
       tbody
@@ -12,6 +12,9 @@
         tr
           th Status
           td = camp_status_badge(resource)
+        tr
+          th Job description
+          td = admin_link_to_camp(resource.camp_job_description)
         tr
           th Notes
           td = resource.notes.presence || na_badge

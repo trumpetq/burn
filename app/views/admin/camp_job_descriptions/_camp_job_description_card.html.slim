@@ -1,0 +1,21 @@
+.card.mb-3
+  = card_header("book", "Job description", buttons: [header_show_button(resource), header_admin_edit_button(resource)])
+  .card-table
+    table.table
+      tbody
+        tr
+          th ID
+          td = resource.id
+        tr
+          th User
+          td = admin_link_to_user(resource.user)
+        tr
+          th Status
+          td = camp_status_badge(resource)
+        tr
+          th Title
+          td = resource.title.presence || na_badge
+        tr
+          th Description
+          td = resource.description.presence || na_badge
+        = render "admin/shared/status_times", resource: resource

@@ -1,0 +1,13 @@
+.card.mb-3
+  = card_header("wrench", "Job definitions")
+  .card-table
+    table.table
+      thead
+        tr
+          th ID
+          th
+      tbody
+        - resources.each do |resource|
+          tr
+            td = link_to_id(resource)
+  = pagy_card_footer(pagy)

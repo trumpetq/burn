@@ -1,0 +1,17 @@
+.card.mb-3
+  = card_header("book", "Job description")
+  .card-table
+    table.table
+      tbody
+        tr
+          th Title
+          td = resource.title.presence || na_badge
+        tr
+          th Description
+          td = resource.description.presence || na_badge
+        tr
+          th Created
+          td = admin_time(resource.created_at)
+        tr
+          th Updated
+          td = admin_time(resource.updated_at)

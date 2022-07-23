@@ -1,6 +1,6 @@
 - if user.camp_tickets.present?
  .card.mb-3
-    = card_header("ticket-detailed", "Camp tickets", buttons: [header_admin_new_button(:camp_ticket, user_id: user.id)])
+    = card_header("ticket-detailed", "Tickets", buttons: [header_admin_new_button(:camp_ticket, user_id: user.id)])
     .card-table
       table.table
         thead
@@ -19,6 +19,6 @@
 
 - else
   .card.mb-3
-    = card_header("ticket-detailed", "Camp tickets", buttons: [header_admin_new_button(:camp_ticket, user_id: user.id)])
+    = card_header("ticket-detailed", "Tickets", buttons: [header_admin_new_button(:camp_ticket, user_id: user.id)])
     .card-body
       .alert.alert-dark.mb-0 No tickets found.

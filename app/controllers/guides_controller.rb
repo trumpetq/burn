@@ -13,10 +13,6 @@ class GuidesController < ApplicationController
   def bunny_bar
   end
 
-  # GET /guides/camp_jobs
-  def camp_jobs
-  end
-
   # GET /guides/covid
   def covid
   end
@@ -45,6 +41,10 @@ class GuidesController < ApplicationController
 
   # GET /guides/ice
   def ice
+  end
+
+  # GET /guides/jobs
+  def jobs
   end
 
   # GET /guides/kitchen
@@ -109,6 +109,10 @@ class GuidesController < ApplicationController
 
   # GET /guides/trash
   def trash
+  end
+
+  # GET /guides/work_access_pass
+  def work_access_pass
   end
 
   # GET /guides/yearbook

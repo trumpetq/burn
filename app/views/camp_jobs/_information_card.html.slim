@@ -2,7 +2,7 @@
   = card_header("info-circle", "Information")
   .card-body
     p.card-text Sign up for your jobs
-   .card-footer
+  .card-footer
     .btn-collection
       - if policy(:camp_job).new?
         = link_to("Add job", new_camp_job_path, class: "btn btn-primary")

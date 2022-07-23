@@ -1,8 +1,9 @@
 app:
   url: https://burn.8bitbunny.com
 camp:
-  max_campers: 50
   address: 7:45 & C
+  max_campers: 50
+  min_points: 10
   size: 200' x 100'
 date:
   current_year: 2022

@@ -17,22 +17,22 @@ module LinkHelper
     link_to_policy(policy([:admin, resource]).show?, resource.id, polymorphic_path([:admin, resource]))
   end
 
-  def link_to_camp(name, resource = nil, html_options = {})
-    unless name.is_a?(String)
-      html_options = resource
-      resource = name
+  def link_to_camp(resource, name = nil, html_options = {})
+    if name.is_a?(Hash)
+      html_options = name
       name = resource.to_s
     end
 
     link_to_policy(policy(resource).show?, name, polymorphic_path(resource), html_options)
   end
 
-  def admin_link_to_camp(name, resource = nil, html_options = {})
-    unless name.is_a?(String)
-      html_options = resource
-      resource = name
+  def admin_link_to_camp(resource, name = nil, html_options = {})
+    if name.is_a?(Hash)
+      html_options = name
       name = resource.to_s
     end
+
+    name = resource.to_s if name.blank?
 
     link_to_policy(policy([:admin, resource]).show?, name, polymorphic_path([:admin, resource]), html_options)
   end
@@ -47,7 +47,7 @@ module LinkHelper
     link_to_policy(policy([:admin, user]).show?, user, admin_user_path(user))
   end
 
-  def link_to_guide(text, page)
-    link_to_policy(policy(:guide).send("#{page}?"), text, polymorphic_path([page, :guides]))
+  def link_to_guide(name, page)
+    link_to_policy(policy(:guide).send("#{page}?"), name, polymorphic_path([page, :guides]))
   end
 end

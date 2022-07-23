@@ -1,12 +1,9 @@
 
 .card.mb-3
-  = card_header("person", "Users")
+  = card_header("person", link_to_policy(policy([:admin, :user]).index?, "Users", admin_users_path), pagy: @users_count)
   .card-table
     table.table
       tbody
-        tr
-          th Users
-          td = number_with_delimiter(@users_count)
         tr
           th Mayors
           td = number_with_delimiter(@mayor_users_count)

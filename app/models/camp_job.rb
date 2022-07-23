@@ -41,6 +41,6 @@ class CampJob < ApplicationRecord
   end
 
   def finished?
-    assigned? || completed?
+    approved? || assigned? || completed?
   end
 end

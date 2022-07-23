@@ -1,0 +1,24 @@
+
+.card.mb-3
+  = card_header("hammer", link_to_policy(policy([:admin, :camp_job]).index?, "Jobs", admin_camp_jobs_path), pagy: @camp_jobs_count)
+  .card-table
+    table.table
+      tbody
+        tr
+          th Active
+          td = number_with_delimiter(@active_camp_jobs_count)
+        tr
+          th Approved
+          td = number_with_delimiter(@approved_camp_jobs_count)
+        tr
+          th Assigned
+          td = number_with_delimiter(@assigned_camp_jobs_count)
+        tr
+          th Completed
+          td = number_with_delimiter(@completed_camp_jobs_count)
+        tr
+          th Rejected
+          td = number_with_delimiter(@rejected_camp_jobs_count)
+        tr
+          th Unavailable
+          td = number_with_delimiter(@unavailable_camp_jobs_count)

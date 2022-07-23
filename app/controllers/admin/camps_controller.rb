@@ -22,7 +22,6 @@ module Admin
       @rejected_camp_applications_count = ::CampApplication.with_status(:rejected).count
       @unavailable_camp_applications_count = ::CampApplication.with_status(:unavailable).count
 
-
       @camp_interviews_count = ::CampInterview.all.count
       @active_camp_interviews_count = ::CampInterview.with_status(:active).count
       @approved_camp_interviews_count = ::CampInterview.with_status(:approved).count
@@ -33,19 +32,52 @@ module Admin
       @skipped_camp_interviews_count = ::CampInterview.with_status(:skipped).count
       @unavailable_camp_interviews_count = ::CampInterview.with_status(:unavailable).count
 
-      @camp_deposits_count = ::CampDeposit.all.count
       @camp_dues_count = ::CampDue.all.count
-      @camp_interviews_count = ::CampInterview.all.count
-      @camp_jobs_count = ::CampTicket.all.count
-      @camp_job_definitions_count = ::CampJobDefinition.all.count
-      @camp_tickets_count = ::CampTicket.all.count
-      @camp_vehicles_count = ::CampVehicle.all.count
+      @active_camp_dues_count = ::CampDue.with_status(:active).count
+      @completed_camp_dues_count = ::CampDue.with_status(:completed).count
+      @paid_camp_dues_count = ::CampDue.with_status(:paid).count
+      @refunded_camp_dues_count = ::CampDue.with_status(:refunded).count
+      @rejected_camp_dues_count = ::CampDue.with_status(:rejected).count
+      @skipped_camp_dues_count = ::CampDue.with_status(:skipped).count
+      @unavailable_camp_dues_count = ::CampDue.with_status(:unavailable).count
 
-      @newsletter_count = ::Newsletter.all.count
-      @subscribed_count = ::Newsletter.subscribed.count
-      @unsubscribed_count = ::Newsletter.unsubscribed.count
-      @general_list_count = ::Newsletter.with_list(:general).count
-      @campers_only_list_count = ::Newsletter.with_list(:campers_only).count
+
+      @camp_deposits_count = ::CampDeposit.all.count
+      @active_camp_deposits_count = ::CampDeposit.with_status(:active).count
+      @completed_camp_deposits_count = ::CampDeposit.with_status(:completed).count
+      @paid_camp_deposits_count = ::CampDeposit.with_status(:paid).count
+      @refunded_camp_deposits_count = ::CampDeposit.with_status(:refunded).count
+      @rejected_camp_deposits_count = ::CampDeposit.with_status(:rejected).count
+      @skipped_camp_deposits_count = ::CampDeposit.with_status(:skipped).count
+      @unavailable_camp_deposits_count = ::CampDeposit.with_status(:unavailable).count
+
+      @camp_jobs_count = ::CampJob.all.count
+      @active_camp_jobs_count = ::CampJob.with_status(:active).count
+      @approved_camp_jobs_count = ::CampJob.with_status(:approved).count
+      @assigned_camp_jobs_count = ::CampJob.with_status(:assigned).count
+      @completed_camp_jobs_count = ::CampJob.with_status(:completed).count
+      @rejected_camp_jobs_count = ::CampJob.with_status(:rejected).count
+      @skipped_camp_jobs_count = ::CampJob.with_status(:skipped).count
+      @unavailable_camp_jobs_count = ::CampJob.with_status(:unavailable).count
+
+      @camp_job_definitions_count = ::CampJobDefinition.all.count
+      @active_camp_job_defintions_count = ::CampJobDefinition.with_status(:active).count
+      @unavailable_camp_job_definitions_count = ::CampJobDefinition.with_status(:unavailable).count
+
+      @camp_tickets_count = ::CampTicket.all.count
+      @active_camp_tickets_count = ::CampTicket.with_status(:active).count
+
+      @camp_vehicles_count = ::CampVehicle.all.count
+      @active_camp_vehicles_count = ::CampVehicle.with_status(:active).count
+      @approved_camp_vehicles_count = ::CampVehicle.with_status(:approved).count
+      @completed_camp_vehicles_count = ::CampVehicle.with_status(:completed).count
+      @rejected_camp_vehicles_count = ::CampVehicle.with_status(:rejected).count
+
+      @newsletters_count = ::Newsletter.all.count
+      @subscribed_newsletters_count = ::Newsletter.subscribed.count
+      @unsubscribed_newsletters_count = ::Newsletter.unsubscribed.count
+      @general_list_newsletters_count = ::Newsletter.with_list(:general).count
+      @campers_only_list_newsletters_count = ::Newsletter.with_list(:campers_only).count
     end
   end
 end

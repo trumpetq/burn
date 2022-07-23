@@ -1,0 +1,12 @@
+
+.card.mb-3
+  = card_header("wrench", link_to_policy(policy([:admin, :camp_job_definition]).index?, "Job definitions", admin_camp_job_definitions_path), pagy: @camp_job_definitions_count)
+  .card-table
+    table.table
+      tbody
+        tr
+          th Active
+          td = number_with_delimiter(@active_camp_job_defintions_count)
+        tr
+          th Unavailable
+          td = number_with_delimiter(@unavailable_camp_job_definitions_count)

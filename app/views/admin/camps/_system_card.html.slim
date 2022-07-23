@@ -1,6 +1,6 @@
 
 .card.mb-3
-  = card_header("info-circle", "System")
+  = card_header("info-circle", link_to_policy(policy([:admin, :page]).system?, "System", system_admin_pages_path))
   .card-table
     table.table
       tbody

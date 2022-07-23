@@ -1,0 +1,27 @@
+
+.card.mb-3
+  = card_header("piggy-bank", link_to_policy(policy([:admin, :camp_deposit]).index?, "Deposits", admin_camp_deposits_path), pagy: @camp_deposits_count)
+  .card-table
+    table.table
+      tbody
+        tr
+          th Active
+          td = number_with_delimiter(@active_camp_deposits_count)
+        tr
+          th Completed
+          td = number_with_delimiter(@completed_camp_deposits_count)
+        tr
+          th Paid
+          td = number_with_delimiter(@paid_camp_deposits_count)
+        tr
+          th Refunded
+          td = number_with_delimiter(@refunded_camp_deposits_count)
+        tr
+          th Rejected
+          td = number_with_delimiter(@rejected_camp_deposits_count)
+        tr
+          th Skipped
+          td = number_with_delimiter(@skipped_camp_deposits_count)
+        tr
+          th Unavailable
+          td = number_with_delimiter(@unavailable_camp_deposits_count)

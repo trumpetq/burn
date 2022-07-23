@@ -1,0 +1,18 @@
+
+.card.mb-3
+  = card_header("truck", link_to_policy(policy([:admin, :camp_vehicle]).index?, "Vehicles", admin_camp_vehicles_path), pagy: @camp_vehicles_count)
+  .card-table
+    table.table
+      tbody
+        tr
+          th Active
+          td = number_with_delimiter(@active_camp_vehicles_count)
+        tr
+          th Approved
+          td = number_with_delimiter(@approved_camp_vehicles_count)
+        tr
+          th Completed
+          td = number_with_delimiter(@completed_camp_vehicles_count)
+        tr
+          th Rejected
+          td = number_with_delimiter(@rejected_camp_vehicles_count)

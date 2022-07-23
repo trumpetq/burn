@@ -1,0 +1,9 @@
+
+.card.mb-3
+  = card_header("tickets-detailed", link_to_policy(policy([:admin, :camp_ticket]).index?, "Tickets", admin_camp_tickets_path), pagy: @camp_tickets_count)
+  .card-table
+    table.table
+      tbody
+        tr
+          th Active
+          td = number_with_delimiter(@active_camp_tickets_count)

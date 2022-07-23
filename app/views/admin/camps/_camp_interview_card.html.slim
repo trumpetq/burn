@@ -1,12 +1,9 @@
 
 .card.mb-3
-  = card_header("file-earmark-person", "Interview")
+  = card_header("file-earmark-person", link_to_policy(policy([:admin, :camp_interview]).index?, "Interviews", admin_camp_interviews_path), pagy: @camp_interviews_count)
   .card-table
     table.table
       tbody
-        tr
-          th Interviews
-          td = number_with_delimiter(@camp_interviews_count)
         tr
           th Active
           td = number_with_delimiter(@active_camp_interviews_count)

@@ -1,18 +1,18 @@
 
 .card.mb-3
-  = card_header("envelope-open", "Newsletters")
+  = card_header("envelope-open", link_to_policy(policy([:admin, :newsletter]).index?, "Newsletters", admin_newsletters_path), pagy: @newsletters_count)
   .card-table
     table.table
       tbody
         tr
           th Subscribed
-          td = number_with_delimiter(@subscribed_count)
+          td = number_with_delimiter(@subscribed_newsletters_count)
         tr
           th Unsubscribed
-          td = number_with_delimiter(@subscribed_count)
+          td = number_with_delimiter(@subscribed_newsletters_count)
         tr
           th General list
-          td = number_with_delimiter(@general_list_count)
+          td = number_with_delimiter(@general_list_newsletters_count)
         tr
           th Campers only list
-          td = number_with_delimiter(@campers_only_list_count)
+          td = number_with_delimiter(@campers_only_list_newsletters_count)

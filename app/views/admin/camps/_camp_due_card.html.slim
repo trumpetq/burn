@@ -1,0 +1,27 @@
+
+.card.mb-3
+  = card_header("cash-coin", link_to_policy(policy([:admin, :camp_due]).index?, "Dues", admin_camp_dues_path), pagy: @camp_dues_count)
+  .card-table
+    table.table
+      tbody
+        tr
+          th Active
+          td = number_with_delimiter(@active_camp_dues_count)
+        tr
+          th Completed
+          td = number_with_delimiter(@completed_camp_dues_count)
+        tr
+          th Paid
+          td = number_with_delimiter(@paid_camp_dues_count)
+        tr
+          th Refunded
+          td = number_with_delimiter(@refunded_camp_dues_count)
+        tr
+          th Rejected
+          td = number_with_delimiter(@rejected_camp_dues_count)
+        tr
+          th Skipped
+          td = number_with_delimiter(@skipped_camp_dues_count)
+        tr
+          th Unavailable
+          td = number_with_delimiter(@unavailable_camp_dues_count)

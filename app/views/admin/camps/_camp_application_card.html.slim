@@ -1,12 +1,9 @@
 
 .card.mb-3
-  = card_header("file-earmark-text", "Applications")
+  = card_header("file-earmark-text", link_to_policy(policy([:admin, :camp_application]).index?, "Applications", admin_camp_applications_path), pagy: @camp_applications_count)
   .card-table
     table.table
       tbody
-        tr
-          th Applications
-          td = number_with_delimiter(@camp_applications_count)
         tr
           th Active
           td = number_with_delimiter(@active_camp_applications_count)

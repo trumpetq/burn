@@ -8,7 +8,7 @@ module Admin
       @mayor_users_count = ::User.with_role(:mayor).count
       @leader_users_count = ::User.with_role(:leader).count
       @camping_with_us_users_count = ::User.with_plan(:camping_with_us).count
-      @thinking_about_it_users_count  = ::User.with_plan(:thinking_about_it).count
+      @thinking_about_it_users_count = ::User.with_plan(:thinking_about_it).count
       @camping_elsewhere_users_count = ::User.with_plan(:camping_elsewhere).count
       @not_going_users_count = ::User.with_plan(:not_going).count
       @no_plan_users_count = ::User.with_plan(:none).count
@@ -41,7 +41,6 @@ module Admin
       @skipped_camp_dues_count = ::CampDue.with_status(:skipped).count
       @unavailable_camp_dues_count = ::CampDue.with_status(:unavailable).count
 
-
       @camp_deposits_count = ::CampDeposit.all.count
       @active_camp_deposits_count = ::CampDeposit.with_status(:active).count
       @completed_camp_deposits_count = ::CampDeposit.with_status(:completed).count
@@ -66,6 +65,10 @@ module Admin
 
       @camp_tickets_count = ::CampTicket.all.count
       @active_camp_tickets_count = ::CampTicket.with_status(:active).count
+      @owned_ticket_camp_tickets_count = ::CampTicket.owned.with_ticket_type(:ticket).count
+      @owned_vehicle_pass_camp_tickets_count = ::CampTicket.owned.with_ticket_type(:vehicle_pass).count
+      @wanted_ticket_camp_tickets_count = ::CampTicket.wanted.with_ticket_type(:ticket).count
+      @wanted_vehicle_pass_camp_tickets_count = ::CampTicket.wanted.with_ticket_type(:vehicle_pass).count
 
       @camp_vehicles_count = ::CampVehicle.all.count
       @active_camp_vehicles_count = ::CampVehicle.with_status(:active).count

@@ -7,3 +7,15 @@
         tr
           th Active
           td = number_with_delimiter(@active_camp_tickets_count)
+        tr
+          th Tickets
+          td = number_with_delimiter(@owned_ticket_camp_tickets_count)
+        tr
+          th Vehicle passes
+          td = number_with_delimiter(@owned_vehicle_pass_camp_tickets_count)
+        tr
+          th Wanted tickets
+          td = number_with_delimiter(@wanted_ticket_camp_tickets_count)
+        tr
+          th Wanted vehicle passes
+          td = number_with_delimiter(@wanted_vehicle_pass_camp_tickets_count)

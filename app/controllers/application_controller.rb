@@ -7,7 +7,6 @@ class ApplicationController < ActionController::Base
   rescue_from ActiveRecord::RecordNotFound, with: :not_found
 
   before_action :configure_permitted_parameters, if: :devise_controller?
-  before_action :set_global_counts
   after_action :verify_authorized, unless: :devise_controller?
 
   add_flash_types :success, :warning
@@ -19,12 +18,6 @@ class ApplicationController < ActionController::Base
   end
 
   private
-
-  def set_global_counts
-    return unless current_user.present?
-
-    @assigned_camp_interviews_count = current_user.camp_interviews.with_status(:assigned).count
-  end
 
   def internal_server_error(e)
     raise e if Rails.env.development?

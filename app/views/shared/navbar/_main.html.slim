@@ -15,4 +15,4 @@ ul.navbar-nav.me-auto
     li.nav-item
       = link_to(camp_interviews_path, class: "nav-link") do
         | Interviews
-        =< camp_interviews_count_badge(@assigned_camp_interviews_count)
+        =< camp_interviews_count_badge(current_user.camp_interviews.with_status(:assigned).count)

@@ -1,0 +1,33 @@
+
+.card.mb-3
+  = card_header("file-earmark-person", "Interview")
+  .card-table
+    table.table
+      tbody
+        tr
+          th Interviews
+          td = number_with_delimiter(@camp_interviews_count)
+        tr
+          th Active
+          td = number_with_delimiter(@active_camp_interviews_count)
+        tr
+          th Assigned
+          td = number_with_delimiter(@assigned_camp_interviews_count)
+        tr
+          th Approved
+          td = number_with_delimiter(@approved_camp_interviews_count)
+        tr
+          th Completed
+          td = number_with_delimiter(@completed_camp_interviews_count)
+        tr
+          th No response
+          td = number_with_delimiter(@no_response_camp_interviews_count)
+        tr
+          th Rejected
+          td = number_with_delimiter(@rejected_camp_interviews_count)
+        tr
+          th Skipped
+          td = number_with_delimiter(@skipped_camp_interviews_count)
+        tr
+          th Unavailable
+          td = number_with_delimiter(@unavailable_camp_interviews_count)

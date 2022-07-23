@@ -1,18 +1,18 @@
 
 .card.mb-3
-  = card_header("envelope-open", "Newsletter")
+  = card_header("envelope-open", "Newsletters")
   .card-table
     table.table
       tbody
         tr
           th Subscribed
-          td = @subscribed_count
+          td = number_with_delimiter(@subscribed_count)
         tr
           th Unsubscribed
-          td = @subscribed_count
+          td = number_with_delimiter(@subscribed_count)
         tr
           th General list
-          td = @general_list_count
+          td = number_with_delimiter(@general_list_count)
         tr
-          th Campers only
-          td = @campers_only_list_count
+          th Campers only list
+          td = number_with_delimiter(@campers_only_list_count)

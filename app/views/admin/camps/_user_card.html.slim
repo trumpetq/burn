@@ -1,0 +1,36 @@
+
+.card.mb-3
+  = card_header("person", "Users")
+  .card-table
+    table.table
+      tbody
+        tr
+          th Users
+          td = number_with_delimiter(@users_count)
+        tr
+          th Mayors
+          td = number_with_delimiter(@mayor_users_count)
+        tr
+          th Leaders
+          td = number_with_delimiter(@leader_users_count)
+        tr
+          th Camping with us
+          td = number_with_delimiter(@camping_with_us_users_count)
+        tr
+          th Thinking about it
+          td = number_with_delimiter(@thinking_about_it_users_count)
+        tr
+          th Camping elsewhere
+          td = number_with_delimiter(@camping_elsewhere_users_count)
+        tr
+          th Not going
+          td = number_with_delimiter(@not_going_users_count)
+        tr
+          th No plan
+          td = number_with_delimiter(@no_plan_users_count)
+        tr
+          th Kept
+          td = number_with_delimiter(@kept_users_count)
+        tr
+          th Deleted
+          td = number_with_delimiter(@deleted_users_count)

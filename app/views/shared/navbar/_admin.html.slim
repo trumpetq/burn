@@ -4,6 +4,9 @@ li.nav-item.dropdown
     - if policy([:admin, :camp]).show?
       = link_to(bootstrap_icon("kanban", class_name: "me-2") + "Dashboard", admin_camp_path, class: "dropdown-item")
       .dropdown-divider
+    - if policy([:admin, :user]).index?
+      = link_to(bootstrap_icon("person", class_name: "me-2") + "Users", admin_users_path, class: "dropdown-item")
+      .dropdown-divider
     - if policy([:admin, :camp_application]).index?
       = link_to(bootstrap_icon("file-earmark-text", class_name: "me-2") + "Applications", admin_camp_applications_path, class: "dropdown-item")
     - if policy([:admin, :camp_interview]).index?
@@ -23,9 +26,6 @@ li.nav-item.dropdown
       = link_to(bootstrap_icon("ticket-detailed", class_name: "me-2") + "Tickets", admin_camp_tickets_path, class: "dropdown-item")
     - if policy([:admin, :camp_vehicle]).index?
       = link_to(bootstrap_icon("truck", class_name: "me-2") + "Vehicles", admin_camp_vehicles_path, class: "dropdown-item")
-      .dropdown-divider
-    - if policy([:admin, :user]).index?
-      = link_to(bootstrap_icon("person", class_name: "me-2") + "Users", admin_users_path, class: "dropdown-item")
       .dropdown-divider
     - if policy([:admin, :newsletter]).index?
       = link_to(bootstrap_icon("envelope-open", class_name: "me-2") + "Newsletters", admin_newsletters_path, class: "dropdown-item")

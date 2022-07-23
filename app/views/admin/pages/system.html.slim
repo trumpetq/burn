@@ -27,6 +27,6 @@
               th Environment
               td = Rails.env
             tr
-              th Heroku release
-              td = ENV["HEROKU_RELEASE_VERSION"].presence || na_badge
+              th Release
+              td = number_with_delimiter(ENV["HEROKU_RELEASE_VERSION"]).presence || na_badge
   .col-md-3

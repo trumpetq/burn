@@ -4,29 +4,57 @@
     table.table
       tbody
         tr
-          th Users
-          td = @users_count
+          th
+            = bootstrap_icon("person", class_name: "me-1")
+            | Users
+          td = number_with_delimiter(@users_count)
         tr
-          th Applications
-          td = @camp_applications_count
+          th
+            = bootstrap_icon("file-earmark-text", class_name: "me-1")
+            | Applications
+          td = number_with_delimiter(@camp_applications_count)
         tr
-          th Interviews
-          td = @camp_interviews_count
+          th
+            = bootstrap_icon("file-earmark-person", class_name: "me-1")
+            | Interviews
+          td = number_with_delimiter(@camp_interviews_count)
         tr
-          th Dues
-          td = @camp_dues_count
+          th
+            = bootstrap_icon("cash-coin", class_name: "me-1")
+            | Dues
+          td = number_with_delimiter(@camp_dues_count)
         tr
-          th Deposits
-          td = @camp_deposits_count
+          th
+            = bootstrap_icon("piggy-bank", class_name: "me-1")
+            | Deposits
+          td = number_with_delimiter(@camp_deposits_count)
         tr
-          th Jobs
-          td = @camp_jobs_count
+          th
+            = bootstrap_icon("hammer", class_name: "me-1")
+            | Jobs
+          td = number_with_delimiter(@camp_jobs_count)
         tr
-          th Tickets
-          td = @camp_tickets_count
+          th
+            = bootstrap_icon("wrench", class_name: "me-1")
+            | Job definitions
+          td = number_with_delimiter(@camp_job_definitions_count)
         tr
-          th Vehicles
-          td = @camp_vehicles_count
+          th
+            = bootstrap_icon("ticket-detailed", class_name: "me-1")
+            | Tickets
+          td = number_with_delimiter(@camp_tickets_count)
         tr
-          th Newsletter
-          td = @newsletter_count
+          th
+            = bootstrap_icon("truck", class_name: "me-1")
+            | Vehicles
+          td = number_with_delimiter(@camp_vehicles_count)
+        tr
+          th
+            = bootstrap_icon("envelope-open", class_name: "me-1")
+            | Newsletters
+          td = number_with_delimiter(@newsletter_count)
+        tr
+          th
+            = bootstrap_icon("info-circle", class_name: "me-1")
+            | System
+          td = ENV["HEROKU_RELEASE_VERSION"].presence || na_badge

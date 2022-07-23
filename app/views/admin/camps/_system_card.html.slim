@@ -1,0 +1,18 @@
+
+.card.mb-3
+  = card_header("info-circle", "System")
+  .card-table
+    table.table
+      tbody
+        tr
+          th Release
+          td = number_with_delimiter(ENV["HEROKU_RELEASE_VERSION"]).presence || na_badge
+        tr
+          th Ruby
+          td = RUBY_VERSION
+        tr
+          th Rails
+          td = Rails.version
+        tr
+          th Environment
+          td = Rails.env

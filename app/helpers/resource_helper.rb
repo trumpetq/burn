@@ -2,7 +2,7 @@ module ResourceHelper
   def header_admin_show_button(resource)
     return unless resource.present?
     if policy([:admin, resource]).show?
-      link_to(bootstrap_icon("back"), polymorphic_path([:admin, resource]), class: "btn btn-xs btn-outline-secondary", target: "_blank")
+      link_to(bootstrap_icon("back"), polymorphic_path([:admin, resource]), class: "btn btn-xs btn-outline-dark", target: "_blank")
     end
   end
 
@@ -33,7 +33,7 @@ module ResourceHelper
   def header_admin_back_button(resource)
     return unless resource.present?
     if policy([:admin, resource]).show?
-      link_to(bootstrap_icon("arrow-return-left"), polymorphic_path([:admin, resource]), class: "btn btn-xs btn-outline-secondary")
+      link_to(bootstrap_icon("arrow-return-left"), polymorphic_path([:admin, resource]), class: "btn btn-xs btn-outline-dark")
     end
   end
 

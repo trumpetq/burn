@@ -7,6 +7,7 @@ class PagesController < ApplicationController
 
   # GET /
   def home
+    redirect_to(current_user) if current_user.present?
   end
 
   private

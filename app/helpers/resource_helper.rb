@@ -30,6 +30,13 @@ module ResourceHelper
     end
   end
 
+  def header_admin_back_button(resource)
+    return unless resource.present?
+    if policy([:admin, resource]).show?
+      link_to(bootstrap_icon("arrow-return-left"), polymorphic_path([:admin, resource]), class: "btn btn-xs btn-outline-secondary")
+    end
+  end
+
   def header_show_button(resource)
     return unless resource.present?
     if policy(resource).show?
@@ -54,6 +61,13 @@ module ResourceHelper
   def header_delete_button(resource)
     if policy(resource).destroy? && !resource.try(:discarded?)
       link_to(bootstrap_icon("trash-fill"), resource, data: {turbo_confirm: "Are you sure?", turbo_method: :delete}, class: "btn btn-xs btn-outline-danger")
+    end
+  end
+
+  def header_back_button(resource)
+    return unless resource.present?
+    if policy(resource).show?
+      link_to(bootstrap_icon("arrow-return-left"), polymorphic_path(resource), class: "btn btn-xs btn-outline-secondary")
     end
   end
 end

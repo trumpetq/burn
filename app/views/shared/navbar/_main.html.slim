@@ -5,9 +5,6 @@ ul.navbar-nav.me-auto
   - if policy(:user).index?
     li.nav-item
       = link_to("Campers", users_path, class: "nav-link")
-  - if policy(:guide).history?
-    li.nav-item
-      = link_to("History", history_guides_path, class: "nav-link")
   - if policy(:guide).events?
     li.nav-item
       = link_to("Events", events_guides_path, class: "nav-link")

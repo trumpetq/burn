@@ -27,6 +27,10 @@ class NewsletterPolicy < ApplicationPolicy
     member? && me?
   end
 
+  def admin?
+    leader?
+  end
+
   def me?
     record.user.present? && record.user == user
   end

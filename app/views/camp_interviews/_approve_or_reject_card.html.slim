@@ -1,6 +1,6 @@
 = turbo_frame_tag "approve_or_reject_card_#{index}", target: "_top"
   .card.mb-3
-    = card_header("file-earmark-person", link_to_policy(policy(camp_interview).show?, camp_interview, camp_interview_path(camp_interview)), buttons: [camp_status_badge(camp_interview)])
+    = card_header("file-earmark-person", link_to_camp(camp_interview), buttons: [camp_status_badge(camp_interview)])
 
     - if camp_interview.approved? && camp_interview.valid?
       .card-body

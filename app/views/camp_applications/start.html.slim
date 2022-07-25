@@ -1,0 +1,21 @@
+- page_title("Start application")
+
+.row
+  .col-md-3
+  .col-md-6
+    .card.mb-3
+      = card_header("file-earmark-medical", "Start application")
+      .card-body
+        p.card-text Before you apply to our camp please read though our #{link_to_guide("guide")}.
+        - if current_user.blank?
+          .alert.alert-secondary.mb-1 You need to be signed in before you can start the application process.
+      .card-footer
+        .btn-collection
+          - if current_user.present?
+            - if policy(:camp_application).new?
+              = link_to("Start application", new_camp_application_path, class: "btn btn-success")
+          - else
+            - if policy(:user).devise?
+              = link_to("Sign up", new_user_registration_path, class: "me-2 btn btn-primary")
+            - if policy(:user).devise?
+              = link_to("Sign in", new_user_session_path, class: "btn btn-secondary")

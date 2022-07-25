@@ -47,7 +47,11 @@ module LinkHelper
     link_to_policy(policy([:admin, user]).show?, user, admin_user_path(user))
   end
 
-  def link_to_guide(name, page)
-    link_to_policy(policy(:guide).send("#{page}?"), name, polymorphic_path([page, :guides]))
+  def link_to_guide(name, page = nil)
+    if page.present?
+      link_to_policy(policy(:guide).send("#{page}?"), name, polymorphic_path([page, :guides]))
+    else
+      link_to_policy(policy(:guide).index?, name, guides_path)
+    end
   end
 end

@@ -1,6 +1,6 @@
 - if policy(resource).me? && resource.assigned?
   .card.bg-info.bg-opacity-10.mb-3
-    = card_header("people-fill", "Assigned interview")
+    = card_header("people-fill", link_to_camp(resource, "Assigned interview"))
     .card-body
       p.card-text Your interview has been assigned to #{link_to_user(resource.interviewed_by)}.
       p.card-text Please contact them directly to schedule a time to complete your interview.

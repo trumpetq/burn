@@ -1,5 +1,7 @@
 = render "shared/navbar/main"
 .d-flex
+  - if policy(:camp_application).start? && current_user.blank?
+    = link_to("Start application", start_camp_applications_path, class: "me-2 btn btn-success")
   - if policy(:user).devise?
     = link_to("Sign up", new_user_registration_path, class: "me-2 btn btn-primary")
   - if policy(:user).devise?

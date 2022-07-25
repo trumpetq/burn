@@ -1,5 +1,5 @@
 - if resource.completed? && policy(resource.user).me?
   .card.bg-success.bg-opacity-25.mb-3
-    = card_header("check-circle", "Dues completed")
+    = card_header("check-circle", link_to_camp(resource, "Dues completed"))
     .card-body
       p.card-text Your dues have been paid. This process is <b>complete</b>.

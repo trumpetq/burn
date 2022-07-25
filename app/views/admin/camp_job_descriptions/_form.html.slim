@@ -7,5 +7,8 @@
     .col-md-12.mb-3
       = f.input :description
   .row
+    .col-md-6.mb-3
+      = f.input :department, include_blank: false
+  .row
     .col.d-grid
       = f.button :submit, submit_button_text(resource)

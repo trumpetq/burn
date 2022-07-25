@@ -123,7 +123,11 @@ Rails.application.routes.draw do
     root to: "pages#home"
   end
 
-  resources :camp_applications, except: [:destroy]
+  resources :camp_applications, except: [:destroy] do
+    collection do
+      get :start
+    end
+  end
 
   resources :camp_deposits, except: [:destroy] do
     member do

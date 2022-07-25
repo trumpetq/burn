@@ -1,6 +1,6 @@
 - if resource.active? && policy(resource.user).me?
   .card.mb-3
-    = card_header("wallet", "Payment instructions")
+    = card_header("wallet", link_to_camp(resource, "Payment instructions"))
     .card-body
       - case resource.payment_method.to_sym
       - when :cash

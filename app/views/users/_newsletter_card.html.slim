@@ -1,6 +1,6 @@
 - if policy(user).me?
   .card.bg-info.bg-opacity-10.mb-3
-    = card_header("envelope-paper", "Subscription")
+    = card_header("envelope-paper", link_to_policy(policy(user.newsletter).show?, "Subscription", user.newsletter))
     .card-body
       - if user.newsletter&.subscribed?
         p.card-text

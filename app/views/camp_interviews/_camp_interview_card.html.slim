@@ -1,5 +1,5 @@
 .card.mb-3
-  = card_header("file-earmark-person", "Interview")
+  = card_header("file-earmark-person", link_to_camp(resource, "Interview"))
   .card-table
     table.table
       tbody
@@ -30,3 +30,7 @@
         tr
           th Updated
           td = admin_time(resource.updated_at)
+  .card-footer
+    .btn-collection
+      - if policy(resource.user).index?
+        = link_to("Back to profile", user_path(resource.user), class: "btn btn-secondary")

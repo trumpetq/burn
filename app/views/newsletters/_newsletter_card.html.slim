@@ -1,5 +1,5 @@
 .card.mb-3
-  = card_header("envelope-open", "Subscription", buttons: [header_edit_button(resource)])
+  = card_header("envelope-open", link_to_camp(@newsletter, "Subscription"), buttons: [header_edit_button(resource)])
   .card-table
     table.table
       tbody
@@ -12,3 +12,7 @@
         tr
           th Created
           td = admin_time(@newsletter.created_at)
+  .card-footer
+    .btn-collection
+      - if policy(@newsletter.user).show?
+        = link_to("Back to profile", user_path(@newsletter.user), class: "btn btn-secondary")

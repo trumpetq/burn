@@ -1,5 +1,5 @@
 .card.mb-3
-  = card_header("ticket-detailed", "Ticket", buttons: [header_edit_button(resource), header_delete_button(resource)])
+  = card_header("ticket-detailed", link_to_camp(resource, "Ticket"), buttons: [header_edit_button(resource), header_delete_button(resource)])
   .card-table
     table.table
       tbody
@@ -28,3 +28,7 @@
         tr
           th Updated
           td = admin_time(resource.updated_at)
+  .card-footer
+    .btn-collection
+      - if policy(:camp_ticket).index?
+        = link_to("Back to tickets", camp_tickets_path, class: "btn btn-secondary")

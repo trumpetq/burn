@@ -1,5 +1,5 @@
 .card.mb-3
-  = card_header("piggy-bank", "Deposit", buttons: [header_show_button(resource), header_admin_edit_button(resource)])
+  = card_header("piggy-bank", admin_link_to_camp(resource, "Deposit"), buttons: [header_show_button(resource), header_admin_edit_button(resource)])
   .card-table
     table.table
       tbody

@@ -2,12 +2,14 @@
 #
 # Table name: camp_job_descriptions
 #
-#  id         :bigint           not null, primary key
-#  status     :integer          not null
-#  title      :text             not null
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
-#  user_id    :bigint
+#  id          :bigint           not null, primary key
+#  department  :integer
+#  description :text             not null
+#  status      :integer          not null
+#  title       :text             not null
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#  user_id     :bigint
 #
 class CampJobDescription < ApplicationRecord
   extend Enumerize
@@ -16,6 +18,7 @@ class CampJobDescription < ApplicationRecord
   include Discard::Model
 
   enumerize :status, in: STATUSES.slice(:active), default: :active, predicates: true, scope: true
+  enumerize :department, in: {none: 0, kitchen: 5, build: 10, power: 15, fun: 20, bureaucracy: 25}, default: :none, predicates: true, scope: true
 
   validates :title, length: {in: 5..100}, presence: true
   validates :description, length: {in: 5..10_00}, presence: true

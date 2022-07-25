@@ -1,5 +1,5 @@
 .card.mb-3
-  = card_header("ticket-detailed", "Tickets", buttons: [header_new_button(:camp_ticket)])
+  = card_header("ticket-detailed", link_to_policy(policy(:camp_ticket).index?, "Tickets", camp_tickets_path), buttons: [header_new_button(:camp_ticket)])
   .card-table
     table.table
       thead

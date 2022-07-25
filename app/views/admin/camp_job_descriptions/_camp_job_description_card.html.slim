@@ -1,5 +1,5 @@
 .card.mb-3
-  = card_header("book", "Job description", buttons: [header_show_button(resource), header_admin_edit_button(resource)])
+  = card_header("book", admin_link_to_camp(resource, "Job description"), buttons: [header_show_button(resource), header_admin_edit_button(resource)])
   .card-table
     table.table
       tbody
@@ -12,6 +12,9 @@
         tr
           th Status
           td = camp_status_badge(resource)
+        tr
+          th Department
+          td = camp_department_badge(resource)
         tr
           th Title
           td = resource.title.presence || na_badge

@@ -7,3 +7,4 @@
   .col-md-3
     - if @newsletter.user.present? && @newsletter.unsubscribed?
       = render "users/newsletter_card", user: @newsletter.user
+    = render "admin_card", resource: @newsletter

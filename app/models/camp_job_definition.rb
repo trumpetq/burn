@@ -6,9 +6,9 @@
 #  all_day                 :boolean
 #  approval_required       :boolean
 #  begin_at                :datetime
-#  description             :text
 #  east_bay                :boolean
 #  end_at                  :datetime
+#  financial               :boolean
 #  job_on                  :date
 #  notes                   :text
 #  points                  :decimal(4, 2)
@@ -32,7 +32,7 @@ class CampJobDefinition < ApplicationRecord
   include Discard::Model
 
   enumerize :status, in: STATUSES.slice(:active), default: :active, predicates: true, scope: true
-  enumerize :timeframe, in: {event: 1, pre_event: 2, post_event: 3}, default: :event, predicates: true, scope: true
+  enumerize :timeframe, in: {burn_week: 1, pre_event: 10, build_week: 20, teardown: 30, post_event: 50, year_round: 100}, default: :burn_week, predicates: true, scope: true
 
   belongs_to :camp_job_description
   has_many :camp_jobs, dependent: :destroy

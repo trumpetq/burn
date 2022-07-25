@@ -23,17 +23,6 @@
             td = na_badge
             td
             td.text-end = admin_new_icon(:camp_interview, user_id: user.id)
-        tr
-          th Tickets
-          - if user.camp_tickets.present?
-            td
-              = primary_count_badge(user.camp_tickets.size)
-            td = user_has_ticket_badge(user)
-            td
-          - else
-            td = na_badge
-            td
-            td
         tr class=table_row_class(user.camp_due)
           th Dues
           - if user.camp_due.present?
@@ -50,6 +39,17 @@
             td = admin_link_to_id(user.camp_deposit)
             td = camp_status_badge(user.camp_deposit)
             td.text-end = admin_link_icon(user.camp_deposit)
+          - else
+            td = na_badge
+            td
+            td
+        tr
+          th Tickets
+          - if user.camp_tickets.present?
+            td
+              = primary_count_badge(user.camp_tickets.size)
+            td = user_has_ticket_badge(user)
+            td
           - else
             td = na_badge
             td

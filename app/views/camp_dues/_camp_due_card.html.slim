@@ -1,5 +1,5 @@
 .card.mb-3
-  = card_header("cash-coin", "Dues", buttons: [header_edit_button(resource)])
+  = card_header("cash-coin", link_to_camp(resource, "Dues"), buttons: [header_edit_button(resource)])
   .card-table
     table.table
       tbody
@@ -33,3 +33,7 @@
         tr
           th Updated
           td = admin_time(resource.updated_at)
+  .card-footer
+    .btn-collection
+      - if policy(resource.user).index?
+        = link_to("Back to profile", user_path(resource.user), class: "btn btn-secondary")

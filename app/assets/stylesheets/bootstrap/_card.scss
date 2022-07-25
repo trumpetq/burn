@@ -3,6 +3,11 @@
     a {
       text-decoration: none;
     }
+
+    a:not(.btn) {
+      color: $gray-900;
+    }
+
     .spacer {
       height: 1em;
     }

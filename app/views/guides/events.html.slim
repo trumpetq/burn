@@ -7,7 +7,9 @@
     .card.mb-3
       = card_header("calendar-week", "Events")
       .card-body
-        p.card-text Events are a part of daily life at 8-bit Bunny. Here is what we have planned for #{Settings.date.curren_year} so far.
+        p.card-text Events are a part of daily life at 8-bit Bunny. Here is what we have planned for #{Settings.date.current_year} so far.
+        p.card-text See all #{link_to("Playa Events", "https://playaevents.burningman.org/")} for #{Settings.date.current_year}.
+
     .card.mb-3
       = card_header("calendar-date", "Event")
       .card-body
@@ -18,19 +20,34 @@
           <b class="ms-3">Lead</b> #{link_to(@david, user_path(@david))}
         p.card-text We will do quick introductions show you the ropes of camp.
         .alert.alert-warning This event is <b>highly recomended</b> for all campers.
+
     .card.mb-3
       = card_header("calendar-date", "Event")
       .card-body
-        h4.card-title.text-muted Official Monday Make-out Party
+        h4.card-title.text-muted
+          = link_to("Official Monday Make-out Party", "https://playaevents.burningman.org/playa_event/35496/")
         p.card-text
           <b>Date</b> Monday, August 29th
           <b class="ms-3">Time</b> 1:00 - 5:00 pm
           <b class="ms-3">Lead</b> <span class="badge bg-danger">Available</span>
         p.card-text It's make-out Monday! Start the week off right. Play spin-the-bottle, or volunteer at our kissing booth. Minty drinks provided.
+
     .card.mb-3
       = card_header("calendar-date", "Event")
       .card-body
-        h4.card-title.text-muted Steam Bath Experience
+        h4.card-title.text-muted
+          = link_to("Sandwitch House", "https://playaevents.burningman.org/playa_event/35528/")
+        p.card-text
+          <b>Date</b> Thursday, September 1st
+          <b class="ms-3">Time</b> Midnight - 2:00 am
+          <b class="ms-3">Lead</b> #{link_to(@mirabelle, user_path(@mirabelle))}
+        p.card-text It's time for jams and jams! Come midnight we'll dance ever-so-slowly to our favorite goth and witch house jams spun by DJ Crayzewitch (Copenhagen) and Commodore 256 (New Mexico) while being served hot n' tasty pancakes with Wolves' special homemade jam. Homemade pickles will be provided for those desiring something savory. Jams and jams (and pickles!) available while they last.
+
+    .card.mb-3
+      = card_header("calendar-date", "Event")
+      .card-body
+        h4.card-title.text-muted
+          = link_to("Steam Bath Experience", "https://playaevents.burningman.org/playa_event/35672/")
         p.card-text
           <b>Date</b> Thursday, September 1st
           <b class="ms-3">Time</b> 1:00 - 4:00 pm
@@ -39,21 +56,13 @@
     .card.mb-3
       = card_header("calendar-date", "Event")
       .card-body
-        h4.card-title.text-muted Päntsdrunk
+        h4.card-title.text-muted
+          = link_to("Päntsdrunk", "https://playaevents.burningman.org/playa_event/35564/")
         p.card-text
           <b>Date</b> Thursday, September 1st
           <b class="ms-3">Time</b> 4:00 - 6:00 pm
           <b class="ms-3">Lead</b> #{link_to(@mirabelle, user_path(@mirabelle))}
         p.card-text Päntsdrunk or kalsarikännit is the Finnish tradition of getting drunk at home alone in one's underpants with no desire to do anything else (especially not to go out into the world). It is not merely an activity but a state of mind (and pants!). This year we are bringing päntsdrunk to the playa. Everyone is welcome to free cocktails from our bar (bring your own cup) and various places to sit around in your skivvies doing nothing. Tunes by Commodore 256.
-    .card.mb-3
-      = card_header("calendar-date", "Event")
-      .card-body
-        h4.card-title.text-muted Sandwitch House
-        p.card-text
-          <b>Date</b> Thursday, September 1st
-          <b class="ms-3">Time</b> Midnight - 2:00 am
-          <b class="ms-3">Lead</b> #{link_to(@mirabelle, user_path(@mirabelle))}
-        p.card-text It's time for jams and jams! Come midnight we'll dance ever-so-slowly to our favorite goth and witch house jams spun by DJ Crayzewitch (Copenhagen) and Commodore 256 (New Mexico) while being served hot n' tasty pancakes with Wolves' special homemade jam. Homemade pickles will be provided for those desiring something savory. Jams and jams (and pickles!) available while they last.
     .card.mb-3
       = card_header("calendar-date", "Event")
       .card-body
@@ -66,12 +75,12 @@
     .card.mb-3
       = card_header("calendar-date", "Event")
       .card-body
-        h4.card-title.text-muted Strike
+        h4.card-title.text-muted Teardown
         p.card-text
           <b>Date</b> Sunday, September 4th
           <b class="ms-3">Time</b> 10:00 am - Midnight
           <b class="ms-3">Lead</b> #{link_to(@david, user_path(@david))}
-        p.card-text We partied together. Now we must clean it all up and pack it away for next year
+        p.card-text We partied together. Now we must clean it all up and pack it away for next year. Read our guide on #{link_to_guide("teardown", :teardown)}.
         .alert.alert-danger This event is <b>mandatory</b> for all campers. Please be well rested for a full day of work.
     .card.mb-3
       = card_header("calendar-date", "Event")

@@ -1,5 +1,5 @@
 .card.mb-3
-  = card_header("book", "Job description")
+  = card_header("book", link_to_camp(resource, "Job description"))
   .card-table
     table.table
       tbody
@@ -10,8 +10,15 @@
           th Description
           td = resource.description.presence || na_badge
         tr
+          th Department
+          td = camp_department_badge(resource)
+        tr
           th Created
           td = admin_time(resource.created_at)
         tr
           th Updated
           td = admin_time(resource.updated_at)
+  .card-footer
+    .btn-collection
+      - if policy(:camp_job).index?
+        = link_to("Back to jobs", camp_jobs_path, class: "btn btn-secondary")

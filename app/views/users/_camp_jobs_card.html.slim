@@ -1,0 +1,5 @@
+- if policy(user).me?
+  - if camp_jobs.empty?
+    = render "camp_jobs/empty_card"
+  - else
+    = render "camp_jobs/table_card", resources: camp_jobs, pagy: false

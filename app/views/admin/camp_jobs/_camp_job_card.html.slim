@@ -1,11 +1,11 @@
 .card.mb-3
-  = card_header("ticket-detailed", admin_link_to_camp(resource, "Ticket"), buttons: [header_show_button(resource), header_admin_edit_button(resource)])
+  = card_header("hammer", admin_link_to_camp(resource, "Job"), buttons: [header_show_button(resource), header_admin_edit_button(resource)])
   .card-table
     table.table
       tbody
         tr
           th ID
-          td = resource.id
+          td = admin_link_to_id(resource)
         tr
           th User
           td = admin_link_to_user(resource.user)

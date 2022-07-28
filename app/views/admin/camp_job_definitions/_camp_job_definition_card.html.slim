@@ -5,13 +5,16 @@
       tbody
         tr
           th ID
-          td = resource.id
+          td = admin_link_to_id(resource)
         tr
           th User
           td = admin_link_to_user(resource.user)
         tr
           th Status
           td = camp_status_badge(resource)
+        tr
+          th Points
+          td = number_with_delimiter(resource.points)
         tr
           th Timeframe
           td = camp_timeframe_badge(resource)

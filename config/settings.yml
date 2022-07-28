@@ -37,6 +37,7 @@ facebook:
   username: 8bitbunny
 github:
   url: https://github.com/ramaboo/burn
+  repo: ramaboo/burn
 instagram:
   url: https://www.instagram.com/8.bit.bunny/
   username: 8.bit.bunny
@@ -82,6 +83,9 @@ slack:
 tiktok:
   url: https://www.tiktok.com/@8bit_bunny
   username: 8bit_bunny
+twitter:
+  url: https://twitter.com/8bitbunny
+  username: 8bitbunny
 user:
   david: 1
   mirabelle: 13

@@ -14,6 +14,12 @@ module IconHelper
     link_to(bootstrap_icon("pencil"), edit_polymorphic_path(resource))
   end
 
+  def delete_icon(resource)
+    return unless policy(resource).destroy?
+    link_to(bootstrap_icon("trash"), polymorphic_path(resource), data: {turbo_confirm: "Are you sure?", turbo_method: :delete}, class: "text-danger")
+  end
+
+
   def admin_edit_icon(resource)
     return unless policy([:admin, resource]).edit?
     link_to(bootstrap_icon("pencil"), edit_polymorphic_path([:admin, resource]))

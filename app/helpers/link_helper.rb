@@ -18,6 +18,8 @@ module LinkHelper
   end
 
   def link_to_camp(resource, name = nil, html_options = {})
+    return na_badge if resource.blank?
+
     if name.is_a?(Hash)
       html_options = name
       name = resource.to_s
@@ -27,6 +29,8 @@ module LinkHelper
   end
 
   def admin_link_to_camp(resource, name = nil, html_options = {})
+    return na_badge if resource.blank?
+
     if name.is_a?(Hash)
       html_options = name
       name = resource.to_s

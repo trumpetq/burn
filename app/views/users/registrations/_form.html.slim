@@ -13,10 +13,12 @@
     .col-md-6.mb-3
       = f.input :title, hint: "tell us your role in camp"
     .col-md-6.mb-3
-      = f.input :pronouns, label_method: -> { _1[0]&.sub(" ", "/") }
+      = f.input :pronouns, label_method: -> { _1[0]&.sub(" ", "/") }, prompt: "Select pronouns"
   .row
     .col-md-6.mb-3
       = f.input :plan, include_blank: false, hint: "what are you doing in #{Settings.date.current_year}"
+    .col-md-6.mb-3
+      = f.input :born_on, label: "Date of birth", as: :date,  html5: true, start_year: Date.today.year - 100, end_year: Date.today.year
   .row
     .col-md-6.mb-3
       = f.input :phone_number
@@ -40,6 +42,11 @@
       = f.input :tiktok_url, as: :string, label: "TikTok", hint: "https://www.tiktok.com/<b>you</b>".html_safe
     .col-md-6.mb-3
       = f.input :twitter_url, as: :string, label: "Twitter", hint: "https://twitter.com/<b>you</b>".html_safe
+  .row
+    .col-md-6.mb-3
+      = f.input :diet, prompt: "Select diet"
+    .col-md-6.mb-3
+      = f.input :allergies, hint: "are you allergic to anything", as: :string
   .row
     .col-md-12.mb-3
       = f.input :previous_years, collection: Settings.date.previous_years, as: :check_boxes, label: "Previous years at 8-bit Bunny"

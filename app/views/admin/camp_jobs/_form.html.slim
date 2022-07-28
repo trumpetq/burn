@@ -3,6 +3,11 @@
   .row
     .col-md-6.mb-3
       = user_id_input(resource, f)
+    .col-md-6.mb-3
+      = f.input :status, include_blank: false
+  .row
+    .col-md-6.mb-3
+      = f.input :camp_job_definition_id, collection: ::CampJobDefinition.order_by_title, prompt: "Choose a definition", required: true
   .row
     .col-md-12.mb-3
       = f.input :notes

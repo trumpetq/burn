@@ -29,13 +29,30 @@ class CampJobDefinition < ApplicationRecord
   extend Enumerize
 
   include Stepable
-  include Discard::Model
 
   enumerize :status, in: STATUSES.slice(:active), default: :active, predicates: true, scope: true
   enumerize :timeframe, in: {burn_week: 1, pre_event: 10, build_week: 20, teardown: 30, post_event: 50, year_round: 100}, default: :burn_week, predicates: true, scope: true
 
+  validates :points, numericality: {in: 0..100}
+
   belongs_to :camp_job_description
-  has_many :camp_jobs, dependent: :destroy
+  has_one :camp_job, dependent: :destroy
+
+  scope :for_camp_job_description, ->(camp_job_description) { where(camp_job_description: camp_job_description)}
+  scope :order_by_title, -> { includes(:camp_job_description).order("camp_job_descriptions.title ASC") }
+
+  def to_s
+    "Job definition #{id}"
+  end
+
+  def to_label
+    job_on_label = job_on.present? ? job_on.to_fs(:year_month_day) : "No day"
+    "#{job_on_label}  - #{camp_job_description&.title}".strip
+  end
+
+  def title
+    camp_job_description&.title
+  end
 
   def multiple?
     true

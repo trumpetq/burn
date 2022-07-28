@@ -12,7 +12,7 @@ module Admin
     def assign
       set_resource
 
-      @interviewed_by = ::User.where(id: params.dig(:camp_interview, :interviewed_by_id)).take
+      @interviewed_by = ::User.for_id(params.dig(:camp_interview, :interviewed_by_id)).take
       @resource.assigned_at = Time.current
       @resource.assigned_by = current_user
       @resource.interviewed_by = @interviewed_by
@@ -58,7 +58,6 @@ module Admin
       @resource.update(interviewed_by: nil)
 
       CampInterviewMailer.with(resource: @resource).skip.deliver_now if send_email?
-
     end
   end
 end

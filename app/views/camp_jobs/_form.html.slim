@@ -1,9 +1,17 @@
 = render "shared/error_messages", resource: resource
 = simple_form_for(resource) do |f|
+  .row
+    .col-md-12.mb-3
+      - if resource.camp_job_definition.present?
+        = link_to_camp(resource.camp_job_definition)
+        - if resource.new_record?
+          = f.input :camp_job_definition_id, as: :hidden, input_html: { value: resource.camp_job_definition_id }
+      - else
+        = f.input :camp_job_definition_id, collection: ::CampJobDefinition.order_by_title, prompt: "Choose a job", required: true
 
   .row
     .col-md-12.mb-3
       = f.input :notes, hint: "anything else you think we should know"
   .row
     .col.d-grid
-      = f.button :submit, submit_button_text(resource)
+      = f.button :submit, resource.new_record? ? "Add job" : "Update"

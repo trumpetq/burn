@@ -15,7 +15,7 @@
             tr class=table_row_class(newsletter)
               td = admin_link_to_id(newsletter)
               td = mail_to(newsletter.email, target: "_blank")
-              td = newsletter.user.present? ? link_to_policy(policy([:admin, newsletter.user]).show?, newsletter.user, admin_user_path(newsletter.user)) : na_badge
+              td = admin_link_to_user(newsletter.user)
               td = newsletter_list_badge(newsletter)
               td.text-end = admin_edit_icon(newsletter)
 

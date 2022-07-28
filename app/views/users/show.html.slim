@@ -6,7 +6,9 @@
   .col-md-6
     = render "next_action_card", user: @user
     = render "profile_card", user: @user
+    = render "camp_jobs_card", user: @user, camp_jobs: @user.camp_jobs
     = render "camp_tickets_card", user: @user, camp_tickets: @user.camp_tickets
+
   .col-md-3
     = render "avatar_card", user: @user
     = render "incomplete_profile_card", user: @user

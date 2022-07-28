@@ -10,16 +10,44 @@
         table.table
           tbody
             tr
-              th Email
-              td = mail_to(Settings.email.contact, target: "_blank")
+              th
+                => bootstrap_icon("envelope")
+                | Email
+              td = mail_to(Settings.email.david, target: "_blank")
             tr
-              th Facebook
-              td = link_to(Settings.facebook.url, target: "_blank")
+              th
+                => bootstrap_icon("facebook")
+                | Facebook
+              td = link_to(Settings.facebook.username, Settings.facebook.url, target: "_blank")
             tr
-              th Phone
+              th
+                => bootstrap_icon("instagram")
+                | Instagram
+              td = link_to(Settings.instagram.username, Settings.instagram.url, target: "_blank")
+            tr
+              th
+                => bootstrap_icon("tiktok")
+                | TikTok
+              td = link_to(Settings.tiktok.username, Settings.tiktok.url, target: "_blank")
+            tr
+              th
+                => bootstrap_icon("twitter")
+                | Twitter
+              td = link_to(Settings.twitter.username, Settings.twitter.url, target: "_blank")
+            tr
+              th
+                => bootstrap_icon("github")
+                | GitHub
+              td = link_to(Settings.github.repo, Settings.github.url, target: "_blank")
+            tr
+              th
+                => bootstrap_icon("phone")
+                | Phone
               td = link_to_phone("+15179805017")
             tr
-              th Slack
+              th
+                => bootstrap_icon("slack")
+                | Slack
               td
                 => link_to(Settings.slack.name, Settings.slack.url, target: "_blank")
                 = link_to("Request invite", Settings.slack.invite_url, class: "ms-3 btn btn-xs btn-outline-secondary", target: "_blank")

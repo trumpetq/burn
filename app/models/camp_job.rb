@@ -27,11 +27,20 @@ class CampJob < ApplicationRecord
   extend Enumerize
 
   include Stepable
-  include Discard::Model
 
   enumerize :status, in: STATUSES.slice(:active, :approved, :assigned, :completed, :rejected), default: :active, predicates: true, scope: true
 
   belongs_to :camp_job_definition
+
+  scope :for_camp_job_definition, ->(camp_job_definition) { where(camp_job_definition: camp_job_definition) }
+
+  def to_s
+    "Job #{id}"
+  end
+
+  def title
+    camp_job_definition&.camp_job_description&.title
+  end
 
   def multiple?
     true

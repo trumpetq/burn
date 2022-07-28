@@ -1,17 +1,17 @@
 .card.mb-3
-  = card_header("person", admin_link_to_camp(@user, "User"), buttons: [header_show_button(@user), header_admin_edit_button(@user)])
+  = card_header("person", admin_link_to_camp(user, "User"), buttons: [header_show_button(user), header_admin_edit_button(user)])
   .card-table
     table.table
       tbody
         - if user.complete_profile?
           tr.table-success
             th ID
-            td = user.id
+            td = admin_link_to_id(user)
         - else
           tr.table-secondary
             th ID
             td
-              = user.id
+              = admin_link_to_id(user)
               .badge.bg-secondary< Incomplete profile
         tr
           th Name
@@ -30,6 +30,13 @@
         tr
           th Phone number
           td = link_to_phone(user.phone_number)
+        tr
+          th Date of birth
+          td
+            - if user.born_on.present?
+              = "#{user.born_on} (#{user.age})"
+            - else
+              na_badge
         tr
           th Role
           td = user_role_badge(user)
@@ -50,6 +57,12 @@
           td
             = user.postal_code.presence || na_badge
             =< user_bay_area_badge(user)
+        tr
+          th Diet
+          td = user_diet_badge(user)
+        tr
+          th Allergies
+          td = user.allergies.presence || na_badge
         tr
           th Previous years
           td = user.previous_years&.join(", ").presence || na_badge

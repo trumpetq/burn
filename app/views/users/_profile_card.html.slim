@@ -19,6 +19,12 @@
       p.card-text
         <b>Postal code</b> #{user.postal_code}
         =< user_bay_area_badge(user)
+    - if user.diet.present?
+      p.card-text
+        <b>Diet</b> #{user_diet_badge(user)}
+    - if user.allergies.present?
+      p.card-text
+        <b>Allergies</b> #{user.allergies}
     - if user.previous_years.present?
       p.card-text <b>Previous years</b> #{user.previous_years.join(", ")}
     - if policy(user).me?

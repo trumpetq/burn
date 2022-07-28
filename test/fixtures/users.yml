@@ -3,10 +3,13 @@
 # Table name: users
 #
 #  id                     :bigint           not null, primary key
+#  allergies              :text
+#  born_on                :date
 #  country_code           :string
 #  current_sign_in_at     :datetime
 #  current_sign_in_ip     :string
 #  description            :text
+#  diet                   :integer
 #  discarded_at           :datetime
 #  email                  :string           default(""), not null
 #  encrypted_password     :string           default(""), not null

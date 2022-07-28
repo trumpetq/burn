@@ -47,4 +47,7 @@ class CampInterview < ApplicationRecord
   validates :interviewed_by, presence: true, if: :assigned?
 
   belongs_to :interviewed_by, class_name: ::User.name, optional: true
+
+  scope :for_interviewed_by, ->(interviewed_by) { where(interviewed_by: interviewed_by) }
+
 end

@@ -20,7 +20,7 @@
                 td = admin_link_to_user(resource.user)
                 td = camp_status_badge(resource)
                 td = resource.referral_name.presence || na_badge
-                td = resource.approved_by.present? ? link_to_policy(policy([:admin, resource.approved_by]).show?, resource.approved_by, admin_user_path(resource.approved_by)) : na_badge
+                td = admin_link_to_user(resource.approved_by)
                 td.text-end = admin_edit_icon(resource)
 
       = pagy_card_footer(@pagy)

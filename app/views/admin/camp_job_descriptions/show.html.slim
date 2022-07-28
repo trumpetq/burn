@@ -6,3 +6,6 @@
     = render "camp_job_description_card", resource: @resource
   .col-md-3
     = render "admin_card", resource: @resource
+.row
+  .col-md-12
+    = render "admin/camp_job_definitions/table_card", resources: @camp_job_definitions, pagy: @camp_job_definitions_pagy

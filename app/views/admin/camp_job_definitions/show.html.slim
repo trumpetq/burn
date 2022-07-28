@@ -8,3 +8,9 @@
   .col-md-3
     = render "admin_card", resource: @resource
     = render "settings_card", resource: @resource
+.row
+  .col-md-5
+    - if @resource.camp_job.present?
+      = render "admin/camp_jobs/camp_job_card", resource: @resource.camp_job
+    - else
+      .alert.alert-info No user has been assigned this job yet.

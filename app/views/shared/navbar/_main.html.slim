@@ -8,6 +8,9 @@ ul.navbar-nav.me-auto
   - if policy(:guide).events?
     li.nav-item
       = link_to("Events", events_guides_path, class: "nav-link")
+  - if policy(:camp_job).index?
+    li.nav-item
+      = link_to("Jobs", camp_jobs_path, class: "nav-link")
   - if current_user&.has_interviews? && policy(:camp_interview).index?
     li.nav-item
       = link_to(camp_interviews_path, class: "nav-link") do

@@ -3,10 +3,13 @@
 # Table name: users
 #
 #  id                     :bigint           not null, primary key
+#  allergies              :text
+#  born_on                :date
 #  country_code           :string
 #  current_sign_in_at     :datetime
 #  current_sign_in_ip     :string
 #  description            :text
+#  diet                   :integer
 #  discarded_at           :datetime
 #  email                  :string           default(""), not null
 #  encrypted_password     :string           default(""), not null
@@ -52,7 +55,7 @@ class User < ApplicationRecord
   include Sociable
   include Discard::Model
 
-  COMPLETE_PROFILE_FIELDS = [:country_code, :description, :name, :phone_number, :postal_code, :pronouns, :time_zone].freeze
+  COMPLETE_PROFILE_FIELDS = [:diet, :born_on, :country_code, :description, :name, :phone_number, :postal_code, :pronouns, :time_zone].freeze
 
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :validatable, :trackable, :lockable
 
@@ -62,6 +65,7 @@ class User < ApplicationRecord
   enumerize :status, in: {active: 0, confirmed: 1, banned: 10}, default: :active, predicates: true, scope: true
   enumerize :plan, in: {none: 0, camping_with_us: 1, thinking_about_it: 2, camping_elsewhere: 3, not_going: 10}, default: :none, predicates: true, scope: true
   enumerize :pronouns, in: {he_him: 1, she_her: 2, they_them: 3, she_they: 4, he_they: 5, all: 10}, predicates: true, scope: true
+  enumerize :diet, in: {omnivore: 1, vegitarian: 2, vegan: 3}, predicates: true, scope: true
 
   validates :name, :role, :status, :time_zone, presence: true
   validates :phone_number, phony_plausible: true
@@ -82,6 +86,7 @@ class User < ApplicationRecord
   has_many :camp_tickets
   has_one :newsletter
 
+  scope :for_id, ->(id) { where(id: id) }
   scope :for_phone_number, ->(phone_number) { where(phone_numer: PhonyRails.normalize_number(phone_number)) }
   scope :for_email, ->(email) { where(email: email&.downcase&.squish) }
   scope :like_email, ->(email) { where("email LIKE ?", "%#{email&.downcase&.squish}%") }
@@ -99,6 +104,13 @@ class User < ApplicationRecord
 
   def to_log
     "User id=#{id}, email=#{email}"
+  end
+
+  def age
+    return unless born_on.present?
+
+    now = Time.current.to_date
+    now.year - born_on.year - ((now.month > born_on.month || (now.month == born_on.month && now.day >= born_on.day)) ? 0 : 1)
   end
 
   def display_name

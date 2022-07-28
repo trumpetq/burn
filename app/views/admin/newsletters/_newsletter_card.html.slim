@@ -5,7 +5,7 @@
       tbody
         tr
           th ID
-          td = @newsletter.id
+          td = admin_link_to_id(@newsletter)
         tr
           th User
           td = admin_link_to_user(@newsletter.user)

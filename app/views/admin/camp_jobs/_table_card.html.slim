@@ -1,0 +1,25 @@
+.card.mb-3
+  = card_header("hammer", "Jobs", pagy: pagy, buttons: [header_admin_new_button(:camp_job)])
+  .card-table
+    table.table
+      thead
+        tr
+          th ID
+          th User
+          th Status
+          th Points
+          th Title
+          th Definition
+          th
+      tbody
+        - resources.each do |resource|
+          tr
+            td = admin_link_to_id(resource)
+            td = admin_link_to_user(resource.user)
+            td = camp_status_badge(resource)
+            td = number_with_delimiter(resource.camp_job_definition&.points)
+            td = admin_link_to_camp(resource, resource.title)
+            td = admin_link_to_camp(resource.camp_job_definition)
+            td.text-end = admin_edit_icon(resource)
+  = pagy_card_footer(@pagy)
+

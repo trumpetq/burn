@@ -1,14 +1,22 @@
 .card.mb-3
-  = card_header("hammer", "Jobs", buttons: [header_new_button(:camp_job)])
+  = card_header("hammer", "Jobs")
   .card-table
     table.table
       thead
         tr
           th ID
+          th Status
+          th Date
+          th Title
           th
       tbody
         - resources.each do |resource|
           tr
             td = link_to_id(resource)
-            td.text-end = edit_icon(resource)
+            td = camp_status_badge(resource)
+            td = admin_date(resource.camp_job_definition&.job_on)
+            td = link_to_camp(resource, resource.title)
+            td.text-end
+              = edit_icon(resource)
+              =< delete_icon(resource)
   = pagy_card_footer(pagy)

@@ -1,7 +1,7 @@
 namespace :newsletter do
   task assign: :environment do
     ActiveRecord::Base.establish_connection(ENV["PRODUCTION_DATABASE_URL"])
-    newsletters = ::Newsletter.where(user_id: nil)
+    newsletters = ::Newsletter.without_user
 
     newsletters.each do |newsletter|
       user = ::User.for_email(newsletter.email).take

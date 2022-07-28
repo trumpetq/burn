@@ -31,6 +31,21 @@ module UserHelper
     tag.span(user.status&.to_s&.humanize, class: css_class)
   end
 
+  def user_diet_badge(user)
+    return na_badge unless user&.diet.present?
+
+    css_class =
+      case user.diet.to_sym
+      when :omnivore then "badge bg-secondary"
+      when :vegitarian then "badge bg-primary"
+      when :vegan then "badge bg-success"
+      else
+        "badge bg-dark"
+      end
+
+    tag.span(user.diet&.to_s&.humanize, class: css_class)
+  end
+
   def user_plan_badge(user)
     return na_badge unless user.present?
 

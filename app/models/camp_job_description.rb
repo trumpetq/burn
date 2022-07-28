@@ -15,7 +15,6 @@ class CampJobDescription < ApplicationRecord
   extend Enumerize
 
   include Stepable
-  include Discard::Model
 
   enumerize :status, in: STATUSES.slice(:active), default: :active, predicates: true, scope: true
   enumerize :department, in: {none: 0, kitchen: 5, build: 10, power: 15, fun: 20, bureaucracy: 25}, default: :none, predicates: true, scope: true

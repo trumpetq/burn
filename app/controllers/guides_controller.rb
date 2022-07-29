@@ -95,8 +95,8 @@ class GuidesController < ApplicationController
   def sound
   end
 
-  # GET /guides/teardown
-  def teardown
+  # GET /guides/strike
+  def strike
   end
 
   # GET /guides/tickets

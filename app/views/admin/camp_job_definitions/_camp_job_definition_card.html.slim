@@ -19,6 +19,9 @@
           th Timeframe
           td = camp_timeframe_badge(resource)
         tr
+          th Date
+          td = event_date(resource.job_on)
+        tr
           th Notes
           td = resource.notes.presence || na_badge
         tr

@@ -25,9 +25,9 @@
         li.list-group-item  class=active_if(:build)
           = link_to "Build", build_guides_path, class: "h6 text-decoration-none"
           p.text-muted.mb-0 Early arrival
-      - if policy(:guide).teardown?
-        li.list-group-item  class=active_if(:teardown)
-          = link_to "Teardown", teardown_guides_path, class: "h6 text-decoration-none"
+      - if policy(:guide).strike?
+        li.list-group-item  class=active_if(:strike)
+          = link_to "Strike", strike_guides_path, class: "h6 text-decoration-none"
           p.text-muted.mb-0 It's not all fun
       - if policy(:guide).interview?
         li.list-group-item  class=active_if(:interview)
@@ -44,7 +44,7 @@
       - if policy(:guide).deposit?
         li.list-group-item class=active_if(:deposit)
           = link_to "Deposit", deposit_guides_path, class: "h6 text-decoration-none"
-          p.text-muted.mb-0 Commit to teardown
+          p.text-muted.mb-0 Commit to strike
       - if policy(:guide).kitchen?
         li.list-group-item class=active_if(:kitchen)
           = link_to "Kitchen", kitchen_guides_path, class: "h6 text-decoration-none"

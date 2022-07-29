@@ -8,9 +8,15 @@
         = link_to("New job description", new_admin_camp_job_description_path, class: "mt-4 btn btn-outline-primary", target: "_blank")
   .row
     .col-md-6.mb-3
+      = f.input :status, include_blank: false
+    .col-md-6.mb-3
       = f.input :points
+
+  .row
     .col-md-6.mb-3
       = f.input :timeframe, include_blank: false
+    .col-md-6.mb-3
+      = f.input :job_on, as: :date, html5: true
   .row
     .col-md-12.mb-3
       = f.input :notes
@@ -22,7 +28,7 @@
     .col-md-6.mb-3
       = f.input :all_day
       = f.input :approval_required
-      = f.input :east_bay
+      = f.input :bay_area
       = f.input :financial
       = f.input :strong_person
 

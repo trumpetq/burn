@@ -182,7 +182,7 @@ Rails.application.routes.draw do
       get :shade
       get :shipping_container
       get :sound
-      get :teardown
+      get :strike
       get :tickets
       get :tools
       get :trash

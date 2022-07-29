@@ -1,5 +1,5 @@
 li.list-group-item.bg-light
-  h6.text-muted Jobs
+  h6.text-muted = link_to_policy(policy(:camp_job).index?, "Jobs", camp_jobs_path)
   p.text-muted
     | Sign up for work shifts
     br

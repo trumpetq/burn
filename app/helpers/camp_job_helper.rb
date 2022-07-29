@@ -7,7 +7,7 @@ module CampJobHelper
       when :burn_week then "badge bg-primary"
       when :pre_event then "badge bg-success"
       when :build_week then "badge bg-warning"
-      when :teardown then "badge bg-secondary"
+      when :strike then "badge bg-secondary"
       when :post_event then "badge bg-secondary"
       when :year_round then "badge bg-danger"
       else

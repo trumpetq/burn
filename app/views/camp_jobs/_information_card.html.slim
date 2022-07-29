@@ -1,8 +1,4 @@
 .card.mb-3
   = card_header("info-circle", "Information")
   .card-body
-    p.card-text Sign up for your jobs
-  .card-footer
-    .btn-collection
-      - if policy(:camp_job).new?
-        = link_to("Add job", new_camp_job_path, class: "btn btn-primary")
+    p.card-text Read about #{link_to_guide("jobs", :jobs)} on our #{link_to_guide("guide", :jobs)}.

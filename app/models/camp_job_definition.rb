@@ -5,8 +5,9 @@
 #  id                      :bigint           not null, primary key
 #  all_day                 :boolean
 #  approval_required       :boolean
+#  assigned_at             :datetime
+#  bay_area                :boolean
 #  begin_at                :datetime
-#  east_bay                :boolean
 #  end_at                  :datetime
 #  financial               :boolean
 #  job_on                  :date
@@ -18,6 +19,7 @@
 #  timeframe               :integer          not null
 #  created_at              :datetime         not null
 #  updated_at              :datetime         not null
+#  assigned_by_id          :bigint
 #  camp_job_description_id :bigint
 #  user_id                 :bigint           not null
 #
@@ -30,16 +32,18 @@ class CampJobDefinition < ApplicationRecord
 
   include Stepable
 
-  enumerize :status, in: STATUSES.slice(:active), default: :active, predicates: true, scope: true
-  enumerize :timeframe, in: {burn_week: 1, pre_event: 10, build_week: 20, teardown: 30, post_event: 50, year_round: 100}, default: :burn_week, predicates: true, scope: true
+  enumerize :status, in: STATUSES.slice(:active, :assigned), default: :active, predicates: true, scope: true
+  enumerize :timeframe, in: {pre_event: 10, build_week: 20, burn_week: 30, strike: 40, post_event: 50, year_round: 100}, default: :burn_week, predicates: true, scope: true
 
   validates :points, numericality: {in: 0..100}
 
   belongs_to :camp_job_description
   has_one :camp_job, dependent: :destroy
 
-  scope :for_camp_job_description, ->(camp_job_description) { where(camp_job_description: camp_job_description)}
+  scope :for_camp_job_description, ->(camp_job_description) { where(camp_job_description: camp_job_description) }
   scope :order_by_title, -> { includes(:camp_job_description).order("camp_job_descriptions.title ASC") }
+  scope :order_by_date, -> { order(job_on: :asc) }
+  scope :in_bay_area, -> { where(bay_area: true) }
 
   def to_s
     "Job definition #{id}"

@@ -15,6 +15,8 @@ module Campable
       search_index if defined?(search_index)
 
       @pagy, @resources = pagy(@query)
+
+      after_index if defined?(after_index)
     else
 
       @resource = controller_name.classify.constantize.for_user(current_user).take

@@ -103,7 +103,7 @@ class GuidePolicy < ApplicationPolicy
     everyone?
   end
 
-  def teardown?
+  def strike?
     everyone?
   end
 

@@ -1,11 +1,29 @@
 .card.mb-3
-  = card_header("wrench", link_to_camp(resource, "Job definition")])
+  = card_header("wrench", link_to_camp(resource, "Job definition"))
   .card-table
     table.table
       tbody
         tr
+          th Title
+          td = resource.title.presence || na_badge
+        tr
           th Description
-          td = resource.description.presence || na_badge
+          td = resource.camp_job_description&.description.presence || na_badge
+        tr
+          th Status
+          td = camp_status_badge(resource)
+        tr
+          th Points
+          td = number_with_delimiter(resource.points)
+        tr
+          th Timeframe
+          td = camp_timeframe_badge(resource)
+        tr
+          th Date
+          td = event_date(resource.job_on)
+        tr
+          th Notes
+          td = resource.notes.presence || na_badge
         tr
           th Created
           td = admin_time(resource.created_at)

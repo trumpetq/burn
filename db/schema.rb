@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_07_28_225031) do
+ActiveRecord::Schema[7.0].define(version: 2022_07_29_234019) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -152,7 +152,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_28_225031) do
     t.integer "timeframe", null: false
     t.text "private_notes"
     t.boolean "all_day"
-    t.boolean "east_bay"
+    t.boolean "bay_area"
     t.boolean "strong_person"
     t.boolean "approval_required"
     t.decimal "points", precision: 4, scale: 2
@@ -164,6 +164,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_28_225031) do
     t.datetime "end_at"
     t.date "job_on"
     t.boolean "financial"
+    t.datetime "assigned_at"
+    t.bigint "assigned_by_id"
     t.index ["user_id"], name: "index_camp_job_definitions_on_user_id"
   end
 

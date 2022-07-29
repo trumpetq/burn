@@ -75,12 +75,12 @@
     .card.mb-3
       = card_header("calendar-date", "Event")
       .card-body
-        h4.card-title.text-muted Teardown
+        h4.card-title.text-muted Strike
         p.card-text
           <b>Date</b> Sunday, September 4th
           <b class="ms-3">Time</b> 10:00 am - Midnight
           <b class="ms-3">Lead</b> #{link_to(@david, user_path(@david))}
-        p.card-text We partied together. Now we must clean it all up and pack it away for next year. Read our guide on #{link_to_guide("teardown", :teardown)}.
+        p.card-text We partied together. Now we must clean it all up and pack it away for next year. Read our guide on #{link_to_guide("strike", :strike)}.
         .alert.alert-danger This event is <b>mandatory</b> for all campers. Please be well rested for a full day of work.
     .card.mb-3
       = card_header("calendar-date", "Event")
@@ -90,7 +90,7 @@
           <b>Date</b> Sunday, September 4th
           <b class="ms-3">Time</b> 8:00 pm - 10:00 pm
           <b class="ms-3">Lead</b> <span class="badge bg-danger">Available</span>
-        p.card-text We pause teardown to go to the Temple burn.
+        p.card-text We pause strike to go to the Temple burn.
   .col-md-3
     = render "new_event_card"
 

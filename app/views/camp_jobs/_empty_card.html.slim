@@ -1,8 +1,4 @@
 .card.mb-3
-  = card_header("hammer", "Jobs", buttons: [header_new_button(:camp_job)])
+  = card_header("hammer", "Jobs")
   .card-body
-    .alert.alert-dark.mb-0 You haven't signed up for any jobs yet.
-  .card-footer
-    .btn-collection
-      - if policy(:camp_job).new?
-        = link_to("Add job", new_camp_job_path, class: "btn btn-primary")
+    .alert.alert-dark.mb-1 You haven't signed up for any jobs yet.

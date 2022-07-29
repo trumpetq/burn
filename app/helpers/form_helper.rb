@@ -21,4 +21,8 @@ module FormHelper
       end
     end
   end
+
+  def checked_html(*args)
+    {checked: params.dig(*args) == "1"}
+  end
 end

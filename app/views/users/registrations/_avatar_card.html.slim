@@ -4,7 +4,7 @@
     - if resource.avatar.attached?
       = image_tag(user.avatar.variant(:thumbnail), class: "img-fluid", alt: user)
     - else
-      .alert.alert-dark.mb-0 You are <b>missing</b> a photo. Please upload one today.
+      .alert.alert-dark.mb-1 You are <b>missing</b> a photo. Please upload one today.
   .card-form
     = simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: {method: :put}, data: {turbo: false}) do |f|
       = f.input :action, input_html: {value: "edit"}, as: :hidden

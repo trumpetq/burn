@@ -2,6 +2,9 @@
 = simple_form_for([:admin, resource]) do |f|
   .row
     .col-md-12.mb-3
+      = f.input :status, include_blank: false
+  .row
+    .col-md-12.mb-3
       = f.input :title
   .row
     .col-md-12.mb-3

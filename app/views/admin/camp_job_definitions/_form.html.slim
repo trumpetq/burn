@@ -3,9 +3,12 @@
   .row
     .col-md-6.mb-3
       = f.input :camp_job_description_id, collection: ::CampJobDescription.order(title: :asc), label_method: :title, prompt: "Choose a description", required: true
-    - if policy([:admin, :camp_job_description]).new?
-      .col-md-6.mb-3
-        = link_to("New job description", new_admin_camp_job_description_path, class: "mt-4 btn btn-outline-primary", target: "_blank")
+    .col-md-6.mb-3
+      - if policy([:admin, :camp_job_description]).new?
+        => link_to(bootstrap_icon("plus-circle-fill"), new_admin_camp_job_description_path, class: "mt-4 btn btn-outline-primary", target: "_blank")
+      - if policy([:admin, resource]).edit?
+        = link_to(bootstrap_icon("pencil"), edit_admin_camp_job_description_path(resource), class: "mt-4 btn btn-outline-primary", target: "_blank")
+
   .row
     .col-md-6.mb-3
       = f.input :status, include_blank: false

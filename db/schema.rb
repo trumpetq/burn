@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_07_29_234019) do
+ActiveRecord::Schema[7.0].define(version: 2022_07_30_000034) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -155,7 +155,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_29_234019) do
     t.boolean "bay_area"
     t.boolean "strong_person"
     t.boolean "approval_required"
-    t.decimal "points", precision: 4, scale: 2
+    t.decimal "points", precision: 5, scale: 2
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.text "notes"

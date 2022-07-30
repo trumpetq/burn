@@ -12,7 +12,7 @@
 #  financial               :boolean
 #  job_on                  :date
 #  notes                   :text
-#  points                  :decimal(4, 2)
+#  points                  :decimal(5, 2)
 #  private_notes           :text
 #  status                  :integer          not null
 #  strong_person           :boolean

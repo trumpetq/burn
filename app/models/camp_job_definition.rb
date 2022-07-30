@@ -43,6 +43,7 @@ class CampJobDefinition < ApplicationRecord
   scope :for_camp_job_description, ->(camp_job_description) { where(camp_job_description: camp_job_description) }
   scope :order_by_title, -> { includes(:camp_job_description).order("camp_job_descriptions.title ASC") }
   scope :order_by_date, -> { order(job_on: :asc) }
+  scope :reorder_by_date, -> { reorder(job_on: :asc) }
   scope :in_bay_area, -> { where(bay_area: true) }
 
   def to_s

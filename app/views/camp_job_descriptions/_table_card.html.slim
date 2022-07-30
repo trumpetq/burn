@@ -1,12 +1,22 @@
 .card.mb-3
-  = card_header("book", "Job descriptions")
+  = card_header("book", "Job descriptions", pagy: pagy)
   .card-table
     table.table
       thead
         tr
           th ID
+          th Status
+          th Title
+          th Description
+          th Updated
+          th
       tbody
         - resources.each do |resource|
           tr
             td = link_to_id(resource)
+            td = camp_status_badge(resource)
+            td = link_to_camp(resource, resource.title&.truncate(30))
+            td = resource.description&.truncate(50)
+            td = admin_time(resource.updated_at)
+            td.text-end = edit_icon(resource)
   = pagy_card_footer(pagy)

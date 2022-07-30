@@ -6,7 +6,9 @@
         tr
           th ID
           th Status
+          th Timeframe
           th Date
+          th Title
           th Points
           th Job
           th User
@@ -16,9 +18,9 @@
           tr
             td = admin_link_to_id(resource)
             td = camp_status_badge(resource)
-            td
-              => camp_timeframe_badge(resource)
-              = event_date(resource.job_on)
+            td = camp_timeframe_badge(resource)
+            td = event_date(resource.job_on)
+            td = admin_link_to_camp(resource, resource.title)
             td = admin_link_to_camp(resource, number_with_precision(resource.points, precision: 2, strip_insignificant_zeros: true))
             td = admin_link_to_camp(resource.camp_job)
             td = admin_link_to_user(resource.user)

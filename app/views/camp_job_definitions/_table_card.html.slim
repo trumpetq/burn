@@ -1,13 +1,28 @@
 .card.mb-3
-  = card_header("wrench", "Job definitions")
+  = card_header("wrench", "Job definitions", pagy: pagy)
   .card-table
     table.table
       thead
         tr
           th ID
+          th Status
+          th Timeframe
+          th Date
+          th Title
+          th Points
+          th Job
+          th User
           th
       tbody
         - resources.each do |resource|
           tr
             td = link_to_id(resource)
+            td = camp_status_badge(resource)
+            td = camp_timeframe_badge(resource)
+            td = event_date(resource.job_on)
+            td = link_to_camp(resource, resource.title)
+            td = link_to_camp(resource, number_with_precision(resource.points, precision: 2, strip_insignificant_zeros: true))
+            td = link_to_camp(resource.camp_job)
+            td = link_to_user(resource.user)
+            td.text-end = edit_icon(resource)
   = pagy_card_footer(pagy)

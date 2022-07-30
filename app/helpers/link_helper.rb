@@ -10,10 +10,14 @@ module LinkHelper
   end
 
   def link_to_id(resource)
+    return na_badge if resource.blank?
+
     link_to_policy(policy(resource).show?, resource.id, polymorphic_path(resource))
   end
 
   def admin_link_to_id(resource)
+    return na_badge if resource.blank?
+
     link_to_policy(policy([:admin, resource]).show?, resource.id, polymorphic_path([:admin, resource]))
   end
 

@@ -5,7 +5,7 @@ module Admin
     private
 
     def search_index
-      @query = @query.includes(:camp_job)
+      @query = @query.includes(:camp_job, :camp_job_description)
     end
 
     def before_create

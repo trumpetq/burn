@@ -7,8 +7,8 @@
           th ID
           td = admin_link_to_id(resource)
         tr
-          th User
-          td = admin_link_to_user(resource.user)
+          th Job ID
+          td = resource.job_id
         tr
           th Status
           td = camp_status_badge(resource)
@@ -24,6 +24,9 @@
         tr
           th Department
           td = camp_department_badge(resource.camp_job_description)
+        tr
+          th User
+          td = admin_link_to_user(resource.user)
         tr
           th Notes
           td = resource.notes.presence || na_badge

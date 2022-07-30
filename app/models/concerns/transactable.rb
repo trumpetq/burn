@@ -13,7 +13,7 @@ module Transactable
     before_validation :set_transaction_id
     before_validation :set_price
 
-    validates :transaction_id, length: {is: 6}
+    validates :transaction_id, length: {is: 6}, uniqueness: true
     validates :private_notes, length: {maximum: 10_000}
     validates :pricing_tier, presence: true
 
@@ -26,7 +26,10 @@ module Transactable
 
   def set_transaction_id
     return if transaction_id.present?
-    self.transaction_id = SecureRandom.hex(3).upcase
+    loop do
+      self.transaction_id = SecureRandom.hex(3).upcase
+      break unless ::CampDue.for_transaction_id(transaction_id).exists? || ::CampDeposit.for_transaction_id(transaction_id).exists?
+    end
   end
 
   def set_price

@@ -35,7 +35,7 @@ class CampJob < ApplicationRecord
   scope :for_camp_job_definition, ->(camp_job_definition) { where(camp_job_definition: camp_job_definition) }
 
   def to_s
-    "Job #{id}"
+    "Job #{camp_job_definition&.job_id.presence || id}"
   end
 
   def title

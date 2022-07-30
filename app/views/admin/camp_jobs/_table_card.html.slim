@@ -21,7 +21,7 @@
             td = event_date(resource.camp_job_definition.job_on)
             td = number_with_precision(resource.camp_job_definition&.points, precision: 2, strip_insignificant_zeros: true)
             td = admin_link_to_camp(resource, resource.title)
-            td = admin_link_to_camp(resource.camp_job_definition)
+            td = admin_link_to_camp(resource.camp_job_definition, resource.camp_job_definition&.job_id)
             td.text-end = admin_edit_icon(resource)
   = pagy_card_footer(@pagy)
 

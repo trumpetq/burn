@@ -1,8 +1,11 @@
 .card.mb-3
-  = card_header("wrench", link_to_camp(resource, "Job definition #{resource.id}"))
+  = card_header("wrench", link_to_camp(resource, "Job definition"), buttons: [header_edit_button(resource)])
   .card-table
     table.table
       tbody
+        tr
+          th Job ID
+          td = resource.job_id.presence || na_badge
         tr
           th Title
           td = resource.title.presence || na_badge

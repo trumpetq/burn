@@ -1,5 +1,5 @@
 .card.mb-3
-  = card_header("hammer", link_to_camp(resource, "Job #{resource.id}"), buttons: [header_edit_button(resource), header_delete_button(resource)])
+  = card_header("hammer", link_to_camp(resource, "Job"), buttons: [header_edit_button(resource), header_delete_button(resource)])
   .card-table
     table.table
       tbody
@@ -30,6 +30,9 @@
         tr
           th Notes
           td = resource.notes.presence || na_badge
+        tr
+          th Job ID
+          td = resource.camp_job_definition&.job_id
         tr
           th Created
           td = admin_time(resource.created_at)

@@ -41,7 +41,6 @@ class CampJobDefinition < ApplicationRecord
   validates :points, numericality: {in: 0..100}
   validates :job_id, length: {is: 6}, uniqueness: true
 
-
   belongs_to :camp_job_description
   has_one :camp_job, dependent: :destroy
 

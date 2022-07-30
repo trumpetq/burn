@@ -17,7 +17,7 @@
           td = camp_status_badge(resource)
         tr
           th Points
-          td = number_with_delimiter(resource.camp_job_definition&.points)
+          td = number_with_precision(resource.camp_job_definition&.points, precision: 2, strip_insignificant_zeros: true)
         tr
           th Timeframe
           td = camp_timeframe_badge(resource.camp_job_definition)

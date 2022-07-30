@@ -17,7 +17,7 @@
               td = link_to_id(resource)
               td = camp_status_badge(resource)
               td = event_date(resource.job_on)
-              td = resource.title.presence || na_badge
-              td = number_with_delimiter(resource.points)
+              td = link_to_camp(resource, resource.title)
+              td = number_with_precision(resource.points, precision: 2, strip_insignificant_zeros: true)
               td.text-end
 

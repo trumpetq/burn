@@ -22,6 +22,9 @@
           th Date
           td = event_date(resource.job_on)
         tr
+          th Department
+          td = camp_department_badge(resource.camp_job_description)
+        tr
           th Notes
           td = resource.notes.presence || na_badge
         tr

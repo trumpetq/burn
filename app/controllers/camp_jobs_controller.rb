@@ -8,11 +8,9 @@ class CampJobsController < ApplicationController
   end
 
   def after_index
-    @camp_job_definition_query = ::CampJobDefinition.order_by_date
+    @camp_job_definition_query = ::CampJobDefinition.includes(:camp_job_description, :user).order_by_date
     @camp_job_definition_query = @camp_job_definition_query.with_status(params[:search][:status]) if params.dig(:search, :status).present?
     @camp_job_definition_query = @camp_job_definition_query.in_bay_area if params.dig(:search, :bay_area) == "1"
-
-
 
     timeframe = params.dig(:search, :timeframe).presence
     if timeframe

@@ -14,13 +14,16 @@
           td = camp_status_badge(resource)
         tr
           th Points
-          td = number_with_delimiter(resource.points)
+          td = number_with_precision(resource.points, precision: 2, strip_insignificant_zeros: true)
         tr
           th Timeframe
           td = camp_timeframe_badge(resource)
         tr
           th Date
           td = event_date(resource.job_on)
+        tr
+          th Department
+          td = camp_department_badge(resource.camp_job_description)
         tr
           th Notes
           td = resource.notes.presence || na_badge

@@ -1,8 +1,32 @@
 .card.mb-3
-  = card_header("hammer", link_to_camp(resource, "Job"), buttons: [header_edit_button(resource), header_delete_button(resource)])
+  = card_header("hammer", link_to_camp(resource, "Job #{resource.id}"), buttons: [header_edit_button(resource), header_delete_button(resource)])
   .card-table
     table.table
       tbody
+        tr
+          th User
+          td = link_to_user(resource.user)
+        tr
+          th Title
+          td = resource.camp_job_definition&.camp_job_description&.title.presence || na_badge
+        tr
+          th Description
+          td = resource.camp_job_definition&.camp_job_description&.description.presence || na_badge
+        tr
+          th Status
+          td = camp_status_badge(resource)
+        tr
+          th Points
+          td = number_with_delimiter(resource.camp_job_definition&.points)
+        tr
+          th Timeframe
+          td = camp_timeframe_badge(resource.camp_job_definition)
+        tr
+          th Date
+          td = event_date(resource.camp_job_definition&.job_on)
+        tr
+          th Department
+          td = camp_department_badge(resource.camp_job_definition&.camp_job_description)
         tr
           th Notes
           td = resource.notes.presence || na_badge
@@ -12,3 +36,7 @@
         tr
           th Updated
           td = admin_time(resource.updated_at)
+  .card-footer
+    .btn-collection
+      - if policy(:camp_job).index?
+        = link_to("Back to jobs", camp_jobs_path, class: "btn btn-secondary")

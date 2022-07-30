@@ -6,8 +6,8 @@
     .col-md-6.mb-3
       - if policy([:admin, :camp_job_description]).new?
         => link_to(bootstrap_icon("plus-circle-fill"), new_admin_camp_job_description_path, class: "mt-4 btn btn-outline-primary", target: "_blank")
-      - if policy([:admin, resource]).edit?
-        = link_to(bootstrap_icon("pencil"), edit_admin_camp_job_description_path(resource), class: "mt-4 btn btn-outline-primary", target: "_blank")
+      - if policy([:admin, resource.camp_job_description]).edit?
+        = link_to(bootstrap_icon("pencil"), edit_admin_camp_job_description_path(resource.camp_job_description), class: "mt-4 btn btn-outline-primary", target: "_blank")
 
   .row
     .col-md-6.mb-3

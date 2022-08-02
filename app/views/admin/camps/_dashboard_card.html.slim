@@ -50,6 +50,11 @@
           td = number_with_delimiter(@camp_tickets_count)
         tr
           th
+            = bootstrap_icon("pass", class_name: "me-1")
+            | WAPs
+          td = number_with_delimiter(@camp_work_access_passes_count)
+        tr
+          th
             = bootstrap_icon("truck", class_name: "me-1")
             | Vehicles
           td = number_with_delimiter(@camp_vehicles_count)

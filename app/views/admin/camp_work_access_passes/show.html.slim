@@ -1,0 +1,12 @@
+- page_title(@resource)
+
+.row
+  .col-md-3
+    = render "ticket_card", resource: @resource
+  .col-md-6
+    = render "camp_work_access_pass_card", resource: @resource
+  .col-md-3
+    = render "assign_card", resource: @resource
+    = render "approve_card", resource: @resource
+    = render "settings_card", resource: @resource
+    = render "admin_card", resource: @resource

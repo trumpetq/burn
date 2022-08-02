@@ -90,6 +90,16 @@ Rails.application.routes.draw do
       end
     end
 
+    resources :camp_work_access_passes do
+      member do
+        patch :active
+        patch :approve
+        patch :assign
+        patch :reject
+        patch :remove_ticket
+      end
+    end
+
     resources :newsletters do
       collection do
         get :export
@@ -154,6 +164,8 @@ Rails.application.routes.draw do
   resources :camp_tickets
 
   resources :camp_vehicles
+
+  resources :camp_work_access_passes
 
   resources :guides, only: [:index] do
     collection do

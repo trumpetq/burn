@@ -7,7 +7,6 @@ module Stepable
 
     validates :user_id, uniqueness: true, unless: :multiple?
 
-    belongs_to :user
     belongs_to :approved_by, class_name: ::User.name, optional: true
     belongs_to :assigned_by, class_name: ::User.name, optional: true
     belongs_to :closed_by, class_name: ::User.name, optional: true

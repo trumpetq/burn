@@ -1,0 +1,23 @@
+.card.mb-3
+  = card_header("file-earmark-text", "Applications", pagy: pagy, buttons: [header_admin_new_button(:camp_application)])
+  .card-table
+    table.table
+      thead
+        tr
+          th ID
+          th User
+          th Status
+          th Referral
+          th Approved
+          th
+      tbody
+        - resources.each do |resource|
+          tr class=table_row_class(resource)
+            td = admin_link_to_id(resource)
+            td = admin_link_to_user(resource.user)
+            td = camp_status_badge(resource)
+            td = resource.referral_name.presence || na_badge
+            td = admin_link_to_user(resource.approved_by)
+            td.text-end = admin_edit_icon(resource)
+
+  = pagy_card_footer(pagy)

@@ -10,6 +10,7 @@ gem "bootsnap", require: false
 gem "cssbundling-rails"
 gem "config"
 gem "country_select"
+gem "date_validator"
 gem "devise" # FIX: Users::SessionsController when > 4.8.1
 gem "discard"
 gem "enumerize"

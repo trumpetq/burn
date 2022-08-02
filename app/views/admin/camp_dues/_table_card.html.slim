@@ -15,10 +15,10 @@
         - resources.each do |resource|
           tr
             td = admin_link_to_id(resource)
-            td = link_to_policy(policy([:admin, resource]).show?, resource.transaction_id, admin_camp_due_path(resource))
+            td = admin_link_to_camp(resource, resource.transaction_id)
             td = admin_link_to_user(resource.user)
             td = camp_status_badge(resource)
-            td = link_to_policy(policy([:admin, resource]).show?, number_to_currency(resource.price), admin_camp_due_path(resource))
+            td = admin_link_to_camp(resource, number_to_currency(resource.price))
             td = camp_payment_method_badge(resource)
             td.text-end = admin_edit_icon(resource)
   = pagy_card_footer(pagy)

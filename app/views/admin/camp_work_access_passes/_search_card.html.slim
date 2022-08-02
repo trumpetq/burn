@@ -1,0 +1,10 @@
+.card.mb-3
+  = card_header("search", "Search")
+  .card-form
+    = simple_form_for(:search, url: admin_camp_deposits_path, method: :get) do |f|
+      .row
+        .col-md-4.mb-3
+           = f.input :ticket_id, hint: "900000000000", input_html: { value: params.dig(:search, :ticket_id) }, label: "Ticket ID", required: false
+      .row
+        .col.d-grid
+          = f.button :button, "Search"

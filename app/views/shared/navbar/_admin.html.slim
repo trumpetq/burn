@@ -26,6 +26,8 @@ li.nav-item.dropdown
       .dropdown-divider
     - if policy([:admin, :camp_ticket]).index?
       = link_to(bootstrap_icon("ticket-detailed", class_name: "me-2") + "Tickets", admin_camp_tickets_path, class: "dropdown-item")
+    - if policy([:admin, :camp_work_access_pass]).index?
+      = link_to(bootstrap_icon("pass", class_name: "me-2") + "WAPs", admin_camp_work_access_passes_path, class: "dropdown-item")
     - if policy([:admin, :camp_vehicle]).index?
       = link_to(bootstrap_icon("truck", class_name: "me-2") + "Vehicles", admin_camp_vehicles_path, class: "dropdown-item")
       .dropdown-divider

@@ -1,0 +1,30 @@
+= render "shared/error_messages", resource: resource
+= simple_form_for([:admin, resource]) do |f|
+  .row
+    .col-md-6.mb-3
+      = f.input :status, include_blank: false
+    .col-md-6.mb-3
+      = user_id_input(resource, f)
+  .row
+    .col-md-6.mb-3
+      = f.input :pass_on, as: :date, html5: true
+    .col-md-6.mb-3
+      = f.input :expected_arrival_on, as: :date, html5: true
+  .row
+    .col-md-6.mb-3
+      = f.input :ticket, label: "PDF"
+  .row
+    .col-md-6.mb-3
+      = f.input :ticket_id, label: "Ticket ID", as: :string
+  .row
+    .col-md-12.mb-3
+      = f.input :notes
+  .row
+    .col-md-12.mb-3
+      = f.input :private_notes
+  .row
+    .col-md-12.mb-3
+      = f.input :approval_required
+  .row
+    .col.d-grid
+      = f.button :submit, submit_button_text(resource)

@@ -55,7 +55,7 @@
           p.text-muted.mb-0 Ice delivered daily
       - if policy(:guide).mayor_of_the_day?
         li.list-group-item class=active_if(:mayor_of_the_day)
-          = link_to "Mayor of the day", mayor_of_the_day_guides_path, class: "h6 text-decoration-none"
+          = link_to "Mayor of the Day", mayor_of_the_day_guides_path, class: "h6 text-decoration-none"
           p.text-muted.mb-0 Run camp for a day
       - if policy(:guide).events?
         li.list-group-item class=active_if(:events)
@@ -101,6 +101,10 @@
         li.list-group-item class=active_if(:tickets)
           = link_to "Tickets", tickets_guides_path, class: "h6 text-decoration-none"
           p.text-muted.mb-0 To the event
+      - if policy(:guide).work_access_pass?
+        li.list-group-item class=active_if(:tickets)
+          = link_to "Work Access Pass", work_access_pass_guides_path, class: "h6 text-decoration-none"
+          p.text-muted.mb-0 Help us build
       - if policy(:guide).tools?
         li.list-group-item class=active_if(:tools)
           = link_to "Tools", tools_guides_path, class: "h6 text-decoration-none"

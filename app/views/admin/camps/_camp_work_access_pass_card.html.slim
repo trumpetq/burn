@@ -1,0 +1,18 @@
+
+.card.mb-3
+  = card_header("pass", link_to_policy(policy([:admin, :camp_work_access_pass]).index?, "WAPs", admin_camp_work_access_passes_path), pagy: @camp_work_access_passes_count)
+  .card-table
+    table.table
+      tbody
+        tr
+          th Active
+          td = number_with_delimiter(@active_camp_work_access_passes_count)
+        tr
+          th Assigned
+          td = number_with_delimiter(@assigned_camp_work_access_passes_count)
+        tr
+          th Approved
+          td = number_with_delimiter(@approved_camp_work_access_passes_count)
+        tr
+          th Rejected
+          td = number_with_delimiter(@rejected_camp_work_access_passes_count)

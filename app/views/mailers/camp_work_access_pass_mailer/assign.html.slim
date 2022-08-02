@@ -1,0 +1,7 @@
+p You have selected a #{link_to("WAP", camp_work_access_pass_url(@resource))}.
+p This means you want to join our build team. We will review your request, and approve or reject.
+p You can read more about WAPs in our #{link_to("guide", work_access_pass_guides_url)}.
+p Thank you for your interest in helping build camp.
+
+= render "mailers/shared/incomplete_profile", user: @user
+= render "mailers/shared/signature"

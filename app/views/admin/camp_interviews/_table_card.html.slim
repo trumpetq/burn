@@ -1,0 +1,20 @@
+.card.mb-3
+  = card_header("file-earmark-person", "Interviews", pagy: pagy, buttons: [header_admin_new_button(:camp_interview)])
+  .card-table
+    table.table
+      thead
+        tr
+          th ID
+          th User
+          th Status
+          th Interviewer
+          th
+      tbody
+        - resources.each do |resource|
+          tr class=table_row_class(resource)
+            td = admin_link_to_id(resource)
+            td = admin_link_to_user(resource.user)
+            td = camp_status_badge(resource)
+            td = admin_link_to_user(resource.interviewed_by)
+            td.text-end = admin_edit_icon(resource)
+  = pagy_card_footer(pagy)

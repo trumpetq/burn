@@ -1,0 +1,8 @@
+.card.mb-3
+  = card_header("toggle-on", "Settings")
+  .card-table
+    table.table
+      tbody
+        tr
+          th Approval required
+          td = yes_or_no_badge(resource.approval_required)

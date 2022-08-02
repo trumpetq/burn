@@ -46,8 +46,8 @@ class CampInterview < ApplicationRecord
   validates :feedback_notes, :initial_notes, :private_notes, length: {maximum: 10_000}
   validates :interviewed_by, presence: true, if: :assigned?
 
+  belongs_to :user
   belongs_to :interviewed_by, class_name: ::User.name, optional: true
 
   scope :for_interviewed_by, ->(interviewed_by) { where(interviewed_by: interviewed_by) }
-
 end

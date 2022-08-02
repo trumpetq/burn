@@ -1,0 +1,6 @@
+p Your #{link_to("WAP", camp_work_access_pass_url(@resource))} has been approved.
+p You can read more about WAPs in our #{link_to("guide", work_access_pass_guides_url)}.
+p Thank you for coming early and helping build camp. If you know anyone else interested in building, we are actively recruiting for our build team.
+
+= render "mailers/shared/incomplete_profile", user: @user
+= render "mailers/shared/signature"

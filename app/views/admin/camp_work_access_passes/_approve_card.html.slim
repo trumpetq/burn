@@ -1,0 +1,14 @@
+- if [:rejected, :approved].exclude?(resource.status.to_sym) && policy([:admin, resource]).approve?
+  .card.mb-3
+    = card_header("check-circle", "Approve")
+    .card-form
+      = simple_form_for([:admin, resource], namespace: "approve", url: approve_admin_camp_work_access_pass_path(resource)) do |f|
+        .row
+          .col.mb-3
+            = f.input :user_id, collection: ::User.with_plan(:camping_with_us).order_by_name, label: "User", label_method: :full_name, prompt: "Choose a user", required: true
+        .row
+          .col.mb-3
+            = f.input :send_email
+        .row
+          .col.d-grid
+            = f.button :submit, "Approve", class: "btn-success-override"

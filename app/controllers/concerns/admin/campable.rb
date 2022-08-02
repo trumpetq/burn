@@ -3,7 +3,7 @@ module Admin
     extend ActiveSupport::Concern
 
     included do
-      before_action :set_resource, only: [:show, :edit, :update, :destroy, :active, :approve, :complete, :force_delete, :no_response, :pay, :refund, :reject, :restore, :skip]
+      before_action :set_resource, only: [:show, :edit, :update, :destroy, :active, :approve, :assign, :complete, :force_delete, :no_response, :pay, :refund, :reject, :restore, :skip]
       before_action :set_redirect_url, only: [:destroy, :force_delete]
     end
 
@@ -103,6 +103,23 @@ module Admin
         approve_after_save if defined?(approve_after_save)
 
         redirect_to([:admin, @resource], notice: "#{admin_link_to_resource} has been approved.", status: :see_other)
+      else
+        redirect_on_error
+      end
+    end
+
+    # PATCH /admin/resources/:id/assign
+    def assign
+      @resource.assigned_at = Time.current
+      @resource.assigned_by = current_user
+      @resource.status = :assigned
+
+      @resource.update(permitted_attributes([:admin, @resource])) if params[controller_name.singularize].present?
+
+      if @resource.save
+        assign_after_save if defined?(assign_after_save)
+
+        redirect_to([:admin, @resource], success: "#{controller_name.singularize.humanize} has been assigned to #{@user}.", status: :see_other)
       else
         redirect_on_error
       end

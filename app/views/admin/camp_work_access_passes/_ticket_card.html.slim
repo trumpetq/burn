@@ -1,0 +1,17 @@
+- if resource.ticket.attached?
+  .card.mb-3
+    = card_header("image", "PDF") do
+      - if policy([:admin, resource]).remove_ticket?
+        = link_to(bootstrap_icon("trash-fill"), remove_ticket_admin_camp_work_access_pass_path(resource), class: "btn btn-xs btn-outline-danger", data: {turbo_method: :patch, turbo_confirm: "Are you sure?"})
+    .card-body
+      - if resource.ticket.representable?
+        = link_to(rails_blob_url(resource.ticket, disposition: "attachment")) do
+          = image_tag(resource.ticket.representation(resize_to_limit: [200, 200]))
+      p.card-text
+        = link_to("Download PDF", rails_blob_url(resource.ticket, disposition: "attachment"))
+- else
+  .card.mb-3
+    = card_header("image", "PDF")
+    .card-body
+      .alert.alert-secondary.mb-1 No file found.
+

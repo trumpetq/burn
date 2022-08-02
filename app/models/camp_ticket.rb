@@ -34,6 +34,8 @@ class CampTicket < ApplicationRecord
 
   enumerize :sale, in: {main: 0, fomo: 1, steward: 2, ticket_aid_program: 3, step: 4, kid_ticket: 5, omg: 6, invitation_to_the_future: 7, staff: 8, art_project: 9, other: 10}, default: :main, predicates: true, scope: true
 
+  belongs_to :user
+
   validates :confirmation_id, length: {maximum: 100}
   validates :notes, length: {maximum: 10_000}
 

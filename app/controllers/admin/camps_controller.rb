@@ -73,6 +73,12 @@ module Admin
       @completed_camp_vehicles_count = ::CampVehicle.with_status(:completed).count
       @rejected_camp_vehicles_count = ::CampVehicle.with_status(:rejected).count
 
+      @camp_work_access_passes_count = ::CampWorkAccessPass.all.count
+      @active_camp_work_access_passes_count = ::CampWorkAccessPass.with_status(:active).count
+      @assigned_camp_work_access_passes_count = ::CampWorkAccessPass.with_status(:assigned).count
+      @approved_camp_work_access_passes_count = ::CampWorkAccessPass.with_status(:approved).count
+      @rejected_camp_work_access_passes_count = ::CampWorkAccessPass.with_status(:rejected).count
+
       @newsletters_count = ::Newsletter.all.count
       @subscribed_newsletters_count = ::Newsletter.subscribed.count
       @unsubscribed_newsletters_count = ::Newsletter.unsubscribed.count

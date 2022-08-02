@@ -36,4 +36,6 @@ class CampDue < ApplicationRecord
   include Transactable
 
   enumerize :status, in: STATUSES.slice(:active, :completed, :paid, :refunded, :rejected, :skipped), default: :active, predicates: true, scope: true
+
+  belongs_to :user
 end

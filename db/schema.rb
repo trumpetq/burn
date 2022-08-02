@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_08_01_234420) do
+ActiveRecord::Schema[7.0].define(version: 2022_08_02_040854) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -157,7 +157,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_01_234420) do
   end
 
   create_table "camp_jobs", force: :cascade do |t|
-    t.bigint "user_id", null: false
+    t.bigint "user_id"
     t.integer "status", null: false
     t.integer "timeframe", null: false
     t.text "private_notes"

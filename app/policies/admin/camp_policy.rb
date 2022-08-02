@@ -32,6 +32,10 @@ module Admin
       mayor?
     end
 
+    def assign?
+      mayor?
+    end
+
     def approve?
       leader?
     end

@@ -1,4 +1,4 @@
-- if user.incomplete_profile? && policy(user).me?
+- if policy(user).me? && user&.incomplete_profile?
   .card.bg-warning.bg-opacity-50.mb-3
     = card_header("exclamation-triangle", link_to_policy(policy(user).devise?, "Incomplete profile", edit_user_registration_path))
     .card-body

@@ -23,12 +23,14 @@ class Newsletter < ApplicationRecord
   extend Enumerize
 
   include Discard::Model
+  include Validatable
 
   has_secure_token :unsubscribe_token, length: 36
 
   validates :email, presence: true
   validates :email, :unsubscribe_token, uniqueness: true
   validates :user_id, uniqueness: true, allow_blank: true
+  validate :user_exists
 
   enumerize :list, in: {unsubscribed: 0, general: 1, campers_only: 2}, default: :unsubscribed, predicates: true, scope: true
 

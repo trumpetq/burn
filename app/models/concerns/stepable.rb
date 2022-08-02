@@ -39,4 +39,8 @@ module Stepable
   def finished?
     try(:completed?) || try(:approved?) || try(:skipped?)
   end
+
+  def user_required?
+    true
+  end
 end

@@ -7,6 +7,9 @@
           th Job ID
           td = resource.job_id.presence || na_badge
         tr
+          th User
+          td = link_to_user(resource.user)
+        tr
           th Title
           td = resource.title.presence || na_badge
         tr

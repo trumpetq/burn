@@ -152,7 +152,11 @@ Rails.application.routes.draw do
   end
 
   resources :camp_job_descriptions, only: [:index, :show]
-  resources :camp_jobs
+  resources :camp_jobs, only: [:index, :show, :edit, :update] do
+    member do
+      patch :sign_up
+    end
+  end
 
   resources :camp_tickets
 

@@ -28,7 +28,7 @@
 #  completed_by_id         :bigint
 #  job_id                  :string
 #  rejected_by_id          :bigint
-#  user_id                 :bigint           not null
+#  user_id                 :bigint
 #
 # Indexes
 #
@@ -44,7 +44,7 @@ class CampJob < ApplicationRecord
 
   before_validation :set_job_id
 
-  validates :points, numericality: {in: 0..100}
+  validates :points, numericality: {in: 0..100}, presence: true
   validates :job_id, length: {is: 6}, uniqueness: true
 
   belongs_to :user, optional: true
@@ -66,6 +66,10 @@ class CampJob < ApplicationRecord
     "#{job_on_label}  - #{camp_job_description&.title} - #{job_id}".strip
   end
 
+  def can_sign_up?
+    user.blank? && active?
+  end
+
   def title
     camp_job_description&.title
   end
@@ -76,6 +80,10 @@ class CampJob < ApplicationRecord
 
   def finished?
     approved? || completed?
+  end
+
+  def user_required?
+    false
   end
 
   private

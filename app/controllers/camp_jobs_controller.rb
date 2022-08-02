@@ -1,10 +1,21 @@
 class CampJobsController < ApplicationController
   include Campable
 
+  # PATCH /camp_jobs/:id/sign_up
+  def sign_up
+    set_resource
+
+    status = @resource.active? ? :assigned : resource.status
+    @resource.update(user: current_user, assigned_by: current_user, status: status)
+
+    flash.now[:notice] = "Thank you for helping build camp."
+    render :show, status: :unprocessable_entity
+  end
+
   private
 
   def search_index
-    @query = @query.for_user(current_user).order_by_date
+    @query = @query.for_user(current_user).includes(:camp_job_description).order_by_date
   end
 
   def after_index

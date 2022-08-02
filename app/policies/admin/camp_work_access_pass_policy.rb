@@ -1,9 +1,5 @@
 module Admin
   class CampWorkAccessPassPolicy < Admin::CampPolicy
-    def assign?
-      mayor?
-    end
-
     def remove_ticket?
       mayor?
     end

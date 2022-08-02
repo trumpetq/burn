@@ -38,4 +38,8 @@ class CampDeposit < ApplicationRecord
   enumerize :status, in: STATUSES.slice(:active, :completed, :paid, :refunded, :rejected, :skipped), default: :active, predicates: true, scope: true
 
   belongs_to :user
+
+  def finished?
+    completed? || paid? || skipped?
+  end
 end

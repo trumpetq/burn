@@ -3,6 +3,15 @@
 .row
   .col-md-3
   .col-md-6
+    - if @resource.user.present?
+      = render "taken_card", resource: @resource
+    - else
+     - if policy(@resource).sign_up?
+        = render "sign_up_card", resource: @resource
+     - else
+        = render "prerequisits_card", resource: @resource
+
     = render "camp_job_card", resource: @resource
   .col-md-3
     = render "admin_card", resource: @resource
+    = render "users/incomplete_profile_card", user: current_user

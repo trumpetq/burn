@@ -10,8 +10,10 @@ module CardHelper
           tag.div(class: "card-header-button float-end") do
             if buttons.present?
               buttons.map do
-                concat(tag.div(class: "spacer d-inline-block ms-2"))
-                concat(_1)
+                if _1.present?
+                  concat(tag.div(class: "spacer d-inline-block ms-2"))
+                  concat(_1)
+                end
               end
             end
 

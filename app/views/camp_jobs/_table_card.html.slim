@@ -10,7 +10,6 @@
           th Date
           th Title
           th Points
-          th Job
           th User
       tbody
         - resources.each do |resource|
@@ -21,6 +20,5 @@
             td = event_date(resource.job_on)
             td = link_to_camp(resource, resource.title)
             td = link_to_camp(resource, number_with_precision(resource.points, precision: 2, strip_insignificant_zeros: true))
-            td = link_to_camp(resource.camp_job)
             td = link_to_user(resource.user)
   = pagy_card_footer(pagy)

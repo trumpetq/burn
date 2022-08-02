@@ -1,0 +1,13 @@
+.card.mb-3
+  = card_header("hammer", "Sign up")
+  .card-body.pb-0
+    p.card-text Sign up for #{resource.title}.
+  .card-form
+    = render "shared/error_messages", resource: resource
+    = simple_form_for(resource, url: sign_up_camp_job_path) do |f|
+      .row
+        .col-md-12.mb-3
+          = f.input :notes, hint: "anything else you think we should know"
+      .row
+        .col.d-grid
+          = f.button :submit, "Add job", class: "btn-primary-override"

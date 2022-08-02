@@ -28,6 +28,7 @@ class CampWorkAccessPass < ApplicationRecord
   extend Enumerize
 
   include Stepable
+  include Validatable
 
   enumerize :status, in: STATUSES.slice(:active, :approved, :assigned, :rejected), default: :active, predicates: true, scope: true
 
@@ -36,6 +37,7 @@ class CampWorkAccessPass < ApplicationRecord
 
   has_one_attached :ticket
 
+  validate :user_exists
   belongs_to :user, optional: true
 
   scope :order_by_date, -> { order(pass_on: :asc) }
@@ -47,5 +49,9 @@ class CampWorkAccessPass < ApplicationRecord
 
   def finished?
     approved? || assigned?
+  end
+
+  def user_required?
+    false
   end
 end

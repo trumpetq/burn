@@ -185,6 +185,10 @@ class User < ApplicationRecord
     can_pay_dues? && (camp_due&.finished? || camp_due&.paid?)
   end
 
+  def can_sign_up_job?
+    camp_application&.finished? && camp_interview&.finished? && camp_due&.finished?
+  end
+
   def has_interviews?
     camp_interviews.size.positive?
   end

@@ -1,7 +1,11 @@
 - page_title("Jobs")
 .row
   .col-md-12
-    .alert.alert-success Our job system is now <b>live</b>. Sign up for jobs today.
+    .card.mb-3
+      .card-body
+        .alert.alert-success Our job system is now <b>live</b>.
+        p.card-text We will continue to add jobs over the next few days as we finalize our work plan and work out any remaining bugs in this new system.
+
 .row
   .col-md-12
     - if @resources.empty?

@@ -3,7 +3,7 @@ module Admin
     include Admin::Campable
 
     def search_index
-      @query = @query.includes(camp_job_definition: :camp_job_description)
+      @query = @query.includes(:camp_job_description)
     end
   end
 end

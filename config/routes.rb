@@ -56,12 +56,6 @@ Rails.application.routes.draw do
       end
     end
 
-    resources :camp_job_definitions do
-      member do
-        patch :active
-      end
-    end
-
     resources :camp_job_descriptions do
       member do
         patch :active
@@ -147,7 +141,6 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :camp_job_definitions, only: [:index, :show]
   resources :camp_job_descriptions, only: [:index, :show]
   resources :camp_jobs
 

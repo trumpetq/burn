@@ -2,22 +2,33 @@
 #
 # Table name: camp_jobs
 #
-#  id                     :bigint           not null, primary key
-#  approved_at            :datetime
-#  assigned_at            :datetime
-#  completed_at           :datetime
-#  notes                  :text
-#  private_notes          :text
-#  rejected_at            :datetime
-#  status                 :integer          not null
-#  created_at             :datetime         not null
-#  updated_at             :datetime         not null
-#  approved_by_id         :bigint
-#  assigned_by_id         :bigint
-#  camp_job_definition_id :bigint           not null
-#  completed_by_id        :bigint
-#  rejected_by_id         :bigint
-#  user_id                :bigint           not null
+#  id                      :bigint           not null, primary key
+#  all_day                 :boolean
+#  approval_required       :boolean
+#  approved_at             :datetime
+#  assigned_at             :datetime
+#  bay_area                :boolean
+#  begin_at                :datetime
+#  completed_at            :datetime
+#  end_at                  :datetime
+#  financial               :boolean
+#  job_on                  :date
+#  notes                   :text
+#  points                  :decimal(5, 2)
+#  private_notes           :text
+#  rejected_at             :datetime
+#  status                  :integer          not null
+#  strong_person           :boolean
+#  timeframe               :integer          not null
+#  created_at              :datetime         not null
+#  updated_at              :datetime         not null
+#  approved_by_id          :bigint
+#  assigned_by_id          :bigint
+#  camp_job_description_id :bigint
+#  completed_by_id         :bigint
+#  job_id                  :string
+#  rejected_by_id          :bigint
+#  user_id                 :bigint           not null
 #
 # Indexes
 #
@@ -29,17 +40,33 @@ class CampJob < ApplicationRecord
   include Stepable
 
   enumerize :status, in: STATUSES.slice(:active, :approved, :assigned, :completed, :rejected), default: :active, predicates: true, scope: true
+  enumerize :timeframe, in: {pre_event: 10, build_week: 20, burn_week: 30, strike: 40, post_event: 50, year_round: 100}, default: :burn_week, predicates: true, scope: true
 
-  belongs_to :camp_job_definition
+  before_validation :set_job_id
 
-  scope :for_camp_job_definition, ->(camp_job_definition) { where(camp_job_definition: camp_job_definition) }
+  validates :points, numericality: {in: 0..100}
+  validates :job_id, length: {is: 6}, uniqueness: true
+
+  belongs_to :camp_job_description
+
+  scope :for_camp_job_description, ->(camp_job_description) { where(camp_job_description: camp_job_description) }
+  scope :for_job_id, ->(job_id) { where(job_id: job_id&.upcase) }
+  scope :order_by_title, -> { includes(:camp_job_description).order("camp_job_descriptions.title ASC") }
+  scope :order_by_date, -> { order(job_on: :asc) }
+  scope :reorder_by_date, -> { reorder(job_on: :asc) }
+  scope :in_bay_area, -> { where(bay_area: true) }
 
   def to_s
-    "Job #{camp_job_definition&.job_id.presence || id}"
+    "Job #{job_id.presence || id}"
+  end
+
+  def to_label
+    job_on_label = job_on.present? ? job_on.to_fs(:year_month_day) : "No day"
+    "#{job_on_label}  - #{camp_job_description&.title} - #{job_id}".strip
   end
 
   def title
-    camp_job_definition&.camp_job_description&.title
+    camp_job_description&.title
   end
 
   def multiple?
@@ -47,6 +74,17 @@ class CampJob < ApplicationRecord
   end
 
   def finished?
-    approved? || assigned? || completed?
+    approved? || completed?
+  end
+
+  private
+
+  def set_job_id
+    return if job_id.present?
+
+    loop do
+      self.job_id = SecureRandom.hex(3).upcase
+      break unless self.class.for_job_id(job_id).exists?
+    end
   end
 end

@@ -4,9 +4,9 @@
     = simple_form_for(:search, url: camp_jobs_path, method: :get) do |f|
       .row
         .col-md-4.mb-3
-          = f.input :timeframe, collection: ::CampJobDefinition.timeframe.values, selected: params.dig(:search, :timeframe), label_method: -> { _1.humanize }, include_blank: true, required: false
+          = f.input :timeframe, collection: ::CampJob.timeframe.values, selected: params.dig(:search, :timeframe), label_method: -> { _1.humanize }, include_blank: true, required: false
         .col-md-4.mb-3
-          = f.input :status, collection: ::CampJobDefinition.status.values.sort, selected: params.dig(:search, :status), label_method: -> { _1.humanize }, include_blank: true, required: false
+          = f.input :status, collection: ::CampJob.status.values.sort, selected: params.dig(:search, :status), label_method: -> { _1.humanize }, include_blank: true, required: false
       .row
         .col-md-4.mb-3
           = f.input :bay_area, as: :boolean, input_html: checked_html(:search, :bay_area)

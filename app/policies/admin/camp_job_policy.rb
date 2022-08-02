@@ -1,7 +1,7 @@
 module Admin
   class CampJobPolicy < Admin::CampPolicy
     def permitted_attributes
-      [:camp_job_definition_id, :notes, :private_notes, :status, :user_id]
+      [:all_day, :approval_required, :begin_at, :camp_job_description_id, :bay_area, :end_at, :financial, :job_on, :notes, :points, :private_notes, :status, :strong_person, :timeframe, :user_id]
     end
   end
 end

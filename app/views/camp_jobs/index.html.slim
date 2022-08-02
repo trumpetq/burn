@@ -1,7 +1,7 @@
 - page_title("Jobs")
 .row
   .col-md-12
-    .alert.alert-warning We are still uploading jobs. Check back August 1st to signup for stuff.
+    .alert.alert-success Our job system is now <b>live</b>. Sign up for jobs today.
 .row
   .col-md-9
     - if @resources.empty?
@@ -15,17 +15,17 @@
     = render "filter_card"
 .row
   .col-md-12
-    = render "available_table_card", resources: @pre_event_camp_job_definitions, timeframe: :pre_event
+    = render "available_table_card", resources: @pre_event_camp_jobs, timeframe: :pre_event
   .col-md-12
-    = render "available_table_card", resources: @build_week_camp_job_definitions, timeframe: :build_week
+    = render "available_table_card", resources: @build_week_camp_jobs, timeframe: :build_week
   .col-md-12
-    = render "available_table_card", resources: @burn_week_camp_job_definitions, timeframe: :burn_week
+    = render "available_table_card", resources: @burn_week_camp_jobs, timeframe: :burn_week
   .col-md-12
-      = render "available_table_card", resources: @strike_camp_job_definitions, timeframe: :strike
+      = render "available_table_card", resources: @strike_camp_jobs, timeframe: :strike
   .col-md-12
-    = render "available_table_card", resources: @post_event_camp_job_definitions, timeframe: :post_event
+    = render "available_table_card", resources: @post_event_camp_jobs, timeframe: :post_event
   .col-md-12
-    = render "available_table_card", resources: @year_round_camp_job_definitions, timeframe: :year_round
+    = render "available_table_card", resources: @year_round_camp_jobs, timeframe: :year_round
 
 
 

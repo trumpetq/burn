@@ -63,20 +63,11 @@ class CampJob < ApplicationRecord
 
   def to_label
     job_on_label = job_on.present? ? job_on.to_fs(:year_month_day) : "No day"
-    "#{job_on_label}  - #{camp_job_description&.title}".strip
+    "#{job_on_label}  - #{camp_job_description&.title} - #{job_id}".strip
   end
 
   def title
     camp_job_description&.title
-  end
-
-  def set_job_id
-    return if job_id.present?
-
-    loop do
-      self.job_id = SecureRandom.hex(3).upcase
-      break unless self.class.for_job_id(job_id).exists?
-    end
   end
 
   def multiple?
@@ -85,5 +76,16 @@ class CampJob < ApplicationRecord
 
   def finished?
     approved? || completed?
+  end
+
+  private
+
+  def set_job_id
+    return if job_id.present?
+
+    loop do
+      self.job_id = SecureRandom.hex(3).upcase
+      break unless self.class.for_job_id(job_id).exists?
+    end
   end
 end

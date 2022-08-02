@@ -23,7 +23,7 @@ class CampJobDescription < ApplicationRecord
   validates :description, length: {in: 5..10_00}, presence: true
 
   belongs_to :user
-  has_many :camp_job_definitions, dependent: :restrict_with_error
+  has_many :camp_jobs, dependent: :restrict_with_error
 
   def to_s
     title&.truncate(30)

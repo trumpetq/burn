@@ -54,9 +54,6 @@ module Admin
       @rejected_camp_jobs_count = ::CampJob.with_status(:rejected).count
       @skipped_camp_jobs_count = ::CampJob.with_status(:skipped).count
 
-      @camp_job_definitions_count = ::CampJobDefinition.all.count
-      @active_camp_job_definitions_count = ::CampJobDefinition.with_status(:active).count
-
       @camp_job_descriptions_count = ::CampJobDescription.all.count
       @active_camp_job_descriptions_count = ::CampJobDescription.with_status(:active).count
 

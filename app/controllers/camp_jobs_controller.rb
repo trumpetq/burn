@@ -4,19 +4,19 @@ class CampJobsController < ApplicationController
   private
 
   def search_index
-    @query = @query.for_user(current_user)
+    @query = @query.for_user(current_user).order_by_date
   end
 
   def after_index
-    @camp_job_definition_query = ::CampJobDefinition.includes(:camp_job_description, :user).order_by_date
-    @camp_job_definition_query = @camp_job_definition_query.with_status(params[:search][:status]) if params.dig(:search, :status).present?
-    @camp_job_definition_query = @camp_job_definition_query.in_bay_area if params.dig(:search, :bay_area) == "1"
+    @camp_job_query = ::CampJob.includes(:camp_job_description, :user).order_by_date
+    @camp_job_query = @camp_job_query.with_status(params[:search][:status]) if params.dig(:search, :status).present?
+    @camp_job_query = @camp_job_query.in_bay_area if params.dig(:search, :bay_area) == "1"
 
     timeframe = params.dig(:search, :timeframe).presence
     if timeframe
-      instance_variable_set("@#{timeframe}_camp_job_definitions".to_sym, @camp_job_definition_query.with_timeframe(timeframe))
+      instance_variable_set("@#{timeframe}_camp_jobs".to_sym, @camp_job_query.with_timeframe(timeframe))
     else
-      set_all_camp_job_definitions
+      set_all_camp_jobs
     end
   end
 
@@ -24,17 +24,17 @@ class CampJobsController < ApplicationController
     @resource.availability = params[:availability] if params[:availability].present?
   end
 
-  def set_all_camp_job_definitions
-    @pre_event_camp_job_definitions = @camp_job_definition_query.with_timeframe(:pre_event)
+  def set_all_camp_jobs
+    @pre_event_camp_jobs = @camp_job_query.with_timeframe(:pre_event)
 
-    @build_week_camp_job_definitions = @camp_job_definition_query.with_timeframe(:build_week)
+    @build_week_camp_jobs = @camp_job_query.with_timeframe(:build_week)
 
-    @burn_week_camp_job_definitions = @camp_job_definition_query.with_timeframe(:burn_week)
+    @burn_week_camp_jobs = @camp_job_query.with_timeframe(:burn_week)
 
-    @strike_camp_job_definitions = @camp_job_definition_query.with_timeframe(:strike)
+    @strike_camp_jobs = @camp_job_query.with_timeframe(:strike)
 
-    @post_event_camp_job_definitions = @camp_job_definition_query.with_timeframe(:post_event)
+    @post_event_camp_jobs = @camp_job_query.with_timeframe(:post_event)
 
-    @year_round_camp_job_definitions = @camp_job_definition_query.with_timeframe(:year_round)
+    @year_round_camp_jobs = @camp_job_query.with_timeframe(:year_round)
   end
 end

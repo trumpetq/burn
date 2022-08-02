@@ -3,16 +3,17 @@
   .col-md-12
     .alert.alert-success Our job system is now <b>live</b>. Sign up for jobs today.
 .row
-  .col-md-9
+  .col-md-12
     - if @resources.empty?
       = render "empty_card"
     - else
-      = render "table_card", resources: @resources, pagy: @pagy
-  .col-md-3
-    = render "information_card"
+      = render "assigned_table_card", resources: @resources, pagy: @pagy
+
 .row
   .col-md-9
     = render "filter_card"
+  .col-md-3
+    = render "information_card"
 .row
   .col-md-12
     = render "available_table_card", resources: @pre_event_camp_jobs, timeframe: :pre_event
@@ -21,7 +22,7 @@
   .col-md-12
     = render "available_table_card", resources: @burn_week_camp_jobs, timeframe: :burn_week
   .col-md-12
-      = render "available_table_card", resources: @strike_camp_jobs, timeframe: :strike
+    = render "available_table_card", resources: @strike_camp_jobs, timeframe: :strike
   .col-md-12
     = render "available_table_card", resources: @post_event_camp_jobs, timeframe: :post_event
   .col-md-12

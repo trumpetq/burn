@@ -1,12 +1,11 @@
 .card.mb-3
-  = card_header("hammer", "Jobs")
+  = card_header("hammer", "Assigned jobs")
   .card-table
     table.table
       thead
         tr
           th Job ID
           th Status
-          th User
           th Department
           th Date
           th Title
@@ -16,10 +15,10 @@
           tr
             td = link_to_camp(resource, resource.job_id)
             td = camp_status_badge(resource)
-            td = link_to_user(resource.user)
             td = camp_department_badge(resource.camp_job_description)
             td = event_date(resource.job_on)
             td = link_to_camp(resource, resource.title)
             td = number_with_precision(resource.points, precision: 2, strip_insignificant_zeros: true)
 
-  = pagy_card_footer(pagy)
+  .card-footer
+    .card-text You have #{pluralize(current_user.total_points, "point")} of the required #{Settings.camp.min_points}.

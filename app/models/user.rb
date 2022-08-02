@@ -193,6 +193,10 @@ class User < ApplicationRecord
     camp_interviews.size.positive?
   end
 
+  def total_points
+    camp_jobs&.sum(:points)
+  end
+
   private
 
   def set_role

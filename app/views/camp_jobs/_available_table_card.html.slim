@@ -8,6 +8,7 @@
             th Job ID
             th Status
             th User
+            th Department
             th Date
             th Title
             th Points
@@ -18,6 +19,7 @@
               td = link_to_camp(resource, resource.job_id)
               td = camp_status_badge(resource)
               td = link_to_user(resource.user)
+              td = camp_department_badge(resource.camp_job_description)
               td = event_date(resource.job_on)
               td = link_to_camp(resource, resource.title)
               td = number_with_precision(resource.points, precision: 2, strip_insignificant_zeros: true)

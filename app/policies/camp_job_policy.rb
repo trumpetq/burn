@@ -1,6 +1,6 @@
 class CampJobPolicy < CampPolicy
-  def destroy?
-    false
+  def show?
+    member?
   end
 
   def edit?
@@ -9,6 +9,10 @@ class CampJobPolicy < CampPolicy
 
   def update?
     member? && me? && user.can_sign_up_job?
+  end
+
+  def destroy?
+    false
   end
 
   def sign_up?

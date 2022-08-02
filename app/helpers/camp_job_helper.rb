@@ -34,4 +34,14 @@ module CampJobHelper
 
     tag.span(camp.department&.to_s&.humanize, class: css_class)
   end
+
+  def camp_points_badge(count)
+    return danger_count_badge(0) if count.blank? || count.zero?
+
+    if count >= Settings.camp.min_points
+      success_count_badge(count)
+    else
+      warning_count_badge(count)
+    end
+  end
 end

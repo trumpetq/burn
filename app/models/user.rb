@@ -194,7 +194,7 @@ class User < ApplicationRecord
   end
 
   def total_points
-    camp_jobs&.sum(:points)
+    @total_points ||= camp_jobs&.sum(:points).to_f
   end
 
   private

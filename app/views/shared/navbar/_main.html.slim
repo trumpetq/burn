@@ -10,7 +10,9 @@ ul.navbar-nav.me-auto
       = link_to("Events", events_guides_path, class: "nav-link")
   - if policy(:camp_job).index?
     li.nav-item
-      = link_to("Jobs", camp_jobs_path, class: "nav-link")
+      = link_to(camp_jobs_path, class: "nav-link") do
+        | Jobs
+        =< camp_points_badge(current_user.total_points)
   - if current_user&.has_interviews? && policy(:camp_interview).index?
     li.nav-item
       = link_to(camp_interviews_path, class: "nav-link") do

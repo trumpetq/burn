@@ -1,10 +1,10 @@
 .card.mb-3
-  = card_header("command", "Dashboard")
+  = card_header("kanban", "Dashboard")
   .card-body
     ul.list-unstyled.mb-0
       - if policy([:admin, :user]).deleted?
         li = link_to("Deleted users", deleted_admin_users_path)
       - if policy([:admin, :user]).interviewers?
         li = link_to("Interviewers", interviewers_admin_users_path)
-
-
+      - if policy([:admin, :user]).bay_area?
+        li = link_to("Bay area", bay_area_admin_users_path)

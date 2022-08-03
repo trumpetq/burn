@@ -28,6 +28,10 @@ module Admin
       mayor?
     end
 
+    def bay_area?
+      mayor?
+    end
+
     def deleted?
       mayor?
     end

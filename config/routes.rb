@@ -114,6 +114,7 @@ Rails.application.routes.draw do
 
     resources :users do
       collection do
+        get :bay_area
         get :deleted
         get :interviewers
       end

@@ -68,6 +68,12 @@ module Admin
       redirect_to(admin_users_url, notice: "User was successfully destroyed.", status: :see_other)
     end
 
+    # GET /admin/users/bay_area
+    def bay_area
+      authorize([:admin, :user])
+      @pagy, @users = pagy(::User.in_bay_area)
+    end
+
     # GET /admin/users/deleted
     def deleted
       authorize([:admin, :user])

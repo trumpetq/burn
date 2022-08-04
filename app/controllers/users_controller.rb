@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :set_user, only: [:edit, :update, :destroy]
 
   # GET /users
   def index
@@ -9,6 +9,8 @@ class UsersController < ApplicationController
 
   # GET /users/:id
   def show
+    @user = ::User.kept.includes(camp_jobs: :camp_job_description).find(params[:id])
+    authorize(@user)
   end
 
   # GET /users/:id/edit

@@ -22,6 +22,8 @@ li.nav-item.dropdown
       = link_to(bootstrap_icon("hammer", class_name: "me-2") + "Jobs", camp_jobs_path, class: "dropdown-item")
     - if policy(:camp_ticket).index?
       = link_to(bootstrap_icon("ticket-detailed", class_name: "me-2") + "Tickets", camp_tickets_path, class: "dropdown-item")
+    - if policy(:camp_work_access_pass).index?
+      = link_to(bootstrap_icon("pass", class_name: "me-2") + "WAPs", camp_work_access_passes_path, class: "dropdown-item")
       .dropdown-divider
     - if policy(current_user).devise?
       = link_to(bootstrap_icon("box-arrow-right", class_name: "me-2") + "Sign out", destroy_user_session_path, data: {turbo_method: :delete}, class: "dropdown-item")

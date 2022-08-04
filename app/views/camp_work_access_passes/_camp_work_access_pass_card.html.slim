@@ -1,0 +1,30 @@
+.card.mb-3
+  = card_header("pass", link_to_camp(resource, "WAP"), buttons: [header_edit_button(resource)])
+  .card-table
+    table.table
+      tbody
+        tr
+          th ID
+          td = admin_link_to_id(resource)
+        tr
+          th User
+          td = link_to_user(resource.user)
+        tr
+          th Status
+          td = camp_status_badge(resource)
+        tr
+          th Date
+          td = event_date(resource.pass_on)
+        tr
+          th Expected arrival
+          td = event_date(resource.expected_arrival_on)
+        tr
+          th Ticket ID
+          td = resource.ticket_id.presence || na_badge
+        tr
+          th Notes
+          td = resource.notes.presence || na_badge
+  .card-footer
+    .btn-collection
+      - if policy(:camp_work_access_pass).index?
+        = link_to("Back to WAPs", camp_work_access_passes_path, class: "btn btn-secondary")

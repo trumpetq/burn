@@ -47,6 +47,10 @@ class CampWorkAccessPass < ApplicationRecord
     "WAP #{id}"
   end
 
+  def can_sign_up?
+    user.blank? && active?
+  end
+
   def finished?
     approved? || assigned?
   end

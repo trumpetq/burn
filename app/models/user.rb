@@ -84,6 +84,7 @@ class User < ApplicationRecord
   has_many :camp_interviews, foreign_key: :interviewed_by_id, class_name: ::CampInterview.name
   has_many :camp_jobs
   has_many :camp_tickets
+  has_one :camp_work_access_pass
   has_one :newsletter
 
   scope :for_id, ->(id) { where(id: id) }
@@ -187,6 +188,14 @@ class User < ApplicationRecord
 
   def can_sign_up_job?
     camp_application&.finished? && camp_interview&.finished? && camp_due&.finished?
+  end
+
+  def can_sign_up_wap?
+    can_sign_up_job?
+  end
+
+  def jobs_complete?
+    camp_jobs.size > Settings.camp.min_points
   end
 
   def has_interviews?

@@ -12,7 +12,7 @@ ul.navbar-nav.me-auto
     li.nav-item
       = link_to(camp_jobs_path, class: "nav-link") do
         | Jobs
-        =< camp_points_badge(current_user.total_points)
+        =< camp_points_badge(current_user)
   - if current_user&.has_interviews? && policy(:camp_interview).index?
     li.nav-item
       = link_to(camp_interviews_path, class: "nav-link") do

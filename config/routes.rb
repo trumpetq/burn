@@ -163,7 +163,11 @@ Rails.application.routes.draw do
 
   resources :camp_vehicles
 
-  resources :camp_work_access_passes
+  resources :camp_work_access_passes, only: [:index, :show, :edit, :update] do
+    member do
+      patch :sign_up
+    end
+  end
 
   resources :guides, only: [:index] do
     collection do

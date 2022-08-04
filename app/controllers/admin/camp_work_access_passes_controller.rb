@@ -19,7 +19,7 @@ module Admin
     private
 
     def active_after_save
-      @resource.update(user: nil)
+      @resource.update!(user: nil)
     end
 
     def approve_after_save

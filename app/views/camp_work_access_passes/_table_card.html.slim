@@ -1,0 +1,24 @@
+.card.mb-3
+  = card_header("pass", "WAPS", pagy: pagy)
+  .card-table
+    table.table
+      thead
+        tr
+          th ID
+          th Status
+          th User
+          th Date
+          th Notes
+          th
+      tbody
+        - resources.each do |resource|
+          tr
+            td = link_to_id(resource)
+            td = camp_status_badge(resource)
+            td = link_to_user(resource.user)
+            td = event_date(resource.pass_on)
+            td = resource.notes&.truncate(30)
+            td.text-end
+              - if policy(resource).sign_up?
+                = link_to(bootstrap_icon("person-plus"), camp_work_access_pass_path(resource))
+  = pagy_card_footer(pagy)

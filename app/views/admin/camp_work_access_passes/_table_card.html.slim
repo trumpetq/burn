@@ -5,9 +5,9 @@
       thead
         tr
           th ID
-          th Ticket ID
-          th User
           th Status
+          th User
+          th Ticket ID
           th Date
           th Arrival
           th
@@ -15,9 +15,9 @@
         - resources.each do |resource|
           tr
             td = admin_link_to_id(resource)
-            td = admin_link_to_camp(resource, resource.ticket_id)
-            td = admin_link_to_user(resource.user)
             td = camp_status_badge(resource)
+            td = admin_link_to_user(resource.user)
+            td = admin_link_to_camp(resource, resource.ticket_id)
             td = event_date(resource.pass_on)
             td = event_date(resource.expected_arrival_on)
             td.text-end = admin_edit_icon(resource)

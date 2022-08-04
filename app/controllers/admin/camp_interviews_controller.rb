@@ -18,13 +18,13 @@ module Admin
       @resource.interviewed_by = @interviewed_by
       @resource.status = :assigned
 
-      @resource.update(permitted_attributes([:admin, @resource])) if params[controller_name.singularize].present?
+      @resource.update(permitted_attributes([:admin, @resource])) if params[:camp_interview].present?
 
       if @resource.save
         CampInterviewMailer.with(resource: @resource).assign.deliver_now if send_email?
         CampInterviewMailer.with(resource: @resource).new_interview.deliver_now if send_email?
 
-        redirect_to([:admin, @resource], success: "#{controller_name.singularize.humanize} has been assigned to #{@interviewed_by}.", status: :see_other)
+        redirect_to([:admin, @resource], success: "Interview has been assigned to #{@interviewed_by}.", status: :see_other)
       else
         redirect_on_error
       end

@@ -5,7 +5,7 @@ module Stepable
   included do
     attribute :send_email, :boolean, default: true
 
-    validates :user_id, uniqueness: true, unless: :multiple?
+    validates :user_id, uniqueness: true, allow_blank: true, unless: :multiple?
 
     belongs_to :approved_by, class_name: ::User.name, optional: true
     belongs_to :assigned_by, class_name: ::User.name, optional: true

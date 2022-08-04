@@ -1,0 +1,10 @@
+- if user.camp_work_access_pass.present?
+  li.list-group-item.bg-success.bg-opacity-10
+    h6 = link_to_camp(user.camp_work_access_pass, "WAP", class: "text-decoration-none")
+    p.text-muted
+      | Arrive early and build
+      =< camp_status_badge(user.camp_work_access_pass)
+- else
+  li.list-group-item.bg-light
+    h6 = link_to_policy(policy(:camp_work_access_pass).index?, "WAP", camp_work_access_pass_path, class: "text-decoration-none")
+

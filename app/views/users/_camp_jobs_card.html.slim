@@ -1,5 +1,27 @@
 - if policy(user).me?
-  - if camp_jobs.empty?
-    = render "camp_jobs/empty_card"
-  - else
-    = render "camp_jobs/table_card", resources: camp_jobs, pagy: false
+  .card.mb-3
+    = card_header("hammer", "Jobs ".html_safe + camp_points_badge(user))
+    .card-table
+      table.table
+        thead
+          tr
+            th Job ID
+            th Status
+            th Department
+            th Date
+            th Title
+            th Points
+        tbody
+          - camp_jobs.each do |resource|
+            tr
+              td = link_to_camp(resource, resource.job_id)
+              td = camp_status_badge(resource)
+              td = camp_department_badge(resource.camp_job_description)
+              td = event_date(resource.job_on)
+              td = link_to_camp(resource, resource.title)
+              td = number_with_precision(resource.points, precision: 2, strip_insignificant_zeros: true)
+
+    .card-footer
+      .btn-collection
+        - if policy(:camp_ticket).index?
+          = link_to("Show jobs", camp_jobs_path, class: "btn btn-secondary")

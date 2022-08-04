@@ -6,7 +6,4 @@
   .col-md-6
     = render "outside_services_card"
   .col-md-3
-    .card.mb-3
-      = card_header("fire", "Buring Man")
-      .card-body
-        p.card-text Read more about #{link_to("Outside Services (OSS)", "https://burningman.org/event/participate/camps/deliveries/outside-services-program/")}.
+    = render "shared/burning_man/outside_services_card"

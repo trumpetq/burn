@@ -1,7 +1,6 @@
 
 li.list-group-item.bg-light
   h6.text-muted = link_to_policy(policy(:camp_ticket).index?, "Tickets", camp_tickets_path)
-
   - if user.camp_tickets.size.zero?
     p.text-muted
       | Let us know when you have them

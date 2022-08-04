@@ -10,7 +10,4 @@
         p.card-text WAPs will be distributed in early August. You must have paid dues before you can request a WAP.
         p.card-text Priority is given to those that can come earlier and those that have worked hard for camp in the past.
   .col-md-3
-    .card.mb-3
-      = card_header("fire", "Burning Man")
-      .card-body
-        p.card-text Read more about about #{link_to("Work Access Pass", "https://help.burningman.org/hc/en-us/articles/4415067257236-Work-Access-Passes", target: "_blank")}.
+    = render "shared/burning_man/work_access_pass_card"

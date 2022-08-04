@@ -1,0 +1,12 @@
+- if policy(resource.user).me?
+  .card.mb-3
+    = card_header("person-check", "Your WAP")
+    .card-body
+      .alert.alert-success.mb-1 This WAP is assigned to you.
+- else
+  - if resource.user.present?
+    .card.mb-3
+      = card_header("person-check", "Taken")
+      .card-body
+        p.card-text = camp_status_badge(resource)
+        p.card-text This WAP is currently assigned to #{link_to_user(resource.user)}.

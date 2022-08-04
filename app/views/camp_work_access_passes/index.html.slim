@@ -1,0 +1,10 @@
+- page_title("WAPS")
+.row
+  .col-md-12
+    .card.mb-3
+      .card-body
+        p.card-text If you would like to come early and help build camp register for one of the WAPs bellow.
+        p.card-text You will be able to download a PDF and print your WAP at home once they are officialy issued.
+.row
+  .col-md-12
+      = render "table_card", resources: @resources, pagy: @pagy

@@ -19,12 +19,9 @@ class CampWorkAccessPassesController < ApplicationController
     @resource.assigned_by = current_user
 
     if @resource.save
-      d 'save'
       flash.now[:notice] = "Thank you for helping build camp."
       render :show
     else
-      d 'not save'
-
       render :show, status: :unprocessable_entity
     end
   end

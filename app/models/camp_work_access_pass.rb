@@ -33,7 +33,7 @@ class CampWorkAccessPass < ApplicationRecord
   enumerize :status, in: STATUSES.slice(:active, :approved, :assigned, :rejected), default: :active, predicates: true, scope: true
 
   validates :pass_on, presence: true
-  validates :expected_arrival_on, date: {after_or_equal_to: :pass_on}
+  validates :expected_arrival_on, date: {after_or_equal_to: :pass_on}, allow_blank: true
 
   has_one_attached :ticket
 

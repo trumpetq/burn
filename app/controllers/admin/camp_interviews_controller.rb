@@ -18,7 +18,7 @@ module Admin
       @resource.interviewed_by = @interviewed_by
       @resource.status = :assigned
 
-      @resource.update(permitted_attributes([:admin, @resource])) if params[:camp_interview].present?
+      @resource.assign_attributes(permitted_attributes([:admin, @resource])) if params[:camp_interview].present?
 
       if @resource.save
         CampInterviewMailer.with(resource: @resource).assign.deliver_now if send_email?

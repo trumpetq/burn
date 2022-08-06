@@ -18,11 +18,18 @@ class CampWorkAccessPassesController < ApplicationController
     @resource.user = current_user
     @resource.assigned_by = current_user
 
+    @resource.assign_attributes(permitted_attributes(@resource))
+
     if @resource.save
-      flash.now[:notice] = "Thank you for helping build camp."
-      render :show
+      redirect_to(camp_work_access_pass_url(@resource))
     else
-      render :show, status: :unprocessable_entity
+      render(
+        turbo_stream: turbo_stream.replace(
+          "camp_work_access_pass_sign_up_card",
+          partial: "camp_work_access_passes/sign_up_card",
+          locals: {resource: @resource}
+        )
+      )
     end
   end
 end

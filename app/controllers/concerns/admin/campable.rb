@@ -76,7 +76,7 @@ module Admin
     def active
       @resource.status = :active
 
-      @resource.update(permitted_attributes([:admin, @resource])) if params[controller_name.singularize].present?
+      @resource.assign_attributes(permitted_attributes([:admin, @resource])) if params[controller_name.singularize].present?
 
       active_before_save if defined?(active_before_save)
 
@@ -95,7 +95,7 @@ module Admin
       @resource.approved_by = current_user
       @resource.status = :approved
 
-      @resource.update(permitted_attributes([:admin, @resource])) if params[controller_name.singularize].present?
+      @resource.assign_attributes(permitted_attributes([:admin, @resource])) if params[controller_name.singularize].present?
 
       approve_before_save if defined?(approve_before_save)
 
@@ -114,7 +114,7 @@ module Admin
       @resource.assigned_by = current_user
       @resource.status = :assigned
 
-      @resource.update(permitted_attributes([:admin, @resource])) if params[controller_name.singularize].present?
+      @resource.assign_attributes(permitted_attributes([:admin, @resource])) if params[controller_name.singularize].present?
 
       if @resource.save
         assign_after_save if defined?(assign_after_save)
@@ -131,7 +131,7 @@ module Admin
       @resource.completed_by = current_user
       @resource.status = :completed
 
-      @resource.update(permitted_attributes([:admin, @resource])) if params[controller_name.singularize].present?
+      @resource.assign_attributes(permitted_attributes([:admin, @resource])) if params[controller_name.singularize].present?
 
       complete_before_save if defined?(complete_before_save)
 
@@ -157,7 +157,7 @@ module Admin
       @resource.no_response_by = current_user
       @resource.status = :no_response
 
-      @resource.update(permitted_attributes([:admin, @resource])) if params[controller_name.singularize].present?
+      @resource.assign_attributes(permitted_attributes([:admin, @resource])) if params[controller_name.singularize].present?
 
       no_response_before_save if defined?(no_response_before_save)
 
@@ -176,7 +176,7 @@ module Admin
       @resource.paid_by = current_user
       @resource.status = :paid
 
-      @resource.update(permitted_attributes([:admin, @resource])) if params[controller_name.singularize].present?
+      @resource.assign_attributes(permitted_attributes([:admin, @resource])) if params[controller_name.singularize].present?
 
       pay_before_save if defined?(pay_before_save)
 
@@ -195,7 +195,7 @@ module Admin
       @resource.refunded_by = current_user
       @resource.status = :refunded
 
-      @resource.update(permitted_attributes([:admin, @resource])) if params[controller_name.singularize].present?
+      @resource.assign_attributes(permitted_attributes([:admin, @resource])) if params[controller_name.singularize].present?
 
       refund_before_save if defined?(refund_before_save)
 
@@ -214,7 +214,7 @@ module Admin
       @resource.rejected_by = current_user
       @resource.status = :rejected
 
-      @resource.update(permitted_attributes([:admin, @resource])) if params[controller_name.singularize].present?
+      @resource.assign_attributes(permitted_attributes([:admin, @resource])) if params[controller_name.singularize].present?
 
       reject_before_save if defined?(reject_before_save)
 
@@ -240,7 +240,7 @@ module Admin
       @resource.skipped_by = current_user
       @resource.status = :skipped
 
-      @resource.update(permitted_attributes([:admin, @resource])) if params[controller_name.singularize].present?
+      @resource.assign_attributes(permitted_attributes([:admin, @resource])) if params[controller_name.singularize].present?
 
       skip_before_save if defined?(skip_before_save)
 

@@ -33,8 +33,7 @@ class CampWorkAccessPass < ApplicationRecord
   enumerize :status, in: STATUSES.slice(:active, :approved, :assigned, :rejected), default: :active, predicates: true, scope: true
 
   validates :pass_on, presence: true
-  validates :expected_arrival_on, date: {after_or_equal_to: :pass_on}, allow_blank: true
-
+  validates :expected_arrival_on, date: {after_or_equal_to: :pass_on}, if: :assigned?
   has_one_attached :ticket
 
   validate :user_exists
@@ -48,7 +47,7 @@ class CampWorkAccessPass < ApplicationRecord
   end
 
   def can_sign_up?
-    user.blank? && active?
+    active? && user.blank?
   end
 
   def finished?

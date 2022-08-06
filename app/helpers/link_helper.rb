@@ -29,6 +29,8 @@ module LinkHelper
       name = resource.to_s
     end
 
+    name = resource.to_s if name.nil?
+
     link_to_policy(policy(resource).show?, name, polymorphic_path(resource), html_options)
   end
 
@@ -40,7 +42,7 @@ module LinkHelper
       name = resource.to_s
     end
 
-    name = resource.to_s if name.blank?
+    name = resource.to_s if name.nil?
 
     link_to_policy(policy([:admin, resource]).show?, name, polymorphic_path([:admin, resource]), html_options)
   end

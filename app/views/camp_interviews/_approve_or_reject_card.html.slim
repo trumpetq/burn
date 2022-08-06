@@ -1,4 +1,4 @@
-= turbo_frame_tag "approve_or_reject_card_#{index}", target: "_top"
+= turbo_frame_tag("approve_or_reject_card_#{index}", target: "_top") do
   .card.mb-3
     = card_header("file-earmark-person", link_to_camp(camp_interview), buttons: [camp_status_badge(camp_interview)])
 

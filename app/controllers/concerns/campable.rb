@@ -93,7 +93,7 @@ module Campable
     @resource.paid_by = current_user
     @resource.status = :paid
 
-    @resource.update(permitted_attributes([:admin, @resource])) if params[controller_name.singularize].present?
+    @resource.assign_attributes(permitted_attributes([:admin, @resource])) if params[controller_name.singularize].present?
 
     if @resource.save
       redirect_to(@redirect_url || user_url(current_user), notice: "#{link_to_resource} has been marked as paid.", status: :see_other)

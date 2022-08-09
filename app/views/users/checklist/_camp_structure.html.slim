@@ -11,14 +11,14 @@
     li.list-group-item.bg-light
       h6 = link_to_camp(user.camp_structure, class: "text-decoration-none")
       p.text-muted
-        | What are you living in
+        | What are you bringing
         =< camp_status_badge(user.camp_structure)
       - if policy(user.camp_structure).edit?
         p = link_to("Edit", edit_camp_structure_path(user.camp_structure), class: "btn btn-primary")
 - else
   li.list-group-item.bg-light
-    h6.text-muted Housing
+    h6.text-muted Structure
     p.text-muted
-      | What are you living in
+      | What are you bringing
     - if policy(:camp_structure).new?
       p = link_to("Start", new_camp_structure_path, class: "btn btn-success")

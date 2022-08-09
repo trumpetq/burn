@@ -36,6 +36,28 @@ module Admin
       end
     end
 
+    # PATCH /admin/camp_interviews/:id/reassign
+    def reassign
+      set_resource
+
+      @interviewed_by = ::User.for_id(params.dig(:camp_interview, :interviewed_by_id)).take
+      @resource.assigned_at = Time.current
+      @resource.assigned_by = current_user
+      @resource.interviewed_by = @interviewed_by
+      @resource.status = :assigned
+
+      @resource.assign_attributes(permitted_attributes([:admin, @resource])) if params[:camp_interview].present?
+
+      if @resource.save
+        CampInterviewMailer.with(resource: @resource).reassign.deliver_now if send_email?
+        CampInterviewMailer.with(resource: @resource).new_interview.deliver_now if send_email?
+
+        redirect_to([:admin, @resource], success: "Interview has been reassigned to #{@interviewed_by}.", status: :see_other)
+      else
+        redirect_on_error
+      end
+    end
+
     private
 
     def approve_after_save

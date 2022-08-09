@@ -1,0 +1,10 @@
+p We had to reassign your interview to a different person. This happens from time to time when one of our interviewers is to busy to handle all the interview requests we get. Don't worry though the new person will be able to help you out and we hope you still want to camp with us.
+
+p Your interview has now been assigned to #{link_to(@resource.interviewed_by, user_url(@resource.interviewed_by))}.
+
+p Interviewing is an important step in joining our camp. The purpose of this process is to help you get to know our camp better. Please reach out to #{link_to(@resource.interviewed_by, user_url(@resource.interviewed_by))} to schedule a time to meet in person or virtually.
+
+p Interviews typically take 30-45 minutes. You can read more about the process in our #{link_to("guide", interview_guides_url)}.
+
+= render "mailers/shared/incomplete_profile", user: @resource.user
+= render "mailers/shared/signature"

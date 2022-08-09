@@ -29,6 +29,11 @@ class CampInterviewMailer < ApplicationMailer
     mail(to: @resource.user.email, subject: "We haven't heard back about your interview for 8-bit Bunny")
   end
 
+  def reassign
+    @resource = params[:resource]
+    mail(to: @resource.user.email, subject: "Your interview with 8-bit Bunny has been reassigned")
+  end
+
   def reject
     @resource = params[:resource]
     mail(to: @resource.user.email, subject: "Your 8-bit Bunny interview has been rejected")

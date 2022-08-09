@@ -7,7 +7,6 @@
           = f.input :status, collection: ::CampInterview.status.values.sort, selected: params.dig(:search, :status), label_method: -> { _1.humanize }, include_blank: true, required: false
         .col-md-4.mb-3
           = f.input :interviewed_by_id, collection: ::User.with_role(:leader, :mayor).order_by_name, selected: params.dig(:search, :interviewed_by_id), label_method: :full_name, include_blank: true, required: false
-
       .row
         .col.d-grid
           = f.button :button, "Search"

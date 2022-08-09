@@ -51,6 +51,7 @@ Rails.application.routes.draw do
         delete :force_delete
         patch :no_response
         patch :skip
+        patch :reassign
         patch :restore
         patch :reject
       end

@@ -1,0 +1,17 @@
+- if [:assigned].include?(resource.status.to_sym) && policy([:admin, resource]).reassign?
+  .card.mb-3
+    = card_header("save", "Reassign")
+    .card-body
+      = simple_form_for([:admin, resource], namespace: "reassign", url: reassign_admin_camp_interview_path(resource)) do |f|
+        .row
+          .col.mb-3
+            = f.input :interviewed_by_id, collection: ::User.with_role(:leader, :mayor).order_by_name, label: "Interviewer", label_method: :full_name, prompt: "Choose a user", required: true
+        .row
+          .col.mb-3
+            = f.input :initial_notes
+        .row
+          .col.mb-3
+            = f.input :send_email
+        .row
+          .col.d-grid
+            = f.button :submit, "Reassign", class: "btn-warning-override"

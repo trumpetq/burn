@@ -1,0 +1,10 @@
+- page_title("Edit #{@resource}")
+
+.row
+  .col-md-3
+  .col-md-6
+    .card.mb-3
+      = card_header("house", "Structure", buttons: [header_back_button(@resource)])
+      .card-form
+        = render "form", resource: @resource
+  .col-md-3

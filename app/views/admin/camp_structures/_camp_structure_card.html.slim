@@ -1,0 +1,36 @@
+.card.mb-3
+  = card_header("house", admin_link_to_camp(resource, "Structure"), buttons: [header_show_button(resource), header_admin_edit_button(resource)])
+  .card-table
+    table.table
+      tbody
+        tr
+          th ID
+          td = admin_link_to_id(resource)
+        tr
+          th User
+          td = admin_link_to_user(resource.user)
+        tr
+          th Status
+          td = camp_status_badge(resource)
+        tr
+          th Structure
+          td = camp_structure_badge(resource)
+        tr
+          th Description
+          td = resource.description.presence || na_badge
+        tr
+          th Length
+          td = in_feet(resource.length)
+        tr
+          th Width
+          td = in_feet(resource.width)
+        tr
+          th Map
+          td = yes_or_no_badge(resource.map)
+        tr
+          th Notes
+          td = resource.notes.presence || na_badge
+        tr
+          th Private notes
+          td = resource.private_notes.presence || na_badge
+        = render "admin/shared/status_times", resource: resource

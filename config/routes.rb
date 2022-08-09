@@ -73,6 +73,16 @@ Rails.application.routes.draw do
       end
     end
 
+    resources :camp_structures do
+      member do
+        patch :active
+        patch :approve
+        patch :assign
+        patch :complete
+        patch :reject
+      end
+    end
+
     resources :camp_tickets
 
     resources :camp_vehicles do
@@ -158,6 +168,8 @@ Rails.application.routes.draw do
       patch :sign_up
     end
   end
+
+  resources :camp_structures
 
   resources :camp_tickets
 

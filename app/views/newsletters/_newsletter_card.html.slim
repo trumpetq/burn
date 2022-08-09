@@ -14,5 +14,5 @@
           td = admin_time(@newsletter.created_at)
   .card-footer
     .btn-collection
-      - if policy(@newsletter.user).show?
-        = link_to("Back to profile", user_path(@newsletter.user), class: "btn btn-secondary")
+      - if policy(current_user).me?
+        = link_to("Back to profile", user_path(current_user), class: "btn btn-secondary")

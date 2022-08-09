@@ -1,0 +1,40 @@
+.card.mb-3
+  = card_header("house", link_to_camp(resource, "House"), buttons: [header_edit_button(resource)])
+  .card-table
+    table.table
+      tbody
+        tr
+          th User
+          td = link_to_user(resource.user)
+        tr
+          th Status
+          td = camp_status_badge(resource)
+        tr
+          th Description
+          td = resource.description.presence || na_badge
+        tr
+          th Structure
+          td = camp_structure_badge(resource)
+        tr
+          th Length
+          td = in_feet(resource.length)
+        tr
+          th Width
+          td = in_feet(resource.width)
+        tr
+          th Map
+          td = yes_or_no_badge(resource.map)
+        - if policy(resource).me?
+          tr
+            th Notes
+            td = resource.notes.presence || na_badge
+        tr
+          th Created
+          td = admin_time(resource.created_at)
+        tr
+          th Updated
+          td = admin_time(resource.updated_at)
+  .card-footer
+    .btn-collection
+      - if policy(current_user).me?
+        = link_to("Back to profile", user_path(current_user), class: "btn btn-secondary")

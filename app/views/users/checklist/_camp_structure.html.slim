@@ -1,0 +1,24 @@
+- if user.camp_structure.present?
+  - if user.camp_structure.finished?
+    li.list-group-item.bg-success.bg-opacity-10
+      h6 = link_to_camp(user.camp_structure, class: "text-decoration-none")
+      p.text-muted
+        | You are on the map
+        =< camp_status_badge(user.camp_structure)
+      - if policy(user.camp_structure).edit?
+        p = link_to("Edit", edit_camp_structure_path(user.camp_structure), class: "btn btn-primary")
+  - else
+    li.list-group-item.bg-light
+      h6 = link_to_camp(user.camp_structure, class: "text-decoration-none")
+      p.text-muted
+        | What are you living in
+        =< camp_status_badge(user.camp_structure)
+      - if policy(user.camp_structure).edit?
+        p = link_to("Edit", edit_camp_structure_path(user.camp_structure), class: "btn btn-primary")
+- else
+  li.list-group-item.bg-light
+    h6.text-muted Housing
+    p.text-muted
+      | What are you living in
+    - if policy(:camp_structure).new?
+      p = link_to("Start", new_camp_structure_path, class: "btn btn-success")

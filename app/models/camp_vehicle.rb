@@ -5,7 +5,9 @@
 #  id              :bigint           not null, primary key
 #  approved_at     :datetime
 #  completed_at    :datetime
+#  length          :decimal(5, 2)
 #  licence_plate   :string
+#  map             :boolean
 #  notes           :text
 #  private_notes   :text
 #  rejected_at     :datetime
@@ -13,6 +15,7 @@
 #  status          :integer          not null
 #  trailer         :integer
 #  vehicle         :integer
+#  width           :decimal(5, 2)
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
 #  approved_by_id  :bigint
@@ -36,5 +39,10 @@ class CampVehicle < ApplicationRecord
 
   belongs_to :user
 
+  validates :length, numericality: {in: 0..100}, presence: true
+  validates :width, numericality: {in: 0..100}, presence: true
   validates :licence_plate, length: {maximum: 20}, allow_blank: true
+  validates :vehicle, :trailer, presence: true
+
+  scope :on_map, -> { where(map: true) }
 end

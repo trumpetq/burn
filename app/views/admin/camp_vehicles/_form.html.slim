@@ -7,14 +7,22 @@
       = user_id_input(resource, f)
   .row
     .col-md-6.mb-3
-      = f.input :vehicle
+      = f.input :vehicle, prompt: "Choose a vehicle"
     .col-md-6.mb-3
-      = f.input :trailer
+      = f.input :trailer, prompt: "Choose a trailer"
   .row
     .col-md-6.mb-3
       = f.input :licence_plate, hint: "if you know it"
     .col-md-6.mb-3
-      = f.input :sleeping, as: :select,  hint: "are you sleeping in your vehicle or trailer"
+      = f.input :sleeping, as: :select, prompt: "Select option", hint: "are you sleeping in your vehicle or trailer"
+  .row
+    .col-md-6.mb-3
+      = f.input :length, hint: "in feet"
+    .col-md-6.mb-3
+      = f.input :width, hint: "in feet"
+  .row
+    .col-md-6.mb-3
+      = f.input :map
   .row
     .col-md-12.mb-3
       = f.input :notes

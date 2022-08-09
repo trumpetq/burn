@@ -3,11 +3,10 @@
 .row
   .col-md-3
     = render "menu_card"
-  .col-md-6
+  .col-md-9
     .card.mb-3
       = card_header("calendar-day", "Mayor of the day")
       .card-body
         p.card-text Were trying something new this year. Mayor of the day. This is your chance to run camp for a day.
-        p.card-text If you are interested email #{mail_to(Settings.email.david, target: "_blank")} with the date you would like. This job is only available to people that have camped with us before.
-  .col-md-3
-    = render "mayor_of_the_day_card"
+        p.card-text You will be responsible for everything that happens in camp on your day. Make sure no one dies. Keep the sauna running, and make sure dinner is served at sunset.
+        p.card-text You can now sign up for this #{link_to_policy(policy(:camp_job).index?, "job", camp_jobs_path)}.

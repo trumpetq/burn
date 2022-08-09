@@ -5,7 +5,13 @@ module Admin
     # GET /admin/camp_interviews
     def index
       authorize([:admin, :camp_interview])
-      @pagy, @resources = pagy(::CampInterview.includes(:user, :interviewed_by).order(updated_at: :desc))
+      @query = ::CampInterview.includes(:user, :interviewed_by).order(updated_at: :desc)
+
+      @query = @query.for_interviewed_by(params[:search][:interviewed_by_id]) if params.dig(:search, :interviewed_by_id).present?
+
+      @query = @query.with_status(params[:search][:status]) if params.dig(:search, :status).present?
+
+      @pagy, @resources = pagy(@query)
     end
 
     # PATCH /admin/camp_interviews/:id/assign

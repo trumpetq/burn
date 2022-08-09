@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_08_02_040854) do
+ActiveRecord::Schema[7.0].define(version: 2022_08_07_063439) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -186,6 +186,29 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_02_040854) do
     t.index ["user_id"], name: "index_camp_jobs_on_user_id"
   end
 
+  create_table "camp_structures", force: :cascade do |t|
+    t.bigint "user_id"
+    t.datetime "approved_at"
+    t.bigint "approved_by_id"
+    t.datetime "assigned_at"
+    t.bigint "assigned_by_id"
+    t.datetime "completed_at"
+    t.bigint "completed_by_id"
+    t.integer "status", null: false
+    t.datetime "rejected_at"
+    t.bigint "rejected_by_id"
+    t.text "description"
+    t.text "notes"
+    t.text "private_notes"
+    t.integer "structure"
+    t.boolean "map"
+    t.decimal "length", precision: 5, scale: 2
+    t.decimal "width", precision: 5, scale: 2
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_camp_structures_on_user_id"
+  end
+
   create_table "camp_tickets", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.integer "ticket_type", null: false
@@ -218,6 +241,9 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_02_040854) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "trailer"
+    t.boolean "map"
+    t.decimal "length", precision: 5, scale: 2
+    t.decimal "width", precision: 5, scale: 2
     t.index ["user_id"], name: "index_camp_vehicles_on_user_id"
   end
 

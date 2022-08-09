@@ -81,11 +81,14 @@ class User < ApplicationRecord
   has_one :camp_deposit
   has_one :camp_due
   has_one :camp_interview
+  has_one :camp_vehicle
+  has_one :camp_structure
+  has_one :camp_work_access_pass
+  has_one :newsletter
+
   has_many :camp_interviews, foreign_key: :interviewed_by_id, class_name: ::CampInterview.name
   has_many :camp_jobs
   has_many :camp_tickets
-  has_one :camp_work_access_pass
-  has_one :newsletter
 
   scope :for_id, ->(id) { where(id: id) }
   scope :for_phone_number, ->(phone_number) { where(phone_numer: PhonyRails.normalize_number(phone_number)) }

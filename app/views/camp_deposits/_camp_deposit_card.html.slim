@@ -35,5 +35,5 @@
           td = admin_time(resource.updated_at)
   .card-footer
     .btn-collection
-      - if policy(resource.user).index?
-        = link_to("Back to profile", user_path(resource.user), class: "btn btn-secondary")
+      - if policy(current_user).me?
+        = link_to("Back to profile", user_path(current_user), class: "btn btn-secondary")

@@ -1,7 +1,26 @@
 
-li.list-group-item.bg-light
-  h6.text-muted Vehicle
-  p.text-muted
-    | How are you getting to the burn
-    br
-    <b>Available</b> August 1st, 2022
+- if user.camp_vehicle.present?
+  - if user.camp_vehicle.finished?
+    li.list-group-item.bg-success.bg-opacity-10
+      h6 = link_to_camp(user.camp_vehicle, class: "text-decoration-none")
+      p.text-muted
+        | Your ride
+        =< camp_status_badge(user.camp_vehicle)
+      - if policy(user.camp_vehicle).edit?
+        p = link_to("Edit", edit_camp_vehicle_path(user.camp_vehicle), class: "btn btn-primary")
+  - else
+    li.list-group-item.bg-light
+      h6 = link_to_camp(user.camp_vehicle, class: "text-decoration-none")
+      p.text-muted
+        | Your ride
+        =< camp_status_badge(user.camp_vehicle)
+      - if policy(user.camp_vehicle).edit?
+        p = link_to("Edit", edit_camp_vehicle_path(user.camp_vehicle), class: "btn btn-primary")
+- else
+
+  li.list-group-item.bg-light
+    h6.text-muted Vehicle
+    p.text-muted
+      | How are you getting to the burn
+    - if policy(:camp_vehicle).new?
+      p = link_to("Start", new_camp_vehicle_path, class: "btn btn-success")

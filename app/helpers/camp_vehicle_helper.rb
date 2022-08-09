@@ -16,4 +16,21 @@ module CampVehicleHelper
 
     tag.span(camp.vehicle&.to_s&.humanize, class: css_class)
   end
+
+  def camp_trailer_badge(camp)
+    return na_badge unless camp&.trailer.present?
+
+    css_class =
+      case camp.trailer.to_sym
+      when :no_trailer then "badge bg-secondary"
+      when :small_trailer then "badge bg-success"
+      when :medium_trailer then "badge bg-primary"
+      when :large_trailer then "badge bg-danger"
+      when :other then "badge bg-danger"
+      else
+        "badge bg-dark"
+      end
+
+    tag.span(camp.trailer&.to_s&.humanize, class: css_class)
+  end
 end

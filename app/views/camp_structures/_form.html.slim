@@ -1,0 +1,21 @@
+= render "shared/error_messages", resource: resource
+= simple_form_for(resource) do |f|
+  .row
+    .col-md-6.mb-3
+      = f.input :structure, prompt: "Choose a structure", required: true,  hint: "what are you living in"
+  .row
+    .col-md-12.mb-3
+      = f.input :description, hint: "describe your setup"
+  .row
+    .col-md-12.mb-3
+      .alert.alert-secondary.mb-1 This is the total area you are requesting we allocate you on our map.
+    .col-md-6.mb-3
+      = f.input :length, hint: "in feet"
+    .col-md-6.mb-3
+      = f.input :width, hint: "in feet"
+  .row
+    .col-md-12.mb-3
+      = f.input :notes, hint: "anything else we should know"
+  .row
+    .col.d-grid
+      = f.button :submit, submit_button_text(resource)

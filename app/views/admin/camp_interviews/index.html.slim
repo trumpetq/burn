@@ -1,4 +1,7 @@
 - page_title("Interviews")
 .row
+  .col-md-8
+    = render "search_card"
+.row
   .col-md-12
     = render "table_card", resources: @resources, pagy: @pagy

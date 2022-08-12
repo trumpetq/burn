@@ -7,6 +7,7 @@ module Admin
       @users_count = ::User.all.count
       @mayor_users_count = ::User.with_role(:mayor).count
       @leader_users_count = ::User.with_role(:leader).count
+      @confirmed_users_count = ::User.with_status(:confirmed).count
       @camping_with_us_users_count = ::User.with_plan(:camping_with_us).count
       @thinking_about_it_users_count = ::User.with_plan(:thinking_about_it).count
       @camping_elsewhere_users_count = ::User.with_plan(:camping_elsewhere).count
@@ -14,6 +15,7 @@ module Admin
       @no_plan_users_count = ::User.with_plan(:none).count
       @kept_users_count = ::User.kept.count
       @deleted_users_count = ::User.discarded.count
+
 
       @camp_applications_count = ::CampApplication.all.count
       @active_camp_applications_count = ::CampApplication.with_status(:active).count

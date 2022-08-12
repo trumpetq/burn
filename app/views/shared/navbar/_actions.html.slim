@@ -4,3 +4,12 @@
 - if current_user.camp_interview.present? && current_user.camp_interview.assigned? && policy(current_user.camp_interview).show?
   li.nav-item
     = link_to("Finish interview", camp_interview_path(current_user.camp_interview), class: "btn btn-primary me-2")
+
+- if current_user.confirmed?
+  - if policy(current_user).ticket?
+    li.nav-item
+      = link_to("Print ticket", ticket_user_path(current_user), class: "btn btn-secondary")
+- else
+  - if policy(current_user).status?
+  li.nav-item
+    = link_to("Check status", status_users_path, class: "btn btn-danger")

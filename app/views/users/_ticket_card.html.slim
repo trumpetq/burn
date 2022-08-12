@@ -1,0 +1,23 @@
+- if user.confirmed?
+  .card.mb-3
+    = card_header("ticket-perforated", "Ticket")
+    .card-body
+      p.card-text Here is your camp ticket. Please print it and bring it to camp.
+      p.card-text 8-bit Bunny is located at <b>#{Settings.camp.address}</b>.
+      p.card-text
+        <b>Name:</b> #{user.full_name}
+        br
+        <b>User ID:</b> #{user.id}
+      p.text-center = image_tag("bunny.svg", size: "340x320")
+      p.text-center = RQRCode::QRCode.new(user_url(user)).as_svg.html_safe
+    .card-footer
+      .btn-collection
+        - if policy(user).me?
+          = link_to("Back to profile", user_path(user), class: "btn btn-secondary")
+- else
+  .card.mb-3.bg-danger.bg-opacity-10
+    = card_header("slash-circle", "Unconfirmed")
+    .card-body
+      p.card-text You are not confirmed. Please do not show up at camp without a ticket.
+      - if policy(user).status?
+        = link_to("Check status", status_users_path, class: "btn btn-secondary")

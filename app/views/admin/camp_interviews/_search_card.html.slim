@@ -4,7 +4,7 @@
     = simple_form_for(:search, url: admin_camp_interviews_path, method: :get) do |f|
       .row
         .col-md-4.mb-3
-          = f.input :status, collection: ::CampInterview.status.values.sort, selected: params.dig(:search, :status), label_method: -> { _1.humanize }, include_blank: true, required: false
+          = f.input :status, collection: ::CampInterview.status.values.sort, selected: params.dig(:search, :status), label_method: :humanize, include_blank: true, required: false
         .col-md-4.mb-3
           = f.input :interviewed_by_id, collection: ::User.with_role(:leader, :mayor).order_by_name, selected: params.dig(:search, :interviewed_by_id), label_method: :full_name, include_blank: true, required: false
       .row

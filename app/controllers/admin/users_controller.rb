@@ -14,6 +14,7 @@ module Admin
       @query = @query.with_role(params[:search][:role]) if params.dig(:search, :role).present?
       @query = @query.like_email(params[:search][:email]) if params.dig(:search, :email).present?
       @query = @query.with_plan(params[:search][:plan]) if params.dig(:search, :plan).present?
+      @query = @query.with_status(params[:search][:status]) if params.dig(:search, :status).present?
 
       @query = @query.order(id: param_direction) if params[:column] == "id"
       @query = @query.order("LOWER(name) #{param_direction}") if params[:column] == "name"

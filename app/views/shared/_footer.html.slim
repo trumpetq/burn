@@ -1,6 +1,6 @@
 #footer.footer
   .container-fluid.py-3
-    ul.nav.justify-content-center
+    ul.nav.justify-content-center.d-print-none
       - if policy(:page).home?
         li.nav-item
           = link_to("Home", root_path, class: "nav-link text-secondary")
@@ -14,7 +14,7 @@
         li.nav-item
           = link_to("Contact", contact_pages_path, class: "nav-link text-secondary")
 
-    ul.nav.justify-content-center
+    ul.nav.justify-content-center.d-print-none
       li.nav-item
         = link_to(bootstrap_icon("facebook"), Settings.facebook.url, class: "nav-link text-secondary")
       li.nav-item

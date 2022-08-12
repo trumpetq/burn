@@ -1,0 +1,50 @@
+.card.mb-3
+  = card_header("card-checklist", "Status")
+  .card-body
+    p.card-text This page will check your status with 8-bit Bunny for #{Settings.date.current_year}.
+
+    - if user.camp_application&.finished?
+      .alert.alert-success Your #{link_to_camp(user.camp_application, "application")} looks good!
+    - else
+      - if user.camp_application.present?
+        .alert.alert-secondary You must complete your #{link_to_camp(user.camp_application, "application")}.
+      - else
+        .alert.alert-danger You must complete an #{link_to_policy(policy(:camp_application).new?, "application", new_camp_application_path)}.
+
+    - if user.camp_interview&.finished?
+      .alert.alert-success Your #{link_to_camp(user.camp_interview, "interview")} looks good!
+    - else
+      - if user.camp_interview.present?
+        .alert.alert-danger You must complete your #{(link_to_camp(user.camp_interview, "interview"))}.
+      - else
+        .alert.alert-danger You must complete an #{link_to_guide("interview", :interview)}.
+
+    - if user.camp_due&.finished?
+      .alert.alert-success Your #{link_to_camp(user.camp_due, "dues")} are paid. Thank you!
+    - else
+      - if user.camp_due.present?
+        .alert.alert-danger You must finish paying your #{link_to_camp(user.camp_due, "dues")}.
+      - else
+        .alert.alert-danger You must pay your camp #{link_to_policy(policy(:camp_due).new?, "dues", new_camp_due_path)}.
+
+    - if user.camp_deposit&.finished?
+      .alert.alert-success Your #{link_to_camp(user.camp_deposit, "deposit")} has been paid. Thank you!
+    - else
+      - if user.camp_deposit.present?
+        .alert.alert-danger You must finish paying your #{link_to_camp(user.camp_deposit, "deposit")}.
+      - else
+        .alert.alert-danger You must pay your camp #{link_to_policy(policy(:camp_deposit).new?, "deposit", new_camp_deposit_path)}.
+
+  - if user.can_confirm?
+    .card-body.pt-0
+      p.card-text <b>Congratulations</b> you are ready to confirm your spot for #{Settings.date.current_year}. After confirming you will be able to print your 8-bit Bunny ticket.
+      - if policy(user).confirm?
+        = link_to("Confirm", confirm_user_path(user), class: "btn btn-success w-100", data: {turbo_method: :patch})
+  - else
+    .card-body.pt-0
+      p.card-text <b>On no</b>. It looks like you still have some work to do before you are eligable to camp with 8-bit Bunny in #{Settings.date.current_year}.
+      p.card-text Please complete the above steps no latter than <b>#{Settings.date.final_cutoff_on}</b>.
+    .card-footer
+      .btn-collection
+        - if policy(user).me?
+          = link_to("Back to profile", user_path(user), class: "btn btn-secondary")

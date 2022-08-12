@@ -243,11 +243,15 @@ Rails.application.routes.draw do
   }
 
   resources :users, only: [:index, :show, :edit] do
+    member do
+      patch :confirm
+      get :ticket
+    end
+
     collection do
       get :me
       get :search
       get :status
-      patch :confirm
     end
   end
 

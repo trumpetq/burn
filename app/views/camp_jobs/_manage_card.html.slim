@@ -2,6 +2,6 @@
 .card.mb-3
   = card_header("canban", "Manage")
   .card-body
-    p.card-text You can make changes to your jobs until <b>#{admin_date(Settings.camp.cutoff_date)}</b>.
+    p.card-text You can make changes to your jobs until <b>#{admin_date(Settings.date.job_cutoff_on)}</b>.
     - if policy(resource).remove?
       = link_to("Remove", remove_camp_job_path(resource), class: "btn btn-danger", data: {turbo_confirm: "Are you sure you want to drop this job?", turbo_method: :patch})

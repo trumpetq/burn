@@ -1,0 +1,14 @@
+- if user.confirmed?
+  li.list-group-item.bg-success.bg-opacity-10
+    h6.text-muted Final confirmation
+    p.text-muted
+      | You are confirmed
+    - if policy(user).ticket?
+      p = link_to("Print ticket", ticket_user_path(user), class: "btn btn-success")
+- else
+  li.list-group-item.bg-danger.bg-opacity-10
+    h6.text-muted Final confirmation
+    p.text-muted
+      | You are <b>not</b> confirmed
+    - if policy(user).status?
+      p = link_to("Check status", status_users_path, class: "btn btn-secondary")

@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:edit, :update, :destroy]
+  before_action :set_user, only: [:edit, :update, :destroy, :confirm, :ticket]
 
   # GET /users
   def index
@@ -21,6 +21,7 @@ class UsersController < ApplicationController
   # GET /users/status
   def status
     authorize(current_user)
+    @user = current_user
   end
 
   # GET /users/me
@@ -34,10 +35,11 @@ class UsersController < ApplicationController
     end
   end
 
-  # PATCH /users/confirm
+  # PATCH /users/:id/confirm
   def confirm
-    authorize(current_user)
+    @user.update(status: :confirmed)
 
+    redirect_to(ticket_user_path(@user), success: "You spot in camp is now confirmed. See you at Burning Man.", status: :see_other)
   end
 
   private

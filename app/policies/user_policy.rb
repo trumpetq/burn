@@ -16,7 +16,7 @@ class UserPolicy < ApplicationPolicy
   end
 
   def confirm?
-    member?
+    member? && me?
   end
 
   def contact?
@@ -33,6 +33,10 @@ class UserPolicy < ApplicationPolicy
 
   def status?
     member?
+  end
+
+  def ticket?
+    member? && me? && user.confirmed?
   end
 
   def permitted_attributes

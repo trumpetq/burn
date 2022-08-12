@@ -6,13 +6,15 @@
         .col-md-6.mb-3
            = f.input :name, input_html: { value: params.dig(:search, :name) }, label: "Name", required: false
         .col-md-6.mb-3
-           = f.input :role, collection: ::User.role.values.sort, selected: params.dig(:search, :role), label_method: -> { _1.humanize }, label: "Role", include_blank: true, required: false
-
+           = f.input :role, collection: ::User.role.values.sort, selected: params.dig(:search, :role), label_method: :humanize, label: "Role", include_blank: true, required: false
       .row
         .col-md-6.mb-3
            = f.input :email, as: :string, input_html: { value: params.dig(:search, :email) }, label: "Email", required: false
         .col-md-6.mb-3
-           = f.input :plan, collection: ::User.plan.values.sort, selected: params.dig(:search, :plan), label_method: -> { _1.humanize }, label: "Plan", include_blank: true, required: false
+           = f.input :plan, collection: ::User.plan.values.sort, selected: params.dig(:search, :plan), label_method: :humanize, label: "Plan", include_blank: true, required: false
+      .row
+        .col-md-6.mb-3
+           = f.input :status, collection: ::User.status.values.sort, selected: params.dig(:search, :status), label_method: :humanize, label: "Status", include_blank: true, required: false
 
       .row
         .col.d-grid

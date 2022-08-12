@@ -97,6 +97,7 @@ class User < ApplicationRecord
   scope :like_name, ->(name) { where("LOWER(name) LIKE ?", "%#{name&.downcase&.squish}%") }
   scope :in_bay_area, -> { where(postal_code: Settings.postal_code.bay_area) }
   scope :order_by_name, -> { order("LOWER(name) ASC") }
+  scope :not_camping_with_us, -> { with_plan(:camping_elsewhere, :not_goin)}
 
   before_validation :scrub_previous_years
   before_validation :normalize_attributes

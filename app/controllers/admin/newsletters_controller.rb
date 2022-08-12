@@ -68,6 +68,10 @@ module Admin
       @general_list_text = @general_list.join(",\n")
       @campers_only_list = ::Newsletter.with_list(:campers_only).order(email: :asc)
       @campers_only_list_text = @campers_only_list.join(",\n")
+
+      not_going_ids = ::User.not_camping_with_us.pluck(:id)
+      @might_go_list = ::Newsletter.subscribed.where.not(user_id: not_going_ids).or(::Newsletter.where(user_id: nil)).order(email: :asc)
+      @might_go_list_text = @might_go_list.join(",\n")
     end
 
     # PATCH /admin/users/:id/restore

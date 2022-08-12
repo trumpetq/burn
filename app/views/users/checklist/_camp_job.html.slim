@@ -7,7 +7,7 @@
       p = link_to("View jobs", camp_jobs_path, class: "btn btn-secondary")
 - else
   - if user.jobs_complete?
-    li.list-group-item.bg-success
+    li.list-group-item.bg-success.bg-opacity-10
       h6.text-muted = link_to_policy(policy(:camp_job).index?, "Jobs", camp_jobs_path)
       p.text-muted
         | #{pluralize(user.total_points, "points")} of #{Settings.camp.min_points}

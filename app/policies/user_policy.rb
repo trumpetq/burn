@@ -16,7 +16,7 @@ class UserPolicy < ApplicationPolicy
   end
 
   def confirm?
-    member? && me?
+    member? && me? && user.can_confirm?
   end
 
   def contact?

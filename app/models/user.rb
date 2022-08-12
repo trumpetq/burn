@@ -183,7 +183,7 @@ class User < ApplicationRecord
   end
 
   def can_confirm?
-    camp_application&.finished? && camp_interview&.finished? && camp_due&.finished? && camp_deposit&.finished?
+    camp_application&.finished? && camp_interview&.finished? && camp_due&.finished? && camp_deposit&.finished? && jobs_complete?
   end
 
   def can_pay_dues?
@@ -203,7 +203,7 @@ class User < ApplicationRecord
   end
 
   def jobs_complete?
-    camp_jobs.size > Settings.camp.min_points
+    total_points >= Settings.camp.min_points
   end
 
   def has_interviews?

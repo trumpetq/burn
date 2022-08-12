@@ -35,6 +35,12 @@
       - else
         .alert.alert-danger You must pay your camp #{link_to_policy(policy(:camp_deposit).new?, "deposit", new_camp_deposit_path)}.
 
+    - if user.jobs_complete?
+      .alert.alert-success You have signed up for all your #{link_to_policy(policy(:camp_job).index?, "jobs", camp_jobs_path)}.
+    - else
+      .alert.alert-danger You need to sign up for #{Settings.camp.min_points} points worth of #{link_to_policy(policy(:camp_job).index?, "jobs", camp_jobs_path)}. You currently have #{user.total_points}.
+
+
   - if user.can_confirm?
     .card-body.pt-0
       p.card-text <b>Congratulations</b> you are ready to confirm your spot for #{Settings.date.current_year}. After confirming you will be able to print your 8-bit Bunny ticket.

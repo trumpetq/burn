@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:edit, :update, :destroy, :confirm, :ticket]
+  before_action :require_user, only: [:status]
 
   # GET /users
   def index
@@ -20,6 +21,7 @@ class UsersController < ApplicationController
 
   # GET /users/status
   def status
+
     authorize(current_user)
     @user = current_user
   end
@@ -47,5 +49,10 @@ class UsersController < ApplicationController
   def set_user
     @user = ::User.kept.find(params[:id])
     authorize(@user)
+  end
+
+  def require_user
+    return if current_user.present?
+    redirect_to(new_user_session_url, alert: "You must sign in first.")
   end
 end

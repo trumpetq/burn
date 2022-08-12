@@ -15,6 +15,10 @@ class CampJobPolicy < CampPolicy
     false
   end
 
+  def remove?
+    member? && me? && (Date.current <= Settings.camp.cutoff_date)
+  end
+
   def sign_up?
     member? && user.can_sign_up_job? && record.try(:can_sign_up?)
   end

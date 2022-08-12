@@ -18,6 +18,11 @@ class UsersController < ApplicationController
     redirect_to(edit_user_registration_url)
   end
 
+  # GET /users/status
+  def status
+    authorize(current_user)
+  end
+
   # GET /users/me
   def me
     skip_authorization
@@ -27,6 +32,12 @@ class UsersController < ApplicationController
     else
       redirect_to(new_user_session_url, notice: "You must be signed in to view your profile.")
     end
+  end
+
+  # PATCH /users/confirm
+  def confirm
+    authorize(current_user)
+
   end
 
   private

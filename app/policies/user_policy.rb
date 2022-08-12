@@ -15,6 +15,10 @@ class UserPolicy < ApplicationPolicy
     leader?
   end
 
+  def confirm?
+    member?
+  end
+
   def contact?
     member?
   end
@@ -25,6 +29,10 @@ class UserPolicy < ApplicationPolicy
 
   def me?
     record.present? && record == user
+  end
+
+  def status?
+    member?
   end
 
   def permitted_attributes

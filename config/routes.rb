@@ -167,6 +167,7 @@ Rails.application.routes.draw do
   resources :camp_jobs, only: [:index, :show, :edit, :update] do
     member do
       patch :sign_up
+      patch :remove
     end
   end
 
@@ -245,6 +246,8 @@ Rails.application.routes.draw do
     collection do
       get :me
       get :search
+      get :status
+      patch :confirm
     end
   end
 

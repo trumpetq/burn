@@ -1,6 +1,15 @@
 class CampJobsController < ApplicationController
   include Campable
 
+  # PATCH /camp_jobs/:id/remove
+  def remove
+    set_resource
+
+    @resource.update(status: :active, user: nil, assigned_by: nil)
+
+    redirect_to(camp_jobs_url, notice: "You have been removed from this job. Don't forget to sign up for something else.", status: :see_other)
+  end
+
   # PATCH /camp_jobs/:id/sign_up
   def sign_up
     set_resource

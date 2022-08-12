@@ -5,6 +5,7 @@ camp:
   max_campers: 50
   min_points: 10
   size: 200' x 100'
+  cutoff_date: 2022-08-15
 date:
   current_year: 2022
   points_deadline_on: 2022-08-15

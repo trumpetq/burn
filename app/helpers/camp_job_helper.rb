@@ -47,9 +47,9 @@ module CampJobHelper
     return danger_count_badge(0) if count.blank? || count.zero?
 
     if count >= Settings.camp.min_points
-      success_count_badge(count)
+      success_count_badge(number_with_precision(count, precision: 2, strip_insignificant_zeros: true))
     else
-      warning_count_badge(count)
+      warning_count_badge(number_with_precision(count, precision: 2, strip_insignificant_zeros: true))
     end
   end
 end

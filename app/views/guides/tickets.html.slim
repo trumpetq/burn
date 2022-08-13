@@ -7,10 +7,9 @@
     .card.mb-3
       = card_header("ticket-detailed", "Tickets")
       .card-body
-        p.card-text Getting tickets each year can be challenging. That being said, most people who commit themselves to the task do succeed.
-        p.card-text Unfortunately the best time to find tickets is often right before the event. Life happens, people have kids, change jobs, and realize Burning Man is actually a lot of hard work. In major cities there are almost always tickets available right before the event.
-        p.card-text If you are looking for a ticket, watch Facebook groups, check Craigslist, and ask around with your friends. You will find one!
+        p.card-text At this point in the year tickets are readily available on Facebook groups and though friends. FOMO tickets are even easier to get.
+        p.card-text If you still need tickets watch online groups and be ready with cash in hand. While they are available they sell out very fast.
         p.card-text The offical #{link_to("Burning Man Ticket Information", "https://tickets.burningman.org/", target: "_blank")} is a great resource for the rules of each sale. To participate in any sale you will need a #{link_to("Burning Man Profile", "https://profiles.burningman.org/", target: "_blank")}.
-
+    = render "shared/burning_man/ticket_support_card"
   .col-md-3
     = render "camp_tickets/information_card"

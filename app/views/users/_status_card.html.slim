@@ -40,6 +40,10 @@
     - else
       .alert.alert-danger You need to sign up for #{Settings.camp.min_points} points worth of #{link_to_policy(policy(:camp_job).index?, "jobs", camp_jobs_path)}. You currently have #{user.total_points}.
 
+    - if user.complete_profile?
+      .alert.alert-success You profile looks complete.
+    - else
+      = render "incomplete_profile_card", user: user
 
   - if user.can_confirm?
     .card-body.pt-0

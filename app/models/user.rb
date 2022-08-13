@@ -183,7 +183,7 @@ class User < ApplicationRecord
   end
 
   def can_confirm?
-    camp_application&.finished? && camp_interview&.finished? && camp_due&.finished? && camp_deposit&.finished? && jobs_complete?
+    camp_application&.finished? && camp_interview&.finished? && camp_due&.finished? && camp_deposit&.finished? && jobs_complete? && complete_profile?
   end
 
   def can_pay_dues?

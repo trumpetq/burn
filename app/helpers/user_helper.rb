@@ -21,8 +21,8 @@ module UserHelper
 
     css_class =
       case user.status.to_sym
-      when :active then "badge bg-success"
-      when :confirmed then "badge bg-primary"
+      when :active then "badge bg-primary"
+      when :confirmed then "badge bg-success"
       when :banned then "badge bg-danger"
       else
         "badge bg-dark"

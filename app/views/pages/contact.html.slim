@@ -51,6 +51,12 @@
               td
                 => link_to(Settings.slack.name, Settings.slack.url, target: "_blank")
                 = link_to("Request invite", Settings.slack.invite_url, class: "ms-3 btn btn-xs btn-outline-secondary", target: "_blank")
+            tr
+              th
+                => bootstrap_icon("discord")
+                | Discord
+              td => link_to(Settings.discord.name, Settings.discord.url, target: "_blank")
+
   .col-md-3
     .card.bg-info.bg-opacity-10.mb-3
       = card_header("people", "Campers")

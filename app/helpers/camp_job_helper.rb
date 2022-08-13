@@ -10,6 +10,13 @@ module CampJobHelper
       when :strike then "badge bg-secondary"
       when :post_event then "badge bg-secondary"
       when :year_round then "badge bg-danger"
+      when :sunday then "badge bg-primary"
+      when :monday then "badge bg-primary"
+      when :tuesday then "badge bg-primary"
+      when :wednesday then "badge bg-primary"
+      when :thursday then "badge bg-primary"
+      when :friday then "badge bg-primary"
+      when :saturday then "badge bg-primary"
       else
         "badge bg-dark"
       end

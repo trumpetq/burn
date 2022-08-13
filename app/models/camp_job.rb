@@ -20,6 +20,7 @@
 #  status                  :integer          not null
 #  strong_person           :boolean
 #  timeframe               :integer          not null
+#  wap_required            :boolean
 #  created_at              :datetime         not null
 #  updated_at              :datetime         not null
 #  approved_by_id          :bigint
@@ -56,6 +57,8 @@ class CampJob < ApplicationRecord
   scope :order_by_date, -> { order(job_on: :asc) }
   scope :reorder_by_date, -> { reorder(job_on: :asc) }
   scope :in_bay_area, -> { where(bay_area: true) }
+  scope :on_day, ->(date) { where(job_on: date)}
+
 
   def to_s
     "Job #{job_id}"

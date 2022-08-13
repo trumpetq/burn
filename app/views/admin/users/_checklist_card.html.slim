@@ -43,6 +43,18 @@
             td = na_badge
             td
             td
+
+        tr
+          th Jobs
+          - if user.camp_jobs.present?
+            td = camp_points_badge(user)
+            td
+            td
+          - else
+            td = na_badge
+            td
+            td
+
         tr
           th Tickets
           - if user.camp_tickets.present?
@@ -50,6 +62,36 @@
               = primary_count_badge(user.camp_tickets.size)
             td = user_has_ticket_badge(user)
             td
+          - else
+            td = na_badge
+            td
+            td
+        tr
+          th WAP
+          - if user.camp_work_access_pass.present?
+            td = admin_link_to_id(user.camp_work_access_pass)
+            td = camp_status_badge(user.camp_work_access_pass)
+            td.text-end = admin_link_icon(user.camp_work_access_pass)
+          - else
+            td = na_badge
+            td
+            td
+        tr
+          th Structure
+          - if user.camp_structure.present?
+            td = admin_link_to_id(user.camp_structure)
+            td = camp_status_badge(user.camp_structure)
+            td.text-end = admin_link_icon(user.camp_structure)
+          - else
+            td = na_badge
+            td
+            td
+        tr
+          th Vehicle
+          - if user.camp_vehicle.present?
+            td = admin_link_to_id(user.camp_vehicle)
+            td = camp_status_badge(user.camp_vehicle)
+            td.text-end = admin_link_icon(user.camp_vehicle)
           - else
             td = na_badge
             td

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_08_07_063439) do
+ActiveRecord::Schema[7.0].define(version: 2022_08_13_051452) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -183,6 +183,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_07_063439) do
     t.bigint "approved_by_id"
     t.bigint "completed_by_id"
     t.bigint "rejected_by_id"
+    t.boolean "wap_required"
     t.index ["user_id"], name: "index_camp_jobs_on_user_id"
   end
 

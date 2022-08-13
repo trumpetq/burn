@@ -31,8 +31,9 @@ class GuidesController < ApplicationController
 
   # GET /guides/events
   def events
-    @david = ::User.find(Settings.user.david)
-    @mirabelle = ::User.find(Settings.user.mirabelle)
+    @david = ::User.find_by_id(Settings.user.david)
+    @mirabelle = ::User.find_by_id(Settings.user.mirabelle)
+    @lindsay = ::User.find_by_id(Settings.user.lindsay)
   end
 
   # GET /guides/history

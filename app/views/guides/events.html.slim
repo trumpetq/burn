@@ -17,7 +17,7 @@
         p.card-text
           <b>Date</b> Monday, August 29th
           <b class="ms-3">Time</b> 11:00 am - 12:30 pm
-          <b class="ms-3">Lead</b> #{link_to(@david, user_path(@david))}
+          <b class="ms-3">Lead</b> #{link_to_user(@david)}
         p.card-text We will do quick introductions show you the ropes of camp.
         .alert.alert-warning This event is <b>highly recomended</b> for all campers.
 
@@ -36,11 +36,22 @@
       = card_header("calendar-date", "Event")
       .card-body
         h4.card-title.text-muted
+          = link_to("Black out Bunny", "https://playaevents.burningman.org/playa_event/40829/")
+        p.card-text
+          <b>Date</b> Tuesday, August 30th
+          <b class="ms-3">Time</b> 1:00 - 4:00 pm
+          <b class="ms-3">Lead</b>  #{link_to_user(@lindsay)}
+        p.card-text Edm got you down? Come stomp your heart at our goth party! We have drinks, a sauna and electrical tape for your nips! Halloween is coming!
+
+    .card.mb-3
+      = card_header("calendar-date", "Event")
+      .card-body
+        h4.card-title.text-muted
           = link_to("Sandwitch House", "https://playaevents.burningman.org/playa_event/35528/")
         p.card-text
           <b>Date</b> Thursday, September 1st
           <b class="ms-3">Time</b> Midnight - 2:00 am
-          <b class="ms-3">Lead</b> #{link_to(@mirabelle, user_path(@mirabelle))}
+          <b class="ms-3">Lead</b> #{link_to_user(@mirabelle)}
         p.card-text It's time for jams and jams! Come midnight we'll dance ever-so-slowly to our favorite goth and witch house jams spun by DJ Crayzewitch (Copenhagen) and Commodore 256 (New Mexico) while being served hot n' tasty pancakes with Wolves' special homemade jam. Homemade pickles will be provided for those desiring something savory. Jams and jams (and pickles!) available while they last.
 
     .card.mb-3

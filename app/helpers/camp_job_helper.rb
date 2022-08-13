@@ -33,7 +33,7 @@ module CampJobHelper
       when :kitchen then "badge bg-success"
       when :build then "badge bg-primary"
       when :power then "badge bg-secondary"
-      when :fun then "badge bg-danger"
+      when :party then "badge bg-danger"
       when :bureaucracy then "badge bg-dark"
       else
         "badge bg-dark"

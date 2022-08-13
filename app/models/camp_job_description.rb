@@ -17,7 +17,7 @@ class CampJobDescription < ApplicationRecord
   include Stepable
 
   enumerize :status, in: STATUSES.slice(:active), default: :active, predicates: true, scope: true
-  enumerize :department, in: {none: 0, kitchen: 5, build: 10, power: 15, fun: 20, bureaucracy: 25, moop: 30}, default: :none, predicates: true, scope: true
+  enumerize :department, in: {none: 0, kitchen: 5, build: 10, power: 15, party: 20, bureaucracy: 25, moop: 30}, default: :none, predicates: true, scope: true
 
   validates :title, length: {in: 5..100}, presence: true
   validates :description, length: {in: 5..10_00}, presence: true

@@ -54,6 +54,8 @@ class CampJobsController < ApplicationController
     @thursday_camp_jobs = @camp_job_query.with_timeframe(:burn_week).on_day("2022-09-01")
     @friday_camp_jobs = @camp_job_query.with_timeframe(:burn_week).on_day("2022-09-02")
     @saturday_camp_jobs = @camp_job_query.with_timeframe(:burn_week).on_day("2022-09-03")
+    @saturday_camp_jobs = @camp_job_query.with_timeframe(:burn_week).on_day("2022-09-03")
+
 
     day_job_ids = [@sunday_camp_jobs.map(&:id), @monday_camp_jobs.map(&:id), @tuesday_camp_jobs.map(&:id), @wednesday_camp_jobs.map(&:id), @thursday_camp_jobs.map(&:id), @friday_camp_jobs.map(&:id), @saturday_camp_jobs.map(&:id), @sunday_camp_jobs.map(&:id)].flatten
     @other_burn_week_camp_jobs = @camp_job_query.with_timeframe(:burn_week).where.not(id: day_job_ids)

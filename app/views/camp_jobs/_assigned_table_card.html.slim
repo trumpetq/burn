@@ -21,4 +21,4 @@
             td = number_with_precision(resource.points, precision: 2, strip_insignificant_zeros: true)
 
   .card-footer
-    .card-text You have #{pluralize(current_user.total_points, "point")} of the required #{Settings.camp.min_points}.
+    .card-text #{camp_points_badge(current_user)} of the required #{Settings.camp.min_points} points

@@ -1,5 +1,5 @@
 - unless current_user.camp_due&.finished?
   - if current_user.camp_due.present?
-    .alert.alert-secondary You must finish paying your #{link_to_camp(current_user.camp_due, "dues")}.
+    .alert.alert-danger You must finish paying your #{link_to_camp(current_user.camp_due, "dues")}.
   - else
-    .alert.alert-secondary You must pay your camp #{link_to_policy(policy(:camp_due).new?, "dues", new_camp_due_path)}.
+    .alert.alert-danger You must pay your camp #{link_to_policy(policy(:camp_due).new?, "dues", new_camp_due_path)}.

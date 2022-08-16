@@ -25,7 +25,7 @@
               td = event_date(resource.job_on)
               td.text-end
                 - if policy(resource).sign_up?
-                  = link_to(bootstrap_icon("person-plus"), camp_job_path(resource))
+                  = link_to(bootstrap_icon("person-plus-fill"), camp_job_path(resource), class: "btn btn-sm btn-outline-primary")
 
 
 

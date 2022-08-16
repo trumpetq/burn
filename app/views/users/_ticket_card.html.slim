@@ -8,7 +8,7 @@
         <b>Name:</b> #{user.full_name}
         br
         <b>User ID:</b> #{user.id}
-      p.text-center = image_tag("bunny.svg", size: "340x320")
+      p.text-center = image_tag("bunny.svg", size: "340x310")
       p.text-center = RQRCode::QRCode.new(user_url(user)).as_svg.html_safe
     .card-footer
       .btn-collection

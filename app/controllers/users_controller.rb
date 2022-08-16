@@ -5,7 +5,7 @@ class UsersController < ApplicationController
   # GET /users
   def index
     authorize(:user)
-    @pagy, @camping_with_us = pagy(::User.with_plan(:camping_with_us).order_by_name)
+    @pagy, @camping_with_us = pagy(::User.includes(avatar_attachment: :blob).with_plan(:camping_with_us).order_by_name)
   end
 
   # GET /users/:id

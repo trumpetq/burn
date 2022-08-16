@@ -23,3 +23,8 @@
       = card_header("mailbox", "Might go list", pagy: @might_go_list.size)
       .card-body
         textarea.form-control.text rows="10" = @might_go_list_text
+  .col-md-4
+    .card.mb-3
+      = card_header("mailbox", "No plan list", pagy: @no_plan_list.size)
+      .card-body
+        textarea.form-control.text rows="10" = @no_plan_list_text

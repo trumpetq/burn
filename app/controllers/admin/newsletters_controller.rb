@@ -69,9 +69,13 @@ module Admin
       @campers_only_list = ::Newsletter.with_list(:campers_only).order(email: :asc)
       @campers_only_list_text = @campers_only_list.join(",\n")
 
-      not_going_ids = ::User.not_camping_with_us.pluck(:id)
-      @might_go_list = ::Newsletter.subscribed.where.not(user_id: not_going_ids).or(::Newsletter.where(user_id: nil)).order(email: :asc)
+      not_camping_with_us_user_ids = ::User.not_camping_with_us.pluck(:id)
+      @might_go_list = ::Newsletter.subscribed.where.not(user_id: not_camping_with_us_user_ids).or(::Newsletter.subscribed.where(user_id: nil)).order(email: :asc)
       @might_go_list_text = @might_go_list.join(",\n")
+
+      no_plan_user_ids = ::User.with_plan(:none).pluck(:id)
+      @no_plan_list = ::Newsletter.subscribed.where.not(user_id: no_plan_user_ids).or(::Newsletter.subscribed.where(user_id: nil)).order(email: :asc)
+      @no_plan_list_text = @no_plan_list.join(",\n")
     end
 
     # PATCH /admin/users/:id/restore

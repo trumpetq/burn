@@ -1,0 +1,11 @@
+= render "shared/error_messages", resource: resource
+= simple_form_for(resource) do |f|
+  .row
+    .col-md-6.mb-3
+      = f.input :expected_arrival_on, as: :date, html5: true
+  .row
+    .col-md-12.mb-3
+      = f.input :notes
+  .row
+    .col.d-grid
+      = f.button :submit, submit_button_text(resource)

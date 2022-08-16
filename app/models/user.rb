@@ -210,8 +210,16 @@ class User < ApplicationRecord
     camp_interviews.size.positive?
   end
 
+  def job_points
+    @job_points ||= camp_jobs&.sum(:points).to_f
+  end
+
   def total_points
-    @total_points ||= camp_jobs&.sum(:points).to_f
+    @total_points ||= job_points + wap_points
+  end
+
+  def wap_points
+    @wap_poins ||= camp_work_access_pass&.job_points.to_f
   end
 
   private

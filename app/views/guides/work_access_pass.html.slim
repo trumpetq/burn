@@ -1,13 +1,16 @@
-- page_title("Work Access Pass")
+- page_title("Work access pass")
 
 .row
   .col-md-3
     = render "menu_card"
   .col-md-6
     .card.mb-3
-      = card_header("pass", "Work Access Pass")
+      = card_header("pass", "WAP")
       .card-body
-        p.card-text WAPs will be distributed in early August. You must have paid dues before you can request a WAP.
-        p.card-text Priority is given to those that can come earlier and those that have worked hard for camp in the past.
+        p.card-text WAP (Work Access Pass) allows you to join our camp for build. This allows you early entry into the event in exchange for help in building camp.
+        p.card-text Build week is one of the best parts of the event as we create a city from scratch.
+        p.card-text Select the day you would like to arrive and apply for your WAP below.
+    = render "camp_work_access_passes/assigned_card", resource: current_user.camp_work_access_pass
+    = render "camp_work_access_passes/table_card", resources: @camp_work_access_passes, pagy: false
   .col-md-3
     = render "shared/burning_man/work_access_pass_card"

@@ -1,6 +1,6 @@
 - if policy(resource).me?
 .card.mb-3
-  = card_header("canban", "Manage")
+  = card_header("kanban", "Manage")
   .card-body
     p.card-text You can make changes to your jobs until <b>#{admin_date(Settings.date.job_cutoff_on)}</b>.
     - if policy(resource).remove?

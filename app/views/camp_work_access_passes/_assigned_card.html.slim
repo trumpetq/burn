@@ -1,0 +1,34 @@
+- if policy(resource).me? && resource.present?
+  .card.bg-opacity-10.mb-3
+    = card_header("pass", link_to_camp(resource, "WAP"))
+    .card-body
+      .alert.alert-secondary.mb-0 You have been assigned the following #{link_to_camp(resource, "WAP")}.
+    .card-table
+      table.table
+        tbody
+          tr
+            th ID
+            td = link_to_id(resource)
+          tr
+            th Status
+            td = camp_status_badge(resource)
+          tr
+            th Date
+            td = event_date(resource.pass_on)
+          tr
+            th Expected arrival
+            td = event_date(resource.expected_arrival_on)
+          tr
+            th Job points
+            td = number_of_points(resource.job_points)
+          - if policy(resource).download?
+            tr
+              th Ticket ID
+              td = resource.ticket_id.presence || na_badge
+          tr
+            th Notes
+            td = resource.notes.presence || na_badge
+    .card-footer
+      .btn-collection
+        - if policy(resource).edit?
+          = link_to("Edit", edit_camp_work_access_pass_path(resource), class: "btn btn-primary")

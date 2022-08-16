@@ -52,4 +52,9 @@ module CampJobHelper
       warning_count_badge(number_with_precision(count, precision: 2, strip_insignificant_zeros: true))
     end
   end
+
+  def number_of_points(points)
+    return na_badge if points.nil?
+    number_with_precision(points, precision: 2, strip_insignificant_zeros: true)
+  end
 end

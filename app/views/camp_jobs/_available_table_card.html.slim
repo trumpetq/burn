@@ -21,7 +21,7 @@
               td = link_to_user(resource.user)
               td = camp_department_badge(resource.camp_job_description)
               td = link_to_camp(resource, resource.title)
-              td = number_with_precision(resource.points, precision: 2, strip_insignificant_zeros: true)
+              td = number_of_points(resource.points)
               td = event_date(resource.job_on)
               td.text-end
                 - if policy(resource).sign_up?

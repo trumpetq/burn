@@ -1,5 +1,8 @@
 .card.mb-3
   = card_header("hammer", "Assigned jobs")
+  - if current_user.camp_work_access_pass.present?
+    .card-body
+      .alert.alert-secondary.mb-0 You have a #{link_to_camp(current_user.camp_work_access_pass, "WAP")} for which you recieve #{pluralize(number_of_points(current_user.camp_work_access_pass.job_points), "points")} credit.
   .card-table
     table.table
       thead
@@ -18,7 +21,7 @@
             td = camp_department_badge(resource.camp_job_description)
             td = event_date(resource.job_on)
             td = link_to_camp(resource, resource.title)
-            td = number_with_precision(resource.points, precision: 2, strip_insignificant_zeros: true)
+            td = number_of_points(resource.points)
 
   .card-footer
     .card-text #{camp_points_badge(current_user)} of the required #{Settings.camp.min_points} points

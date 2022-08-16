@@ -15,7 +15,13 @@ class CampWorkAccessPassPolicy < CampPolicy
     false
   end
 
+  def download?
+    member? && me? && record.approved?
+  end
+
   def sign_up?
+    return if user.camp_work_access_pass.present? && record.valid?
+
     if record.valid?
       member? && user.can_sign_up_wap? && record.try(:can_sign_up?)
     else

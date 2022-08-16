@@ -25,6 +25,8 @@
         = link_to(bootstrap_icon("twitter"), Settings.twitter.url, class: "nav-link text-secondary")
       li.nav-item
         = link_to(bootstrap_icon("github"), Settings.github.url, class: "nav-link text-secondary")
+      li.nav-item
+        = link_to(bootstrap_icon("discord"), Settings.discord.url, class: "nav-link text-secondary")
 
     p.mt-3.text-center &copy; #{Time.current.year} 8-bit Bunny
     - if Rails.env.development?

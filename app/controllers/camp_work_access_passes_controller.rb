@@ -8,6 +8,8 @@ class CampWorkAccessPassesController < ApplicationController
     @query = ::CampWorkAccessPass.includes(:user).order(pass_on: :asc)
 
     @pagy, @resources = pagy(@query)
+
+    @camp_work_access_pass = current_user.camp_work_access_pass
   end
 
   # PATCH /camp_jobs/:id/sign_up

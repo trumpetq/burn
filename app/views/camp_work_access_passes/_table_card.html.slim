@@ -20,5 +20,5 @@
             td = resource.notes&.truncate(30)
             td.text-end
               - if policy(resource).sign_up?
-                = link_to(bootstrap_icon("person-plus"), camp_work_access_pass_path(resource))
+                = link_to(bootstrap_icon("person-plus-fill"), camp_work_access_pass_path(resource), class: "btn btn-sm btn-outline-primary")
   = pagy_card_footer(pagy)

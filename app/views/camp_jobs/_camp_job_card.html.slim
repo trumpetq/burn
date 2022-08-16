@@ -20,7 +20,7 @@
           td = camp_status_badge(resource)
         tr
           th Points
-          td = number_with_precision(resource.points, precision: 2, strip_insignificant_zeros: true)
+          td = number_of_points(resource.points)
         tr
           th Timeframe
           td = camp_timeframe_badge(resource)

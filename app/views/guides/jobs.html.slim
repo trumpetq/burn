@@ -11,7 +11,7 @@
         p.card-text We use a point system to divide up work as fairly as possible. Once you have paid dues you will be able to sign up for jobs online.
         p.card-text The idea behind the point system is a lot of jobs are way more fun to do than others. For example you would probably rather DJ a party than cleanup the kitchen after dinner. Jobs that suck more get more points. Some jobs that are really fun get zero points. You will need to sign up for <b>#{Settings.camp.min_points} points</b> or more.
         p.card-text After #{Settings.date.points_deadline_on} jobs will be randomly assigned to users with less than #{Settings.camp.min_points} points.
-        p.card-text If you have a #{link_to_guide("WAP", :work_access_pass)} you can sign up for a day credit and get points for each day of build. Jobs during strike recieve no less points as everyone participates in strike.
+        p.card-text If you have a #{link_to_guide("WAP", :work_access_pass)} #{Settings.jobs.wap_day_points} points for each day of build. Jobs during strike recieve less points as everyone participates in strike.
         .card-footer
           .btn-collection
             = link_to("View jobs", camp_jobs_path, class: "btn btn-primary")

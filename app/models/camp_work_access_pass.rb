@@ -46,6 +46,13 @@ class CampWorkAccessPass < ApplicationRecord
     "WAP #{id}"
   end
 
+  def job_points
+    return nil if expected_arrival_on.blank?
+    days = (Settings.date.event_begin_on - expected_arrival_on).to_f
+    return 0.0 if days < 1
+    (days * Settings.jobs.wap_day_points).to_f
+  end
+
   def can_sign_up?
     active? && user.blank?
   end

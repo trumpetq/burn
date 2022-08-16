@@ -5,7 +5,7 @@
       tbody
         tr
           th ID
-          td = admin_link_to_id(resource)
+          td = link_to_id(resource)
         tr
           th User
           td = link_to_user(resource.user)
@@ -19,8 +19,12 @@
           th Expected arrival
           td = event_date(resource.expected_arrival_on)
         tr
-          th Ticket ID
-          td = resource.ticket_id.presence || na_badge
+          th Job points
+          td = number_of_points(resource.job_points)
+        - if policy(resource).download?
+          tr
+            th Ticket ID
+            td = resource.ticket_id.presence || na_badge
         tr
           th Notes
           td = resource.notes.presence || na_badge

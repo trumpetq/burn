@@ -16,7 +16,7 @@ class CampJobPolicy < CampPolicy
   end
 
   def remove?
-    member? && me? && (Date.current <= Settings.date.job_cutoff_on) && !user.confirmed?
+    member? && me? && (Date.current <= Settings.date.job_cutoff_on)
   end
 
   def sign_up?

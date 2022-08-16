@@ -22,7 +22,7 @@
             td = camp_timeframe_badge(resource)
             td = event_date(resource.job_on)
             td = admin_link_to_camp(resource, resource.title)
-            td = admin_link_to_camp(resource, number_with_precision(resource.points, precision: 2, strip_insignificant_zeros: true))
+            td = admin_link_to_camp(resource, number_of_points(resource.points))
             td = admin_link_to_user(resource.user)
             td.text-end = admin_edit_icon(resource)
   = pagy_card_footer(pagy)

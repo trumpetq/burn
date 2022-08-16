@@ -10,6 +10,7 @@ date:
   job_cutoff_on: 2022-08-20
   final_cutoff_on: 2022-8-20
   points_deadline_on: 2022-08-15
+  event_begin_on: 2022-08-28
   previous_years: [2016, 2017, 2018, 2019, 2021]
   full_event: [
     ["Monday, August 22nd (build week)", "2022-08-22"],
@@ -47,6 +48,8 @@ github:
 instagram:
   url: https://www.instagram.com/8.bit.bunny/
   username: 8.bit.bunny
+jobs:
+  wap_day_points: 3
 mayor:
   sunday:
   monday:

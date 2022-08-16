@@ -114,6 +114,7 @@ class GuidesController < ApplicationController
 
   # GET /guides/work_access_pass
   def work_access_pass
+    @camp_work_access_passes = ::CampWorkAccessPass.all.order_by_date
   end
 
   # GET /guides/yearbook

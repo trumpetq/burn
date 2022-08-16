@@ -1,12 +1,17 @@
 = turbo_frame_tag("camp_work_access_pass_sign_up_card", target: "_top") do
-  - if @resource.user.present? && @resource.valid?
-    = render "taken_card", resource: @resource
+  - if current_user.camp_work_access_pass.present?
+   - if current_user.camp_work_access_pass == resource
+    .alert.alert-info This WAP belongs to you. Select the date you plan to arrive on playa.
+   - else
+    .alert.alert-secondary You are assigned a #{link_to_camp(current_user.camp_work_access_pass, "different")} WAP.
+  - elsif resource.user.present? && resource.valid?
+    = render "taken_card", resource: resource
   - else
-    - if policy(@resource).sign_up?
+    - if policy(resource).sign_up?
       .card.mb-3
         = card_header("pass", "WAP")
         .card-body.pb-0
-          p.card-text Sign up for a WAP.
+          p.card-text Sign up for a WAP. Select the date you plan to arrive on playa.
         .card-form
           = render "shared/error_messages", resource: resource
           = simple_form_for(resource, url: sign_up_camp_work_access_pass_path) do |f|

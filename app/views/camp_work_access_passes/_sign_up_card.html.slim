@@ -1,7 +1,7 @@
 = turbo_frame_tag("camp_work_access_pass_sign_up_card", target: "_top") do
   - if current_user.camp_work_access_pass.present?
    - if current_user.camp_work_access_pass == resource
-    .alert.alert-info This WAP belongs to you. Select the date you plan to arrive on playa.
+    .alert.alert-info This WAP belongs to you. We will see you on playa for build.
    - else
     .alert.alert-secondary You are assigned a #{link_to_camp(current_user.camp_work_access_pass, "different")} WAP.
   - elsif resource.user.present? && resource.valid?

@@ -4,6 +4,7 @@
     p.text-muted
       | Arrive early and build
       =< camp_status_badge(user.camp_work_access_pass)
+    p.text-muted <b>Expected arrival</b> #{admin_date(user.camp_work_access_pass.expected_arrival_on)}
 - else
   li.list-group-item.bg-light
     h6 = link_to_policy(policy(:camp_work_access_pass).index?, "WAP", camp_work_access_passes_path, class: "text-decoration-none")

@@ -19,6 +19,10 @@ class CampWorkAccessPassPolicy < CampPolicy
     member? && me? && record.approved?
   end
 
+  def remove?
+    member? && me? && (Date.current <= Settings.date.wap_cutoff_on)
+  end
+
   def sign_up?
     return if user.camp_work_access_pass.present? && record.valid?
 

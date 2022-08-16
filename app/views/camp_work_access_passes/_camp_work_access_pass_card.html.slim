@@ -30,5 +30,5 @@
           td = resource.notes.presence || na_badge
   .card-footer
     .btn-collection
-      - if policy(:camp_work_access_pass).index?
-        = link_to("Back to WAPs", camp_work_access_passes_path, class: "btn btn-secondary")
+      - if policy(current_user).me?
+        = link_to("Back to profile", user_path(current_user), class: "btn btn-secondary")

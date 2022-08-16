@@ -1,7 +1,7 @@
 - page_title("Campers")
 
 .row
-  .col-md-9
+  .col-md-12
     .card.mb-3
       = card_header("people", "Camping with us", pagy: @pagy)
       .card-table
@@ -12,6 +12,8 @@
               th Name
               th Title
               th Location
+              th Status
+              th Jobs
           tbody
             - @camping_with_us.each do |user|
               tr
@@ -21,4 +23,6 @@
                 td = link_to_user(user)
                 td = user.title.presence || na_badge
                 td = user_location_badge(user)
+                td = user_status_badge(user)
+                td = camp_points_badge(user)
       = pagy_card_footer(@pagy)

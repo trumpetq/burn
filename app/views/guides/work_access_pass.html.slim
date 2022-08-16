@@ -10,7 +10,7 @@
         p.card-text WAP (Work Access Pass) allows you to join our camp for build. This allows you early entry into the event in exchange for help in building camp.
         p.card-text Build week is one of the best parts of the event as we create a city from scratch.
         p.card-text Select the day you would like to arrive and apply for your WAP below.
-    = render "camp_work_access_passes/assigned_card", resource: current_user.camp_work_access_pass
+    = render "camp_work_access_passes/assigned_card", resource: current_user&.camp_work_access_pass
     = render "camp_work_access_passes/table_card", resources: @camp_work_access_passes, pagy: false
   .col-md-3
     = render "shared/burning_man/work_access_pass_card"

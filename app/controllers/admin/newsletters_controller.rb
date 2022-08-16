@@ -69,15 +69,15 @@ module Admin
       @campers_only_list = ::Newsletter.with_list(:campers_only).order(email: :asc)
       @campers_only_list_text = @campers_only_list.join(",\n")
 
-      not_camping_with_us_user_ids = ::User.not_camping_with_us.pluck(:id)
-      @might_go_list = ::Newsletter.subscribed.where.not(user_id: not_camping_with_us_user_ids).or(::Newsletter.subscribed.where(user_id: nil)).order(email: :asc)
+      might_go_user_ids = ::User.with_plan(:none, :thinking_about_it, :camping_with_us).pluck(:id).compact
+      @might_go_list = ::Newsletter.subscribed.where(user_id: might_go_user_ids).order(email: :asc)
       @might_go_list_text = @might_go_list.join(",\n")
 
-      no_plan_user_ids = ::User.with_plan(:none).pluck(:id)
-      @no_plan_list = ::Newsletter.subscribed.where.not(user_id: no_plan_user_ids).or(::Newsletter.subscribed.where(user_id: nil)).order(email: :asc)
+      no_plan_user_ids = ::User.with_plan(:none).pluck(:id).compact
+      @no_plan_list = ::Newsletter.subscribed.where(user_id: no_plan_user_ids).order(email: :asc)
       @no_plan_list_text = @no_plan_list.join(",\n")
 
-      wap_user_ids = ::CampWorkAccessPass.pluck(:user_id)
+      wap_user_ids = ::CampWorkAccessPass.pluck(:user_id).compact
       @wap_list = ::Newsletter.subscribed.where(user_id: wap_user_ids).order(email: :asc)
       @wap_list_text = @wap_list.join(",\n")
     end

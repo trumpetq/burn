@@ -33,3 +33,9 @@
       = card_header("mailbox", "WAP list", pagy: @wap_list.size)
       .card-body
         textarea.form-control.text rows="10" = @wap_list_text
+.row
+  .col-md-4
+    .card.mb-3
+      = card_header("mailbox", "Kitchen list", pagy: @kitchen_list.size)
+      .card-body
+        textarea.form-control.text rows="10" = @kitchen_list_text

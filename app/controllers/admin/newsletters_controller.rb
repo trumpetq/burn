@@ -80,6 +80,10 @@ module Admin
       wap_user_ids = ::CampWorkAccessPass.pluck(:user_id).compact
       @wap_list = ::Newsletter.subscribed.where(user_id: wap_user_ids).order(email: :asc)
       @wap_list_text = @wap_list.join(",\n")
+
+      job_user_ids = ::CampJob.includes(:camp_job_description).where("camp_job_descriptions.department = ?", ::CampJobDescription.department.find_value(:kitchen).value).pluck(:user_id).compact
+      @kitchen_list = ::User.where(id: job_user_ids).order(email: :asc)
+      @kitchen_list_text = @kitchen_list.map(&:email).compact.uniq.join(",\n")
     end
 
     # PATCH /admin/users/:id/restore

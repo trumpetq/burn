@@ -19,11 +19,21 @@ module BadgeHelper
     yes_or_no_badge(true, text)
   end
 
-  def yes_or_no_badge(value, text = nil, tooltip: nil)
-    if value
-      tag.span(text.presence || "Yes", class: "badge bg-success")
+  def yes_or_no_badge(value, text = nil, tooltip: nil, class_name: nil)
+    badge_text = value ? text.presence || "Yes" : text.presence || "No"
+
+    if tooltip.present?
+      if value
+        tag.span(badge_text, class: "badge bg-success #{class_name}".strip, data: {bs_toggle: "tooltip", bs_title: tooltip})
+      else
+        tag.span(badge_text, class: "badge bg-danger #{class_name}".strip, data: {bs_toggle: "tooltip", bs_title: tooltip})
+      end
     else
-      tag.span(text.presence || "No", class: "badge bg-danger")
+      if value
+        tag.span(badge_text, class: "badge bg-success #{class_name}".strip)
+      else
+        tag.span(badge_text, class: "badge bg-danger #{class_name}".strip)
+      end
     end
   end
 

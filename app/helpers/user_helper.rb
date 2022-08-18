@@ -118,8 +118,7 @@ module UserHelper
       concat(camp_status_badge(user.camp_deposit, style: :letter, class_name: "me-1", tooltip: "Deposit"))
       concat(camp_points_badge(user, class_name: "me-1", tooltip: "Points"))
       concat(user_has_ticket_badge(user, style: :letter, class_name: "me-1", tooltip: "Ticket"))
-      concat(user_has_wap_badge(user, style: :letter, class_name: "me-1", tooltip: "Ticket"))
-
+      concat(camp_status_badge(user.camp_work_access_pass, style: :letter, class_name: "me-1", tooltip: "WAP"))
     end
   end
 

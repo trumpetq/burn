@@ -8,7 +8,7 @@ module Admin
     def index
       authorize([:admin, :user])
 
-      @query = ::User.includes(:camp_application, :camp_interview).kept
+      @query = ::User.includes(:camp_application, :camp_interview, :camp_due, :camp_deposit, :camp_work_access_pass).kept
 
       @query = @query.like_name(params[:search][:name]) if params.dig(:search, :name).present?
       @query = @query.with_role(params[:search][:role]) if params.dig(:search, :role).present?

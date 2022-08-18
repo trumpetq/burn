@@ -37,7 +37,7 @@ module UserHelper
     css_class =
       case user.diet.to_sym
       when :omnivore then "badge bg-secondary"
-      when :vegitarian then "badge bg-primary"
+      when :vegetarian then "badge bg-primary"
       when :vegan then "badge bg-success"
       else
         "badge bg-dark"
@@ -118,6 +118,8 @@ module UserHelper
       concat(camp_status_badge(user.camp_deposit, style: :letter, class_name: "me-1", tooltip: "Deposit"))
       concat(camp_points_badge(user, class_name: "me-1", tooltip: "Points"))
       concat(user_has_ticket_badge(user, style: :letter, class_name: "me-1", tooltip: "Ticket"))
+      concat(user_has_wap_badge(user, style: :letter, class_name: "me-1", tooltip: "Ticket"))
+
     end
   end
 

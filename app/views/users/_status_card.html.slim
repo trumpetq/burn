@@ -45,7 +45,12 @@
     - else
       = render "incomplete_profile_card", user: user
 
-  - if user.can_confirm?
+  - if user.confirmed?
+    .card-body.pt-0
+      p.card-text It looks like you are <b>already confirmed</b>. We will see you at Burning Man.
+      - if policy(user).ticket?
+        p = link_to("Print ticket", ticket_user_path(user), class: "btn btn-secondary")
+  - elsif user.can_confirm?
     .card-body.pt-0
       p.card-text <b>Congratulations</b> you are ready to confirm your spot for #{Settings.date.current_year}. After confirming you will be able to print your 8-bit Bunny ticket.
       - if policy(user).confirm?

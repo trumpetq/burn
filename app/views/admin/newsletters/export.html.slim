@@ -39,3 +39,8 @@
       = card_header("mailbox", "Kitchen list", pagy: @kitchen_list.size)
       .card-body
         textarea.form-control.text rows="10" = @kitchen_list_text
+  .col-md-4
+    .card.mb-3
+      = card_header("mailbox", "Dues without deposit", pagy: @dues_without_deposit_list.size)
+      .card-body
+        textarea.form-control.text rows="10" = @dues_without_deposit_list_text

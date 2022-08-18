@@ -84,6 +84,13 @@ module Admin
       job_user_ids = ::CampJob.includes(:camp_job_description).where("camp_job_descriptions.department = ?", ::CampJobDescription.department.find_value(:kitchen).value).pluck(:user_id).compact
       @kitchen_list = ::User.where(id: job_user_ids).order(email: :asc)
       @kitchen_list_text = @kitchen_list.map(&:email).compact.uniq.join(",\n")
+
+      paid_dues_user_ids = ::CampDue.finished.pluck(:user_id).compact.uniq
+      paid_deposit_user_ids = ::CampDeposit.finished.pluck(:user_id).compact.uniq
+
+      dues_without_depoit_user_ids = paid_dues_user_ids - paid_deposit_user_ids
+      @dues_without_deposit_list = ::User.where(id: dues_without_depoit_user_ids).order(email: :asc)
+      @dues_without_deposit_list_text = @dues_without_deposit_list.map(&:email).compact.uniq.join(",\n")
     end
 
     # PATCH /admin/users/:id/restore

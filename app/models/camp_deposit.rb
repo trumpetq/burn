@@ -39,6 +39,8 @@ class CampDeposit < ApplicationRecord
 
   belongs_to :user
 
+  scope :finished, -> { with_status(:paid, :skipped, :completed) }
+
   def finished?
     completed? || paid? || skipped?
   end

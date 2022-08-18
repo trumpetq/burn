@@ -112,9 +112,12 @@ module UserHelper
     return na_badge if user.blank?
 
     capture do
-      concat(camp_status_badge(user.camp_application, style: :letter, class_name: "me-1"))
-      concat(camp_status_badge(user.camp_interview, style: :letter, class_name: "me-1"))
-      concat(user_has_ticket_badge(user, style: :letter, class_name: "me-1"))
+      concat(camp_status_badge(user.camp_application, style: :letter, class_name: "me-1", tooltip: "Application"))
+      concat(camp_status_badge(user.camp_interview, style: :letter, class_name: "me-1", tooltip: "Interview"))
+      concat(camp_status_badge(user.camp_due, style: :letter, class_name: "me-1", tooltip: "Dues"))
+      concat(camp_status_badge(user.camp_deposit, style: :letter, class_name: "me-1", tooltip: "Deposit"))
+      concat(camp_points_badge(user, class_name: "me-1", tooltip: "Points"))
+      concat(user_has_ticket_badge(user, style: :letter, class_name: "me-1", tooltip: "Ticket"))
     end
   end
 
@@ -130,7 +133,7 @@ module UserHelper
     end
   end
 
-  def user_has_ticket_badge(user, style: :word, class_name: nil)
+  def user_has_ticket_badge(user, style: :word, class_name: nil, tooltip: nil)
     return na_badge(style: style, class_name: class_name) if user.blank?
 
     if user.has_ticket?
@@ -149,6 +152,10 @@ module UserHelper
         "Error"
       end
 
-    tag.span(badge_text, class: "#{css_class} #{class_name}".strip)
+    if tooltip.present?
+      tag.span(badge_text, class: "#{css_class} #{class_name}".strip, data: {bs_toggle: "tooltip", bs_title: tooltip})
+    else
+      tag.span(badge_text, class: "#{css_class} #{class_name}".strip)
+    end
   end
 end

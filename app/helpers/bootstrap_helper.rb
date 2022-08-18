@@ -20,10 +20,16 @@ module BootstrapHelper
   end
 
   COLORS.each do |color|
-    define_method("#{color}_count_badge") { |count| count_badge(count, class_name: "badge rounded-pill bg-#{color}") }
+    define_method("#{color}_count_badge") do |count, class_name: nil, tooltip: nil|
+      if tooltip.present?
+        count_badge(count, class_name: "badge rounded-pill bg-#{color} #{class_name}".strip, tooltip: tooltip)
+      else
+        count_badge(count, class_name: "badge rounded-pill bg-#{color} #{class_name}".strip)
+      end
+    end
   end
 
   COLORS.each do |color|
-    define_method("#{color}_badge") { |text| tag.span(text, class: "badge text-bg-#{color}") }
+    define_method("#{color}_badge") { |text, class_name: nil| tag.span(text, class: "badge text-bg-#{color} #{class_name}".strip) }
   end
 end

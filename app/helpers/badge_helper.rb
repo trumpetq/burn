@@ -11,15 +11,15 @@ module BadgeHelper
     tag.span(badge_text, class: "badge bg-light text-dark #{class_name}".strip)
   end
 
-  def no_badge(text = nil)
+  def no_badge(text = nil, tooltip: nil)
     yes_or_no_badge(false, text)
   end
 
-  def yes_badge(text = nil)
+  def yes_badge(text = nil, tooltip: nil)
     yes_or_no_badge(true, text)
   end
 
-  def yes_or_no_badge(value, text = nil)
+  def yes_or_no_badge(value, text = nil, tooltip: nil)
     if value
       tag.span(text.presence || "Yes", class: "badge bg-success")
     else
@@ -36,9 +36,13 @@ module BadgeHelper
     end
   end
 
-  def count_badge(count, class_name: "badge rounded-pill bg-opacity-50 bg-secondary")
+  def count_badge(count, class_name: "badge rounded-pill bg-opacity-50 bg-secondary", tooltip: nil)
     return na_badge unless count.present?
 
-    tag.span(number_with_delimiter(count), class: class_name)
+    if tooltip.present?
+      tag.span(number_with_delimiter(count), class: class_name, data: {bs_toggle: "tooltip", bs_title: tooltip})
+    else
+      tag.span(number_with_delimiter(count), class: class_name)
+    end
   end
 end

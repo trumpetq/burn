@@ -42,14 +42,14 @@ module CampJobHelper
     tag.span(camp.department&.to_s&.humanize, class: css_class)
   end
 
-  def camp_points_badge(user)
+  def camp_points_badge(user, tooltip: nil, class_name: nil)
     count = user&.total_points
-    return danger_count_badge(0) if count.blank? || count.zero?
+    return danger_count_badge(0, class_name: class_name, tooltip: tooltip) if count.blank? || count.zero?
 
     if count >= Settings.camp.min_points
-      success_count_badge(number_with_precision(count, precision: 2, strip_insignificant_zeros: true))
+      success_count_badge(number_with_precision(count, precision: 2, strip_insignificant_zeros: true), class_name: class_name, tooltip: tooltip)
     else
-      warning_count_badge(number_with_precision(count, precision: 2, strip_insignificant_zeros: true))
+      warning_count_badge(number_with_precision(count, precision: 2, strip_insignificant_zeros: true), class_name: class_name, tooltip: tooltip)
     end
   end
 

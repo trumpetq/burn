@@ -9,6 +9,7 @@
           th Title
           th Location
           th Status
+          th Dues
           th Jobs
       tbody
         - resources.each do |user|
@@ -20,5 +21,6 @@
             td = user.title.presence || na_badge
             td = user_location_badge(user)
             td = user_status_badge(user)
+            td = yes_or_no_badge(user.camp_due&.finished?)
             td = camp_points_badge(user)
   = pagy_card_footer(pagy)

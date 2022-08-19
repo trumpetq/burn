@@ -5,8 +5,8 @@ class UsersController < ApplicationController
   # GET /users
   def index
     authorize(:user)
-    @pagy_confirmed_users, @confirmed_users = pagy(::User.includes(avatar_attachment: :blob).with_status(:confirmed).order_by_name, items: 100, page_param: :confirmed)
-    @pagy_maybe_users, @maybe_users = pagy(::User.includes(avatar_attachment: :blob).with_plan(:camping_with_us).with_status(:active).order_by_name, items: 25, page_param: :maybe)
+    @pagy_confirmed_users, @confirmed_users = pagy(::User.includes(:camp_work_access_pass, :camp_due, avatar_attachment: :blob).with_status(:confirmed).order_by_name, items: 100, page_param: :confirmed)
+    @pagy_maybe_users, @maybe_users = pagy(::User.includes(:camp_work_access_pass, :camp_due, avatar_attachment: :blob).with_plan(:camping_with_us).with_status(:active).order_by_name, items: 25, page_param: :maybe)
   end
 
   # GET /users/:id
@@ -22,7 +22,6 @@ class UsersController < ApplicationController
 
   # GET /users/status
   def status
-
     authorize(current_user)
     @user = current_user
   end

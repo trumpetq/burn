@@ -46,6 +46,7 @@
 
         tr
           th Jobs
+          td = user.total_points
           - if user.camp_jobs.present?
             td = camp_points_badge(user)
             td

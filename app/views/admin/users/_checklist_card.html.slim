@@ -46,16 +46,9 @@
 
         tr
           th Jobs
-          td = user.total_points
-          - if user.camp_jobs.present?
-            td = camp_points_badge(user)
-            td
-            td
-          - else
-            td = na_badge
-            td
-            td
-
+          td = camp_points_badge(user)
+          td
+          td
         tr
           th Tickets
           - if user.camp_tickets.present?

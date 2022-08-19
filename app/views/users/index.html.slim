@@ -2,27 +2,8 @@
 
 .row
   .col-md-12
-    .card.mb-3
-      = card_header("people", "Camping with us", pagy: @pagy)
-      .card-table
-        table.table
-          thead
-            tr
-              th
-              th Name
-              th Title
-              th Location
-              th Status
-              th Jobs
-          tbody
-            - @camping_with_us.each do |user|
-              tr
-                td
-                  - if user&.avatar&.attached?
-                    = image_tag(user.avatar.variant(:menu), size: "24x24", class: "rounded-circle", alt: user)
-                td = link_to_user(user)
-                td = user.title.presence || na_badge
-                td = user_location_badge(user)
-                td = user_status_badge(user)
-                td = camp_points_badge(user)
-      = pagy_card_footer(@pagy)
+    = render "table_card", title: "Confirmed campers", resources: @confirmed_users, pagy: @pagy_confirmed_users
+
+.row
+  .col-md-12
+    = render "table_card", title: "Maybe camping with us", resources: @maybe_users, pagy: @pagy_maybe_users

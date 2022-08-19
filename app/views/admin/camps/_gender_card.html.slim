@@ -1,0 +1,34 @@
+
+.card.mb-3
+  = card_header("gender-ambiguous", "Gender")
+  .card-table
+    table.table
+      tbody
+        tr
+          th
+          th Confirmed
+          th Active
+        tr
+          th She/Her
+          td = number_with_delimiter(@she_her_confirmed_users_count)
+          td = number_with_delimiter(@she_her_users_count)
+        tr
+          th She/They
+          td = number_with_delimiter(@she_they_confirmed_users_count)
+          td = number_with_delimiter(@she_they_users_count)
+        tr
+          th They/Them
+          td = number_with_delimiter(@they_them_confirmed_users_count)
+          td = number_with_delimiter(@they_them_users_count)
+        tr
+          th He/They
+          td = number_with_delimiter(@he_they_confirmed_users_count)
+          td = number_with_delimiter(@he_they_users_count)
+        tr
+          th He/Him
+          td = number_with_delimiter(@he_him_confirmed_users_count)
+          td = number_with_delimiter(@he_him_users_count)
+        tr
+          th All
+          td = number_with_delimiter(@all_genders_confirmed_users_count)
+          td = number_with_delimiter(@all_genders_users_count)

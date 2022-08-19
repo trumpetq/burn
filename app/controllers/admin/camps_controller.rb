@@ -16,6 +16,23 @@ module Admin
       @kept_users_count = ::User.kept.count
       @deleted_users_count = ::User.discarded.count
 
+      gender_query = ::User.with_plan(:camping_with_us)
+
+      active_gender_query = gender_query.with_status(:active)
+      @she_her_users_count = active_gender_query.with_pronouns(:she_her).count
+      @she_they_users_count = active_gender_query.with_pronouns(:she_they).count
+      @they_them_users_count = active_gender_query.with_pronouns(:they_them).count
+      @he_they_users_count = active_gender_query.with_pronouns(:he_they).count
+      @he_him_users_count = active_gender_query.with_pronouns(:he_him).count
+      @all_genders_users_count = active_gender_query.with_pronouns(:all).count
+
+      confirmed_gender_query = gender_query.with_status(:confirmed)
+      @she_her_confirmed_users_count = confirmed_gender_query.with_pronouns(:she_her).count
+      @she_they_confirmed_users_count = confirmed_gender_query.with_pronouns(:she_they).count
+      @they_them_confirmed_users_count = confirmed_gender_query.with_pronouns(:they_them).count
+      @he_they_confirmed_users_count = confirmed_gender_query.with_pronouns(:he_they).count
+      @he_him_confirmed_users_count = confirmed_gender_query.with_pronouns(:he_him).count
+      @all_genders_confirmed_users_count = confirmed_gender_query.with_pronouns(:all).count
 
       @camp_applications_count = ::CampApplication.all.count
       @active_camp_applications_count = ::CampApplication.with_status(:active).count

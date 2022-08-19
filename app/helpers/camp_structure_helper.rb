@@ -8,7 +8,7 @@ module CampStructureHelper
       when :tent then "badge bg-success"
       when :carport, :hexayurt then "badge bg-primary"
       when :shiftpod then "badge bg-info"
-      when :monkey_hut then "badge badge-warning"
+      when :monkey_hut then "badge bg-warning"
       when :other then "badge bg-danger"
       else
         "badge bg-dark"

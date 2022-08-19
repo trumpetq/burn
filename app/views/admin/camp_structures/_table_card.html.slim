@@ -8,6 +8,7 @@
           th Status
           th User
           th Structure
+          th Size
           th
       tbody
         - resources.each do |resource|
@@ -16,5 +17,6 @@
             td = camp_status_badge(resource)
             td = admin_link_to_user(resource.user)
             td = camp_structure_badge(resource)
+            td = size_in_feet(resource)
             td.text-end = admin_edit_icon(resource)
   = pagy_card_footer(pagy)

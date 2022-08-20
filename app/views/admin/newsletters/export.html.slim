@@ -44,3 +44,13 @@
       = card_header("mailbox", "Dues without deposit", pagy: @dues_without_deposit_list.size)
       .card-body
         textarea.form-control.text rows="10" = @dues_without_deposit_list_text
+  .col-md-4
+    .card.mb-3
+      = card_header("mailbox", "Active", pagy: @camping_with_us_active_list.size)
+      .card-body
+        textarea.form-control.text rows="10" = @camping_with_us_active_list_text
+  .col-md-4
+    .card.mb-3
+      = card_header("mailbox", "Confirmed", pagy: @camping_with_us_confirmed_list.size)
+      .card-body
+        textarea.form-control.text rows="10" = @camping_with_us_confirmed_list_text

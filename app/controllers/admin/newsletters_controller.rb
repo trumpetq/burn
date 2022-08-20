@@ -91,6 +91,14 @@ module Admin
       dues_without_depoit_user_ids = paid_dues_user_ids - paid_deposit_user_ids
       @dues_without_deposit_list = ::User.where(id: dues_without_depoit_user_ids).order(email: :asc)
       @dues_without_deposit_list_text = @dues_without_deposit_list.map(&:email).compact.uniq.join(",\n")
+
+      @camping_with_us_active_list = ::User.with_plan(:camping_with_us).with_status(:active)
+      @camping_with_us_active_list_text = @camping_with_us_active_list.map(&:email).compact.uniq.join(",\n")
+
+      @camping_with_us_confirmed_list = ::User.with_plan(:camping_with_us).with_status(:confirmed)
+      @camping_with_us_confirmed_list_text = @camping_with_us_confirmed_list.map(&:email).compact.uniq.join(",\n")
+
+
     end
 
     # PATCH /admin/users/:id/restore

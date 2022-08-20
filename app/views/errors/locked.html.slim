@@ -1,0 +1,14 @@
+- page_title("Locked")
+
+.row
+  .col-md-3
+  .col-md-6
+    .card.mb-3
+      = card_header("exclamation-octagon", "Locked", class_name: "bg-danger text-white")
+      .card-body
+        h2.display-3.text-danger Locked
+        p.card-text The deadline to make changes has passed. You <b>can not</b> change this item until after Burning Man.
+
+    - if current_user.present?
+      = render "users/ticket_card", user: current_user
+  .col-md-3

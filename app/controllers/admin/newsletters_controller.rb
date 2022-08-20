@@ -97,8 +97,6 @@ module Admin
 
       @camping_with_us_confirmed_list = ::User.with_plan(:camping_with_us).with_status(:confirmed)
       @camping_with_us_confirmed_list_text = @camping_with_us_confirmed_list.map(&:email).compact.uniq.join(",\n")
-
-
     end
 
     # PATCH /admin/users/:id/restore

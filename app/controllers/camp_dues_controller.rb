@@ -1,5 +1,6 @@
 class CampDuesController < ApplicationController
   include Campable
+  before_action :locked, only: [:create, :edit, :update, :pay]
 
   def after_create
     @redirect_url = camp_due_url(@resource)

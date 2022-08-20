@@ -17,6 +17,11 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :play_name])
   end
 
+  def locked
+    return unless Settings.camp.locked
+    render "errors/locked", status: :forbidden
+  end
+
   private
 
   def internal_server_error(e)

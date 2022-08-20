@@ -1,5 +1,6 @@
 class CampJobsController < ApplicationController
   include Campable
+  before_action :locked, only: [:edit, :update, :remove, :sign_up]
 
   # PATCH /camp_jobs/:id/remove
   def remove

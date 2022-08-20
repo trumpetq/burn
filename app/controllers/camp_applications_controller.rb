@@ -1,5 +1,6 @@
 class CampApplicationsController < ApplicationController
   include Campable
+  before_action :locked, only: [:create, :edit, :update, :start]
 
   # GET /camp_applications/start
   def start

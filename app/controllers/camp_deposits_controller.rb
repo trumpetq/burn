@@ -1,5 +1,6 @@
 class CampDepositsController < ApplicationController
   include Campable
+  before_action :locked, only: [:create, :edit, :update, :pay]
 
   def before_create
     @resource.pricing_tier = @resource.user.camp_due.pricing_tier if @resource&.user&.camp_due.present?

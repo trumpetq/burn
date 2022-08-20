@@ -1,5 +1,6 @@
 class CampWorkAccessPassesController < ApplicationController
   include Campable
+  before_action :locked, only: [:edit, :update, :sign_up, :remove]
 
   # GET /camp_jobs
   def index

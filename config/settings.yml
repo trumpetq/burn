@@ -5,11 +5,11 @@ camp:
   max_campers: 50
   min_points: 10
   size: 200' x 100'
-  locked: true
+  locked: false
 date:
   current_year: 2022
   job_cutoff_on: 2022-08-20
-  wap_cutoff_on: 2022-08-28
+  wap_cutoff_on: 2022-08-20
   final_cutoff_on: 2022-8-20
   points_deadline_on: 2022-08-15
   event_begin_on: 2022-08-28

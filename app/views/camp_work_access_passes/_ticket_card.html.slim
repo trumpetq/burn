@@ -1,0 +1,17 @@
+- if policy(resource).download?
+  - if resource.ticket.attached?
+    .card.mb-3
+      = card_header("image", "PDF")
+      .card-body
+        - if resource.ticket.representable?
+          = link_to(rails_blob_url(resource.ticket, disposition: "attachment")) do
+            = image_tag(resource.ticket.representation(resize_to_limit: [200, 200]))
+        p.card-text
+          = link_to("Download PDF", rails_blob_url(resource.ticket, disposition: "attachment"))
+
+  - else
+    .card.mb-3
+      = card_header("image", "PDF")
+      .card-body
+        .alert.alert-secondary.mb-1 No file found.
+

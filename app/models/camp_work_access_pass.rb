@@ -34,13 +34,14 @@ class CampWorkAccessPass < ApplicationRecord
 
   validates :pass_on, presence: true
   validates :expected_arrival_on, date: {after_or_equal_to: :pass_on}, if: :assigned?
+  validates :ticket_id, uniqueness: true, allow_blank: true
   has_one_attached :ticket
 
   validate :user_exists
   belongs_to :user, optional: true
 
-  scope :order_by_date, -> { order(pass_on: :asc) }
-  scope :reorder_by_date, -> { reorder(pass_on: :asc) }
+  scope :order_by_date, -> { order(pass_on: :asc, id: :asc) }
+  scope :reorder_by_date, -> { reorder(pass_on: :asc, id: :asc) }
 
   def to_s
     "WAP #{id}"

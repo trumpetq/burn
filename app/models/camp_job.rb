@@ -54,8 +54,8 @@ class CampJob < ApplicationRecord
   scope :for_camp_job_description, ->(camp_job_description) { where(camp_job_description: camp_job_description) }
   scope :for_job_id, ->(job_id) { where(job_id: job_id&.upcase) }
   scope :order_by_title, -> { includes(:camp_job_description).order("camp_job_descriptions.title ASC") }
-  scope :order_by_date, -> { order(job_on: :asc) }
-  scope :reorder_by_date, -> { reorder(job_on: :asc) }
+  scope :order_by_date, -> { order(job_on: :asc, id: :asc) }
+  scope :reorder_by_date, -> { reorder(job_on: :asc, id: :asc) }
   scope :in_bay_area, -> { where(bay_area: true) }
   scope :on_day, ->(date) { where(job_on: date)}
 

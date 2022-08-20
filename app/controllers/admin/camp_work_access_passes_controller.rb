@@ -13,7 +13,7 @@ module Admin
     private
 
     def search_index
-      @query = @query.reorder_by_date
+      @query = @query.includes(:ticket_attachment).reorder_by_date
     end
 
     private

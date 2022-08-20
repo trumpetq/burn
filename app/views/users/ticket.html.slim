@@ -5,3 +5,7 @@
   .col-md-3
   .col-md-6
     = render "ticket_card", user: @user
+  .col-md-3
+    - if @user.camp_work_access_pass&.approved?
+      .alert.alert-success It looks like you have a #{link_to_camp(@user.camp_work_access_pass, "WAP")} for #{event_date(@user.camp_work_access_pass.pass_on)}. Don't forget to print it.
+      = render "camp_work_access_passes/ticket_card", resource: @user.camp_work_access_pass

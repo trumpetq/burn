@@ -57,8 +57,7 @@ class CampJob < ApplicationRecord
   scope :order_by_date, -> { order(job_on: :asc, id: :asc) }
   scope :reorder_by_date, -> { reorder(job_on: :asc, id: :asc) }
   scope :in_bay_area, -> { where(bay_area: true) }
-  scope :on_day, ->(date) { where(job_on: date)}
-
+  scope :on_day, ->(date) { where(job_on: date) }
 
   def to_s
     "Job #{job_id}"

@@ -2,6 +2,13 @@ module Admin
   class CampWorkAccessPassesController < ApplicationController
     include Admin::Campable
 
+    # GET /admin/camp_jobs/print_all
+    def print_all
+      authorize([:admin, :camp_job])
+      @resources = ::CampWorkAccessPass.includes(:user).order(pass_on: :asc)
+      render layout: "print"
+    end
+
     # PATCH /admin/camp_work_access_passes/:id/remove_ticket
     def remove_ticket
       set_resource

@@ -56,6 +56,14 @@ module Admin
       mayor?
     end
 
+    def print?
+      mayor?
+    end
+
+    def print_all?
+      mayor?
+    end
+
     def refund?
       mayor?
     end

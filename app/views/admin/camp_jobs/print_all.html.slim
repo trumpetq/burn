@@ -1,0 +1,31 @@
+- page_title("Jobs")
+
+.row
+  .col-md-12
+    = render "print_table_card", resources: @pre_event_camp_jobs, timeframe: :pre_event
+  .col-md-12
+    = render "print_table_card", resources: @build_week_camp_jobs, timeframe: :build_week
+  .col-md-12
+    = render "print_table_card", resources: @burn_week_camp_jobs, timeframe: :burn_week
+  .col-md-12
+    = render "print_table_card", resources: @sunday_camp_jobs, timeframe: :sunday
+  .col-md-12
+    = render "print_table_card", resources: @monday_camp_jobs, timeframe: :monday
+  .col-md-12
+    = render "print_table_card", resources: @tuesday_camp_jobs, timeframe: :tuesday
+  .col-md-12
+    = render "print_table_card", resources: @wednesday_camp_jobs, timeframe: :wednesday
+  .col-md-12
+    = render "print_table_card", resources: @thursday_camp_jobs, timeframe: :thursday
+  .col-md-12
+    = render "print_table_card", resources: @friday_camp_jobs, timeframe: :friday
+  .col-md-12
+    = render "print_table_card", resources: @saturday_camp_jobs, timeframe: :saturday
+  .col-md-12
+    = render "print_table_card", resources: @other_burn_week_camp_jobs, timeframe: :burn_week
+  .col-md-12
+    = render "print_table_card", resources: @strike_camp_jobs, timeframe: :strike
+  .col-md-12
+    = render "print_table_card", resources: @post_event_camp_jobs, timeframe: :post_event
+  .col-md-12
+    = render "print_table_card", resources: @year_round_camp_jobs, timeframe: :year_round

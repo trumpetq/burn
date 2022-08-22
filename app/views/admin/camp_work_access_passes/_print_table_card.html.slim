@@ -1,0 +1,19 @@
+.card.mb-3
+  = card_header("pass", "WAPs")
+  .card-table
+    table.table
+      thead
+        tr
+          th ID
+          th Status
+          th User
+          th Date
+          th Notes
+      tbody
+        - resources.each do |resource|
+          tr
+            td = resource.id
+            td = camp_status_badge(resource)
+            td = resource.user
+            td = event_date(resource.pass_on)
+            td = resource.notes&.truncate(30)

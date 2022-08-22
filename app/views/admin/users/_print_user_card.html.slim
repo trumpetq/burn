@@ -1,0 +1,49 @@
+.card.mb-3
+  = card_header("person", user)
+  .card-table
+    table.table
+      tbody
+        tr
+          th Name
+          td
+            = user.name
+            =< user_pronouns_badge(user)
+        tr
+          th Playa name
+          td = user.playa_name.presence || na_badge
+        - if @full
+          tr
+            th ID
+            td = user.id
+          tr
+            th Email
+            td = user.email
+          tr
+            th Phone number
+            td = link_to_phone(user.phone_number)
+          tr
+            th Date of birth
+            td
+              - if user.born_on.present?
+                = "#{user.born_on} (#{user.age})"
+              - else
+                na_badge
+        tr
+          th Country
+          td = user.country_name.presence || na_badge
+        tr
+          th Postal code
+          td
+            = user.postal_code.presence || na_badge
+            =< user_bay_area_badge(user)
+        tr
+          th Diet
+          td = user_diet_badge(user)
+        tr
+          th Allergies
+          td = user.allergies.presence || na_badge
+        tr
+          th Previous years
+          td = user.previous_years&.join(", ").presence || na_badge
+
+

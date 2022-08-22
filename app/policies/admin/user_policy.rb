@@ -44,6 +44,14 @@ module Admin
       record.present? && record == user
     end
 
+    def print?
+      mayor?
+    end
+
+    def print_all?
+      mayjor?
+    end
+
     def restore?
       mayor?
     end

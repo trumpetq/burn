@@ -1,0 +1,17 @@
+doctype html
+html
+  head
+    meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    = csrf_meta_tags
+    = csp_meta_tag
+
+    title = content_for?(:title) ? yield(:title) : raise(ArgumentError.new("title is missing"))
+
+    = favicon_link_tag
+    = stylesheet_link_tag "application", "data-turbo-track": "reload"
+    = javascript_include_tag "application", "data-turbo-track": "reload", defer: true
+  body
+    div#root
+    #main
+      .container-fluid
+        = yield

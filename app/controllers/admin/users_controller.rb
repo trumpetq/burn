@@ -2,7 +2,7 @@ module Admin
   class UsersController < ApplicationController
     include Sortable
 
-    before_action :set_user, only: [:show, :edit, :update, :destroy, :restore, :remove_avatar]
+    before_action :set_user, only: [:show, :edit, :update, :destroy, :print, :restore, :remove_avatar]
 
     # GET /admin/users
     def index
@@ -86,6 +86,12 @@ module Admin
       authorize([:admin, :user])
       user_ids = ::CampInterview.distinct.pluck(:interviewed_by_id)
       @pagy, @users = pagy(::User.for_id(user_ids).order_by_name)
+    end
+
+    # GET /admin/users/:id/print
+    def print
+      @full = params[:full].present?
+      render layout: "print"
     end
 
     # PATCH /admin/users/:id/restore

@@ -37,6 +37,13 @@ module ResourceHelper
     end
   end
 
+  def header_admin_print_button(resource)
+    return unless resource.present?
+    if policy([:admin, resource]).print?
+      link_to(bootstrap_icon("printer"), polymorphic_path([:admin, resource], action: :print), class: "btn btn-xs btn-outline-secondary")
+    end
+  end
+
   def header_show_button(resource)
     return unless resource.present?
     if policy(resource).show?

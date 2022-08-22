@@ -1,0 +1,22 @@
+- if resources.present?
+  .card.mb-3
+    = card_header("hammer", "Jobs ".html_safe + camp_timeframe_badge(OpenStruct.new({ timeframe: timeframe })))
+    .card-table
+      table.table
+        thead
+          tr
+            th Job ID
+            th User
+            th Title
+            th Points
+            th Date
+        tbody
+          - resources.each do |resource|
+            tr
+              td = resource.job_id
+              td = resource.user
+              td = resource.title
+              td = number_of_points(resource.points)
+              td = event_date(resource.job_on)
+
+

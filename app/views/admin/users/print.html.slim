@@ -1,0 +1,7 @@
+- page_title(@user)
+= discard_alert(@user)
+
+.row
+  .col-md-6
+    = render "print_avatar_card", user: @user
+    = render "print_user_card", user: @user

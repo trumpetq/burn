@@ -64,6 +64,10 @@ Rails.application.routes.draw do
     end
 
     resources :camp_jobs do
+      collection do
+        get :print_all
+      end
+
       member do
         patch :active
         patch :approve
@@ -96,6 +100,10 @@ Rails.application.routes.draw do
     end
 
     resources :camp_work_access_passes do
+      collection do
+        get :print_all
+      end
+
       member do
         patch :active
         patch :approve
@@ -128,10 +136,12 @@ Rails.application.routes.draw do
         get :bay_area
         get :deleted
         get :interviewers
+        get :print_all
       end
 
       member do
         patch :remove_avatar
+        get :print
         patch :restore
       end
     end

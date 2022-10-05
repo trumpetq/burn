@@ -6,6 +6,6 @@ module AlertHelper
 
   def discard_alert(resource)
     return unless resource.try(:discarded?)
-    tag.div("#{resource} has been deleted!", class: "alert alert-warning")
+    tag.div("#{resource} has been deleted!", class: "alert alert-danger")
   end
 end

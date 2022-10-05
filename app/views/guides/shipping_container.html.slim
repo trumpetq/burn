@@ -10,7 +10,7 @@
         p.card-text We have a shipping container though the #{link_to("Black Rock City Storage Program", "https://storage.burningman.org/", target: "_blank")} that we use to store supplies year round.
         p.card-text During the event we used the container as an air conditioned chill space.
         p.card-text In order to get your #{link_to("deposit", deposit_guides_path)} back you must stay until the shipping container is fully loaded and the final MOOP sweep is complete.
-        p.card-text We photograph everything stored in the container so there is never a question of what we have to work with. You can view the #{link_to("photos of 2019", "https://www.dropbox.com/sh/4noiates9g8ugbc/AAAfuzfarYlSI_2XULP3aGJga?dl=0", target: "_blank")} on Dropbox.
+        p.card-text We photograph everything stored in the container so there is never a question of what we have to work with. You can view the #{link_to("photos of 2022", "https://www.dropbox.com/sh/r02fd135fmbnkxv/AABpS4SUT-M5FxS9E5fwV4tHa?dl=0", target: "_blank")} on Dropbox.
   .col-md-4
     .card.mb-3
       .card-body
@@ -18,3 +18,10 @@
     .card.mb-3
       .card-body
         = image_tag("guides/container-2.jpg", size: "2000x2000", class: "img-fluid", alt: "Container packed")
+
+    .card.mb-3
+      = card_header("calendar", "Past years")
+      .card-body
+        ul
+          li = link_to("2019", "https://www.dropbox.com/sh/4noiates9g8ugbc/AAAfuzfarYlSI_2XULP3aGJga?dl=0", target: "_blank")
+          li = link_to("2022", "https://www.dropbox.com/sh/r02fd135fmbnkxv/AABpS4SUT-M5FxS9E5fwV4tHa?dl=0", target: "_blank")

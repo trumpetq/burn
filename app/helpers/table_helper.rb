@@ -9,9 +9,7 @@ module TableHelper
 
   def table_row_class(resource)
     return unless resource.present?
-    if resource.try(:discarded?)
-      "bg-warning bg-opacity-25"
-    end
+    "bg-danger bg-opacity-25" if resource.try(:discarded?)
   end
 
   def next_direction
